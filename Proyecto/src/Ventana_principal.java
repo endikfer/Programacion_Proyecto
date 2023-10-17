@@ -1,9 +1,17 @@
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.SwingUtilities;
+import javax.swing.table.AbstractTableModel;
+
+
 
 public class Ventana_principal extends JFrame {
 	/**
@@ -11,19 +19,152 @@ public class Ventana_principal extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	//Estructura de la tabla
+	class Tabla extends AbstractTableModel{
+		
+		
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		
+		//Array con los nombre de las columnas
+		private String[] headers = { "Cancion", "Autor", "Duración" };
+		
+		// Este constructor recibe una lista con los objetos Persona
+        // que van a ser mostrados en la tabla
+        /*public MyTableModel(List<Person> persons) {
+            this.persons = persons;
+        }
+
+        // este método es usado por la tabla para obtener los nombres
+        // de cada columna. En este caso se obtienen del array interno
+        @Override
+        public String getColumnName(int index) {
+            return headers[index];
+        }
+        // este método devuelve la clase de cada columna
+        // es utilizado por el JTable para elegir el componente visual
+        // o el renderer/editor adecuado para cada tipo de datos
+        @Override
+        public Class<?> getColumnClass(int column) {
+            // en este caso, las dos primeras columnas es String
+            // String, mientras que el dato de la última es LocalDate
+            if (column == 2) {
+                return LocalDate.class;
+            } else {
+                return String.class;
+            }
+        }
+        */
+
+		@Override
+		public int getRowCount() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public int getColumnCount() {
+			return headers.length;
+		}
+
+		@Override
+		public Object getValueAt(int row, int column) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+		// el JTable utiliza este método para determinar si una
+        // celda concreta de la tabla es editable
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            // para este ejemplo, son editables todas menos
+            // la primera columna
+            return column >= 4;
+        }
+        
+        //ns si es necesario
+        /*
+         * // este método es utilizado por el JTable para actualizar
+        // el modelo de datos asociado. 
+        // Recibe un Object por lo que, sabiendo el dato interno
+        // es necesario hacer un cast
+        @Override
+        public void setValueAt(Object value, int row, int column) {
+            // Obtenemos el objeto del modelo interno (lista) que
+            // que se debe actualizar en función del valor de fila recibido
+            Person p = persons.get(row);
+
+            // teniendo en cuenta el valor de la columna recibida
+            // actualizamos la propiedad correspondiente de la Persona
+            // teniendo en cuenta el tipo concreto de dato
+            switch (column) {
+                case 0:
+                    p.setName((String) value);
+                    break;
+                case 1:
+                    p.setSurname((String) value);
+                    break;
+                case 2:
+                    p.setBirthdate((LocalDate) value);
+                    break;
+            }
+
+            // este método se utiliza para notificar que el modelo de datos
+            // se ha actualizado y se debe repintar la celda visual
+            fireTableCellUpdated(row, column);
+        }*/
+		
+	}
+	
+	
+	
 	public Ventana_principal(){
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setExtendedState(this.MAXIMIZED_BOTH); //ventana maximizada
 		//setSize(1380, 730);  ventana a tamaño pequeño
         setTitle("Ventana Principal");
         
+        //Elementos creados
+        JPanel derecha = new JPanel();
+        JPanel centro = new JPanel(new BorderLayout());
+        JPanel boton_medio = new JPanel();
         
-        JPanel derecha = new JPanel(new BorderLayout());
-        JButton prueba = new JButton();
-        derecha.add(prueba);
+        JButton prueba = new JButton("Prueba");
+        JButton b_cancion_nueva = new JButton("Añadir canción");
         
-        this.add(prueba, BorderLayout.WEST);
+        
+        
+        //MyTableModel modelo_tabla = new MyTableModel(Arrays.asList(persons));
+        
+        //JTable tabla_prin = new JTable(modelo_tabla);
+        JTable tabla_prin = new JTable();
+        
+        
+        //Elementos del JTable
 
+        
+        
+        
+        
+        //Anaydir elementos a los paneles
+        derecha.add(prueba);
+        boton_medio.add(b_cancion_nueva);
+        centro.add(tabla_prin,BorderLayout.CENTER);
+        centro.add(boton_medio, BorderLayout.SOUTH);
+
+        
+        
+        
+        
+        //Anaydir elementos al panel principal
+        this.add(derecha, BorderLayout.WEST);
+        this.add(centro, BorderLayout.CENTER);
+
+        
+        
+        
         
         setVisible(true);
 	}
