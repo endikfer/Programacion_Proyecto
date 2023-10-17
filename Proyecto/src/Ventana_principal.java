@@ -6,7 +6,9 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.AbstractTableModel;
@@ -127,39 +129,66 @@ public class Ventana_principal extends JFrame {
         
         //Elementos creados
         //Paneles principales
-        JPanel derecha = new JPanel(new GridLayout(4, 1));
+        JPanel izquierda = new JPanel(new GridLayout(4, 1));
         JPanel centro = new JPanel(new BorderLayout());
         JPanel boton_medio = new JPanel();
+        JPanel abajo = new JPanel(new GridLayout(2, 1));
+        JPanel abajo_arriba = new JPanel();
+        JPanel abajo_abajo = new JPanel();
         
-        //Botones del panel de la izquierda
+        //Elementos del panel de la izquierda
+        //Botones
         JButton b_perfil = new JButton("Perfil");
         JButton b_canciones = new JButton("Canciones");
         JButton b_cola = new JButton("Cola");
         JButton b_ajustes = new JButton("Ajustes");
         
-        //Boton del panel del centro
+        //Elementos del panel del centro
+        //Botones
         JButton b_cancion_nueva = new JButton("Añadir canción");
         
-        
+        //Tabla
         
         //MyTableModel modelo_tabla = new MyTableModel(Arrays.asList(persons));
         
         //JTable tabla_prin = new JTable(modelo_tabla);
         JTable tabla_prin = new JTable();
-        
-        
+          
         //Elementos del JTable
 
         
+        //Elementos del panel de abajo
+        //Label
+        JLabel nom_can = new JLabel();
+        //Botones
+        JButton b_foto_can = new JButton("Foto canción");
+        JButton b_atras_can = new JButton("Atrasar canción");
+        JButton b_pausar_can = new JButton("Pausar canción");
+        JButton b_adelantar_can = new JButton("Adelanatar canción");
+        //deslizador
+        JSlider duracion_can = new JSlider();
         
         
         
         //Anaydir elementos a los paneles
         //Anaydir elementos al panel de la izquierda
-        derecha.add(b_perfil);
-        derecha.add(b_canciones);
-        derecha.add(b_cola);
-        derecha.add(b_ajustes);
+        izquierda.add(b_perfil);
+        izquierda.add(b_canciones);
+        izquierda.add(b_cola);
+        izquierda.add(b_ajustes);
+        
+        //Anaydir elementos al panel de abajo
+        abajo_arriba.add(nom_can);
+        abajo_abajo.add(b_foto_can);
+        abajo_abajo.add(duracion_can);
+        abajo_abajo.add(b_atras_can);
+        abajo_abajo.add(b_pausar_can);
+        abajo_abajo.add(b_adelantar_can);
+        
+        
+        abajo.add(abajo_arriba);
+        abajo.add(abajo_abajo);
+        
         
         //Anaydir elementos al panel del centro
         boton_medio.add(b_cancion_nueva);
@@ -167,16 +196,11 @@ public class Ventana_principal extends JFrame {
         centro.add(boton_medio, BorderLayout.SOUTH);
 
         
-        
-        
-        
         //Anaydir elementos al panel principal
-        this.add(derecha, BorderLayout.WEST);
+        this.add(izquierda, BorderLayout.WEST);
         this.add(centro, BorderLayout.CENTER);
+        this.add(abajo, BorderLayout.SOUTH);
 
-        
-        
-        
         
         setVisible(true);
 	}
