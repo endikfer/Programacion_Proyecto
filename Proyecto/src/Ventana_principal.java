@@ -123,15 +123,21 @@ public class Ventana_principal extends JFrame {
 	public Ventana_principal(){
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setExtendedState(this.MAXIMIZED_BOTH); //ventana maximizada
-		//setSize(1380, 730);  ventana a tamaño pequeño
         setTitle("Ventana Principal");
         
         //Elementos creados
-        JPanel derecha = new JPanel();
+        //Paneles principales
+        JPanel derecha = new JPanel(new GridLayout(4, 1));
         JPanel centro = new JPanel(new BorderLayout());
         JPanel boton_medio = new JPanel();
         
-        JButton prueba = new JButton("Prueba");
+        //Botones del panel de la izquierda
+        JButton b_perfil = new JButton("Perfil");
+        JButton b_canciones = new JButton("Canciones");
+        JButton b_cola = new JButton("Cola");
+        JButton b_ajustes = new JButton("Ajustes");
+        
+        //Boton del panel del centro
         JButton b_cancion_nueva = new JButton("Añadir canción");
         
         
@@ -149,7 +155,13 @@ public class Ventana_principal extends JFrame {
         
         
         //Anaydir elementos a los paneles
-        derecha.add(prueba);
+        //Anaydir elementos al panel de la izquierda
+        derecha.add(b_perfil);
+        derecha.add(b_canciones);
+        derecha.add(b_cola);
+        derecha.add(b_ajustes);
+        
+        //Anaydir elementos al panel del centro
         boton_medio.add(b_cancion_nueva);
         centro.add(tabla_prin,BorderLayout.CENTER);
         centro.add(boton_medio, BorderLayout.SOUTH);
