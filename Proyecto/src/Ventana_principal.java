@@ -1,4 +1,7 @@
+import java.awt.BorderLayout;
+
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 public class Ventana_principal extends JFrame {
@@ -12,6 +15,13 @@ public class Ventana_principal extends JFrame {
 		this.setExtendedState(this.MAXIMIZED_BOTH); //ventana maximizada
 		//setSize(1380, 730);  ventana a tamaño pequeño
         setTitle("Ventana Principal");
+        
+        
+        JPanel derecha = new JPanel();
+ 
+        this.setLayout (new BorderLayout());
+
+        
         setVisible(true);
 	}
 	
