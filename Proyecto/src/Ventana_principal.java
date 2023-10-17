@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -17,9 +18,11 @@ public class Ventana_principal extends JFrame {
         setTitle("Ventana Principal");
         
         
-        JPanel derecha = new JPanel();
- 
-        this.setLayout (new BorderLayout());
+        JPanel derecha = new JPanel(new BorderLayout());
+        JButton prueba = new JButton();
+        derecha.add(prueba);
+        
+        this.add(prueba, BorderLayout.WEST);
 
         
         setVisible(true);
