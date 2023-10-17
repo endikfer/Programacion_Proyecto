@@ -9,7 +9,8 @@ public class Ventana_principal extends JFrame {
 
 	public Ventana_principal(){
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(640, 480);
+		this.setExtendedState(this.MAXIMIZED_BOTH); //ventana maximizada
+		//setSize(1380, 730);  ventana a tamaño pequeño
         setTitle("Ventana Principal");
         setVisible(true);
 	}
