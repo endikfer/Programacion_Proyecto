@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.table.AbstractTableModel;
 
@@ -32,7 +33,7 @@ public class Ventana_principal extends JFrame {
 		private static final long serialVersionUID = 1L;
 		
 		//Array con los nombre de las columnas
-		private String[] headers = { "Cancion", "Autor", "Duración" };
+		private String[] columnNom = { "Cancion", "Autor", "Duración" };
 		
 		// Este constructor recibe una lista con los objetos Persona
         // que van a ser mostrados en la tabla
@@ -69,7 +70,7 @@ public class Ventana_principal extends JFrame {
 
 		@Override
 		public int getColumnCount() {
-			return headers.length;
+			return columnNom.length;
 		}
 
 		@Override
@@ -136,6 +137,10 @@ public class Ventana_principal extends JFrame {
         JPanel abajo = new JPanel(new GridLayout(2, 1));
         JPanel abajo_arriba = new JPanel();
         JPanel abajo_abajo = new JPanel();
+        JPanel arriba = new JPanel(new GridLayout(3, 1));
+        JPanel arriba_arriba = new JPanel();
+        JPanel arriba_abajo = new JPanel();
+        JPanel arriba_medio = new JPanel();
         
         //Elementos del panel de la izquierda
         //imagenes de los botones
@@ -167,6 +172,8 @@ public class Ventana_principal extends JFrame {
         //Label
         JLabel nom_can = new JLabel("Canción");
         JLabel foto_can = new JLabel("Foto canción");
+        JLabel foto_t_duracion = new JLabel("tiempo de transcurso");
+        JLabel foto_t_final = new JLabel("tiempo final");
         //imagenes de los botones
         ImageIcon i_atrasar = new ImageIcon( getClass().getResource("atrasar1.jpg"));
         ImageIcon i_pausar = new ImageIcon(getClass().getResource("pausar1.jpg"));
@@ -176,8 +183,17 @@ public class Ventana_principal extends JFrame {
         JButton b_pausar_can = new JButton(i_pausar);
         JButton b_adelantar_can = new JButton(i_adelantar);
         //deslizador
-        JSlider duracion_can = new JSlider();
+        JSlider duracion_can = new JSlider(0, 1, 1);
         
+        //Elementos del panel de abajo
+      	//texto
+        JTextField busqueda = new JTextField(50);
+        
+        //imagenes de los botones
+        ImageIcon i_lupa = new ImageIcon( getClass().getResource("lupa1.jpg"));
+        
+        //Boton
+        JButton lupa = new JButton(i_lupa);
 
         
         
@@ -192,7 +208,9 @@ public class Ventana_principal extends JFrame {
         //Anaydir elementos al panel de abajo
         abajo_arriba.add(nom_can);
         abajo_abajo.add(foto_can);
+        abajo_abajo.add(foto_t_duracion);
         abajo_abajo.add(duracion_can);
+        abajo_abajo.add(foto_t_final);
         abajo_abajo.add(b_atras_can);
         abajo_abajo.add(b_pausar_can);
         abajo_abajo.add(b_adelantar_can);
@@ -206,12 +224,21 @@ public class Ventana_principal extends JFrame {
         boton_medio.add(b_cancion_nueva);
         centro.add(tabla_prin,BorderLayout.CENTER);
         centro.add(boton_medio, BorderLayout.SOUTH);
-
+        
+        //Anaydir elementos al panel de la izquierda
+        arriba_medio.add(busqueda);
+        arriba_medio.add(lupa);
+        
+        arriba.add(arriba_arriba);
+        arriba.add(arriba_medio);
+        arriba.add(arriba_abajo);
+        
         
         //Anaydir elementos al panel principal
         this.add(izquierda, BorderLayout.WEST);
         this.add(centro, BorderLayout.CENTER);
         this.add(abajo, BorderLayout.SOUTH);
+        this.add(arriba, BorderLayout.NORTH);
 
         
         setVisible(true);
