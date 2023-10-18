@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -129,7 +130,7 @@ public class Ventana_principal extends JFrame {
         
         //Elementos creados
         //Paneles principales
-        JPanel izquierda = new JPanel(new GridLayout(4, 1));
+        JPanel izquierda = new JPanel(new GridLayout(6, 1));
         JPanel centro = new JPanel(new BorderLayout());
         JPanel boton_medio = new JPanel();
         JPanel abajo = new JPanel(new GridLayout(2, 1));
@@ -137,11 +138,16 @@ public class Ventana_principal extends JFrame {
         JPanel abajo_abajo = new JPanel();
         
         //Elementos del panel de la izquierda
+        //imagenes de los botones
+        ImageIcon i_cancion = new ImageIcon("cancion3.jpg");
+        ImageIcon i_ajuste = new ImageIcon("ajustes1.jpg");
+        ImageIcon i_perfil = new ImageIcon("perfil1.jpg");
+        ImageIcon i_cola = new ImageIcon("cola1.jpg");
         //Botones
-        JButton b_perfil = new JButton("Perfil");
-        JButton b_canciones = new JButton("Canciones");
-        JButton b_cola = new JButton("Cola");
-        JButton b_ajustes = new JButton("Ajustes");
+        JButton b_perfil = new JButton(i_perfil);
+        JButton b_canciones = new JButton(i_cancion);
+        JButton b_cola = new JButton(i_cola);
+        JButton b_ajustes = new JButton(i_ajuste);
         
         //Elementos del panel del centro
         //Botones
@@ -159,14 +165,20 @@ public class Ventana_principal extends JFrame {
         
         //Elementos del panel de abajo
         //Label
-        JLabel nom_can = new JLabel();
+        JLabel nom_can = new JLabel("Canción");
+        JLabel foto_can = new JLabel("Foto canción");
+        //imagenes de los botones
+        ImageIcon i_atrasar = new ImageIcon("atrasar1.jpg");
+        ImageIcon i_pausar = new ImageIcon("pausar1.jpg");
+        ImageIcon i_adelantar = new ImageIcon("adelantar2.jpg");
         //Botones
-        JButton b_foto_can = new JButton("Foto canción");
-        JButton b_atras_can = new JButton("Atrasar canción");
-        JButton b_pausar_can = new JButton("Pausar canción");
-        JButton b_adelantar_can = new JButton("Adelanatar canción");
+        JButton b_atras_can = new JButton(i_atrasar);
+        JButton b_pausar_can = new JButton(i_pausar);
+        JButton b_adelantar_can = new JButton(i_adelantar);
         //deslizador
         JSlider duracion_can = new JSlider();
+        
+
         
         
         
@@ -179,7 +191,7 @@ public class Ventana_principal extends JFrame {
         
         //Anaydir elementos al panel de abajo
         abajo_arriba.add(nom_can);
-        abajo_abajo.add(b_foto_can);
+        abajo_abajo.add(foto_can);
         abajo_abajo.add(duracion_can);
         abajo_abajo.add(b_atras_can);
         abajo_abajo.add(b_pausar_can);
