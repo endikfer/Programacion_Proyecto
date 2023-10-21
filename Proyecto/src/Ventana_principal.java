@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -223,6 +224,19 @@ public class Ventana_principal extends JFrame {
             @Override
             public void run() {
                 new Ventana_principal();
+                         
+                try {
+					BD_Usuaruis.cargarUsuarios("BD_Usuarios");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+                
+                System.out.println(BD_Usuaruis.Usuarios.keySet());
+                
+                
+                BD_Usuaruis.guardarUsuarios("BD_Usuarios");
+                                
             }
 
         });

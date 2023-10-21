@@ -1,4 +1,6 @@
 
-public class Ventana_usuario {
+public class Ventana_usuario{
+	
+	
 
 }
