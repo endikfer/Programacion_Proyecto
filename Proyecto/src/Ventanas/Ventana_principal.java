@@ -175,14 +175,17 @@ public class Ventana_principal extends JFrame {
         JLabel foto_can = new JLabel("Foto canción");
         JLabel foto_t_duracion = new JLabel("tiempo de transcurso");
         JLabel foto_t_final = new JLabel("tiempo final");
+        
         //imagenes de los botones
         ImageIcon i_atrasar = new ImageIcon( getClass().getResource("atrasar1.jpg"));
         ImageIcon i_pausar = new ImageIcon(getClass().getResource("pausar1.jpg"));
         ImageIcon i_adelantar = new ImageIcon(getClass().getResource("adelantar2.jpg"));
+        
         //Botones
         JButton b_atras_can = new JButton(i_atrasar);
         JButton b_pausar_can = new JButton(i_pausar);
         JButton b_adelantar_can = new JButton(i_adelantar);
+        
         //deslizador
         JSlider duracion_can = new JSlider(0, 1, 1);
         
@@ -252,7 +255,6 @@ public class Ventana_principal extends JFrame {
             public void run() {
                 new Ventana_principal();
             }
-
         });
     }
 
