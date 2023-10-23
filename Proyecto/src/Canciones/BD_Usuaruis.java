@@ -18,11 +18,6 @@ public class BD_Usuaruis {
 
 	@SuppressWarnings("static-access")
 	public static void guardarUsuarios(String fichero) {
-		Usuario z = new Usuario("Ander", "ElPepe3" ,"Hola1", "anderfuentes");
-		Cancion x= new Cancion("Benito", "Porti");
-		ArrayList<Cancion> y = new ArrayList<>();
-		y.add(x);
-		Usuarios.put(z, y);
 
         FileWriter fw = null;
         PrintWriter pw = null;

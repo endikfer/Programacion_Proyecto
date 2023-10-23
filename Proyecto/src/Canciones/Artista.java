@@ -16,4 +16,5 @@ public class Artista {
 		this.nombre_Ar = nombre_Ar;
 	}
 
+
 }
