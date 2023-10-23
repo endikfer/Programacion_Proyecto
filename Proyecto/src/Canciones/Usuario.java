@@ -1,17 +1,17 @@
 package Canciones;
 
 public class Usuario {
-	String name_us;
 	String name_real;
+	String name_us;
 	String password;
 	String gmail;
 	
 	
 	
-	public Usuario(String name_us, String name_real, String password, String gmail) {
+	public Usuario(String name_real, String name_us, String password, String gmail) {
 		super();
-		this.name_us = name_us;
 		this.name_real = name_real;
+		this.name_us = name_us;
 		this.password = password;
 		this.gmail = gmail;
 	}

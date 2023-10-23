@@ -18,7 +18,7 @@ public class BD_Usuaruis {
 
 	@SuppressWarnings("static-access")
 	public static void guardarUsuarios(String fichero) {
-		Usuario z = new Usuario("Ander","Hola1");
+		Usuario z = new Usuario("Ander", "ElPepe3" ,"Hola1", "anderfuentes");
 		Cancion x= new Cancion("Benito", "Porti");
 		ArrayList<Cancion> y = new ArrayList<>();
 		y.add(x);
@@ -67,12 +67,14 @@ public class BD_Usuaruis {
 			while ((ln= br.readLine()) != null) {
 				String[] campos = ln.split(",");
 				Usuario u = new Usuario();
-				u.setName_us(campos[0]);
-				u.setPassword(campos[1]);
+				u.setName_real(campos[0]);
+				u.setName_us(campos[1]);
+				u.setPassword(campos[2]);
+				u.setGmail(campos[3]);				
 				if(!Usuarios.containsKey(u)) {
 					Usuarios.put(u,new ArrayList<Cancion>());
 				}
-				int i = 2;
+				int i = 4;
 				while ((campos[i])!= null) {
 					Cancion c = new Cancion(campos[i], campos[i+1]);
 					if(!Usuarios.get(u).contains(c)) {
