@@ -29,6 +29,8 @@ public class Ventana_principal extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private boolean activador = false;
+	
 	//Variables para el contador del deslizador
     private Timer timer;
     private int valorActual = 0;
@@ -165,6 +167,9 @@ public class Ventana_principal extends JFrame {
         JButton b_cola = new JButton(i_cola);
         JButton b_ajustes = new JButton(i_ajuste);
         
+        //listeners de los botones
+        
+        
         //Elementos del panel del centro
         //Botones
         JButton b_cancion_nueva = new JButton("Añadir canción");
@@ -197,19 +202,37 @@ public class Ventana_principal extends JFrame {
         JButton b_atras_can = new JButton(i_atrasar);
         JButton b_pausar_can = new JButton(i_pausar);
         JButton b_adelantar_can = new JButton(i_adelantar);
+        
+        //listeners de los botones
+        ActionListener pausar_activar = new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (activador==false) {
+					activador = true;
+				}else {
+					activador = false;
+				}
+			}
+		};
+		
+		//Añadir los escuchadores de los botones
+		b_pausar_can.addActionListener(pausar_activar);
 
         //deslizador
         JSlider duracion_can = new JSlider(0, 100, 0);
         
         //Contador para el deslizador
-        timer = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                valorActual += incremento;
-                duracion_can.setValue(valorActual);
-            }
-        });
-        timer.start();
+        if(activador == true) {
+        	timer = new Timer(1000, new ActionListener() {
+            	@Override
+            	public void actionPerformed(ActionEvent e) {
+                	valorActual += incremento;
+                	duracion_can.setValue(valorActual);
+            	}
+        	});
+        	timer.start();
+        }
         
         //Elementos del panel de abajo
       	//texto
