@@ -147,10 +147,10 @@ public class Ventana_principal extends JFrame {
         
         //Elementos del panel de la izquierda
         //imagenes de los botones
-        ImageIcon i_cancion = new ImageIcon("cancion.jpg");
-        ImageIcon i_ajuste = new ImageIcon("ajustes.jpg");
-        ImageIcon i_perfil = new ImageIcon("perfil.jpg");
-        ImageIcon i_cola = new ImageIcon("cola.jpg");
+        ImageIcon i_cancion = new ImageIcon("src/Imagenes/cancion.jpg");
+        ImageIcon i_ajuste = new ImageIcon("src/Imagenes/ajustes.jpg");
+        ImageIcon i_perfil = new ImageIcon("src/Imagenes/perfil.jpg");
+        ImageIcon i_cola = new ImageIcon("src/Imagenes/cola.jpg");
         //Botones
         JButton b_perfil = new JButton(i_perfil);
         JButton b_canciones = new JButton(i_cancion);
@@ -180,9 +180,9 @@ public class Ventana_principal extends JFrame {
         
         //imagenes de los botones
 
-        ImageIcon i_atrasar = new ImageIcon("atrasar.jpg");
-        ImageIcon i_pausar = new ImageIcon("pausar.jpg");
-        ImageIcon i_adelantar = new ImageIcon("adelantar.jpg");
+        ImageIcon i_atrasar = new ImageIcon("src/Imagenes/atrasar.jpg");
+        ImageIcon i_pausar = new ImageIcon("src/Imagenes/pausar.jpg");
+        ImageIcon i_adelantar = new ImageIcon("src/Imagenes/adelantar.jpg");
 
         //Botones
 
@@ -198,7 +198,7 @@ public class Ventana_principal extends JFrame {
         JTextField busqueda = new JTextField(50);
         
         //imagenes de los botones
-        ImageIcon i_lupa = new ImageIcon("lupa.jpg");
+        ImageIcon i_lupa = new ImageIcon("src/Imagenes/lupa.jpg");
         
         //Boton
         JButton lupa = new JButton(i_lupa);
