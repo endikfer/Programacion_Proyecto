@@ -148,15 +148,15 @@ public class Ventana_principal extends JFrame {
         
         //Elementos del panel de la izquierda
         //imagenes de los botones
-//        ImageIcon i_cancion = new ImageIcon(getClass().getResource("cancion3.jpg"));
-//        ImageIcon i_ajuste = new ImageIcon(getClass().getResource("ajustes1.jpg"));
-//        ImageIcon i_perfil = new ImageIcon(getClass().getResource("perfil1.jpg"));
-//        ImageIcon i_cola = new ImageIcon(getClass().getResource("cola1.jpg"));
+        ImageIcon i_cancion = new ImageIcon(getClass().getResource("cancion3.jpg"));
+        ImageIcon i_ajuste = new ImageIcon(getClass().getResource("ajustes1.jpg"));
+        ImageIcon i_perfil = new ImageIcon(getClass().getResource("perfil1.jpg"));
+        ImageIcon i_cola = new ImageIcon(getClass().getResource("cola1.jpg"));
         //Botones
-//        JButton b_perfil = new JButton(i_perfil);
-//        JButton b_canciones = new JButton(i_cancion);
-//        JButton b_cola = new JButton(i_cola);
-//        JButton b_ajustes = new JButton(i_ajuste);
+        JButton b_perfil = new JButton(i_perfil);
+        JButton b_canciones = new JButton(i_cancion);
+        JButton b_cola = new JButton(i_cola);
+        JButton b_ajustes = new JButton(i_ajuste);
         
         //Elementos del panel del centro
         //Botones
@@ -184,22 +184,12 @@ public class Ventana_principal extends JFrame {
         ImageIcon i_atrasar = new ImageIcon( getClass().getResource("atrasar1.jpg"));
         ImageIcon i_pausar = new ImageIcon(getClass().getResource("pausar1.jpg"));
         ImageIcon i_adelantar = new ImageIcon(getClass().getResource("adelantar2.jpg"));
-        
-
-//        ImageIcon i_atrasar = new ImageIcon( getClass().getResource("atrasar1.jpg"));
-//        ImageIcon i_pausar = new ImageIcon(getClass().getResource("pausar1.jpg"));
-//        ImageIcon i_adelantar = new ImageIcon(getClass().getResource("adelantar2.jpg"));
 
         //Botones
 
         JButton b_atras_can = new JButton(i_atrasar);
         JButton b_pausar_can = new JButton(i_pausar);
         JButton b_adelantar_can = new JButton(i_adelantar);
-        
-
-//        JButton b_atras_can = new JButton(i_atrasar);
-//        JButton b_pausar_can = new JButton(i_pausar);
-//        JButton b_adelantar_can = new JButton(i_adelantar);
 
         //deslizador
         JSlider duracion_can = new JSlider(0, 1, 1);
@@ -209,20 +199,20 @@ public class Ventana_principal extends JFrame {
         JTextField busqueda = new JTextField(50);
         
         //imagenes de los botones
-//        ImageIcon i_lupa = new ImageIcon( getClass().getResource("lupa1.jpg"));
+        ImageIcon i_lupa = new ImageIcon( getClass().getResource("lupa1.jpg"));
         
         //Boton
-//        JButton lupa = new JButton(i_lupa);
+        JButton lupa = new JButton(i_lupa);
 
         
         
         
         //Anaydir elementos a los paneles
         //Anaydir elementos al panel de la izquierda
-//        izquierda.add(b_perfil);
-//        izquierda.add(b_canciones);
-//        izquierda.add(b_cola);
-//        izquierda.add(b_ajustes);
+        izquierda.add(b_perfil);
+        izquierda.add(b_canciones);
+        izquierda.add(b_cola);
+        izquierda.add(b_ajustes);
         
         //Anaydir elementos al panel de abajo
         abajo_arriba.add(nom_can);
@@ -230,9 +220,9 @@ public class Ventana_principal extends JFrame {
         abajo_abajo.add(foto_t_duracion);
         abajo_abajo.add(duracion_can);
         abajo_abajo.add(foto_t_final);
-//        abajo_abajo.add(b_atras_can);
-//        abajo_abajo.add(b_pausar_can);
-//        abajo_abajo.add(b_adelantar_can);
+        abajo_abajo.add(b_atras_can);
+        abajo_abajo.add(b_pausar_can);
+        abajo_abajo.add(b_adelantar_can);
         
         
         abajo.add(abajo_arriba);
@@ -246,7 +236,7 @@ public class Ventana_principal extends JFrame {
         
         //Anaydir elementos al panel de la izquierda
         arriba_medio.add(busqueda);
-//        arriba_medio.add(lupa);
+        arriba_medio.add(lupa);
         
         arriba.add(arriba_arriba);
         arriba.add(arriba_medio);
@@ -272,7 +262,6 @@ public class Ventana_principal extends JFrame {
                 try {
 					BD_Usuaruis.cargarUsuarios("BD_Usuarios");
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
                 
