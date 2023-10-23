@@ -202,8 +202,6 @@ public class Ventana_principal extends JFrame {
         JSlider duracion_can = new JSlider(0, 100, 0);
         
         //Contador para el deslizador
-
-        
         timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
