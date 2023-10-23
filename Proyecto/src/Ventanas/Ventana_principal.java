@@ -1,10 +1,11 @@
 package Ventanas;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,21 +15,24 @@ import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import javax.swing.table.AbstractTableModel;
 
 import Canciones.BD_Usuaruis;
-
-
-
 public class Ventana_principal extends JFrame {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
+	//Variables para el contador del deslizador
+    private Timer timer;
+    private int valorActual = 0;
+    private int incremento = 1;
+
 	//Estructura de la tabla
 	class Tabla extends AbstractTableModel{
-		
+
 		
 		/**
 		 * 
@@ -43,7 +47,6 @@ public class Ventana_principal extends JFrame {
         /*public MyTableModel(List<Person> persons) {
             this.persons = persons;
         }
-
         // este método es usado por la tabla para obtener los nombres
         // de cada columna. En este caso se obtienen del array interno
         @Override
@@ -64,18 +67,15 @@ public class Ventana_principal extends JFrame {
             }
         }
         */
-
 		@Override
 		public int getRowCount() {
 			// TODO Auto-generated method stub
 			return 0;
 		}
-
 		@Override
 		public int getColumnCount() {
 			return columnNom.length;
 		}
-
 		@Override
 		public Object getValueAt(int row, int column) {
 			// TODO Auto-generated method stub
@@ -102,7 +102,6 @@ public class Ventana_principal extends JFrame {
             // Obtenemos el objeto del modelo interno (lista) que
             // que se debe actualizar en función del valor de fila recibido
             Person p = persons.get(row);
-
             // teniendo en cuenta el valor de la columna recibida
             // actualizamos la propiedad correspondiente de la Persona
             // teniendo en cuenta el tipo concreto de dato
@@ -117,7 +116,6 @@ public class Ventana_principal extends JFrame {
                     p.setBirthdate((LocalDate) value);
                     break;
             }
-
             // este método se utiliza para notificar que el modelo de datos
             // se ha actualizado y se debe repintar la celda visual
             fireTableCellUpdated(row, column);
@@ -169,7 +167,6 @@ public class Ventana_principal extends JFrame {
         JTable tabla_prin = new JTable();
           
         //Elementos del JTable
-
         
         //Elementos del panel de abajo
         //Label
@@ -179,20 +176,29 @@ public class Ventana_principal extends JFrame {
         JLabel foto_t_final = new JLabel("tiempo final");
         
         //imagenes de los botones
-
         ImageIcon i_atrasar = new ImageIcon("src/Imagenes/atrasar.jpg");
         ImageIcon i_pausar = new ImageIcon("src/Imagenes/pausar.jpg");
         ImageIcon i_adelantar = new ImageIcon("src/Imagenes/adelantar.jpg");
-
         //Botones
-
         JButton b_atras_can = new JButton(i_atrasar);
         JButton b_pausar_can = new JButton(i_pausar);
         JButton b_adelantar_can = new JButton(i_adelantar);
 
         //deslizador
-        JSlider duracion_can = new JSlider(0, 1, 1);
-        
+        JSlider duracion_can = new JSlider(0, 100, 0);
+
+        //Contador para el deslizador
+
+
+        timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                valorActual += incremento;
+                duracion_can.setValue(valorActual);
+            }
+        });
+        timer.start();
+
         //Elementos del panel de abajo
       	//texto
         JTextField busqueda = new JTextField(50);
@@ -202,7 +208,6 @@ public class Ventana_principal extends JFrame {
         
         //Boton
         JButton lupa = new JButton(i_lupa);
-
         
         
         
@@ -247,14 +252,12 @@ public class Ventana_principal extends JFrame {
         this.add(centro, BorderLayout.CENTER);
         this.add(abajo, BorderLayout.SOUTH);
         this.add(arriba, BorderLayout.NORTH);
-
         
         setVisible(true);
 	}
 	
 	public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
-
             @Override
             public void run() {
                 new Ventana_principal();
@@ -268,5 +271,4 @@ public class Ventana_principal extends JFrame {
             }
         });
     }
-
 }
