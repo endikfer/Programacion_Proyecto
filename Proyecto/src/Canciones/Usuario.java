@@ -2,8 +2,22 @@ package Canciones;
 
 public class Usuario {
 	String name_us;
+	String name_real;
 	String password;
+	String gmail;
 	
+	
+	
+	public Usuario(String name_us, String name_real, String password, String gmail) {
+		super();
+		this.name_us = name_us;
+		this.name_real = name_real;
+		this.password = password;
+		this.gmail = gmail;
+	}
+
+
+	//prueba
 	public Usuario(String name_us, String password) {
 		this.name_us = name_us;
 		this.password = password;
@@ -26,7 +40,28 @@ public class Usuario {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}	
+	}
+
+
+	public String getName_real() {
+		return name_real;
+	}
+
+
+	public void setName_real(String name_real) {
+		this.name_real = name_real;
+	}
+
+
+	public String getGmail() {
+		return gmail;
+	}
+
+
+	public void setGmail(String gmail) {
+		this.gmail = gmail;
+	}
+	
 	
 	
 	
