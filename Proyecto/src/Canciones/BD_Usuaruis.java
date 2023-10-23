@@ -34,8 +34,10 @@ public class BD_Usuaruis {
             for (Usuario u : Usuarios.keySet()) {
             	String linea = "";
             	String sep = ",";
-            	linea += u.getName_us() + sep 
-            			+ u.getPassword();
+            	linea += u.getName_real()+ sep
+            			+ u.getName_us() + sep 
+            			+ u.getPassword() + sep
+            			+ u.getGmail();
             	for(Cancion c: Usuarios.get(u)) {
             		linea+= sep + c.getNombre_Ar();
             		linea += sep + c.getName_can();
@@ -70,7 +72,7 @@ public class BD_Usuaruis {
 				u.setName_real(campos[0]);
 				u.setName_us(campos[1]);
 				u.setPassword(campos[2]);
-				u.setGmail(campos[3]);				
+				u.setGmail(campos[3]);			
 				if(!Usuarios.containsKey(u)) {
 					Usuarios.put(u,new ArrayList<Cancion>());
 				}

@@ -263,7 +263,8 @@ public class Ventana_principal extends JFrame {
 //				} catch (IOException e) {
 //					e.printStackTrace();
 //				}
-//                BD_Usuaruis.guardarUsuarios("BD_Usuarios");
+                System.out.println(BD_Usuaruis.Usuarios);
+                BD_Usuaruis.guardarUsuarios("BD_Usuarios");
             }
         });
     }
