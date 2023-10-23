@@ -1,6 +1,8 @@
 package Ventanas;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +16,7 @@ import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import javax.swing.table.AbstractTableModel;
 
 import Canciones.BD_Usuaruis;
@@ -26,6 +29,11 @@ public class Ventana_principal extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	//Variables para el contador del deslizador
+    private Timer timer;
+    private int valorActual = 0;
+    private int incremento = 1;
+    
 	//Estructura de la tabla
 	class Tabla extends AbstractTableModel{
 		
@@ -191,7 +199,19 @@ public class Ventana_principal extends JFrame {
         JButton b_adelantar_can = new JButton(i_adelantar);
 
         //deslizador
-        JSlider duracion_can = new JSlider(0, 1, 1);
+        JSlider duracion_can = new JSlider(0, 100, 0);
+        
+        //Contador para el deslizador
+
+        
+        timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                valorActual += incremento;
+                duracion_can.setValue(valorActual);
+            }
+        });
+        timer.start();
         
         //Elementos del panel de abajo
       	//texto
