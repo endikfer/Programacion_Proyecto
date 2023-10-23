@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -277,17 +278,19 @@ public class Ventana_principal extends JFrame {
 	}
 	
 	public static void main(String[] args) {
+		File fichero = new File("BD_Usuarios");
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Ventana_principal();
-//                try {
-//					BD_Usuaruis.cargarUsuarios("BD_Usuarios");
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//				}
+            	try {
+					BD_Usuaruis.cargarUsuarios(fichero);
+					System.out.println("si carga los usus");
+				} catch (IOException e) {
+					System.out.println("error en cargar usuarios");
+				}
+                //new Ventana_principal();
                 System.out.println(BD_Usuaruis.Usuarios);
-                BD_Usuaruis.guardarUsuarios("BD_Usuarios");
+                BD_Usuaruis.guardarUsuarios(fichero);
             }
         });
     }
