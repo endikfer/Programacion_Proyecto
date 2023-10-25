@@ -229,10 +229,10 @@ public class Ventana_principal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (activador==false) {
 					activador = true;
-					System.out.println(activador);
+//					System.out.println(activador);
 				}else {
 					activador = false;
-					System.out.println(activador);
+//					System.out.println(activador);
 				}
 			}
 		};
@@ -244,7 +244,7 @@ public class Ventana_principal extends JFrame {
         JSlider duracion_can = new JSlider(0, 100, 0);
 
         //Contador para el deslizador
-        while(activador == true) {
+//        while(activador == true) {
         	timer = new Timer(1000, new ActionListener() {
             	@Override
             	public void actionPerformed(ActionEvent e) {
@@ -253,7 +253,7 @@ public class Ventana_principal extends JFrame {
             	}
         	});
         	timer.start();
-        }
+//        }
 
         //Elementos del panel de abajo
       	//texto
