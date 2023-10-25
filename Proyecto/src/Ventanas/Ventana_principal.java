@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.table.AbstractTableModel;
@@ -147,16 +148,47 @@ public class Ventana_principal extends JFrame {
         JPanel arriba_medio = new JPanel();
         
         //Elementos del panel de la izquierda
+        //creacion de los botones
+        JButton b_perfil = new JButton();
+        JButton b_canciones = new JButton();
+        JButton b_cola = new JButton();
+        JButton b_ajustes = new JButton();
+        
         //imagenes de los botones
         ImageIcon i_cancion = new ImageIcon("src/Imagenes/cancion.jpg");
         ImageIcon i_ajuste = new ImageIcon("src/Imagenes/ajustes.jpg");
         ImageIcon i_perfil = new ImageIcon("src/Imagenes/perfil.jpg");
         ImageIcon i_cola = new ImageIcon("src/Imagenes/cola.jpg");
-        //Botones
-        JButton b_perfil = new JButton(i_perfil);
-        JButton b_canciones = new JButton(i_cancion);
-        JButton b_cola = new JButton(i_cola);
-        JButton b_ajustes = new JButton(i_ajuste);
+        
+        //Texto de los botones
+        JLabel l_perfil = new JLabel("Perfil");
+        JLabel l_ajuste = new JLabel("Ajustes");
+        JLabel l_cancion = new JLabel("Canciones");
+        JLabel l_cola = new JLabel("Canciones en cola");
+        
+        //Alinear el texto en el JLabel como centrado
+        l_perfil.setHorizontalAlignment(SwingConstants.CENTER);
+        l_cancion.setHorizontalAlignment(SwingConstants.CENTER);
+        l_cola.setHorizontalAlignment(SwingConstants.CENTER);
+        l_ajuste.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        //Asignar la imagen al boton
+        b_perfil.setIcon(i_perfil);
+        b_canciones.setIcon(i_cancion);
+        b_cola.setIcon(i_cola);
+        b_ajustes.setIcon(i_ajuste);
+        
+        //Asignar el layout al boton
+        b_perfil.setLayout(new BorderLayout());
+        b_canciones.setLayout(new BorderLayout());
+        b_cola.setLayout(new BorderLayout());
+        b_ajustes.setLayout(new BorderLayout());
+        
+        //añadir el texto al boton
+        b_perfil.add(l_perfil, BorderLayout.SOUTH);
+        b_canciones.add(l_cancion, BorderLayout.SOUTH);
+        b_cola.add(l_cola, BorderLayout.SOUTH);
+        b_ajustes.add(l_ajuste, BorderLayout.SOUTH);
 
         //listeners de los botones
 
