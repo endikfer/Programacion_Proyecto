@@ -19,6 +19,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.table.AbstractTableModel;
 import Canciones.BD_Usuaruis;
+import Canciones.Usuario;
 public class Ventana_principal extends JFrame {
 	/**
 	 * 
@@ -286,9 +287,8 @@ public class Ventana_principal extends JFrame {
             public void run() {
             	try {
 					BD_Usuaruis.cargarUsuarios(fichero);
-					System.out.println("si carga los usus");
 				} catch (IOException e) {
-					System.out.println("error en cargar usuarios");
+					e.printStackTrace();
 				}
                 new Ventana_principal();
                 System.out.println(BD_Usuaruis.Usuarios);
