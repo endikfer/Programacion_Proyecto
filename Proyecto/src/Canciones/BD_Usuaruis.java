@@ -64,7 +64,7 @@ public class BD_Usuaruis {
 			while ((ln= br.readLine()) != null) {
 				String[] campos = ln.split(",");
 				Usuario u = new Usuario();
-				if(campos.length > 3) {
+				if(campos.length > 4) {
 				u.setName_real(campos[0]);
 				u.setName_us(campos[1]);
 				u.setPassword(campos[2]);
@@ -80,7 +80,6 @@ public class BD_Usuaruis {
 					}
 					i += 2;
 					}
-				System.out.println(Usuarios);
 
 				}
 			}
