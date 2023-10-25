@@ -196,8 +196,10 @@ public class Ventana_principal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (activador==false) {
 					activador = true;
+					System.out.println(activador);
 				}else {
 					activador = false;
+					System.out.println(activador);
 				}
 			}
 		};
@@ -209,7 +211,7 @@ public class Ventana_principal extends JFrame {
         JSlider duracion_can = new JSlider(0, 100, 0);
 
         //Contador para el deslizador
-        if(activador == true) {
+        while(activador == true) {
         	timer = new Timer(1000, new ActionListener() {
             	@Override
             	public void actionPerformed(ActionEvent e) {
@@ -288,7 +290,7 @@ public class Ventana_principal extends JFrame {
 				} catch (IOException e) {
 					System.out.println("error en cargar usuarios");
 				}
-                //new Ventana_principal();
+                new Ventana_principal();
                 System.out.println(BD_Usuaruis.Usuarios);
                 BD_Usuaruis.guardarUsuarios(fichero);
             }
