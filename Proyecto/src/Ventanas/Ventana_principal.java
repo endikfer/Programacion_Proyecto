@@ -1,5 +1,6 @@
 package Ventanas;
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -148,6 +149,7 @@ public class Ventana_principal extends JFrame {
 		JPanel arriba_medio = new JPanel();
 		
 		//paneles centro
+		JPanel centro = new JPanel(new BorderLayout());
 		JPanel p_perfil = new JPanel(new GridLayout(4, 2));
 		JPanel p_canciones = new JPanel(new BorderLayout());
 		
@@ -195,6 +197,18 @@ public class Ventana_principal extends JFrame {
 		b_ajustes.add(l_ajuste, BorderLayout.SOUTH);
 
 		//listeners de los botones
+		ActionListener cambiar_perfil = new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				centro.removeAll();
+				centro.add(p_perfil);
+				centro.revalidate();
+				centro.repaint();
+			}
+		};
+		
+		//Añadir los escuchadores de los botones
+		b_perfil.addActionListener(cambiar_perfil);
 
 
 		//Elementos del panel del centro
@@ -315,6 +329,9 @@ public class Ventana_principal extends JFrame {
 		boton_medio.add(b_cancion_nueva);
 		p_canciones.add(tabla_prin,BorderLayout.CENTER);
 		p_canciones.add(boton_medio, BorderLayout.SOUTH);
+		
+		//añadir el panel a centro
+		centro.add(p_canciones);
 
 		
 		//Anaydir elementos al panel de arriba
@@ -328,7 +345,7 @@ public class Ventana_principal extends JFrame {
 
 		//Anaydir elementos al panel principal
 		this.add(izquierda, BorderLayout.WEST);
-		this.add(p_perfil, BorderLayout.CENTER);
+		this.add(centro, BorderLayout.CENTER);
 		this.add(abajo, BorderLayout.SOUTH);
 		this.add(arriba, BorderLayout.NORTH);
 
