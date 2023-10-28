@@ -30,25 +30,26 @@ public class Ventana_principal extends JFrame {
 	private boolean activador = false;
 
 	//Variables para el contador del deslizador
-    private Timer timer;
-    private int valorActual = 0;
-    private int incremento = 1;
-    
+	private int valorActual = 0;
+	private int incremento = 1;
+	JSlider duracion_can;
+	private Timer timer; // Declarar el temporizador como variable de instancia
+
 	//Estructura de la tabla
 	class Tabla extends AbstractTableModel{
-		
-		
+
+
 		/**
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
-		
+
 		//Array con los nombre de las columnas
 		private String[] columnNom = { "Cancion", "Autor", "Duración" };
-		
+
 		// Este constructor recibe una lista con los objetos Persona
-        // que van a ser mostrados en la tabla
-        /*public MyTableModel(List<Person> persons) {
+		// que van a ser mostrados en la tabla
+		/*public MyTableModel(List<Person> persons) {
             this.persons = persons;
         }
         // este método es usado por la tabla para obtener los nombres
@@ -70,7 +71,7 @@ public class Ventana_principal extends JFrame {
                 return String.class;
             }
         }
-        */
+		 */
 		@Override
 		public int getRowCount() {
 			// TODO Auto-generated method stub
@@ -85,19 +86,19 @@ public class Ventana_principal extends JFrame {
 			// TODO Auto-generated method stub
 			return null;
 		}
-		
+
 		// el JTable utiliza este método para determinar si una
-        // celda concreta de la tabla es editable
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            // para este ejemplo, son editables todas menos
-            // la primera columna
-            return column >= 4;
-        }
-        
-        //ns si es necesario
-        /*
-         * // este método es utilizado por el JTable para actualizar
+		// celda concreta de la tabla es editable
+		@Override
+		public boolean isCellEditable(int row, int column) {
+			// para este ejemplo, son editables todas menos
+			// la primera columna
+			return column >= 4;
+		}
+
+		//ns si es necesario
+		/*
+		 * // este método es utilizado por el JTable para actualizar
         // el modelo de datos asociado. 
         // Recibe un Object por lo que, sabiendo el dato interno
         // es necesario hacer un cast
@@ -124,115 +125,121 @@ public class Ventana_principal extends JFrame {
             // se ha actualizado y se debe repintar la celda visual
             fireTableCellUpdated(row, column);
         }*/
-		
+
 	}
-	
-	
-	
+
+
+
 	public Ventana_principal(){
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setExtendedState(this.MAXIMIZED_BOTH); //ventana maximizada
-        setTitle("Ventana Principal");
-        
-        //Elementos creados
-        //Paneles principales
-        JPanel izquierda = new JPanel(new GridLayout(6, 1));
-        JPanel centro = new JPanel(new BorderLayout());
-        JPanel boton_medio = new JPanel();
-        JPanel abajo = new JPanel(new GridLayout(2, 1));
-        JPanel abajo_arriba = new JPanel();
-        JPanel abajo_abajo = new JPanel();
-        JPanel arriba = new JPanel(new GridLayout(3, 1));
-        JPanel arriba_arriba = new JPanel();
-        JPanel arriba_abajo = new JPanel();
-        JPanel arriba_medio = new JPanel();
-        
-        //Elementos del panel de la izquierda
-        //creacion de los botones
-        JButton b_perfil = new JButton();
-        JButton b_canciones = new JButton();
-        JButton b_cola = new JButton();
-        JButton b_ajustes = new JButton();
-        
-        //imagenes de los botones
-        ImageIcon i_cancion = new ImageIcon("src/Imagenes/cancion.jpg");
-        ImageIcon i_ajuste = new ImageIcon("src/Imagenes/ajustes.jpg");
-        ImageIcon i_perfil = new ImageIcon("src/Imagenes/perfil.jpg");
-        ImageIcon i_cola = new ImageIcon("src/Imagenes/cola.jpg");
-        
-        //Texto de los botones
-        JLabel l_perfil = new JLabel("Perfil");
-        JLabel l_ajuste = new JLabel("Ajustes");
-        JLabel l_cancion = new JLabel("Canciones");
-        JLabel l_cola = new JLabel("Canciones en cola");
-        
-        //Alinear el texto en el JLabel como centrado
-        l_perfil.setHorizontalAlignment(SwingConstants.CENTER);
-        l_cancion.setHorizontalAlignment(SwingConstants.CENTER);
-        l_cola.setHorizontalAlignment(SwingConstants.CENTER);
-        l_ajuste.setHorizontalAlignment(SwingConstants.CENTER);
-        
-        //Asignar la imagen al boton
-        b_perfil.setIcon(i_perfil);
-        b_canciones.setIcon(i_cancion);
-        b_cola.setIcon(i_cola);
-        b_ajustes.setIcon(i_ajuste);
-        
-        //Asignar el layout al boton
-        b_perfil.setLayout(new BorderLayout());
-        b_canciones.setLayout(new BorderLayout());
-        b_cola.setLayout(new BorderLayout());
-        b_ajustes.setLayout(new BorderLayout());
-        
-        //añadir el texto al boton
-        b_perfil.add(l_perfil, BorderLayout.SOUTH);
-        b_canciones.add(l_cancion, BorderLayout.SOUTH);
-        b_cola.add(l_cola, BorderLayout.SOUTH);
-        b_ajustes.add(l_ajuste, BorderLayout.SOUTH);
+		setTitle("Ventana Principal");
 
-        //listeners de los botones
+		//Elementos creados
+		//Paneles principales
+		JPanel izquierda = new JPanel(new GridLayout(6, 1));
+		JPanel centro = new JPanel(new BorderLayout());
+		JPanel boton_medio = new JPanel();
+		JPanel abajo = new JPanel(new GridLayout(2, 1));
+		JPanel abajo_arriba = new JPanel();
+		JPanel abajo_abajo = new JPanel();
+		JPanel arriba = new JPanel(new GridLayout(3, 1));
+		JPanel arriba_arriba = new JPanel();
+		JPanel arriba_abajo = new JPanel();
+		JPanel arriba_medio = new JPanel();
+
+		//Elementos del panel de la izquierda
+		//creacion de los botones
+		JButton b_perfil = new JButton();
+		JButton b_canciones = new JButton();
+		JButton b_cola = new JButton();
+		JButton b_ajustes = new JButton();
+
+		//imagenes de los botones
+		ImageIcon i_cancion = new ImageIcon("src/Imagenes/cancion.jpg");
+		ImageIcon i_ajuste = new ImageIcon("src/Imagenes/ajustes.jpg");
+		ImageIcon i_perfil = new ImageIcon("src/Imagenes/perfil.jpg");
+		ImageIcon i_cola = new ImageIcon("src/Imagenes/cola.jpg");
+
+		//Texto de los botones
+		JLabel l_perfil = new JLabel("Perfil");
+		JLabel l_ajuste = new JLabel("Ajustes");
+		JLabel l_cancion = new JLabel("Canciones");
+		JLabel l_cola = new JLabel("Canciones en cola");
+
+		//Alinear el texto en el JLabel como centrado
+		l_perfil.setHorizontalAlignment(SwingConstants.CENTER);
+		l_cancion.setHorizontalAlignment(SwingConstants.CENTER);
+		l_cola.setHorizontalAlignment(SwingConstants.CENTER);
+		l_ajuste.setHorizontalAlignment(SwingConstants.CENTER);
+
+		//Asignar la imagen al boton
+		b_perfil.setIcon(i_perfil);
+		b_canciones.setIcon(i_cancion);
+		b_cola.setIcon(i_cola);
+		b_ajustes.setIcon(i_ajuste);
+
+		//Asignar el layout al boton
+		b_perfil.setLayout(new BorderLayout());
+		b_canciones.setLayout(new BorderLayout());
+		b_cola.setLayout(new BorderLayout());
+		b_ajustes.setLayout(new BorderLayout());
+
+		//añadir el texto al boton
+		b_perfil.add(l_perfil, BorderLayout.SOUTH);
+		b_canciones.add(l_cancion, BorderLayout.SOUTH);
+		b_cola.add(l_cola, BorderLayout.SOUTH);
+		b_ajustes.add(l_ajuste, BorderLayout.SOUTH);
+
+		//listeners de los botones
 
 
-        //Elementos del panel del centro
-        //Botones
-        JButton b_cancion_nueva = new JButton("Añadir canción");
-        
-        //Tabla
-        
-        //MyTableModel modelo_tabla = new MyTableModel(Arrays.asList(persons));
-        
-        //JTable tabla_prin = new JTable(modelo_tabla);
-        JTable tabla_prin = new JTable();
-          
-        //Elementos del JTable
-        
-        //Elementos del panel de abajo
-        //Label
-        JLabel nom_can = new JLabel("Canción");
-        JLabel foto_can = new JLabel("Foto canción");
-        JLabel foto_t_duracion = new JLabel("tiempo de transcurso");
-        JLabel foto_t_final = new JLabel("tiempo final");
-        
-        //imagenes de los botones
-        ImageIcon i_atrasar = new ImageIcon("src/Imagenes/atrasar.jpg");
-        ImageIcon i_pausar = new ImageIcon("src/Imagenes/pausar.jpg");
-        ImageIcon i_adelantar = new ImageIcon("src/Imagenes/adelantar.jpg");
-        //Botones
-        JButton b_atras_can = new JButton(i_atrasar);
-        JButton b_pausar_can = new JButton(i_pausar);
-        JButton b_adelantar_can = new JButton(i_adelantar);
+		//Elementos del panel del centro
+		//Botones
+		JButton b_cancion_nueva = new JButton("Añadir canción");
 
-        //listeners de los botones
-        ActionListener pausar_activar = new ActionListener() {
+		//Tabla
+
+		//MyTableModel modelo_tabla = new MyTableModel(Arrays.asList(persons));
+
+		//JTable tabla_prin = new JTable(modelo_tabla);
+		JTable tabla_prin = new JTable();
+
+		//Elementos del JTable
+
+		//Elementos del panel de abajo
+		//Label
+		JLabel nom_can = new JLabel("Canción");
+		JLabel foto_can = new JLabel("Foto canción");
+		JLabel foto_t_duracion = new JLabel("tiempo de transcurso");
+		JLabel foto_t_final = new JLabel("tiempo final");
+
+		//imagenes de los botones
+		ImageIcon i_atrasar = new ImageIcon("src/Imagenes/atrasar.jpg");
+		ImageIcon i_pausar = new ImageIcon("src/Imagenes/pausar.jpg");
+		ImageIcon i_adelantar = new ImageIcon("src/Imagenes/adelantar.jpg");
+		ImageIcon i_play = new ImageIcon("src/Imagenes/play.jpg");
+		
+		//Botones
+		JButton b_atras_can = new JButton(i_atrasar);
+		JButton b_pausar_can = new JButton(i_play);
+		JButton b_adelantar_can = new JButton(i_adelantar);
+
+		//listeners de los botones
+		ActionListener pausar_activar = new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (activador==false) {
 					activador = true;
-//					System.out.println(activador);
+					//cambio de la imagen del boton
+					b_pausar_can.setIcon(i_pausar);
+					deslizador(activador);
 				}else {
 					activador = false;
-//					System.out.println(activador);
+					//cambio de la imagen del boton
+					b_pausar_can.setIcon(i_play);
+					deslizador(activador);
 				}
 			}
 		};
@@ -240,92 +247,100 @@ public class Ventana_principal extends JFrame {
 		//Añadir los escuchadores de los botones
 		b_pausar_can.addActionListener(pausar_activar);
 
-        //deslizador
-        JSlider duracion_can = new JSlider(0, 100, 0);
+		//deslizador
+		duracion_can = new JSlider(0, 100, 0);
 
-        //Contador para el deslizador
-//        while(activador == true) {
-        	timer = new Timer(1000, new ActionListener() {
-            	@Override
-            	public void actionPerformed(ActionEvent e) {
-                	valorActual += incremento;
-                	duracion_can.setValue(valorActual);
-            	}
-        	});
-        	timer.start();
-//        }
+		//Elementos del panel de abajo
+		//texto
+		JTextField busqueda = new JTextField(50);
 
-        //Elementos del panel de abajo
-      	//texto
-        JTextField busqueda = new JTextField(50);
-        
-        //imagenes de los botones
-        ImageIcon i_lupa = new ImageIcon("src/Imagenes/lupa.jpg");
-        
-        //Boton
-        JButton lupa = new JButton(i_lupa);
-        
-        
-        
-        //Anaydir elementos a los paneles
-        //Anaydir elementos al panel de la izquierda
-        izquierda.add(b_perfil);
-        izquierda.add(b_canciones);
-        izquierda.add(b_cola);
-        izquierda.add(b_ajustes);
-        
-        //Anaydir elementos al panel de abajo
-        abajo_arriba.add(nom_can);
-        abajo_abajo.add(foto_can);
-        abajo_abajo.add(foto_t_duracion);
-        abajo_abajo.add(duracion_can);
-        abajo_abajo.add(foto_t_final);
-        abajo_abajo.add(b_atras_can);
-        abajo_abajo.add(b_pausar_can);
-        abajo_abajo.add(b_adelantar_can);
-        
-        
-        abajo.add(abajo_arriba);
-        abajo.add(abajo_abajo);
-        
-        
-        //Anaydir elementos al panel del centro
-        boton_medio.add(b_cancion_nueva);
-        centro.add(tabla_prin,BorderLayout.CENTER);
-        centro.add(boton_medio, BorderLayout.SOUTH);
-        
-        //Anaydir elementos al panel de la izquierda
-        arriba_medio.add(busqueda);
-        arriba_medio.add(lupa);
-        
-        arriba.add(arriba_arriba);
-        arriba.add(arriba_medio);
-        arriba.add(arriba_abajo);
-        
-        
-        //Anaydir elementos al panel principal
-        this.add(izquierda, BorderLayout.WEST);
-        this.add(centro, BorderLayout.CENTER);
-        this.add(abajo, BorderLayout.SOUTH);
-        this.add(arriba, BorderLayout.NORTH);
-        
-        setVisible(true);
+		//imagenes de los botones
+		ImageIcon i_lupa = new ImageIcon("src/Imagenes/lupa.jpg");
+
+		//Boton
+		JButton lupa = new JButton(i_lupa);
+
+
+
+		//Anaydir elementos a los paneles
+		//Anaydir elementos al panel de la izquierda
+		izquierda.add(b_perfil);
+		izquierda.add(b_canciones);
+		izquierda.add(b_cola);
+		izquierda.add(b_ajustes);
+
+		//Anaydir elementos al panel de abajo
+		abajo_arriba.add(nom_can);
+		abajo_abajo.add(foto_can);
+		abajo_abajo.add(foto_t_duracion);
+		abajo_abajo.add(duracion_can);
+		abajo_abajo.add(foto_t_final);
+		abajo_abajo.add(b_atras_can);
+		abajo_abajo.add(b_pausar_can);
+		abajo_abajo.add(b_adelantar_can);
+
+
+		abajo.add(abajo_arriba);
+		abajo.add(abajo_abajo);
+
+
+		//Anaydir elementos al panel del centro
+		boton_medio.add(b_cancion_nueva);
+		centro.add(tabla_prin,BorderLayout.CENTER);
+		centro.add(boton_medio, BorderLayout.SOUTH);
+
+		//Anaydir elementos al panel de la izquierda
+		arriba_medio.add(busqueda);
+		arriba_medio.add(lupa);
+
+		arriba.add(arriba_arriba);
+		arriba.add(arriba_medio);
+		arriba.add(arriba_abajo);
+
+
+		//Anaydir elementos al panel principal
+		this.add(izquierda, BorderLayout.WEST);
+		this.add(centro, BorderLayout.CENTER);
+		this.add(abajo, BorderLayout.SOUTH);
+		this.add(arriba, BorderLayout.NORTH);
+
+		setVisible(true);
 	}
+
 	
+	//metodo para que el deslizador incremenete o se pare dependiendo de como este el boton
+	public void deslizador(boolean activador) {
+        // Si el temporizador no se ha creado previamente, crearlo
+        if (timer == null) {
+            timer = new Timer(1000, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    valorActual += incremento;
+                    duracion_can.setValue(valorActual);
+                }
+            });
+        }
+        if (activador) {
+            timer.start();
+        } else {
+            timer.stop();
+        }
+	}
+
 	public static void main(String[] args) {
 		File fichero = new File("BD_Usuarios");
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-            	try {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				try {
 					BD_Usuaruis.cargarUsuarios(fichero);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-                new Ventana_principal();
-                System.out.println(BD_Usuaruis.Usuarios);
-                BD_Usuaruis.guardarUsuarios(fichero);
-            }
-        });
-    }
+				new Ventana_principal();
+				System.out.println(BD_Usuaruis.Usuarios);
+				BD_Usuaruis.guardarUsuarios(fichero);
+			}
+		});
+	}
 }
