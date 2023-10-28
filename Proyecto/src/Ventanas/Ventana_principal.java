@@ -138,7 +138,6 @@ public class Ventana_principal extends JFrame {
 		//Elementos creados
 		//Paneles principales
 		JPanel izquierda = new JPanel(new GridLayout(6, 1));
-		JPanel centro = new JPanel(new BorderLayout());
 		JPanel boton_medio = new JPanel();
 		JPanel abajo = new JPanel(new GridLayout(2, 1));
 		JPanel abajo_arriba = new JPanel();
@@ -147,7 +146,11 @@ public class Ventana_principal extends JFrame {
 		JPanel arriba_arriba = new JPanel();
 		JPanel arriba_abajo = new JPanel();
 		JPanel arriba_medio = new JPanel();
-
+		
+		//paneles centro
+		JPanel p_perfil = new JPanel(new GridLayout(4, 2));
+		JPanel p_canciones = new JPanel(new BorderLayout());
+		
 		//Elementos del panel de la izquierda
 		//creacion de los botones
 		JButton b_perfil = new JButton();
@@ -195,6 +198,20 @@ public class Ventana_principal extends JFrame {
 
 
 		//Elementos del panel del centro
+		//Perfil
+		//Labels
+		JLabel l_nombre = new JLabel("Nombre");
+		JLabel l_correo = new JLabel("Correo");
+		JLabel l_nom_usu = new JLabel("Nombre de usuario");
+		JLabel l_contra = new JLabel("Contraseña");
+		
+		//TextField
+		JTextField t_nombre = new JTextField();
+		JTextField t_correo = new JTextField();
+		JTextField t_nom_usu = new JTextField();
+		JTextField t_contra = new JTextField();		
+		
+		//Canciones
 		//Botones
 		JButton b_cancion_nueva = new JButton("Añadir canción");
 
@@ -283,13 +300,24 @@ public class Ventana_principal extends JFrame {
 		abajo.add(abajo_arriba);
 		abajo.add(abajo_abajo);
 
-
-		//Anaydir elementos al panel del centro
+		//panel central
+		//Añadir elementos al panel de perfil
+		p_perfil.add(l_nombre);
+		p_perfil.add(l_nom_usu);
+		p_perfil.add(t_nombre);
+		p_perfil.add(t_nom_usu);
+		p_perfil.add(l_correo);
+		p_perfil.add(l_contra);
+		p_perfil.add(t_correo);
+		p_perfil.add(t_contra);
+		
+		//Anaydir elementos al panel de canciones
 		boton_medio.add(b_cancion_nueva);
-		centro.add(tabla_prin,BorderLayout.CENTER);
-		centro.add(boton_medio, BorderLayout.SOUTH);
+		p_canciones.add(tabla_prin,BorderLayout.CENTER);
+		p_canciones.add(boton_medio, BorderLayout.SOUTH);
 
-		//Anaydir elementos al panel de la izquierda
+		
+		//Anaydir elementos al panel de arriba
 		arriba_medio.add(busqueda);
 		arriba_medio.add(lupa);
 
@@ -300,7 +328,7 @@ public class Ventana_principal extends JFrame {
 
 		//Anaydir elementos al panel principal
 		this.add(izquierda, BorderLayout.WEST);
-		this.add(centro, BorderLayout.CENTER);
+		this.add(p_perfil, BorderLayout.CENTER);
 		this.add(abajo, BorderLayout.SOUTH);
 		this.add(arriba, BorderLayout.NORTH);
 
