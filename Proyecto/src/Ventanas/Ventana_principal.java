@@ -197,6 +197,7 @@ public class Ventana_principal extends JFrame {
 		b_ajustes.add(l_ajuste, BorderLayout.SOUTH);
 
 		//listeners de los botones
+		//para el boton perfil
 		ActionListener cambiar_perfil = new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -207,8 +208,20 @@ public class Ventana_principal extends JFrame {
 			}
 		};
 		
+		//para el boton canciones
+		ActionListener cambiar_canciones = new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				centro.removeAll();
+				centro.add(p_canciones);
+				centro.revalidate();
+				centro.repaint();
+			}
+		};
+		
 		//Añadir los escuchadores de los botones
 		b_perfil.addActionListener(cambiar_perfil);
+		b_canciones.addActionListener(cambiar_canciones);
 
 
 		//Elementos del panel del centro
