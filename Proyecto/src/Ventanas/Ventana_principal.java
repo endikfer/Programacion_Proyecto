@@ -152,6 +152,8 @@ public class Ventana_principal extends JFrame {
 		JPanel centro = new JPanel(new BorderLayout());
 		JPanel p_perfil = new JPanel(new GridLayout(4, 2));
 		JPanel p_canciones = new JPanel(new BorderLayout());
+		JPanel p_cola = new JPanel(new BorderLayout());
+		JPanel p_ajustes = new JPanel(new BorderLayout());
 		
 		//Elementos del panel de la izquierda
 		//creacion de los botones
@@ -219,9 +221,33 @@ public class Ventana_principal extends JFrame {
 			}
 		};
 		
+		//para el boton cola
+		ActionListener cambiar_cola = new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				centro.removeAll();
+				centro.add(p_cola);
+				centro.revalidate();
+				centro.repaint();
+			}
+		};
+		
+		//para el boton cola
+		ActionListener cambiar_ajustes = new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				centro.removeAll();
+				centro.add(p_ajustes);
+				centro.revalidate();
+				centro.repaint();
+			}
+		};
+		
 		//Añadir los escuchadores de los botones
 		b_perfil.addActionListener(cambiar_perfil);
 		b_canciones.addActionListener(cambiar_canciones);
+		b_cola.addActionListener(cambiar_cola);
+		b_ajustes.addActionListener(cambiar_ajustes);
 
 
 		//Elementos del panel del centro
