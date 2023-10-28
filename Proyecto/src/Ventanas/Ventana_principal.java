@@ -1,13 +1,10 @@
 package Ventanas;
 import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,9 +16,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.AbstractTableModel;
 import Canciones.BD_Usuaruis;
-import Canciones.Usuario;
+
+
 public class Ventana_principal extends JFrame {
 	/**
 	 * 
@@ -135,6 +134,8 @@ public class Ventana_principal extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setExtendedState(this.MAXIMIZED_BOTH); //ventana maximizada
 		setTitle("Ventana Principal");
+		
+		
 
 		//Elementos creados
 		//Paneles principales
@@ -144,17 +145,20 @@ public class Ventana_principal extends JFrame {
 		JPanel abajo_arriba = new JPanel();
 		JPanel abajo_abajo = new JPanel();
 		JPanel arriba = new JPanel(new GridLayout(3, 1));
-		JPanel arriba_arriba = new JPanel();
-		JPanel arriba_abajo = new JPanel();
-		JPanel arriba_medio = new JPanel();
-		
+		JPanel centro_arriba = new JPanel();
+
 		//paneles centro
 		JPanel centro = new JPanel(new BorderLayout());
 		JPanel p_perfil = new JPanel(new GridLayout(4, 2));
 		JPanel p_canciones = new JPanel(new BorderLayout());
 		JPanel p_cola = new JPanel(new BorderLayout());
 		JPanel p_ajustes = new JPanel(new BorderLayout());
-		
+
+
+
+
+
+
 		//Elementos del panel de la izquierda
 		//creacion de los botones
 		JButton b_perfil = new JButton();
@@ -209,7 +213,7 @@ public class Ventana_principal extends JFrame {
 				centro.repaint();
 			}
 		};
-		
+
 		//para el boton canciones
 		ActionListener cambiar_canciones = new ActionListener() {
 
@@ -220,7 +224,7 @@ public class Ventana_principal extends JFrame {
 				centro.repaint();
 			}
 		};
-		
+
 		//para el boton cola
 		ActionListener cambiar_cola = new ActionListener() {
 
@@ -231,7 +235,7 @@ public class Ventana_principal extends JFrame {
 				centro.repaint();
 			}
 		};
-		
+
 		//para el boton cola
 		ActionListener cambiar_ajustes = new ActionListener() {
 
@@ -242,7 +246,7 @@ public class Ventana_principal extends JFrame {
 				centro.repaint();
 			}
 		};
-		
+
 		//Añadir los escuchadores de los botones
 		b_perfil.addActionListener(cambiar_perfil);
 		b_canciones.addActionListener(cambiar_canciones);
@@ -250,23 +254,35 @@ public class Ventana_principal extends JFrame {
 		b_ajustes.addActionListener(cambiar_ajustes);
 
 
+
+
+
 		//Elementos del panel del centro
 		//Perfil
+		p_perfil.setBorder(new EmptyBorder(0, 20, 0, 20));
 		//Labels
 		JLabel l_nombre = new JLabel("Nombre");
 		JLabel l_correo = new JLabel("Correo");
 		JLabel l_nom_usu = new JLabel("Nombre de usuario");
 		JLabel l_contra = new JLabel("Contraseña");
-		
+
 		//TextField
 		JTextField t_nombre = new JTextField();
 		JTextField t_correo = new JTextField();
 		JTextField t_nom_usu = new JTextField();
 		JTextField t_contra = new JTextField();		
-		
+
 		//Canciones
+		//texto
+		JTextField busqueda = new JTextField(50);
+
+		//imagenes de los botones
+		ImageIcon i_lupa = new ImageIcon("src/Imagenes/lupa.jpg");
+
+
 		//Botones
 		JButton b_cancion_nueva = new JButton("Añadir canción");
+		JButton lupa = new JButton(i_lupa);
 
 		//Tabla
 
@@ -276,6 +292,10 @@ public class Ventana_principal extends JFrame {
 		JTable tabla_prin = new JTable();
 
 		//Elementos del JTable
+
+
+
+
 
 		//Elementos del panel de abajo
 		//Label
@@ -289,7 +309,7 @@ public class Ventana_principal extends JFrame {
 		ImageIcon i_pausar = new ImageIcon("src/Imagenes/pausar.jpg");
 		ImageIcon i_adelantar = new ImageIcon("src/Imagenes/adelantar.jpg");
 		ImageIcon i_play = new ImageIcon("src/Imagenes/play.jpg");
-		
+
 		//Botones
 		JButton b_atras_can = new JButton(i_atrasar);
 		JButton b_pausar_can = new JButton(i_play);
@@ -320,15 +340,10 @@ public class Ventana_principal extends JFrame {
 		//deslizador
 		duracion_can = new JSlider(0, 100, 0);
 
-		//Elementos del panel de abajo
-		//texto
-		JTextField busqueda = new JTextField(50);
+		//Elementos del panel de arriba
+		//JLabel 
+		JLabel prueba = new JLabel();
 
-		//imagenes de los botones
-		ImageIcon i_lupa = new ImageIcon("src/Imagenes/lupa.jpg");
-
-		//Boton
-		JButton lupa = new JButton(i_lupa);
 
 
 
@@ -353,6 +368,13 @@ public class Ventana_principal extends JFrame {
 		abajo.add(abajo_arriba);
 		abajo.add(abajo_abajo);
 
+
+
+
+		//Anaydir elementos al panel de arriba
+		arriba.add(prueba);
+		arriba.setSize(200, 550);
+
 		//panel central
 		//Añadir elementos al panel de perfil
 		p_perfil.add(l_nombre);
@@ -363,23 +385,18 @@ public class Ventana_principal extends JFrame {
 		p_perfil.add(l_contra);
 		p_perfil.add(t_correo);
 		p_perfil.add(t_contra);
-		
+
 		//Anaydir elementos al panel de canciones
 		boton_medio.add(b_cancion_nueva);
+		centro_arriba.add(busqueda);
+		centro_arriba.add(lupa);
 		p_canciones.add(tabla_prin,BorderLayout.CENTER);
 		p_canciones.add(boton_medio, BorderLayout.SOUTH);
-		
+		p_canciones.add(centro_arriba, BorderLayout.NORTH);
+
+
 		//añadir el panel a centro
 		centro.add(p_canciones);
-
-		
-		//Anaydir elementos al panel de arriba
-		arriba_medio.add(busqueda);
-		arriba_medio.add(lupa);
-
-		arriba.add(arriba_arriba);
-		arriba.add(arriba_medio);
-		arriba.add(arriba_abajo);
 
 
 		//Anaydir elementos al panel principal
@@ -391,24 +408,24 @@ public class Ventana_principal extends JFrame {
 		setVisible(true);
 	}
 
-	
+
 	//metodo para que el deslizador incremenete o se pare dependiendo de como este el boton
 	public void deslizador(boolean activador) {
-        // Si el temporizador no se ha creado previamente, crearlo
-        if (timer == null) {
-            timer = new Timer(1000, new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    valorActual += incremento;
-                    duracion_can.setValue(valorActual);
-                }
-            });
-        }
-        if (activador) {
-            timer.start();
-        } else {
-            timer.stop();
-        }
+		// Si el temporizador no se ha creado previamente, crearlo
+		if (timer == null) {
+			timer = new Timer(1000, new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					valorActual += incremento;
+					duracion_can.setValue(valorActual);
+				}
+			});
+		}
+		if (activador) {
+			timer.start();
+		} else {
+			timer.stop();
+		}
 	}
 
 	public static void main(String[] args) {
