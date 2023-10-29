@@ -19,6 +19,10 @@ import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.AbstractTableModel;
 import Canciones.BD_Usuaruis;
+import java.awt.Component;
+import javax.swing.Box;
+import javax.swing.JTextPane;
+import java.awt.Color;
 
 
 public class Ventana_principal extends JFrame {
@@ -144,12 +148,12 @@ public class Ventana_principal extends JFrame {
 		JPanel abajo = new JPanel(new GridLayout(2, 1));
 		JPanel abajo_arriba = new JPanel();
 		JPanel abajo_abajo = new JPanel();
-		JPanel arriba = new JPanel(new GridLayout(3, 1));
+//		JPanel arriba = new JPanel(new GridLayout(1, 1));
 		JPanel centro_arriba = new JPanel();
 
 		//paneles centro
 		JPanel centro = new JPanel(new BorderLayout());
-		JPanel p_perfil = new JPanel(new GridLayout(4, 2));
+		JPanel p_perfil = new JPanel(new GridLayout(12, 1));
 		JPanel p_canciones = new JPanel(new BorderLayout());
 		JPanel p_cola = new JPanel(new BorderLayout());
 		JPanel p_ajustes = new JPanel(new BorderLayout());
@@ -259,18 +263,21 @@ public class Ventana_principal extends JFrame {
 
 		//Elementos del panel del centro
 		//Perfil
-		p_perfil.setBorder(new EmptyBorder(0, 20, 0, 20));
+		p_perfil.setBorder(new EmptyBorder(0, 20, 20, 20));
 		//Labels
 		JLabel l_nombre = new JLabel("Nombre");
 		JLabel l_correo = new JLabel("Correo");
 		JLabel l_nom_usu = new JLabel("Nombre de usuario");
 		JLabel l_contra = new JLabel("Contraseña");
 
+
 		//TextField
 		JTextField t_nombre = new JTextField();
 		JTextField t_correo = new JTextField();
 		JTextField t_nom_usu = new JTextField();
-		JTextField t_contra = new JTextField();		
+		JTextField t_contra = new JTextField();
+		
+		
 
 		//Canciones
 		//texto
@@ -340,10 +347,6 @@ public class Ventana_principal extends JFrame {
 		//deslizador
 		duracion_can = new JSlider(0, 100, 0);
 
-		//Elementos del panel de arriba
-		//JLabel 
-		JLabel prueba = new JLabel();
-
 
 
 
@@ -368,23 +371,17 @@ public class Ventana_principal extends JFrame {
 		abajo.add(abajo_arriba);
 		abajo.add(abajo_abajo);
 
-
-
-
-		//Anaydir elementos al panel de arriba
-		arriba.add(prueba);
-		arriba.setSize(200, 550);
-
 		//panel central
 		//Añadir elementos al panel de perfil
 		p_perfil.add(l_nombre);
-		p_perfil.add(l_nom_usu);
 		p_perfil.add(t_nombre);
-		p_perfil.add(t_nom_usu);
 		p_perfil.add(l_correo);
-		p_perfil.add(l_contra);
 		p_perfil.add(t_correo);
+		p_perfil.add(l_nom_usu);
+		p_perfil.add(t_nom_usu);
+		p_perfil.add(l_contra);
 		p_perfil.add(t_contra);
+
 
 		//Anaydir elementos al panel de canciones
 		boton_medio.add(b_cancion_nueva);
@@ -400,10 +397,10 @@ public class Ventana_principal extends JFrame {
 
 
 		//Anaydir elementos al panel principal
-		this.add(izquierda, BorderLayout.WEST);
-		this.add(centro, BorderLayout.CENTER);
-		this.add(abajo, BorderLayout.SOUTH);
-		this.add(arriba, BorderLayout.NORTH);
+		getContentPane().add(izquierda, BorderLayout.WEST);
+		getContentPane().add(centro, BorderLayout.CENTER);
+		getContentPane().add(abajo, BorderLayout.SOUTH);
+//		getContentPane().add(arriba, BorderLayout.NORTH);
 
 		setVisible(true);
 	}
