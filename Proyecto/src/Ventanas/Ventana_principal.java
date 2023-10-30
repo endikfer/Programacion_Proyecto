@@ -18,11 +18,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.AbstractTableModel;
-import Canciones.BD_Usuaruis;
-import java.awt.Component;
-import javax.swing.Box;
-import javax.swing.JTextPane;
-import java.awt.Color;
+import Canciones.BD_Usuarios;
 
 
 public class Ventana_principal extends JFrame {
@@ -134,6 +130,7 @@ public class Ventana_principal extends JFrame {
 
 
 
+	@SuppressWarnings("static-access")
 	public Ventana_principal(){
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setExtendedState(this.MAXIMIZED_BOTH); //ventana maximizada
@@ -148,7 +145,6 @@ public class Ventana_principal extends JFrame {
 		JPanel abajo = new JPanel(new GridLayout(2, 1));
 		JPanel abajo_arriba = new JPanel();
 		JPanel abajo_abajo = new JPanel();
-//		JPanel arriba = new JPanel(new GridLayout(1, 1));
 		JPanel centro_arriba = new JPanel();
 
 		//paneles centro
@@ -400,7 +396,6 @@ public class Ventana_principal extends JFrame {
 		getContentPane().add(izquierda, BorderLayout.WEST);
 		getContentPane().add(centro, BorderLayout.CENTER);
 		getContentPane().add(abajo, BorderLayout.SOUTH);
-//		getContentPane().add(arriba, BorderLayout.NORTH);
 
 		setVisible(true);
 	}
@@ -431,13 +426,13 @@ public class Ventana_principal extends JFrame {
 			@Override
 			public void run() {
 				try {
-					BD_Usuaruis.cargarUsuarios(fichero);
+					BD_Usuarios.cargarUsuarios(fichero);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 				new Ventana_principal();
-				System.out.println(BD_Usuaruis.Usuarios);
-				BD_Usuaruis.guardarUsuarios(fichero);
+				System.out.println(BD_Usuarios.Usuarios);
+				BD_Usuarios.guardarUsuarios(fichero);
 			}
 		});
 	}

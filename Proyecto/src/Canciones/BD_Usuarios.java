@@ -13,7 +13,7 @@ import Ventanas.Ventana_usuario;
 
 
 
-public class BD_Usuaruis {
+public class BD_Usuarios {
 	
 	public static HashMap<Usuario, ArrayList<Cancion>> Usuarios = new HashMap<>();
 	
