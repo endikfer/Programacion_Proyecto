@@ -19,6 +19,14 @@ public class Cancion extends Artista{
 	}
 	
 	
+	public Cancion(String nombre_Ar, String name_can, int duration, String album) {
+		super(nombre_Ar);
+		this.name_can = name_can;
+		this.duration = duration;
+		this.album = album;
+	}
+
+
 	//Prueba luego se quita
 	public Cancion(String nombre_Ar, String name_can) {
 		super(nombre_Ar);

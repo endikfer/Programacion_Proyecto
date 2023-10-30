@@ -19,6 +19,7 @@ import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.AbstractTableModel;
 import Canciones.BD_Usuarios;
+import Canciones.cancbd;
 
 
 public class Ventana_principal extends JFrame {
@@ -422,17 +423,19 @@ public class Ventana_principal extends JFrame {
 
 	public static void main(String[] args) {
 		File fichero = new File("BD_Usuarios");
+		File fichero2 = new File("BD_Canc");
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				try {
 					BD_Usuarios.cargarUsuarios(fichero);
+					cancbd.cargarCanciones(fichero2);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 				new Ventana_principal();
-				System.out.println(BD_Usuarios.Usuarios);
 				BD_Usuarios.guardarUsuarios(fichero);
+				cancbd.guardarCanciones(fichero2);
 			}
 		});
 	}
