@@ -7,7 +7,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class cancbd {
 	static ArrayList<Cancion> canciones = new ArrayList<>();
