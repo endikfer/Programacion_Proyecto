@@ -1,5 +1,6 @@
 package Ventanas;
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,8 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JSlider;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -19,6 +20,7 @@ import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import Canciones.BD_Usuarios;
 import Canciones.cancbd;
+import javax.swing.JRadioButton;
 
 
 public class Ventana_principal extends JFrame {
@@ -46,17 +48,27 @@ public class Ventana_principal extends JFrame {
 		//Elementos creados
 		//Paneles principales
 		JPanel izquierda = new JPanel(new GridLayout(6, 1));
-		JPanel boton_medio = new JPanel();
 		JPanel abajo = new JPanel(new GridLayout(2, 1));
 		JPanel abajo_arriba = new JPanel();
 		JPanel abajo_abajo = new JPanel();
-		JPanel centro_arriba = new JPanel();
+
 
 		//paneles centro
 		JPanel centro = new JPanel(new BorderLayout());
+		
+		//paneles perfil
 		JPanel p_perfil = new JPanel(new GridLayout(12, 1));
+		JPanel p_contra = new JPanel(new BorderLayout());
+		
+		//paneles canciones
 		JPanel p_canciones = new JPanel(new BorderLayout());
+		JPanel centro_arriba = new JPanel();
+		JPanel boton_medio = new JPanel();
+		
+		//paneles cola
 		JPanel p_cola = new JPanel(new BorderLayout());
+		
+		//paneles ajustes
 		JPanel p_ajustes = new JPanel(new BorderLayout());
 
 
@@ -172,12 +184,41 @@ public class Ventana_principal extends JFrame {
 		JLabel l_nom_usu = new JLabel("Nombre de usuario");
 		JLabel l_contra = new JLabel("Contraseña");
 
-
+		//PasswordField
+		JPasswordField p_contra_f = new JPasswordField("Hola"); //hola es un ejemplo para mirar si funciona
+		
+		//RadioButton
+		JRadioButton b_contra = new JRadioButton();
+				
 		//TextField
 		JTextField t_nombre = new JTextField();
 		JTextField t_correo = new JTextField();
 		JTextField t_nom_usu = new JTextField();
 		JTextField t_contra = new JTextField();
+		
+		//Listener del radiobutton
+		ActionListener visu_contra = new ActionListener() {
+
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent e) {
+				if(b_contra.isSelected()) {
+					p_contra.remove(p_contra_f);
+					Font font = p_contra_f.getFont();
+					t_contra.setFont(font.deriveFont(font.getSize() + 10f));
+					t_contra.setText(p_contra_f.getText());
+					p_contra.add(t_contra, BorderLayout.CENTER);
+				}else {
+					p_contra.remove(t_contra);
+					p_contra.add(p_contra_f, BorderLayout.CENTER);
+				}
+				
+				p_contra.revalidate();
+				p_contra.repaint();
+			}
+		};
+		
+		//Añadir el escuchador al radio buton
+		b_contra.addActionListener(visu_contra);
 		
 		
 
@@ -192,10 +233,6 @@ public class Ventana_principal extends JFrame {
 		//Botones
 		JButton b_cancion_nueva = new JButton("Añadir canción");
 		JButton lupa = new JButton(i_lupa);
-
-		//JTable tabla_prin = new JTable(modelo_tabla);
-		JTable tabla_prin = new JTable();
-		
 		
 		
 		
@@ -269,6 +306,11 @@ public class Ventana_principal extends JFrame {
 		abajo.add(abajo_abajo);
 
 		//panel central
+		//Añadir elementos al panel de contra
+		p_contra.add(p_contra_f, BorderLayout.CENTER);
+		p_contra.add(b_contra, BorderLayout.EAST);
+		
+		
 		//Añadir elementos al panel de perfil
 		p_perfil.add(l_nombre);
 		p_perfil.add(t_nombre);
@@ -277,14 +319,13 @@ public class Ventana_principal extends JFrame {
 		p_perfil.add(l_nom_usu);
 		p_perfil.add(t_nom_usu);
 		p_perfil.add(l_contra);
-		p_perfil.add(t_contra);
+		p_perfil.add(p_contra);
 
 
 		//Anaydir elementos al panel de canciones
 		boton_medio.add(b_cancion_nueva);
 		centro_arriba.add(busqueda);
 		centro_arriba.add(lupa);
-		p_canciones.add(tabla_prin,BorderLayout.CENTER);
 		p_canciones.add(boton_medio, BorderLayout.SOUTH);
 		p_canciones.add(centro_arriba, BorderLayout.NORTH);
 
