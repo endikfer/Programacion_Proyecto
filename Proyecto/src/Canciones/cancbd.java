@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class cancbd {
-	static ArrayList<Cancion> canciones = new ArrayList<>();
+	public static ArrayList<Cancion> canciones = new ArrayList<>();
 	
 	@SuppressWarnings("static-access")
 	public static void guardarCanciones(File fichero) {

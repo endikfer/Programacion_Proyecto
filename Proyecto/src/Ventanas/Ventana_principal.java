@@ -13,12 +13,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JSlider;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
+
 import Canciones.BD_Usuarios;
+import Canciones.Cancion;
 import Canciones.cancbd;
 import javax.swing.JRadioButton;
 
@@ -64,6 +67,7 @@ public class Ventana_principal extends JFrame {
 		JPanel p_canciones = new JPanel(new BorderLayout());
 		JPanel centro_arriba = new JPanel();
 		JPanel boton_medio = new JPanel();
+		JPanel centro_canciones = new JPanel();
 		
 		//paneles cola
 		JPanel p_cola = new JPanel(new BorderLayout());
@@ -235,6 +239,14 @@ public class Ventana_principal extends JFrame {
 		JButton lupa = new JButton(i_lupa);
 		
 		
+		//Elementos del JTable
+		String[][] datos_canciones = new String[cancbd.canciones.size()][3];
+		cargar_datos_canciones(datos_canciones);
+		String[] columnas_canciones = {"Nombre", "Cantante", "Album"};
+		
+		
+		//JTable
+		JTable tabla_canciones= new JTable(datos_canciones, columnas_canciones);
 		
 		
 
@@ -326,8 +338,11 @@ public class Ventana_principal extends JFrame {
 		boton_medio.add(b_cancion_nueva);
 		centro_arriba.add(busqueda);
 		centro_arriba.add(lupa);
+		centro_canciones.add(tabla_canciones);
 		p_canciones.add(boton_medio, BorderLayout.SOUTH);
 		p_canciones.add(centro_arriba, BorderLayout.NORTH);
+		p_canciones.add(centro_canciones, BorderLayout.CENTER);
+		
 
 
 		//añadir el panel a centro
@@ -360,6 +375,17 @@ public class Ventana_principal extends JFrame {
 		} else {
 			timer.stop();
 		}
+	}
+	
+	//metodo para cargar datos_canciones
+	public String[][] cargar_datos_canciones(String[][] string){
+		for(int i = 0; i < cancbd.canciones.size(); i++) {
+			Cancion c = cancbd.canciones.get(i);
+			string[i][0] = c.getName_can();
+			string[i][1] = c.getNombre_Ar();
+			string[i][2] = c.getAlbum();
+		}
+		return string;
 	}
 
 	public static void main(String[] args) {
