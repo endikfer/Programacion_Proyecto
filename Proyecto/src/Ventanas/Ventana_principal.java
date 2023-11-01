@@ -6,19 +6,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+
+import javax.swing.DefaultBoundedRangeModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JSlider;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import Canciones.BD_Usuarios;
 import Canciones.Cancion;
@@ -239,14 +244,11 @@ public class Ventana_principal extends JFrame {
 		JButton lupa = new JButton(i_lupa);
 		
 		
-		//Elementos del JTable
-		String[][] datos_canciones = new String[cancbd.canciones.size()][3];
-		cargar_datos_canciones(datos_canciones);
-		String[] columnas_canciones = {"Nombre", "Cantante", "Album"};
-		
-		
 		//JTable
-		JTable tabla_canciones= new JTable(datos_canciones, columnas_canciones);
+		DefaultTableModel modelo_tabla_canciones = new DefaultTableModel();
+		cargar_modelo_tabla_canciones(modelo_tabla_canciones);
+		JTable tabla_canciones= new JTable(modelo_tabla_canciones);
+		
 		
 		
 
@@ -376,17 +378,18 @@ public class Ventana_principal extends JFrame {
 			timer.stop();
 		}
 	}
-	
-	//metodo para cargar datos_canciones
-	public String[][] cargar_datos_canciones(String[][] string){
-		for(int i = 0; i < cancbd.canciones.size(); i++) {
-			Cancion c = cancbd.canciones.get(i);
-			string[i][0] = c.getName_can();
-			string[i][1] = c.getNombre_Ar();
-			string[i][2] = c.getAlbum();
+		
+	//metodo para lo por defecto de la tabla de cancioens
+	public DefaultTableModel cargar_modelo_tabla_canciones(DefaultTableModel a){
+		a.addColumn("Nomber");
+		a.addColumn("Autor");
+		a.addColumn("Álbum");
+		for(Cancion c : cancbd.canciones) {
+			a.addRow(new Object[] {c.getName_can(), c.getNombre_Ar(), c.getAlbum()});
 		}
-		return string;
+		return a;
 	}
+	
 
 	public static void main(String[] args) {
 		File fichero = new File("BD_Usuarios");
@@ -398,7 +401,7 @@ public class Ventana_principal extends JFrame {
 					BD_Usuarios.cargarUsuarios(fichero);
 					cancbd.cargarCanciones(fichero2);
 				} catch (IOException e) {
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al cargar los usuarios", "Usuarios Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
 				}
 				new Ventana_principal();
 				BD_Usuarios.guardarUsuarios(fichero);
