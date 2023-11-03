@@ -18,6 +18,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -60,6 +61,8 @@ public class Ventana_principal extends JFrame {
 		JPanel abajo_abajo = new JPanel();
 
 
+		
+		
 		//paneles centro
 		JPanel centro = new JPanel(new BorderLayout());
 		
@@ -77,7 +80,11 @@ public class Ventana_principal extends JFrame {
 		JPanel p_cola = new JPanel(new BorderLayout());
 		
 		//paneles ajustes
-		JPanel p_ajustes = new JPanel(new BorderLayout());
+		JPanel p_ajustes = new JPanel(new GridLayout(12, 1));
+		JPanel p_fondo = new JPanel(new BorderLayout());
+		JPanel p_bucle = new JPanel(new BorderLayout());
+		JPanel p_barra = new JPanel(new BorderLayout());
+		JPanel p_flecha = new JPanel(new BorderLayout());
 
 
 
@@ -249,6 +256,22 @@ public class Ventana_principal extends JFrame {
 		JTable tabla_canciones= new JTable(modelo_tabla_canciones);
 		
 		
+		//Ajustes
+		p_ajustes.setBorder(new EmptyBorder(0, 20, 20, 20));
+		//Text Field
+		JLabel l_fondo = new JLabel("Modo oscuro");
+		JLabel l_bucle = new JLabel("Autoplay");
+		JLabel l_atajos = new JLabel("Atajos de tecldo");
+		JLabel l_barra = new JLabel("Uso de la barra espaciadora para pausar y reanudar la cancion");
+		JLabel l_flecha = new JLabel("Uso de las flechas adelante/atras para retroceder/avanzar una cancion");
+		
+		//ToggleButton
+		JToggleButton t_fondo = new JToggleButton();
+		JToggleButton t_bucle = new JToggleButton();
+		JToggleButton t_barra = new JToggleButton();
+		JToggleButton t_flecha = new JToggleButton();
+		
+		
 		
 
 		//Elementos del panel de abajo
@@ -343,6 +366,23 @@ public class Ventana_principal extends JFrame {
 		p_canciones.add(boton_medio, BorderLayout.SOUTH);
 		p_canciones.add(centro_arriba, BorderLayout.NORTH);
 		p_canciones.add(centro_canciones, BorderLayout.CENTER);
+		
+		//Anaydir elementos al panel de ajustes
+		//p_fondo.add(l_fondo, BorderLayout.CENTER);
+		p_bucle.add(l_bucle, BorderLayout.CENTER);
+		p_barra.add(l_barra, BorderLayout.CENTER);
+		p_flecha.add(l_flecha, BorderLayout.CENTER);
+		
+		p_fondo.add(t_fondo, BorderLayout.CENTER);
+		p_bucle.add(t_bucle, BorderLayout.EAST);
+		p_barra.add(t_barra, BorderLayout.EAST);
+		p_flecha.add(t_flecha, BorderLayout.EAST);
+		
+		p_ajustes.add(p_fondo);
+		p_ajustes.add(p_bucle);
+		p_ajustes.add(l_atajos);
+		p_ajustes.add(p_barra);
+		p_ajustes.add(p_flecha);
 		
 
 
