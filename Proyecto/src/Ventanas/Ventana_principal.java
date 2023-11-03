@@ -28,6 +28,7 @@ import Canciones.BD_Usuarios;
 import Canciones.Cancion;
 import Canciones.cancbd;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 
 
 public class Ventana_principal extends JFrame {
@@ -72,6 +73,7 @@ public class Ventana_principal extends JFrame {
 		JPanel centro_arriba = new JPanel();
 		JPanel boton_medio = new JPanel();
 		JPanel centro_canciones = new JPanel();
+		JScrollPane centro_canciones_scroll = new JScrollPane(centro_canciones);
 		
 		//paneles cola
 		JPanel p_cola = new JPanel(new BorderLayout());
@@ -248,6 +250,23 @@ public class Ventana_principal extends JFrame {
 		cargar_modelo_tabla_canciones(modelo_tabla_canciones);
 		JTable tabla_canciones= new JTable(modelo_tabla_canciones);
 		
+		//tamaños del JTable
+		tabla_canciones.getColumnModel().getColumn(0).setPreferredWidth(400);
+		tabla_canciones.getColumnModel().getColumn(1).setPreferredWidth(400);
+		tabla_canciones.getColumnModel().getColumn(2).setPreferredWidth(400);
+		tabla_canciones.getColumnModel().setColumnMargin(10);
+		tabla_canciones.setRowMargin(10);
+		tabla_canciones.setRowHeight(40);
+		tabla_canciones.setRowHeight(0, 50);
+		
+		//Estilo del Jtable
+		tabla_canciones.setFont(new Font(tabla_canciones.getFont().getName(), tabla_canciones.getFont().getStyle(), 20));
+		
+		//No poder selecionar las columnas y filas del JTable
+		tabla_canciones.setColumnSelectionAllowed(false);
+		tabla_canciones.setRowSelectionAllowed(false);
+		tabla_canciones.setRowSelectionInterval(0, 0);
+		
 		
 		
 
@@ -383,6 +402,7 @@ public class Ventana_principal extends JFrame {
 		a.addColumn("Nomber");
 		a.addColumn("Autor");
 		a.addColumn("Álbum");
+		a.addRow(new Object[] {"Nombre", "Autor", "Album"});
 		for(Cancion c : cancbd.canciones) {
 			a.addRow(new Object[] {c.getName_can(), c.getNombre_Ar(), c.getAlbum()});
 		}
