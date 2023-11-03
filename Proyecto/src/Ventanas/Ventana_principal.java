@@ -246,7 +246,12 @@ public class Ventana_principal extends JFrame {
 		
 		
 		//JTable
-		DefaultTableModel modelo_tabla_canciones = new DefaultTableModel();
+		DefaultTableModel modelo_tabla_canciones = new DefaultTableModel() {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
 		cargar_modelo_tabla_canciones(modelo_tabla_canciones);
 		JTable tabla_canciones= new JTable(modelo_tabla_canciones);
 		
