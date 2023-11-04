@@ -358,6 +358,7 @@ public class Ventana_principal extends JFrame {
 
 
 		//JTable
+		@SuppressWarnings("serial")
 		DefaultTableModel modelo_tabla_canciones = new DefaultTableModel() {
 			@Override
 			public boolean isCellEditable(int row, int column) {
