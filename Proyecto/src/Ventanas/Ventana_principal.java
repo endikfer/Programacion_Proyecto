@@ -1,5 +1,6 @@
 package Ventanas;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -7,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
-
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,7 +23,10 @@ import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Canciones.BD_Usuarios;
@@ -261,9 +265,13 @@ public class Ventana_principal extends JFrame {
 		//Text Field
 		JLabel l_fondo = new JLabel("Modo oscuro");
 		JLabel l_bucle = new JLabel("Autoplay");
-		JLabel l_atajos = new JLabel("Atajos de tecldo");
+		JLabel l_atajos = new JLabel("Atajos de teclado");
 		JLabel l_barra = new JLabel("Uso de la barra espaciadora para pausar y reanudar la cancion");
 		JLabel l_flecha = new JLabel("Uso de las flechas adelante/atras para retroceder/avanzar una cancion");
+		
+		//aumento de tamaño y negrita del label de atajo de teclado
+		Font font = new Font("Arial", Font.BOLD, 20);
+		l_atajos.setFont(font);
 		
 		//ToggleButton
 		JToggleButton t_fondo = new JToggleButton();
@@ -368,15 +376,20 @@ public class Ventana_principal extends JFrame {
 		p_canciones.add(centro_canciones, BorderLayout.CENTER);
 		
 		//Anaydir elementos al panel de ajustes
-		//p_fondo.add(l_fondo, BorderLayout.CENTER);
+		p_fondo.add(l_fondo, BorderLayout.CENTER);
 		p_bucle.add(l_bucle, BorderLayout.CENTER);
 		p_barra.add(l_barra, BorderLayout.CENTER);
 		p_flecha.add(l_flecha, BorderLayout.CENTER);
 		
-		p_fondo.add(t_fondo, BorderLayout.CENTER);
+		p_fondo.add(t_fondo, BorderLayout.EAST);
 		p_bucle.add(t_bucle, BorderLayout.EAST);
 		p_barra.add(t_barra, BorderLayout.EAST);
 		p_flecha.add(t_flecha, BorderLayout.EAST);
+		
+		p_fondo.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
+		p_bucle.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
+		p_barra.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
+		p_flecha.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
 		
 		p_ajustes.add(p_fondo);
 		p_ajustes.add(p_bucle);
