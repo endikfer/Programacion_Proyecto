@@ -135,13 +135,6 @@ public class Ventana_principal extends JFrame {
 	JButton b_pausar_can;
 	JButton b_adelantar_can;
 	
-	
-	
-	
-	
-	
-	
-	
 	JSlider duracion_can;
 	JToggleButton t_fondo;
     Color colorFondo;
@@ -576,21 +569,66 @@ public class Ventana_principal extends JFrame {
 	//metodo para cambiar el fondo de el programa a negro
 	private void cambiarFondo() {
         if (t_fondo.isSelected()) {
-			System.out.println("Si");
-            UIManager.put("Panel.background", Color.BLACK);
-            SwingUtilities.updateComponentTreeUI(this);
+            p_perfil.setBackground(Color.BLACK);
+            izquierda.setBackground(Color.BLACK);
+            abajo.setBackground(Color.BLACK);
+            abajo_arriba.setBackground(Color.BLACK);
+            abajo_abajo.setBackground(Color.BLACK);
+            p_ajustes.setBackground(Color.BLACK);
+        	p_ajustes.setBackground(Color.BLACK);
+        	p_fondo.setBackground(Color.BLACK);
+        	p_bucle.setBackground(Color.BLACK);
+        	p_barra.setBackground(Color.BLACK);
+        	p_flecha.setBackground(Color.BLACK);
+        	
+        	
             foto_t_final.setForeground(Color.WHITE);
             foto_t_duracion.setForeground(Color.WHITE);
             foto_can.setForeground(Color.WHITE);
             nom_can.setForeground(Color.WHITE);
+            l_fondo.setForeground(Color.WHITE);
+            l_bucle.setForeground(Color.WHITE);
+            l_atajos.setForeground(Color.WHITE);
+            l_barra.setForeground(Color.WHITE);
+            l_flecha.setForeground(Color.WHITE);
+            l_exp1.setForeground(Color.WHITE);
+            l_exp2.setForeground(Color.WHITE);
+            l_exp3.setForeground(Color.WHITE);
+            
+            l_nombre.setForeground(Color.WHITE);
+        	l_correo.setForeground(Color.WHITE);
+        	l_nom_usu.setForeground(Color.WHITE);
+        	l_contra.setForeground(Color.WHITE);
         } else {
-            UIManager.put("Panel.background", colorFondo);
-            SwingUtilities.updateComponentTreeUI(this);
-			System.out.println("No");
+            p_perfil.setBackground(colorFondo);
+            izquierda.setBackground(colorFondo);
+            abajo.setBackground(colorFondo);
+            abajo_arriba.setBackground(colorFondo);
+            abajo_abajo.setBackground(colorFondo);
+            p_ajustes.setBackground(colorFondo);
+        	p_ajustes.setBackground(colorFondo);
+        	p_fondo.setBackground(colorFondo);
+        	p_bucle.setBackground(colorFondo);
+        	p_barra.setBackground(colorFondo);
+        	p_flecha.setBackground(colorFondo);
+            
             foto_t_final.setForeground(Color.BLACK);
             foto_t_duracion.setForeground(Color.BLACK);
             foto_can.setForeground(Color.BLACK);
             nom_can.setForeground(Color.BLACK);
+            l_fondo.setForeground(Color.BLACK);
+            l_bucle.setForeground(Color.BLACK);
+            l_atajos.setForeground(Color.BLACK);
+            l_barra.setForeground(Color.BLACK);
+            l_flecha.setForeground(Color.BLACK);
+            l_exp1.setForeground(Color.BLACK);
+            l_exp2.setForeground(Color.BLACK);
+            l_exp3.setForeground(Color.BLACK);
+            
+            l_nombre.setForeground(Color.BLACK);
+        	l_correo.setForeground(Color.BLACK);
+        	l_nom_usu.setForeground(Color.BLACK);
+        	l_contra.setForeground(Color.BLACK);
         }
     }
 
