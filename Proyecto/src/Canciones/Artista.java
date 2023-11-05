@@ -12,6 +12,7 @@ public class Artista {
 		Artista.nombre_Ar = nombre_Ar;
 	}
 
+	@SuppressWarnings("static-access")
 	public Artista(String nombre_Ar) {
 		this.nombre_Ar = nombre_Ar;
 	}
