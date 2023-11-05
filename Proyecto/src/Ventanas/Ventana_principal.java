@@ -386,7 +386,7 @@ public class Ventana_principal extends JFrame {
 		tabla_canciones.setFont(new Font(tabla_canciones.getFont().getName(), tabla_canciones.getFont().getStyle(), 20));
 		tabla_canciones.setDefaultRenderer(Object.class, estilo);
 			
-		//No poder selecionar las columnas y filas del JTable
+		//No poder selecionar las columnas
 		tabla_canciones.setColumnSelectionAllowed(false);
 		tabla_canciones.setRowSelectionAllowed(true);
 		
