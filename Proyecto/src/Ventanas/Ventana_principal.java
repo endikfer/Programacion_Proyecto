@@ -24,6 +24,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import Canciones.BD_Usuarios;
@@ -378,14 +379,16 @@ public class Ventana_principal extends JFrame {
 		tabla_canciones.setRowHeight(40);
 		tabla_canciones.setRowHeight(0, 60);
 		
+		//componente para el estilo de la JTable
+		estilotabla estilo = new estilotabla();
+		
 		//Estilo del Jtable
 		tabla_canciones.setFont(new Font(tabla_canciones.getFont().getName(), tabla_canciones.getFont().getStyle(), 20));
+		tabla_canciones.setDefaultRenderer(Object.class, estilo);
 		
 		//No poder selecionar las columnas y filas del JTable
 		tabla_canciones.setColumnSelectionAllowed(false);
 		tabla_canciones.setRowSelectionAllowed(false);
-		tabla_canciones.setRowSelectionInterval(0, 0);
-
 
 		//Ajustes
 		p_ajustes.setBorder(new EmptyBorder(0, 20, 20, 20));
