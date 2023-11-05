@@ -385,10 +385,11 @@ public class Ventana_principal extends JFrame {
 		//Estilo del Jtable
 		tabla_canciones.setFont(new Font(tabla_canciones.getFont().getName(), tabla_canciones.getFont().getStyle(), 20));
 		tabla_canciones.setDefaultRenderer(Object.class, estilo);
-		
+			
 		//No poder selecionar las columnas y filas del JTable
 		tabla_canciones.setColumnSelectionAllowed(false);
-		tabla_canciones.setRowSelectionAllowed(false);
+		tabla_canciones.setRowSelectionAllowed(true);
+		
 
 		//Ajustes
 		p_ajustes.setBorder(new EmptyBorder(0, 20, 20, 20));

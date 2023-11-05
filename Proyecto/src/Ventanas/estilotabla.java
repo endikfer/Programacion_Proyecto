@@ -12,6 +12,7 @@ public class estilotabla extends DefaultTableCellRenderer {
 	        Component rendererComp = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 	        if (row == 0) {
 	            rendererComp.setFont(new Font("Serif", Font.BOLD, 30));
+	            
 	        }
 	        return rendererComp;
 	    }
