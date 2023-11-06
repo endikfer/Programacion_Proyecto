@@ -27,6 +27,8 @@ import javax.swing.table.DefaultTableModel;
 import Canciones.BD_Usuarios;
 import Canciones.Cancion;
 import Canciones.cancbd;
+import VentanasAdd.estilotabla;
+
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 
