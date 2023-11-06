@@ -403,9 +403,9 @@ public class Ventana_principal extends JFrame {
 		l_fondo = new JLabel("Modo oscuro");
 		l_bucle = new JLabel("Autoplay");
 		l_atajos = new JLabel("Atajos de teclado");
-		l_barra = new JLabel("Uso de la barra espaciadora para pausar y reanudar la cancion");
+		l_barra = new JLabel("Uso del enter para pausar y reanudar la cancion");
 		l_flecha = new JLabel("Uso de las flechas adelante/atras para retroceder/avanzar una cancion");
-		l_exp1 = new JLabel("Al clickar la barra espaciadora se activara la cancion si estaba parada, o al reves, si estaba activada se pausara.");
+		l_exp1 = new JLabel("Al clickar el enter se activara la cancion si estaba parada, o al reves, si estaba activada se pausara.");
 		l_exp2 = new JLabel("Al clickar la flecha de la izquierda volvera a repetirse la cancion anterior, y al clickar la de la derecha avanzara una cancion.");
 		l_exp3 = new JLabel("Activando esta funcion cuando la lista de canciones se termine volvera a empezar desde el inicio.");
 
@@ -499,34 +499,9 @@ public class Ventana_principal extends JFrame {
 				}
 			}
 		};
-		
-		KeyListener a = new KeyListener() {
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_SPACE && t_barra.isSelected()) {
-					System.out.println("a");
-				}
-				
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-		};
 
 		//Añadir los escuchadores de los botones
 		b_pausar_can.addActionListener(pausar_activar);
-		//b_pausar_can.addKeyListener(a);
 
 		//deslizador
 		duracion_can = new JSlider(0, 100, 0);
@@ -731,9 +706,9 @@ public class Ventana_principal extends JFrame {
 
 	private void ActivarBarraEspaciadora() {
 		if (t_barra.isSelected()) {
-			b_pausar_can.setEnabled(true);
-		} else {
-			b_pausar_can.setEnabled(false);
+			b_pausar_can.setMnemonic(KeyEvent.VK_ENTER);
+		}else {
+			b_pausar_can.setMnemonic(0);
 		}
 	}
 	
