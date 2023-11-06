@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -25,7 +24,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-
 import Canciones.BD_Usuarios;
 import Canciones.Cancion;
 import Canciones.cancbd;
@@ -171,10 +169,10 @@ public class Ventana_principal extends JFrame {
 		p_contra = new JPanel(new BorderLayout());
 
 		//paneles canciones
-		JPanel p_canciones;
-		JPanel centro_arriba = new JPanel();
-		JPanel boton_medio = new JPanel();
-		JPanel centro_canciones = new JPanel();
+		p_canciones =  new JPanel();
+		centro_arriba = new JPanel();
+		boton_medio = new JPanel();
+		centro_canciones = new JPanel();
 		@SuppressWarnings("unused")
 		JScrollPane centro_canciones_scroll = new JScrollPane(centro_canciones);
 		
@@ -616,6 +614,11 @@ public class Ventana_principal extends JFrame {
         	p_bucle.setBackground(Color.BLACK);
         	p_barra.setBackground(Color.BLACK);
         	p_flecha.setBackground(Color.BLACK);
+        	boton_medio.setBackground(Color.BLACK);
+        	centro_arriba.setBackground(Color.BLACK);
+        	centro_canciones.setBackground(Color.BLACK);
+        	centro_canciones.setBackground(Color.BLACK);
+        	p_cola.setBackground(Color.BLACK);
         	
         	
             foto_t_final.setForeground(Color.WHITE);
@@ -647,6 +650,10 @@ public class Ventana_principal extends JFrame {
         	p_bucle.setBackground(colorFondo);
         	p_barra.setBackground(colorFondo);
         	p_flecha.setBackground(colorFondo);
+        	boton_medio.setBackground(colorFondo);
+        	centro_arriba.setBackground(colorFondo);
+        	centro_canciones.setBackground(colorFondo);
+        	p_cola.setBackground(colorFondo);
             
             foto_t_final.setForeground(Color.BLACK);
             foto_t_duracion.setForeground(Color.BLACK);
