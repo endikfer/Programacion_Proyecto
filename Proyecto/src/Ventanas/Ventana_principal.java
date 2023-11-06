@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.BorderFactory;
@@ -43,72 +45,72 @@ public class Ventana_principal extends JFrame {
 	private int valorActual = 0;
 	private int incremento = 1;
 	private Timer timer; // Declarar el temporizador como variable de instancia
-	
-	
+
+
 	//componentes de la ventana
 	JPanel izquierda;
 	JPanel abajo;
 	JPanel abajo_arriba;
 	JPanel abajo_abajo;
-	
+
 	JPanel centro;
-	
+
 	JPanel p_perfil;
 	JPanel p_contra;
-	
+
 	JPanel p_canciones;
 	JPanel centro_arriba;
 	JPanel boton_medio;
 	JPanel centro_canciones;
-	
+
 	JPanel p_cola;
-	
+
 	JPanel p_ajustes;
 	JPanel p_fondo;
 	JPanel p_bucle;
 	JPanel p_barra;
 	JPanel p_flecha;
-	
+
 	JButton b_perfil;
 	JButton b_canciones;
 	JButton b_cola;
 	JButton b_ajustes;
-	
+
 	ImageIcon i_cancion;
 	ImageIcon i_ajuste;
 	ImageIcon i_perfil;
 	ImageIcon i_cola;
-	
+
 	JLabel l_perfil;
 	JLabel l_ajuste;
 	JLabel l_cancion;
 	JLabel l_cola;
-	
+
 	JLabel l_nombre;
 	JLabel l_correo;
 	JLabel l_nom_usu;
 	JLabel l_contra;
-	
+
 	JPasswordField p_contra_f;
-	
+
 	JRadioButton b_contra;
-	
+
 	JTextField t_nombre;
 	JTextField t_correo;
 	JTextField t_nom_usu;
 	JTextField t_contra;
-	
+
 	JTextField busqueda;
 
 	ImageIcon i_lupa;
-	
+
 	JButton b_cancion_nueva;
 	JButton lupa;
-	
+
 	DefaultTableModel modelo_tabla_canciones;
-	
+
 	JTable tabla_canciones;
-	
+
 	JLabel l_fondo;
 	JLabel l_bucle;
 	JLabel l_atajos;
@@ -117,7 +119,7 @@ public class Ventana_principal extends JFrame {
 	JLabel l_exp1;
 	JLabel l_exp2;
 	JLabel l_exp3;
-	
+
 	Font font;
 	Font font1;
 	Font font2;
@@ -126,23 +128,23 @@ public class Ventana_principal extends JFrame {
 	Font font5;
 	Font font6;
 	Font font7;
-	
+
 	JToggleButton t_bucle;
 	JToggleButton t_barra;
 	JToggleButton t_flecha;
-	
+
 	ImageIcon i_atrasar;
 	ImageIcon i_pausar;
 	ImageIcon i_adelantar;
 	ImageIcon i_play;
-	
+
 	JButton b_atras_can;
 	JButton b_pausar_can;
 	JButton b_adelantar_can;
-	
+
 	JSlider duracion_can;
 	JToggleButton t_fondo;
-    Color colorFondo;
+	Color colorFondo;
 	JLabel foto_t_final;
 	JLabel foto_t_duracion;
 	JLabel foto_can;
@@ -153,8 +155,8 @@ public class Ventana_principal extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setExtendedState(this.MAXIMIZED_BOTH); //ventana maximizada
 		setTitle("Ventana Principal");
-        setLocationRelativeTo(null);
-        colorFondo = this.getContentPane().getBackground();
+		setLocationRelativeTo(null);
+		colorFondo = this.getContentPane().getBackground();
 
 
 
@@ -182,7 +184,7 @@ public class Ventana_principal extends JFrame {
 		centro_canciones = new JPanel();
 		@SuppressWarnings("unused")
 		JScrollPane centro_canciones_scroll = new JScrollPane(centro_canciones);
-		
+
 		p_canciones = new JPanel(new BorderLayout());
 		centro_arriba = new JPanel();
 		boton_medio = new JPanel();
@@ -373,7 +375,7 @@ public class Ventana_principal extends JFrame {
 		modelo_tabla_canciones = new DefaultTableModel();
 		cargar_modelo_tabla_canciones(modelo_tabla_canciones);
 		JTable tabla_canciones= new JTable(modelo_tabla_canciones);
-		
+
 		//tamaños del JTable
 		tabla_canciones.getColumnModel().getColumn(0).setPreferredWidth(400);
 		tabla_canciones.getColumnModel().getColumn(1).setPreferredWidth(400);
@@ -382,18 +384,18 @@ public class Ventana_principal extends JFrame {
 		tabla_canciones.setRowMargin(10);
 		tabla_canciones.setRowHeight(40);
 		tabla_canciones.setRowHeight(0, 60);
-		
+
 		//componente para el estilo de la JTable
 		estilotabla estilo = new estilotabla();
-		
+
 		//Estilo del Jtable
 		tabla_canciones.setFont(new Font(tabla_canciones.getFont().getName(), tabla_canciones.getFont().getStyle(), 20));
 		tabla_canciones.setDefaultRenderer(Object.class, estilo);
-			
+
 		//No poder selecionar las columnas
 		tabla_canciones.setColumnSelectionAllowed(false);
 		tabla_canciones.setRowSelectionAllowed(true);
-		
+
 
 		//Ajustes
 		p_ajustes.setBorder(new EmptyBorder(0, 20, 20, 20));
@@ -419,7 +421,7 @@ public class Ventana_principal extends JFrame {
 
 		font3 = new Font("Arial", Font.PLAIN, 12);
 		l_exp3.setFont(font3);
-		
+
 		font4 = new Font("Arial", Font.PLAIN, 20);
 		l_fondo.setFont(font4);
 
@@ -446,7 +448,7 @@ public class Ventana_principal extends JFrame {
 				cambiarFondo();
 			}
 		};
-		
+
 		ActionListener activar_espacio = new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -497,9 +499,34 @@ public class Ventana_principal extends JFrame {
 				}
 			}
 		};
+		
+		KeyListener a = new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_SPACE && t_barra.isSelected()) {
+					System.out.println("a");
+				}
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		};
 
 		//Añadir los escuchadores de los botones
 		b_pausar_can.addActionListener(pausar_activar);
+		//b_pausar_can.addKeyListener(a);
 
 		//deslizador
 		duracion_can = new JSlider(0, 100, 0);
@@ -626,104 +653,106 @@ public class Ventana_principal extends JFrame {
 		}
 		return a;
 	}
-	
+
 	//metodo para cambiar el fondo de el programa a negro
 	private void cambiarFondo() {
-        if (t_fondo.isSelected()) {
-            p_perfil.setBackground(Color.BLACK);
-            izquierda.setBackground(Color.BLACK);
-            abajo.setBackground(Color.BLACK);
-            abajo_arriba.setBackground(Color.BLACK);
-            abajo_abajo.setBackground(Color.BLACK);
-            p_ajustes.setBackground(Color.BLACK);
-        	p_ajustes.setBackground(Color.BLACK);
-        	p_fondo.setBackground(Color.BLACK);
-        	p_bucle.setBackground(Color.BLACK);
-        	p_barra.setBackground(Color.BLACK);
-        	p_flecha.setBackground(Color.BLACK);
-        	boton_medio.setBackground(Color.BLACK);
-        	centro_arriba.setBackground(Color.BLACK);
-        	centro_canciones.setBackground(Color.BLACK);
-        	centro_canciones.setBackground(Color.BLACK);
-        	p_cola.setBackground(Color.BLACK);
-        	
-        	
-            foto_t_final.setForeground(Color.WHITE);
-            foto_t_duracion.setForeground(Color.WHITE);
-            foto_can.setForeground(Color.WHITE);
-            nom_can.setForeground(Color.WHITE);
-            l_fondo.setForeground(Color.WHITE);
-            l_bucle.setForeground(Color.WHITE);
-            l_atajos.setForeground(Color.WHITE);
-            l_barra.setForeground(Color.WHITE);
-            l_flecha.setForeground(Color.WHITE);
-            l_exp1.setForeground(Color.WHITE);
-            l_exp2.setForeground(Color.WHITE);
-            l_exp3.setForeground(Color.WHITE);
-            
-            l_nombre.setForeground(Color.WHITE);
-        	l_correo.setForeground(Color.WHITE);
-        	l_nom_usu.setForeground(Color.WHITE);
-        	l_contra.setForeground(Color.WHITE);
-        } else {
-            p_perfil.setBackground(colorFondo);
-            izquierda.setBackground(colorFondo);
-            abajo.setBackground(colorFondo);
-            abajo_arriba.setBackground(colorFondo);
-            abajo_abajo.setBackground(colorFondo);
-            p_ajustes.setBackground(colorFondo);
-        	p_ajustes.setBackground(colorFondo);
-        	p_fondo.setBackground(colorFondo);
-        	p_bucle.setBackground(colorFondo);
-        	p_barra.setBackground(colorFondo);
-        	p_flecha.setBackground(colorFondo);
-        	boton_medio.setBackground(colorFondo);
-        	centro_arriba.setBackground(colorFondo);
-        	centro_canciones.setBackground(colorFondo);
-        	p_cola.setBackground(colorFondo);
-            
-            foto_t_final.setForeground(Color.BLACK);
-            foto_t_duracion.setForeground(Color.BLACK);
-            foto_can.setForeground(Color.BLACK);
-            nom_can.setForeground(Color.BLACK);
-            l_fondo.setForeground(Color.BLACK);
-            l_bucle.setForeground(Color.BLACK);
-            l_atajos.setForeground(Color.BLACK);
-            l_barra.setForeground(Color.BLACK);
-            l_flecha.setForeground(Color.BLACK);
-            l_exp1.setForeground(Color.BLACK);
-            l_exp2.setForeground(Color.BLACK);
-            l_exp3.setForeground(Color.BLACK);
-            
-            l_nombre.setForeground(Color.BLACK);
-        	l_correo.setForeground(Color.BLACK);
-        	l_nom_usu.setForeground(Color.BLACK);
-        	l_contra.setForeground(Color.BLACK);
-        }
-    }
+		if (t_fondo.isSelected()) {
+			p_perfil.setBackground(Color.BLACK);
+			izquierda.setBackground(Color.BLACK);
+			abajo.setBackground(Color.BLACK);
+			abajo_arriba.setBackground(Color.BLACK);
+			abajo_abajo.setBackground(Color.BLACK);
+			p_ajustes.setBackground(Color.BLACK);
+			p_ajustes.setBackground(Color.BLACK);
+			p_fondo.setBackground(Color.BLACK);
+			p_bucle.setBackground(Color.BLACK);
+			p_barra.setBackground(Color.BLACK);
+			p_flecha.setBackground(Color.BLACK);
+			boton_medio.setBackground(Color.BLACK);
+			centro_arriba.setBackground(Color.BLACK);
+			centro_canciones.setBackground(Color.BLACK);
+			centro_canciones.setBackground(Color.BLACK);
+			p_cola.setBackground(Color.BLACK);
+
+
+			foto_t_final.setForeground(Color.WHITE);
+			foto_t_duracion.setForeground(Color.WHITE);
+			foto_can.setForeground(Color.WHITE);
+			nom_can.setForeground(Color.WHITE);
+			l_fondo.setForeground(Color.WHITE);
+			l_bucle.setForeground(Color.WHITE);
+			l_atajos.setForeground(Color.WHITE);
+			l_barra.setForeground(Color.WHITE);
+			l_flecha.setForeground(Color.WHITE);
+			l_exp1.setForeground(Color.WHITE);
+			l_exp2.setForeground(Color.WHITE);
+			l_exp3.setForeground(Color.WHITE);
+
+			l_nombre.setForeground(Color.WHITE);
+			l_correo.setForeground(Color.WHITE);
+			l_nom_usu.setForeground(Color.WHITE);
+			l_contra.setForeground(Color.WHITE);
+		} else {
+			p_perfil.setBackground(colorFondo);
+			izquierda.setBackground(colorFondo);
+			abajo.setBackground(colorFondo);
+			abajo_arriba.setBackground(colorFondo);
+			abajo_abajo.setBackground(colorFondo);
+			p_ajustes.setBackground(colorFondo);
+			p_ajustes.setBackground(colorFondo);
+			p_fondo.setBackground(colorFondo);
+			p_bucle.setBackground(colorFondo);
+			p_barra.setBackground(colorFondo);
+			p_flecha.setBackground(colorFondo);
+			boton_medio.setBackground(colorFondo);
+			centro_arriba.setBackground(colorFondo);
+			centro_canciones.setBackground(colorFondo);
+			p_cola.setBackground(colorFondo);
+
+			foto_t_final.setForeground(Color.BLACK);
+			foto_t_duracion.setForeground(Color.BLACK);
+			foto_can.setForeground(Color.BLACK);
+			nom_can.setForeground(Color.BLACK);
+			l_fondo.setForeground(Color.BLACK);
+			l_bucle.setForeground(Color.BLACK);
+			l_atajos.setForeground(Color.BLACK);
+			l_barra.setForeground(Color.BLACK);
+			l_flecha.setForeground(Color.BLACK);
+			l_exp1.setForeground(Color.BLACK);
+			l_exp2.setForeground(Color.BLACK);
+			l_exp3.setForeground(Color.BLACK);
+
+			l_nombre.setForeground(Color.BLACK);
+			l_correo.setForeground(Color.BLACK);
+			l_nom_usu.setForeground(Color.BLACK);
+			l_contra.setForeground(Color.BLACK);
+		}
+	}
 
 	private void ActivarBarraEspaciadora() {
-        if (t_barra.isSelected()) {
-        	
-        }
+		if (t_barra.isSelected()) {
+			b_pausar_can.setEnabled(true);
+		} else {
+			b_pausar_can.setEnabled(false);
+		}
 	}
-
-	public static void main(String[] args) {
-		File fichero = new File("BD_Usuarios");
-		File fichero2 = new File("BD_Canc");
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					BD_Usuarios.cargarUsuarios(fichero);
-					cancbd.cargarCanciones(fichero2);
-				} catch (IOException e) {
-					JOptionPane.showMessageDialog(null, "Error al cargar los usuarios", "Usuarios Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
+	
+		public static void main(String[] args) {
+			File fichero = new File("BD_Usuarios");
+			File fichero2 = new File("BD_Canc");
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						BD_Usuarios.cargarUsuarios(fichero);
+						cancbd.cargarCanciones(fichero2);
+					} catch (IOException e) {
+						JOptionPane.showMessageDialog(null, "Error al cargar los usuarios", "Usuarios Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
+					}
+					new Ventana_principal();
+					BD_Usuarios.guardarUsuarios(fichero);
+					cancbd.guardarCanciones(fichero2);
 				}
-				new Ventana_principal();
-				BD_Usuarios.guardarUsuarios(fichero);
-				cancbd.guardarCanciones(fichero2);
-			}
-		});
+			});
+		}
 	}
-}
