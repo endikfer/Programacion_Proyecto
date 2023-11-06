@@ -363,16 +363,16 @@ public class Ventana_principal extends JFrame {
 
 
 		//JTable
+		DefaultTableModel modelo_tabla_canciones = new DefaultTableModel();
+		modelo_tabla_canciones = new DefaultTableModel();
+		cargar_modelo_tabla_canciones(modelo_tabla_canciones);
 		@SuppressWarnings("serial")
-		DefaultTableModel modelo_tabla_canciones = new DefaultTableModel() {
+		JTable tabla_canciones= new JTable(modelo_tabla_canciones){
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
 		};
-		modelo_tabla_canciones = new DefaultTableModel();
-		cargar_modelo_tabla_canciones(modelo_tabla_canciones);
-		JTable tabla_canciones= new JTable(modelo_tabla_canciones);
 		
 		//tamaños del JTable
 		tabla_canciones.getColumnModel().getColumn(0).setPreferredWidth(400);
@@ -392,7 +392,7 @@ public class Ventana_principal extends JFrame {
 			
 		//No poder selecionar las columnas
 		tabla_canciones.setColumnSelectionAllowed(false);
-		tabla_canciones.setRowSelectionAllowed(true);
+		tabla_canciones.setRowSelectionAllowed(false);
 		
 
 		//Ajustes
