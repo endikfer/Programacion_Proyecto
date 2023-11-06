@@ -119,6 +119,13 @@ public class Ventana_principal extends JFrame {
 	JLabel l_exp3;
 	
 	Font font;
+	Font font1;
+	Font font2;
+	Font font3;
+	Font font4;
+	Font font5;
+	Font font6;
+	Font font7;
 	
 	JToggleButton t_bucle;
 	JToggleButton t_barra;
@@ -401,17 +408,29 @@ public class Ventana_principal extends JFrame {
 		l_exp3 = new JLabel("Activando esta funcion cuando la lista de canciones se termine volvera a empezar desde el inicio.");
 
 		//aumento de tamaño y negrita del label de atajo de teclado
-		font = new Font("Arial", Font.BOLD, 20);
+		font = new Font("Arial", Font.BOLD, 25);
 		l_atajos.setFont(font);
 
-		Font font1 = new Font("Arial", Font.PLAIN, 9);
+		font1 = new Font("Arial", Font.PLAIN, 12);
 		l_exp1.setFont(font1);
 
-		Font font2 = new Font("Arial", Font.PLAIN, 9);
+		font2 = new Font("Arial", Font.PLAIN, 12);
 		l_exp2.setFont(font2);
 
-		Font font3 = new Font("Arial", Font.PLAIN, 9);
+		font3 = new Font("Arial", Font.PLAIN, 12);
 		l_exp3.setFont(font3);
+		
+		font4 = new Font("Arial", Font.PLAIN, 20);
+		l_fondo.setFont(font4);
+
+		font5 = new Font("Arial", Font.PLAIN, 20);
+		l_bucle.setFont(font5);
+
+		font6 = new Font("Arial", Font.PLAIN, 20);
+		l_barra.setFont(font6);
+
+		font7 = new Font("Arial", Font.PLAIN, 20);
+		l_flecha.setFont(font7);
 
 		//ToggleButton
 		t_fondo = new JToggleButton();
@@ -427,9 +446,17 @@ public class Ventana_principal extends JFrame {
 				cambiarFondo();
 			}
 		};
+		
+		ActionListener activar_espacio = new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				ActivarBarraEspaciadora();
+			}
+		};
 
 		//Añadir el escuchador a los togle butons
 		t_fondo.addActionListener(fondo_oscuro);
+		t_barra.addActionListener(activar_espacio);
 
 
 
@@ -675,6 +702,11 @@ public class Ventana_principal extends JFrame {
         }
     }
 
+	private void ActivarBarraEspaciadora() {
+        if (t_barra.isSelected()) {
+        	
+        }
+	}
 
 	public static void main(String[] args) {
 		File fichero = new File("BD_Usuarios");
