@@ -369,16 +369,18 @@ public class Ventana_principal extends JFrame {
 		DefaultTableModel modelo_tabla_canciones = new DefaultTableModel();
 		modelo_tabla_canciones = new DefaultTableModel();
 		cargar_modelo_tabla_canciones(modelo_tabla_canciones);
-		@SuppressWarnings("serial")
-		JTable tabla_canciones= new JTable(modelo_tabla_canciones){
+		JTable tabla_canciones= new JTable(modelo_tabla_canciones) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public boolean isCellEditable(int row, int column) {
+				// TODO Auto-generated method stub
 				return false;
 			}
 		};
-		modelo_tabla_canciones = new DefaultTableModel();
-		cargar_modelo_tabla_canciones(modelo_tabla_canciones);
-		tabla_canciones= new JTable(modelo_tabla_canciones);
 
 		
 		
@@ -728,9 +730,13 @@ public class Ventana_principal extends JFrame {
 				public void run() {
 					try {
 						BD_Usuarios.cargarUsuarios(fichero);
-						cancbd.cargarCanciones(fichero2);
 					} catch (IOException e) {
 						JOptionPane.showMessageDialog(null, "Error al cargar los usuarios", "Usuarios Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
+					}
+					try {
+						cancbd.cargarCanciones(fichero2);
+					} catch (IOException e) {
+						JOptionPane.showMessageDialog(null, "Error al cargar las canciones", "Canciones Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
 					}
 					new Ventana_principal();
 					BD_Usuarios.guardarUsuarios(fichero);
