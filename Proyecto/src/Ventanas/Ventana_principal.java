@@ -402,8 +402,6 @@ public class Ventana_principal extends JFrame {
 
 		//No poder selecionar las columnas
 		tabla_canciones.setColumnSelectionAllowed(false);
-		tabla_canciones.setRowSelectionAllowed(true);
-
 		tabla_canciones.setRowSelectionAllowed(false);
 		
 
