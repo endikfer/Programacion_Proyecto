@@ -8,6 +8,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -486,6 +490,7 @@ public class Ventana_principal extends JFrame {
 
 		//listeners de los botones
 		ActionListener pausar_activar = new ActionListener() {
+			File a = new File("src/Musica/duki.wav");
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -494,6 +499,7 @@ public class Ventana_principal extends JFrame {
 					//cambio de la imagen del boton
 					b_pausar_can.setIcon(i_pausar);
 					deslizador(activador);
+					Reproductor.reproducir(activador, a);
 				}else {
 					activador = false;
 					//cambio de la imagen del boton
@@ -714,6 +720,7 @@ public class Ventana_principal extends JFrame {
 			b_pausar_can.setMnemonic(0);
 		}
 	}
+	
 	
 		public static void main(String[] args) {
 			File fichero = new File("BD_Usuarios");
