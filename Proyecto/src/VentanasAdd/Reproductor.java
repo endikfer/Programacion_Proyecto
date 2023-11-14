@@ -16,13 +16,8 @@ public class Reproductor {
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();
-            while (!pararcancion) {
-                if (System.in.available() > 0) {
-                    char input = (char) System.in.read();
-                    if (input == 'P' || input == 'p') {
-                    	pararcancion = true;
-                    }
-                }
+            while (pararcancion == true) {
+                clip.stop();
             }
 
             clip.stop();
