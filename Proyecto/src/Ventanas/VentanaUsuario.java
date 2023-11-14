@@ -56,8 +56,8 @@ public class VentanaUsuario extends JFrame{
 		btnIs = new JButton("INICIAR SESIÓN");
 		btnR = new JButton("REGISTRARSE");
 		
-		txtNomIs = new JTextField(20);
-		txtNomR = new JTextField(20);
+		txtNomIs = new JTextField(15);
+		txtNomR = new JTextField(15);
 		txtNomRealR = new JTextField(20);
 		txtMailR = new JTextField(20);
 		
