@@ -10,21 +10,23 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Reproductor {
+	public static Clip clip;
 	public static void reproducir(Boolean pararcancion,File archivo) {
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(archivo);
-            Clip clip = AudioSystem.getClip();
+            clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();
-            while (pararcancion == true) {
-                clip.stop();
-            }
-
-            clip.stop();
-            clip.close();
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
             e.printStackTrace();
         }
     }
+	public static void pararcancion(Boolean pararcancion) {
+		if(clip != null && clip.isRunning()) {
+			clip.stop();
+			clip.close();
+		}
+		
+	}
 		
 }
