@@ -4,6 +4,12 @@ import java.awt.Image;
 
 public class Cancion extends Artista{
 	
+	@Override
+	public String toString() {
+		return name_can +", duracion: " + duration + ", album: " + album;
+	}
+
+
 	protected int duration;
 	protected String name_can;
 	protected Image foto;

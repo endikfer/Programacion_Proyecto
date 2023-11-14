@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -17,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -157,6 +159,9 @@ public class Ventana_principal extends JFrame {
 	public JLabel foto_t_duracion;
 	public JLabel foto_can;
 	public JLabel nom_can;
+	
+	public JList<Cancion> listaCancionesCola;
+	public ArrayList<Cancion> canciones;
 
 	@SuppressWarnings("static-access")
 	public Ventana_principal(){
@@ -630,6 +635,13 @@ public class Ventana_principal extends JFrame {
 			p_ajustes.add(l_atajos);
 			p_ajustes.add(p_barra);
 			p_ajustes.add(p_flecha);
+			
+			//Cola
+			//TODO
+			canciones = new ArrayList<Cancion>();
+			canciones.add(new Cancion("Duki","Goteo" ,3 , "Todo"));
+			listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
+			p_cola.add(listaCancionesCola);
 
 
 
@@ -729,4 +741,5 @@ public class Ventana_principal extends JFrame {
 					}
 				});
 			}
+			
 		}
