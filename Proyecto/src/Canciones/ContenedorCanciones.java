@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-public class cancbd {
+public class ContenedorCanciones {
 	public static ArrayList<Cancion> canciones = new ArrayList<>();
 	
 	@SuppressWarnings("static-access")

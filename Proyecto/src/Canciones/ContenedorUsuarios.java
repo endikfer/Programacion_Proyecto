@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 
 
-public class BD_Usuarios {
+public class ContenedorUsuarios {
 	
 	public static HashMap<Usuario, ArrayList<Cancion>> Usuarios = new HashMap<>();
 	

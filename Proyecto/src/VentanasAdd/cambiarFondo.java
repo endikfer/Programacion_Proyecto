@@ -2,12 +2,12 @@ package VentanasAdd;
 
 import java.awt.Color;
 
-import Ventanas.Ventana_principal;
+import Ventanas.VentanaPrincipal;
 
 public class cambiarFondo {
 	@SuppressWarnings("unused")
-	private Ventana_principal ventana;
-	public void cambiarFondo(Ventana_principal ventana) {
+	private VentanaPrincipal ventana;
+	public void cambiarFondo(VentanaPrincipal ventana) {
 		this.ventana = ventana;
 		if (ventana.t_fondo.isSelected()) {
 			ventana.p_perfil.setBackground(Color.BLACK);

@@ -31,9 +31,9 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import Canciones.BD_Usuarios;
+import Canciones.ContenedorUsuarios;
 import Canciones.Cancion;
-import Canciones.cancbd;
+import Canciones.ContenedorCanciones;
 import VentanasAdd.cambiarFondo;
 import VentanasAdd.Reproductor;
 import VentanasAdd.estilotabla;
@@ -42,7 +42,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 
 
-public class Ventana_principal extends JFrame {
+public class VentanaPrincipal extends JFrame {
 	/**
 	 * 
 	 */
@@ -164,7 +164,7 @@ public class Ventana_principal extends JFrame {
 	public ArrayList<Cancion> canciones;
 
 	@SuppressWarnings("static-access")
-	public Ventana_principal(){
+	public VentanaPrincipal(){
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setExtendedState(this.MAXIMIZED_BOTH); //ventana maximizada
 		setTitle("Ventana Principal");
@@ -460,7 +460,7 @@ public class Ventana_principal extends JFrame {
 		ActionListener fondo_oscuro = new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				cambiarfondo.cambiarFondo(Ventana_principal.this);
+				cambiarfondo.cambiarFondo(VentanaPrincipal.this);
 			}
 		};
 
@@ -684,7 +684,7 @@ public class Ventana_principal extends JFrame {
 			a.addColumn("Autor");
 			a.addColumn("Álbum");
 			a.addRow(new Object[] {"Nombre", "Autor", "Album"});
-			for(Cancion c : cancbd.canciones) {
+			for(Cancion c : ContenedorCanciones.canciones) {
 				a.addRow(new Object[] {c.getName_can(), c.getNombre_Ar(), c.getAlbum()});
 			}
 			return a;
@@ -726,18 +726,18 @@ public class Ventana_principal extends JFrame {
 					@Override
 					public void run() {
 						try {
-							BD_Usuarios.cargarUsuarios(fichero);
+							ContenedorUsuarios.cargarUsuarios(fichero);
 						} catch (IOException e) {
 							JOptionPane.showMessageDialog(null, "Error al cargar los usuarios", "Usuarios Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
 						}
 						try {
-							cancbd.cargarCanciones(fichero2);
+							ContenedorCanciones.cargarCanciones(fichero2);
 						} catch (IOException e) {
 							JOptionPane.showMessageDialog(null, "Error al cargar las canciones", "Canciones Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
 						}
-						new Ventana_principal();
-						BD_Usuarios.guardarUsuarios(fichero);
-						cancbd.guardarCanciones(fichero2);
+						new VentanaPrincipal();
+						ContenedorUsuarios.guardarUsuarios(fichero);
+						ContenedorCanciones.guardarCanciones(fichero2);
 					}
 				});
 			}
