@@ -426,14 +426,14 @@ public class VentanaPrincipal extends JFrame {
 					//cambio de la imagen del boton
 					b_pausar_can.setIcon(i_pausar);
 					deslizador(activador);
-					//						Reproductor.reproducir(a);
+					//Reproductor.reproducir(a);
 					Reproductor.reproducir(activador, a);
 				}else {
 					activador = false;
 					//cambio de la imagen del boton
 					b_pausar_can.setIcon(i_play);
 					deslizador(activador);
-					//						Reproductor.pararcancion(activador);
+					//Reproductor.pararcancion(activador);
 				}
 			}
 		};
