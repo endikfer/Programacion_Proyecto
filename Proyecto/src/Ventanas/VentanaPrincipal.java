@@ -637,7 +637,7 @@ public class VentanaPrincipal extends JFrame {
 			p_ajustes.add(p_flecha);
 			
 			//Cola
-			//TODO
+			//TODO  
 			canciones = new ArrayList<Cancion>();
 			canciones.add(new Cancion("Duki","Goteo" ,3 , "Todo"));
 			//listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
