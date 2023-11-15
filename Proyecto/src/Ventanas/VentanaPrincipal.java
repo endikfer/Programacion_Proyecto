@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,6 +32,7 @@ import Canciones.ContenedorUsuarios;
 import Canciones.Cancion;
 import Canciones.ContenedorCanciones;
 import VentanasAdd.cambiarFondo;
+import VentanasAdd.Listeners;
 import VentanasAdd.Reproductor;
 import VentanasAdd.estilotabla;
 
@@ -157,7 +157,7 @@ public class VentanaPrincipal extends JFrame {
 	public JLabel foto_t_duracion;
 	public JLabel foto_can;
 	public JLabel nom_can;
-	
+
 	public JList<Cancion> listaCancionesCola;
 	public ArrayList<Cancion> canciones;
 
@@ -170,6 +170,7 @@ public class VentanaPrincipal extends JFrame {
 		colorFondo = this.getContentPane().getBackground();
 		cambiarfondo = new cambiarFondo();
 
+		Listeners listener = new Listeners(this);
 
 
 		//Elementos creados
@@ -260,57 +261,11 @@ public class VentanaPrincipal extends JFrame {
 		b_cola.add(l_cola, BorderLayout.SOUTH);
 		b_ajustes.add(l_ajuste, BorderLayout.SOUTH);
 
-
-		//listeners de los botones
-		//para el boton perfil
-		ActionListener cambiar_perfil = new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				centro.removeAll();
-				centro.add(p_perfil);
-				centro.revalidate();
-				centro.repaint();
-			}
-		};
-
-		//para el boton canciones
-		ActionListener cambiar_canciones = new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				centro.removeAll();
-				centro.add(p_canciones);
-				centro.revalidate();
-				centro.repaint();
-			}
-		};
-
-		//para el boton cola
-		ActionListener cambiar_cola = new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				centro.removeAll();
-				centro.add(p_cola);
-				centro.revalidate();
-				centro.repaint();
-			}
-		};
-
-		//para el boton cola
-		ActionListener cambiar_ajustes = new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				centro.removeAll();
-				centro.add(p_ajustes);
-				centro.revalidate();
-				centro.repaint();
-			}
-		};
-
 		//Añadir los escuchadores de los botones
-		b_perfil.addActionListener(cambiar_perfil);
-		b_canciones.addActionListener(cambiar_canciones);
-		b_cola.addActionListener(cambiar_cola);
-		b_ajustes.addActionListener(cambiar_ajustes);
+		b_perfil.addActionListener(listener.BotonPerfilListener());
+		b_canciones.addActionListener(listener.BotonCancionListener());
+		b_cola.addActionListener(listener.BotonColaListener());
+		b_ajustes.addActionListener(listener.BotonAjustesListener());
 
 
 
@@ -337,29 +292,8 @@ public class VentanaPrincipal extends JFrame {
 		t_nom_usu = new JTextField();
 		t_contra = new JTextField();
 
-		//Listener del radiobutton
-		ActionListener visu_contra = new ActionListener() {
-
-			@SuppressWarnings("deprecation")
-			public void actionPerformed(ActionEvent e) {
-				if(b_contra.isSelected()) {
-					p_contra.remove(p_contra_f);
-					Font font = p_contra_f.getFont();
-					t_contra.setFont(font.deriveFont(font.getSize() + 10f));
-					t_contra.setText(p_contra_f.getText());
-					p_contra.add(t_contra, BorderLayout.CENTER);
-				}else {
-					p_contra.remove(t_contra);
-					p_contra.add(p_contra_f, BorderLayout.CENTER);
-				}
-
-				p_contra.revalidate();
-				p_contra.repaint();
-			}
-		};
-
-		//Añadir el escuchador al radio buton
-		b_contra.addActionListener(visu_contra);
+		//Añadir el escuchador al radio buton		
+		b_contra.addActionListener(listener.BotonVisuContraListener());
 
 
 
@@ -453,42 +387,11 @@ public class VentanaPrincipal extends JFrame {
 		t_barra = new JToggleButton();
 		t_flecha = new JToggleButton();
 
-
-
-		ActionListener fondo_oscuro = new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				cambiarfondo.cambiarFondo(VentanaPrincipal.this);
-			}
-		};
-
-		ActionListener activar_espacio = new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				ActivarBarraEspaciadora();
-			}
-		};
-
-
-		ActionListener activar_flecha_izq = new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				ActivarFlechaIzquierda();;
-			}
-		};
-
-		ActionListener activar_flecha_dere = new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				ActivarFlechaDerecha();;
-			}
-		};
-
 		//Añadir el escuchador a los togle butons
-		t_fondo.addActionListener(fondo_oscuro);
-		t_barra.addActionListener(activar_espacio);
-		t_flecha.addActionListener(activar_flecha_izq);
-		t_flecha.addActionListener(activar_flecha_dere);
+		t_fondo.addActionListener(listener.ToggleFondoOscuroListener());
+		t_barra.addActionListener(listener.ToggleBarraEspaciadoraListener());
+		t_flecha.addActionListener(listener.ToggleFlechaIzqListener());
+		t_flecha.addActionListener(listener.ToggleFlechaDereListener());
 
 
 
@@ -514,239 +417,209 @@ public class VentanaPrincipal extends JFrame {
 		//listeners de los botones
 		ActionListener pausar_activar_barra = new ActionListener() {
 			File a = new File("src/Musica/duki.wav");
-			
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					if (activador==false) {
-						activador = true;
-						//cambio de la imagen del boton
-						b_pausar_can.setIcon(i_pausar);
-						deslizador(activador);
-//						Reproductor.reproducir(a);
-						Reproductor.reproducir(activador, a);
-					}else {
-						activador = false;
-						//cambio de la imagen del boton
-						b_pausar_can.setIcon(i_play);
-						deslizador(activador);
-//						Reproductor.pararcancion(activador);
-					}
-				}
-			};
-
-			ActionListener pausar_activar_flecha_izq = new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-
-				}
-			};
-
-			ActionListener pausar_activar_flecha_dere = new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-
-				}
-			};
-			
-
-			//Añadir los escuchadores de los botones
-			b_pausar_can.addActionListener(pausar_activar_barra);
-			b_atras_can.addActionListener(pausar_activar_flecha_izq);
-			b_adelantar_can.addActionListener(pausar_activar_flecha_dere);
-
-			//deslizador
-			duracion_can = new JSlider(0, 100, 0);
 
 
-
-
-			//Anaydir elementos a los paneles
-			//Anaydir elementos al panel de la izquierda
-			izquierda.add(b_perfil);
-			izquierda.add(b_canciones);
-			izquierda.add(b_cola);
-			izquierda.add(b_ajustes);
-
-			//Anaydir elementos al panel de abajo
-			abajo_arriba.add(nom_can);
-			abajo_abajo.add(foto_can);
-			abajo_abajo.add(foto_t_duracion);
-			abajo_abajo.add(duracion_can);
-			abajo_abajo.add(foto_t_final);
-			abajo_abajo.add(b_atras_can);
-			abajo_abajo.add(b_pausar_can);
-			abajo_abajo.add(b_adelantar_can);
-
-
-			abajo.add(abajo_arriba);
-			abajo.add(abajo_abajo);
-
-			//panel central
-			//Añadir elementos al panel de contra
-			p_contra.add(p_contra_f, BorderLayout.CENTER);
-			p_contra.add(b_contra, BorderLayout.EAST);
-
-
-			//Añadir elementos al panel de perfil
-			p_perfil.add(l_nombre);
-			p_perfil.add(t_nombre);
-			p_perfil.add(l_correo);
-			p_perfil.add(t_correo);
-			p_perfil.add(l_nom_usu);
-			p_perfil.add(t_nom_usu);
-			p_perfil.add(l_contra);
-			p_perfil.add(p_contra);
-
-
-			//Anaydir elementos al panel de canciones
-			boton_medio.add(b_cancion_nueva);
-			centro_arriba.add(busqueda);
-			centro_arriba.add(lupa);
-			centro_canciones.add(tabla_canciones);
-			p_canciones.add(boton_medio, BorderLayout.SOUTH);
-			p_canciones.add(centro_arriba, BorderLayout.NORTH);
-			p_canciones.add(centro_canciones, BorderLayout.CENTER);
-
-			//Anaydir elementos al panel de ajustes
-			p_fondo.add(l_fondo, BorderLayout.CENTER);
-			p_bucle.add(l_bucle, BorderLayout.CENTER);
-			p_barra.add(l_barra, BorderLayout.CENTER);
-			p_flecha.add(l_flecha, BorderLayout.CENTER);
-
-			p_fondo.add(t_fondo, BorderLayout.EAST);
-			p_bucle.add(t_bucle, BorderLayout.EAST);
-			p_barra.add(t_barra, BorderLayout.EAST);
-			p_flecha.add(t_flecha, BorderLayout.EAST);
-
-			p_barra.add(l_exp1, BorderLayout.SOUTH);
-			p_flecha.add(l_exp2, BorderLayout.SOUTH);
-			p_bucle.add(l_exp3, BorderLayout.SOUTH);
-
-			p_fondo.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
-			p_bucle.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
-			p_barra.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
-			p_flecha.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
-
-			p_ajustes.add(p_fondo);
-			p_ajustes.add(p_bucle);
-			p_ajustes.add(l_atajos);
-			p_ajustes.add(p_barra);
-			p_ajustes.add(p_flecha);
-			
-			//Cola
-			//TODO  
-			canciones = new ArrayList<Cancion>();
-			canciones.add(new Cancion("Duki","Goteo" ,3 , "Todo"));
-			//listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
-			//p_cola.add(listaCancionesCola);
-
-
-
-			//añadir el panel a centro
-			centro.add(p_canciones);
-
-
-			//Anaydir elementos al panel principal
-			getContentPane().add(izquierda, BorderLayout.WEST);
-			getContentPane().add(centro, BorderLayout.CENTER);
-			getContentPane().add(abajo, BorderLayout.SOUTH);
-			
-			
-
-
-			setVisible(true);
-		}
-
-
-		//metodo para que el deslizador incremenete o se pare dependiendo de como este el boton
-		public void deslizador(boolean activador) {
-			// Si el temporizador no se ha creado previamente, crearlo
-			if (timer == null) {
-				timer = new Timer(1000, new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						valorActual += incremento;
-						duracion_can.setValue(valorActual);
-					}
-				});
-			}
-			if (activador) {
-				timer.start();
-			} else {
-				timer.stop();
-			}
-		}
-
-		//metodo para lo por defecto de la tabla de cancioens
-		@SuppressWarnings("static-access")
-		public DefaultTableModel cargar_modelo_tabla_canciones(DefaultTableModel a){
-			a.addColumn("Nomber");
-			a.addColumn("Autor");
-			a.addColumn("Álbum");
-			a.addRow(new Object[] {"Nombre", "Autor", "Album"});
-			for(Cancion c : ContenedorCanciones.canciones) {
-				a.addRow(new Object[] {c.getName_can(), c.getNombre_Ar(), c.getAlbum()});
-			}
-			return a;
-		}
-
-		//metodo para cambiar el fondo de el programa a negro
-
-
-		private void ActivarBarraEspaciadora() {
-			if (t_barra.isSelected()) {
-				b_pausar_can.setMnemonic(KeyEvent.VK_ENTER);
-			}else {
-				b_pausar_can.setMnemonic(0);
-			}
-		}
-
-
-		private void ActivarFlechaDerecha() {
-			if (t_flecha.isSelected()) {
-				b_pausar_can.setMnemonic(KeyEvent.VK_RIGHT);
-			}else {
-				b_pausar_can.setMnemonic(0);
-			}
-		}
-			
-
-			private void ActivarFlechaIzquierda() {
-				if (t_flecha.isSelected()) {
-					b_pausar_can.setMnemonic(KeyEvent.VK_LEFT);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (activador==false) {
+					activador = true;
+					//cambio de la imagen del boton
+					b_pausar_can.setIcon(i_pausar);
+					deslizador(activador);
+					//						Reproductor.reproducir(a);
+					Reproductor.reproducir(activador, a);
 				}else {
-					b_pausar_can.setMnemonic(0);
+					activador = false;
+					//cambio de la imagen del boton
+					b_pausar_can.setIcon(i_play);
+					deslizador(activador);
+					//						Reproductor.pararcancion(activador);
 				}
 			}
+		};
 
-			public static void main(String[] args) {
-				File fichero = new File("Usuarios");
-				File fichero2 = new File("Canc");
-				SwingUtilities.invokeLater(new Runnable() {
-					@Override
-					public void run() {
-						try {
-							ContenedorUsuarios.cargarUsuarios(fichero);
-						} catch (IOException e) {
-							JOptionPane.showMessageDialog(null, "Error al cargar los usuarios", "Usuarios Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
-						}
-						try {
-							ContenedorCanciones.cargarCanciones(fichero2);
-						} catch (IOException e) {
-							JOptionPane.showMessageDialog(null, "Error al cargar las canciones", "Canciones Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
-						}
-						new VentanaPrincipal();
-						ContenedorUsuarios.guardarUsuarios(fichero);
-						ContenedorCanciones.guardarCanciones(fichero2);
-					}
-				});
+		ActionListener pausar_activar_flecha_izq = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
 			}
-			
+		};
 
-			
-			
-			
+		ActionListener pausar_activar_flecha_dere = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		};
+
+
+		//Añadir los escuchadores de los botones
+		b_pausar_can.addActionListener(pausar_activar_barra);
+		b_atras_can.addActionListener(pausar_activar_flecha_izq);
+		b_adelantar_can.addActionListener(pausar_activar_flecha_dere);
+
+		//deslizador
+		duracion_can = new JSlider(0, 100, 0);
+
+
+
+
+		//Anaydir elementos a los paneles
+		//Anaydir elementos al panel de la izquierda
+		izquierda.add(b_perfil);
+		izquierda.add(b_canciones);
+		izquierda.add(b_cola);
+		izquierda.add(b_ajustes);
+
+		//Anaydir elementos al panel de abajo
+		abajo_arriba.add(nom_can);
+		abajo_abajo.add(foto_can);
+		abajo_abajo.add(foto_t_duracion);
+		abajo_abajo.add(duracion_can);
+		abajo_abajo.add(foto_t_final);
+		abajo_abajo.add(b_atras_can);
+		abajo_abajo.add(b_pausar_can);
+		abajo_abajo.add(b_adelantar_can);
+
+
+		abajo.add(abajo_arriba);
+		abajo.add(abajo_abajo);
+
+		//panel central
+		//Añadir elementos al panel de contra
+		p_contra.add(p_contra_f, BorderLayout.CENTER);
+		p_contra.add(b_contra, BorderLayout.EAST);
+
+
+		//Añadir elementos al panel de perfil
+		p_perfil.add(l_nombre);
+		p_perfil.add(t_nombre);
+		p_perfil.add(l_correo);
+		p_perfil.add(t_correo);
+		p_perfil.add(l_nom_usu);
+		p_perfil.add(t_nom_usu);
+		p_perfil.add(l_contra);
+		p_perfil.add(p_contra);
+
+
+		//Anaydir elementos al panel de canciones
+		boton_medio.add(b_cancion_nueva);
+		centro_arriba.add(busqueda);
+		centro_arriba.add(lupa);
+		centro_canciones.add(tabla_canciones);
+		p_canciones.add(boton_medio, BorderLayout.SOUTH);
+		p_canciones.add(centro_arriba, BorderLayout.NORTH);
+		p_canciones.add(centro_canciones, BorderLayout.CENTER);
+
+		//Anaydir elementos al panel de ajustes
+		p_fondo.add(l_fondo, BorderLayout.CENTER);
+		p_bucle.add(l_bucle, BorderLayout.CENTER);
+		p_barra.add(l_barra, BorderLayout.CENTER);
+		p_flecha.add(l_flecha, BorderLayout.CENTER);
+
+		p_fondo.add(t_fondo, BorderLayout.EAST);
+		p_bucle.add(t_bucle, BorderLayout.EAST);
+		p_barra.add(t_barra, BorderLayout.EAST);
+		p_flecha.add(t_flecha, BorderLayout.EAST);
+
+		p_barra.add(l_exp1, BorderLayout.SOUTH);
+		p_flecha.add(l_exp2, BorderLayout.SOUTH);
+		p_bucle.add(l_exp3, BorderLayout.SOUTH);
+
+		p_fondo.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
+		p_bucle.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
+		p_barra.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
+		p_flecha.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
+
+		p_ajustes.add(p_fondo);
+		p_ajustes.add(p_bucle);
+		p_ajustes.add(l_atajos);
+		p_ajustes.add(p_barra);
+		p_ajustes.add(p_flecha);
+
+		//Cola
+		canciones = new ArrayList<Cancion>();
+		canciones.add(new Cancion("Duki","Goteo" ,3 , "Todo"));
+		//listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
+		//p_cola.add(listaCancionesCola);
+
+
+
+		//añadir el panel a centro
+		centro.add(p_canciones);
+
+
+		//Anaydir elementos al panel principal
+		getContentPane().add(izquierda, BorderLayout.WEST);
+		getContentPane().add(centro, BorderLayout.CENTER);
+		getContentPane().add(abajo, BorderLayout.SOUTH);
+
+
+
+
+		setVisible(true);
+	}
+
+
+	//metodo para que el deslizador incremenete o se pare dependiendo de como este el boton
+	public void deslizador(boolean activador) {
+		// Si el temporizador no se ha creado previamente, crearlo
+		if (timer == null) {
+			timer = new Timer(1000, new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					valorActual += incremento;
+					duracion_can.setValue(valorActual);
+				}
+			});
 		}
+		if (activador) {
+			timer.start();
+		} else {
+			timer.stop();
+		}
+	}
+
+	//metodo para lo por defecto de la tabla de cancioens
+	@SuppressWarnings("static-access")
+	public DefaultTableModel cargar_modelo_tabla_canciones(DefaultTableModel a){
+		a.addColumn("Nomber");
+		a.addColumn("Autor");
+		a.addColumn("Álbum");
+		a.addRow(new Object[] {"Nombre", "Autor", "Album"});
+		for(Cancion c : ContenedorCanciones.canciones) {
+			a.addRow(new Object[] {c.getName_can(), c.getNombre_Ar(), c.getAlbum()});
+		}
+		return a;
+	}
+
+	public static void main(String[] args) {
+		File fichero = new File("Usuarios");
+		File fichero2 = new File("Canc");
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					ContenedorUsuarios.cargarUsuarios(fichero);
+				} catch (IOException e) {
+					JOptionPane.showMessageDialog(null, "Error al cargar los usuarios", "Usuarios Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
+				}
+				try {
+					ContenedorCanciones.cargarCanciones(fichero2);
+				} catch (IOException e) {
+					JOptionPane.showMessageDialog(null, "Error al cargar las canciones", "Canciones Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
+				}
+				new VentanaPrincipal();
+				ContenedorUsuarios.guardarUsuarios(fichero);
+				ContenedorCanciones.guardarCanciones(fichero2);
+			}
+		});
+	}
+
+
+
+
+
+}
