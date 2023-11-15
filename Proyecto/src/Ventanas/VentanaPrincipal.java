@@ -640,8 +640,8 @@ public class VentanaPrincipal extends JFrame {
 			//TODO
 			canciones = new ArrayList<Cancion>();
 			canciones.add(new Cancion("Duki","Goteo" ,3 , "Todo"));
-			listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
-			p_cola.add(listaCancionesCola);
+			//listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
+			//p_cola.add(listaCancionesCola);
 
 
 
