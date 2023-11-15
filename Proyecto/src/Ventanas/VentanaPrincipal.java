@@ -10,9 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -515,7 +513,8 @@ public class VentanaPrincipal extends JFrame {
 
 		//listeners de los botones
 		ActionListener pausar_activar_barra = new ActionListener() {
-				File a = new File("src/Musica/duki.wav");
+			File a = new File("src/Musica/duki.wav");
+			
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -524,13 +523,14 @@ public class VentanaPrincipal extends JFrame {
 						//cambio de la imagen del boton
 						b_pausar_can.setIcon(i_pausar);
 						deslizador(activador);
+//						Reproductor.reproducir(a);
 						Reproductor.reproducir(activador, a);
 					}else {
 						activador = false;
 						//cambio de la imagen del boton
 						b_pausar_can.setIcon(i_play);
 						deslizador(activador);
-						Reproductor.pararcancion(activador);
+//						Reproductor.pararcancion(activador);
 					}
 				}
 			};
@@ -653,6 +653,9 @@ public class VentanaPrincipal extends JFrame {
 			getContentPane().add(izquierda, BorderLayout.WEST);
 			getContentPane().add(centro, BorderLayout.CENTER);
 			getContentPane().add(abajo, BorderLayout.SOUTH);
+			
+			
+
 
 			setVisible(true);
 		}
@@ -741,5 +744,9 @@ public class VentanaPrincipal extends JFrame {
 					}
 				});
 			}
+			
+
+			
+			
 			
 		}
