@@ -723,8 +723,8 @@ public class VentanaPrincipal extends JFrame {
 			}
 
 			public static void main(String[] args) {
-				File fichero = new File("BD_Usuarios");
-				File fichero2 = new File("BD_Canc");
+				File fichero = new File("Usuarios");
+				File fichero2 = new File("Canc");
 				SwingUtilities.invokeLater(new Runnable() {
 					@Override
 					public void run() {
