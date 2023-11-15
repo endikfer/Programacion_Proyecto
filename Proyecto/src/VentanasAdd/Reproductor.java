@@ -36,9 +36,13 @@ public class Reproductor {
           Clip clip = AudioSystem.getClip();
           clip.open(audioInputStream);
           clip.start();
-          while (!activador) {
+          while (activador == false) {
         	  clip.stop();
+//        	  if(activador == false) {
+//        		  clip.stop();;
+//        	  }
           }
+          
       } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
           e.printStackTrace();
       }
