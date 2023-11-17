@@ -11,7 +11,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import Ventanas.VentanaPrincipal;
 
-public class Reproductor {
+public class reproductor {
 
 	public static Clip clip;
 

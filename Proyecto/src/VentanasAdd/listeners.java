@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 import Ventanas.VentanaPrincipal;
 
-public class Listeners {
+public class listeners {
 	
 
 
@@ -17,7 +17,7 @@ public class Listeners {
 	
 	private cambiarFondo cambiarfondo = new cambiarFondo();
 
-	public Listeners(VentanaPrincipal ventana) {
+	public listeners(VentanaPrincipal ventana) {
 		this.ventana = ventana;
 	}
 
@@ -73,6 +73,8 @@ public class Listeners {
 			}
 		};
 	}
+	
+	
 
 
 	//Listener del radiobutton
@@ -97,8 +99,11 @@ public class Listeners {
 			}
 		};
 	}
+	
+	
 
-
+	//listener de los toglebotons
+	//fondo oscuro
 	public ActionListener ToggleFondoOscuroListener() {
 		return new ActionListener() {
 			@Override
@@ -108,6 +113,7 @@ public class Listeners {
 		};
 	}
 	
+	//flecha izq
 	public ActionListener ToggleFlechaIzqListener() {
 		togle = new togleBoton(ventana);
 		return new ActionListener() {
@@ -118,6 +124,7 @@ public class Listeners {
 		};
 	}
 	
+	//flecha dere
 	public ActionListener ToggleFlechaDereListener() {
 		togle = new togleBoton(ventana);
 		return new ActionListener() {
@@ -128,6 +135,7 @@ public class Listeners {
 		};
 	}
 	
+	//barra espaciadora
 	public ActionListener ToggleBarraEspaciadoraListener() {
 		togle = new togleBoton(ventana);
 		return new ActionListener() {
@@ -137,6 +145,8 @@ public class Listeners {
 			}
 		};
 	}
+	
+	
 	
 
 }
