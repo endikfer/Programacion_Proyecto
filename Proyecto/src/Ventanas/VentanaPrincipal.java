@@ -160,6 +160,8 @@ public class VentanaPrincipal extends JFrame {
 
 	public JList<Cancion> listaCancionesCola;
 	public ArrayList<Cancion> canciones;
+	
+
 
 	@SuppressWarnings("static-access")
 	public VentanaPrincipal(){
@@ -413,10 +415,14 @@ public class VentanaPrincipal extends JFrame {
 		b_atras_can = new JButton(i_atrasar);
 		b_pausar_can = new JButton(i_play);
 		b_adelantar_can = new JButton(i_adelantar);
+		
+
+		//activamos ya que pueda reproducir
+		File a = new File("src/Musica/duki.wav");
+		Reproductor.reproduce(a);
 
 		//listeners de los botones
 		ActionListener pausar_activar_barra = new ActionListener() {
-			File a = new File("src/Musica/duki.wav");
 
 
 			@Override
@@ -426,14 +432,16 @@ public class VentanaPrincipal extends JFrame {
 					//cambio de la imagen del boton
 					b_pausar_can.setIcon(i_pausar);
 					deslizador(activador);
-					//Reproductor.reproducir(a);
-					Reproductor.reproducir(activador, a);
+					//que el reporductor se active
+					Reproductor.play();
 				}else {
 					activador = false;
 					//cambio de la imagen del boton
 					b_pausar_can.setIcon(i_play);
 					deslizador(activador);
-					//Reproductor.pararcancion(activador);
+					//que el reproductor se pare
+					Reproductor.pause();
+					
 				}
 			}
 		};

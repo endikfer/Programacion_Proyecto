@@ -9,43 +9,28 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import Ventanas.VentanaPrincipal;
+
 public class Reproductor {
-//	public static Clip clip;
-//	public static void reproducir(File archivo) {
-//        try {
-//            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(archivo);
-//            clip = AudioSystem.getClip();
-//            clip.open(audioInputStream);
-//            clip.start();
-//        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//	public static void pararcancion(Boolean pararcancion) {
-//		if(clip != null && clip.isRunning()) {
-//			clip.stop();
-//			clip.close();
-//		}
-//		
-//	}
-	
-	
-	public static void reproducir(Boolean activador, File archivo) {
-      try {
-          AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(archivo);
-          Clip clip = AudioSystem.getClip();
-          clip.open(audioInputStream);
-          clip.start();
-          while (activador == false) {
-        	  clip.stop();
-//        	  if(activador == false) {
-//        		  clip.stop();;
-//        	  }
-          }
-          
-      } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
-          e.printStackTrace();
-      }
-  }
-		
+
+	public static Clip clip;
+
+	public static void play() {
+		clip.start();
+	}
+
+	public static void pause() {
+		clip.stop();
+	}
+
+	public static void reproduce(File file) {
+		try {
+			AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+			clip = AudioSystem.getClip();
+			clip.open(audioStream);
+		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+			e.printStackTrace();
+		}
+	}
+
 }
