@@ -19,6 +19,7 @@ public class reproductor {
 		clip.start();
 	}
 
+	
 	public static void pause() {
 		clip.stop();
 	}
