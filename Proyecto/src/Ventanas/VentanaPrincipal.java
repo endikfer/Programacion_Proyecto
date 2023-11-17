@@ -8,8 +8,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -32,10 +30,9 @@ import Canciones.ContenedorUsuarios;
 import Canciones.Cancion;
 import Canciones.ContenedorCanciones;
 import VentanasAdd.cambiarFondo;
-import VentanasAdd.Listeners;
 import VentanasAdd.Reproductor;
 import VentanasAdd.estilotabla;
-
+import VentanasAdd.listeners;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 
@@ -172,7 +169,7 @@ public class VentanaPrincipal extends JFrame {
 		colorFondo = this.getContentPane().getBackground();
 		cambiarfondo = new cambiarFondo();
 
-		Listeners listener = new Listeners(this);
+		listeners listener = new listeners(this);
 
 
 		//Elementos creados

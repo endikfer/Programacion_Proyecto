@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 import Ventanas.VentanaPrincipal;
 
-public class Listeners {
+public class listeners {
 	
 
 
@@ -17,7 +17,7 @@ public class Listeners {
 	
 	private cambiarFondo cambiarfondo = new cambiarFondo();
 
-	public Listeners(VentanaPrincipal ventana) {
+	public listeners(VentanaPrincipal ventana) {
 		this.ventana = ventana;
 	}
 
