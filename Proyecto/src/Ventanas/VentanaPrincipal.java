@@ -54,7 +54,6 @@ public class VentanaPrincipal extends JFrame {
 	public cambiarFondo cambiarfondo;
 	
 	public int tiempo;
-	public int b;
 
 
 	//componentes de la ventana
@@ -155,8 +154,8 @@ public class VentanaPrincipal extends JFrame {
 	public JSlider duracion_can;
 	public JToggleButton t_fondo;
 	public Color colorFondo;
-	public JLabel foto_t_final;
-	public JLabel foto_t_duracion;
+	public JLabel t_final;
+	public JLabel t_duracion;
 	public JLabel foto_can;
 	public JLabel nom_can;
 
@@ -404,8 +403,8 @@ public class VentanaPrincipal extends JFrame {
 		//Label
 		nom_can = new JLabel("Canción");
 		foto_can = new JLabel("Foto canción");
-		foto_t_duracion = new JLabel("tiempo de transcurso");
-		foto_t_final = new JLabel("tiempo final");
+		t_duracion = new JLabel();
+		t_final = new JLabel();
 
 		//imagenes de los botones
 		i_atrasar = new ImageIcon("src/Imagenes/atrasar.jpg");
@@ -455,9 +454,25 @@ public class VentanaPrincipal extends JFrame {
 		b_atras_can.addActionListener(listener.BotonPausarFlechaIzqListener());
 		b_adelantar_can.addActionListener(listener.BotonPausarFlechaDereListener());
 
-		//deslizador
-		duracion_can = new JSlider(0, 100, 0);
 
+		
+		
+		//Cola
+		canciones = new ArrayList<Cancion>();
+		canciones.add(new Cancion("Duki","Goteo" ,160 , "Todo"));
+		canciones.add(new Cancion("Duki","Givenchy" ,180 , "Temporada de Reggaetón 2"));
+//		listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
+//		p_cola.add(listaCancionesCola);
+		
+		
+		tiempo = canciones.get(1).getDuration();
+		
+
+		t_final.setText(String.valueOf(tiempo));
+		t_duracion.setText(String.valueOf(valorActual));
+		
+		//deslizador
+		duracion_can = new JSlider(0, tiempo, 0);
 
 
 
@@ -471,9 +486,9 @@ public class VentanaPrincipal extends JFrame {
 		//Anaydir elementos al panel de abajo
 		abajo_arriba.add(nom_can);
 		abajo_abajo.add(foto_can);
-		abajo_abajo.add(foto_t_duracion);
+		abajo_abajo.add(t_duracion);
 		abajo_abajo.add(duracion_can);
-		abajo_abajo.add(foto_t_final);
+		abajo_abajo.add(t_final);
 		abajo_abajo.add(b_atras_can);
 		abajo_abajo.add(b_pausar_can);
 		abajo_abajo.add(b_adelantar_can);
@@ -534,21 +549,7 @@ public class VentanaPrincipal extends JFrame {
 		p_ajustes.add(p_barra);
 		p_ajustes.add(p_flecha);
 
-		//Cola
-		canciones = new ArrayList<Cancion>();
-		canciones.add(new Cancion("Duki","Goteo" ,160 , "Todo"));
-		canciones.add(new Cancion("Duki","Givenchy" ,200 , "Temporada de Reggaetón 2"));
-//		listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
-//		p_cola.add(listaCancionesCola);
-
-		
-		
-		cancion = canciones.get(1);
-		tiempo = canciones.get(1).getDuration();
-		b=100;
-		
-		System.out.println(tiempo);
-		System.out.println(cancion);
+	
 
 
 		//añadir el panel a centro
@@ -576,6 +577,7 @@ public class VentanaPrincipal extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					valorActual += incremento;
 					duracion_can.setValue(valorActual);
+					t_duracion.setText(String.valueOf(valorActual));
 				}
 			});
 		}
