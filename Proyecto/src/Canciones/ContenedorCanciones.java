@@ -48,7 +48,7 @@ public class ContenedorCanciones {
 				Cancion u = new Cancion(campos[0], campos[1], Integer.parseInt(campos[2]), campos[3]);
 				canciones.add(u);
 				}
-			}	
+			}
 			br.close();
 			fr.close();
 	}

@@ -597,7 +597,7 @@ public class VentanaPrincipal extends JFrame {
 		a.addColumn("Autor");
 		a.addColumn("Álbum");
 		a.addRow(new Object[] {"Nombre", "Autor", "Album"});
-		for(Cancion c : ContenedorCanciones.canciones) {
+		for(Cancion c: ContenedorCanciones.canciones) {
 			a.addRow(new Object[] {c.getName_can(), c.getNombre_Ar(), c.getAlbum()});
 		}
 		return a;
@@ -605,7 +605,7 @@ public class VentanaPrincipal extends JFrame {
 
 	public static void main(String[] args) {
 		File fichero = new File("Usuarios");
-		File fichero2 = new File("Canc");
+		File fichero2 = new File("Canciones");
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
