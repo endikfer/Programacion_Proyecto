@@ -73,6 +73,8 @@ public class listeners {
 			}
 		};
 	}
+	
+	
 
 
 	//Listener del radiobutton
@@ -97,8 +99,11 @@ public class listeners {
 			}
 		};
 	}
+	
+	
 
-
+	//listener de los toglebotons
+	//fondo oscuro
 	public ActionListener ToggleFondoOscuroListener() {
 		return new ActionListener() {
 			@Override
@@ -108,6 +113,7 @@ public class listeners {
 		};
 	}
 	
+	//flecha izq
 	public ActionListener ToggleFlechaIzqListener() {
 		togle = new togleBoton(ventana);
 		return new ActionListener() {
@@ -118,6 +124,7 @@ public class listeners {
 		};
 	}
 	
+	//flecha dere
 	public ActionListener ToggleFlechaDereListener() {
 		togle = new togleBoton(ventana);
 		return new ActionListener() {
@@ -128,6 +135,7 @@ public class listeners {
 		};
 	}
 	
+	//barra espaciadora
 	public ActionListener ToggleBarraEspaciadoraListener() {
 		togle = new togleBoton(ventana);
 		return new ActionListener() {
@@ -137,6 +145,8 @@ public class listeners {
 			}
 		};
 	}
+	
+	
 	
 
 }

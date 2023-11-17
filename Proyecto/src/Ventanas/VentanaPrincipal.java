@@ -30,9 +30,10 @@ import Canciones.ContenedorUsuarios;
 import Canciones.Cancion;
 import Canciones.ContenedorCanciones;
 import VentanasAdd.cambiarFondo;
-import VentanasAdd.Reproductor;
 import VentanasAdd.estilotabla;
 import VentanasAdd.listeners;
+import VentanasAdd.reproductor;
+
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 
@@ -416,7 +417,7 @@ public class VentanaPrincipal extends JFrame {
 
 		//activamos ya que pueda reproducir
 		File a = new File("src/Musica/duki.wav");
-		Reproductor.reproduce(a);
+		reproductor.reproduce(a);
 
 		//listeners de los botones
 		ActionListener pausar_activar_barra = new ActionListener() {
@@ -430,14 +431,14 @@ public class VentanaPrincipal extends JFrame {
 					b_pausar_can.setIcon(i_pausar);
 					deslizador(activador);
 					//que el reporductor se active
-					Reproductor.play();
+					reproductor.play();
 				}else {
 					activador = false;
 					//cambio de la imagen del boton
 					b_pausar_can.setIcon(i_play);
 					deslizador(activador);
 					//que el reproductor se pare
-					Reproductor.pause();
+					reproductor.pause();
 					
 				}
 			}
