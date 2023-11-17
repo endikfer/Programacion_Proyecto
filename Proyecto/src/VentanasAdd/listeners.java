@@ -113,6 +113,7 @@ public class listeners {
 		};
 	}
 	
+	
 	//flecha izq
 	public ActionListener ToggleFlechaIzqListener() {
 		togle = new togleBoton(ventana);
