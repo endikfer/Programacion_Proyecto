@@ -4,12 +4,6 @@ import java.awt.Image;
 
 public class Cancion extends Artista{
 	
-	@Override
-	public String toString() {
-		return name_can +", duracion: " + duration + ", album: " + album;
-	}
-
-
 	protected int duration;
 	protected String name_can;
 	protected Image foto;
@@ -18,10 +12,10 @@ public class Cancion extends Artista{
 	
 	public Cancion(String nombre_Ar, int duration, String name_can, Image foto, String album) {
 		super(nombre_Ar);
-		this.duration = duration;
 		this.name_can = name_can;
-		this.foto = foto;
+		this.duration = duration;
 		this.album = album;
+		this.foto = foto;
 	}
 	
 	
@@ -77,5 +71,10 @@ public class Cancion extends Artista{
 
 	public void setAlbum(String album) {
 		this.album = album;
+	}
+	
+	@Override
+	public String toString() {
+		return name_can +", duracion: " + duration + ", album: " + album;
 	}
 }

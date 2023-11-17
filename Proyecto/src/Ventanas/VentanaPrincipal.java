@@ -52,6 +52,9 @@ public class VentanaPrincipal extends JFrame {
 	private int incremento = 1;
 	private Timer timer; // Declarar el temporizador como variable de instancia
 	public cambiarFondo cambiarfondo;
+	
+	public int tiempo;
+	public int b;
 
 
 	//componentes de la ventana
@@ -160,6 +163,8 @@ public class VentanaPrincipal extends JFrame {
 	public JList<Cancion> listaCancionesCola;
 	public ArrayList<Cancion> canciones;
 	
+	public Cancion cancion;
+	
 
 	@SuppressWarnings("static-access")
 	public VentanaPrincipal(){
@@ -171,7 +176,6 @@ public class VentanaPrincipal extends JFrame {
 		cambiarfondo = new cambiarFondo();
 
 		listeners listener = new listeners(this);
-
 
 		//Elementos creados
 		//Paneles principales
@@ -444,27 +448,12 @@ public class VentanaPrincipal extends JFrame {
 			}
 		};
 
-		ActionListener pausar_activar_flecha_izq = new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		};
-
-		ActionListener pausar_activar_flecha_dere = new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		};
-
 
 		//Añadir los escuchadores de los botones
 		b_pausar_can.addActionListener(pausar_activar_barra);
-		b_atras_can.addActionListener(pausar_activar_flecha_izq);
-		b_adelantar_can.addActionListener(pausar_activar_flecha_dere);
+		
+		b_atras_can.addActionListener(listener.BotonPausarFlechaIzqListener());
+		b_adelantar_can.addActionListener(listener.BotonPausarFlechaDereListener());
 
 		//deslizador
 		duracion_can = new JSlider(0, 100, 0);
@@ -547,10 +536,19 @@ public class VentanaPrincipal extends JFrame {
 
 		//Cola
 		canciones = new ArrayList<Cancion>();
-		canciones.add(new Cancion("Duki","Goteo" ,3 , "Todo"));
-		//listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
-		//p_cola.add(listaCancionesCola);
+		canciones.add(new Cancion("Duki","Goteo" ,160 , "Todo"));
+		canciones.add(new Cancion("Duki","Givenchy" ,200 , "Temporada de Reggaetón 2"));
+//		listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
+//		p_cola.add(listaCancionesCola);
 
+		
+		
+		cancion = canciones.get(1);
+		tiempo = canciones.get(1).getDuration();
+		b=100;
+		
+		System.out.println(tiempo);
+		System.out.println(cancion);
 
 
 		//añadir el panel a centro

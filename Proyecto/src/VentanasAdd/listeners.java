@@ -147,7 +147,25 @@ public class listeners {
 		};
 	}
 	
+	public ActionListener BotonPausarFlechaIzqListener() {
+		togle = new togleBoton(ventana);
+		return new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		};
+	}
 	
+	public ActionListener BotonPausarFlechaDereListener() {
+		togle = new togleBoton(ventana);
+		return new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		};
+	}
 	
 
 }
