@@ -32,6 +32,7 @@ import Canciones.ContenedorCanciones;
 import VentanasAdd.cambiarFondo;
 import VentanasAdd.estilotabla;
 import VentanasAdd.listeners;
+import VentanasAdd.logger;
 import VentanasAdd.reproductor;
 
 import javax.swing.JRadioButton;
@@ -159,7 +160,6 @@ public class VentanaPrincipal extends JFrame {
 	public JList<Cancion> listaCancionesCola;
 	public ArrayList<Cancion> canciones;
 	
-
 
 	@SuppressWarnings("static-access")
 	public VentanaPrincipal(){
@@ -611,11 +611,13 @@ public class VentanaPrincipal extends JFrame {
 					ContenedorUsuarios.cargarUsuarios(fichero);
 				} catch (IOException e) {
 					JOptionPane.showMessageDialog(null, "Error al cargar los usuarios", "Usuarios Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
+					logger.logger.warning("Error al cargar los usuarios desde la base de datos");
 				}
 				try {
 					ContenedorCanciones.cargarCanciones(fichero2);
 				} catch (IOException e) {
 					JOptionPane.showMessageDialog(null, "Error al cargar las canciones", "Canciones Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
+					logger.logger.warning("Error al cargar las canciones desde la base de datos");
 				}
 				new VentanaPrincipal();
 				ContenedorUsuarios.guardarUsuarios(fichero);

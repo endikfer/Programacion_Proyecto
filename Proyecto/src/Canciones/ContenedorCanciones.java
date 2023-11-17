@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import VentanasAdd.logger;
+
 public class ContenedorCanciones {
 	public static ArrayList<Cancion> canciones = new ArrayList<>();
 	
@@ -28,6 +30,7 @@ public class ContenedorCanciones {
             
         } catch (Exception e) {
             e.printStackTrace();
+            logger.logger.warning("Error al guardar las canciones desde la base de datos");
         } finally {
            try {
 	
@@ -35,6 +38,7 @@ public class ContenedorCanciones {
 	              fw.close();
 	           } catch (Exception e2) {
 	              e2.printStackTrace();
+	              logger.logger.warning("Error al guardar las canciones desde la base de datos");
 	           }
         }
 	}

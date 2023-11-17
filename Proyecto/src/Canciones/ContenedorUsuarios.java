@@ -8,6 +8,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import VentanasAdd.logger;
+
 
 
 public class ContenedorUsuarios {
@@ -44,6 +46,7 @@ public class ContenedorUsuarios {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.logger.warning("Error al guardar los usuarios desde la base de datos");
         } finally {
            try {
 	
@@ -51,6 +54,7 @@ public class ContenedorUsuarios {
 	              fw.close();
 	           } catch (Exception e2) {
 	              e2.printStackTrace();
+	              logger.logger.warning("Error al guardar los usuarios desde la base de datos");
 	           }
         }
 	}
