@@ -7,7 +7,7 @@ import Ventanas.VentanaPrincipal;
 public class cambiarFondo {
 	@SuppressWarnings("unused")
 	private VentanaPrincipal ventana;
-	public void cambiarFondo(VentanaPrincipal ventana) {
+	public void cambiarFondonegro(VentanaPrincipal ventana) {
 		this.ventana = ventana;
 		if (ventana.t_fondo.isSelected()) {
 			ventana.p_perfil.setBackground(Color.BLACK);

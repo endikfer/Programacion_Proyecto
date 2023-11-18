@@ -23,7 +23,6 @@ import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import Canciones.ContenedorUsuarios;
@@ -34,6 +33,7 @@ import VentanasAdd.estilotabla;
 import VentanasAdd.listeners;
 import VentanasAdd.logger;
 import VentanasAdd.reproductor;
+import VentanasAdd.deslizador;
 
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -47,11 +47,9 @@ public class VentanaPrincipal extends JFrame {
 
 	private boolean activador = false;
 
-	//Variables para el contador del deslizador
-	private int valorActual = 0;
-	private int incremento = 1;
-	private Timer timer; // Declarar el temporizador como variable de instancia
 	public cambiarFondo cambiarfondo;
+	public deslizador deslizador;
+	public listeners listener;
 	
 	public int tiempo;
 
@@ -173,8 +171,10 @@ public class VentanaPrincipal extends JFrame {
 		setLocationRelativeTo(null);
 		colorFondo = this.getContentPane().getBackground();
 		cambiarfondo = new cambiarFondo();
+		
+		deslizador = new deslizador(this);
 
-		listeners listener = new listeners(this);
+		listener = new listeners(this);
 
 		//Elementos creados
 		//Paneles principales
@@ -432,14 +432,14 @@ public class VentanaPrincipal extends JFrame {
 					activador = true;
 					//cambio de la imagen del boton
 					b_pausar_can.setIcon(i_pausar);
-					deslizador(activador);
+					deslizador.deslizador1(activador);
 					//que el reporductor se active
 					reproductor.play();
 				}else {
 					activador = false;
 					//cambio de la imagen del boton
 					b_pausar_can.setIcon(i_play);
-					deslizador(activador);
+					deslizador.deslizador1(activador);
 					//que el reproductor se pare
 					reproductor.pause();
 					
@@ -469,7 +469,7 @@ public class VentanaPrincipal extends JFrame {
 		
 
 		t_final.setText(String.valueOf(tiempo));
-		t_duracion.setText(String.valueOf(valorActual));
+		t_duracion.setText(String.valueOf(deslizador.valorActual));
 		
 		//deslizador
 		duracion_can = new JSlider(0, tiempo, 0);
@@ -565,27 +565,6 @@ public class VentanaPrincipal extends JFrame {
 
 
 		setVisible(true);
-	}
-
-
-	//metodo para que el deslizador incremenete o se pare dependiendo de como este el boton
-	public void deslizador(boolean activador) {
-		// Si el temporizador no se ha creado previamente, crearlo
-		if (timer == null) {
-			timer = new Timer(1000, new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					valorActual += incremento;
-					duracion_can.setValue(valorActual);
-					t_duracion.setText(String.valueOf(valorActual));
-				}
-			});
-		}
-		if (activador) {
-			timer.start();
-		} else {
-			timer.stop();
-		}
 	}
 
 	//metodo para lo por defecto de la tabla de cancioens

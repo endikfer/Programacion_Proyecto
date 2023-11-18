@@ -108,7 +108,7 @@ public class listeners {
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				cambiarfondo.cambiarFondo(ventana);
+				cambiarfondo.cambiarFondonegro(ventana);
 			}
 		};
 	}
