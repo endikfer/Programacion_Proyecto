@@ -29,6 +29,7 @@ import Canciones.ContenedorUsuarios;
 import Canciones.Cancion;
 import Canciones.ContenedorCanciones;
 import VentanasAdd.cambiarFondo;
+import VentanasAdd.cambioSegundoMinuto;
 import VentanasAdd.estilotabla;
 import VentanasAdd.listeners;
 import VentanasAdd.logger;
@@ -50,6 +51,7 @@ public class VentanaPrincipal extends JFrame {
 	public cambiarFondo cambiarfondo;
 	public deslizador deslizador;
 	public listeners listener;
+	public cambioSegundoMinuto cambiosecmin;
 	
 	public int tiempo;
 
@@ -175,7 +177,10 @@ public class VentanaPrincipal extends JFrame {
 		deslizador = new deslizador(this);
 
 		listener = new listeners(this);
-
+		
+		cambiosecmin = new cambioSegundoMinuto();
+		
+		
 		//Elementos creados
 		//Paneles principales
 		izquierda = new JPanel(new GridLayout(6, 1));
@@ -401,7 +406,7 @@ public class VentanaPrincipal extends JFrame {
 
 		//Elementos del panel de abajo
 		//Label
-		nom_can = new JLabel("Canción");
+		nom_can = new JLabel();
 		foto_can = new JLabel("Foto canción");
 		t_duracion = new JLabel();
 		t_final = new JLabel();
@@ -460,17 +465,17 @@ public class VentanaPrincipal extends JFrame {
 		//Cola
 		canciones = new ArrayList<Cancion>();
 		canciones.add(new Cancion("Duki","Goteo" ,160 , "Todo"));
-		canciones.add(new Cancion("Duki","Givenchy" ,180 , "Temporada de Reggaetón 2"));
+		canciones.add(new Cancion("Duki","Givenchy" ,170 , "Temporada de Reggaetón 2"));
 //		listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
 //		p_cola.add(listaCancionesCola);
 		
 		
 		tiempo = canciones.get(1).getDuration();
 		
+		nom_can.setText("Cancion: " + canciones.get(1).getName_can());
+		t_final.setText(cambiosecmin.cambioSec(tiempo));
+		t_duracion.setText(String.format("%02d:%02d", 0,0));
 
-		t_final.setText(String.valueOf(tiempo));
-		t_duracion.setText(String.valueOf(deslizador.valorActual));
-		
 		//deslizador
 		duracion_can = new JSlider(0, tiempo, 0);
 

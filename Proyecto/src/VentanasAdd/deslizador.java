@@ -11,6 +11,7 @@ public class deslizador {
 	public int valorActual = 0;
 	private int incremento = 1;
 	private Timer timer;
+	public cambioSegundoMinuto cambiosecmin;
 	
 	private VentanaPrincipal ventana;
 	
@@ -19,6 +20,7 @@ public class deslizador {
 	}
 	
 	public void deslizador1(boolean activador) {
+		cambiosecmin = new cambioSegundoMinuto();
 		// Si el temporizador no se ha creado previamente, crearlo
 		if (timer == null) {
 			timer = new Timer(1000, new ActionListener() {
@@ -26,7 +28,8 @@ public class deslizador {
 				public void actionPerformed(ActionEvent e) {
 					valorActual += incremento;
 					ventana.duracion_can.setValue(valorActual);
-					ventana.t_duracion.setText(String.valueOf(valorActual));
+//					ventana.t_duracion.setText(String.valueOf(valorActual));
+					ventana.t_duracion.setText(cambioSegundoMinuto.cambioSec(valorActual));
 				}
 			});
 		}
