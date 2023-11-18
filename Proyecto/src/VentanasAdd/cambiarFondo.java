@@ -28,8 +28,8 @@ public class cambiarFondo {
 			ventana.p_cola.setBackground(Color.BLACK);
 
 
-			ventana.foto_t_final.setForeground(Color.WHITE);
-			ventana.foto_t_duracion.setForeground(Color.WHITE);
+			ventana.t_final.setForeground(Color.WHITE);
+			ventana.t_duracion.setForeground(Color.WHITE);
 			ventana.foto_can.setForeground(Color.WHITE);
 			ventana.nom_can.setForeground(Color.WHITE);
 			ventana.l_fondo.setForeground(Color.WHITE);
@@ -62,8 +62,8 @@ public class cambiarFondo {
 			ventana.centro_canciones.setBackground(ventana.colorFondo);
 			ventana.p_cola.setBackground(ventana.colorFondo);
 
-			ventana.foto_t_final.setForeground(Color.BLACK);
-			ventana.foto_t_duracion.setForeground(Color.BLACK);
+			ventana.t_final.setForeground(Color.BLACK);
+			ventana.t_duracion.setForeground(Color.BLACK);
 			ventana.foto_can.setForeground(Color.BLACK);
 			ventana.nom_can.setForeground(Color.BLACK);
 			ventana.l_fondo.setForeground(Color.BLACK);
