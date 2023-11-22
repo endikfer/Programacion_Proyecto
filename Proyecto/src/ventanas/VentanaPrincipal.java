@@ -1,4 +1,4 @@
-package Ventanas;
+package ventanas;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -25,16 +25,17 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import Canciones.ContenedorUsuarios;
-import Canciones.Cancion;
-import Canciones.ContenedorCanciones;
-import VentanasAdd.cambiarFondo;
-import VentanasAdd.cambioSegundoMinuto;
-import VentanasAdd.estilotabla;
-import VentanasAdd.listeners;
-import VentanasAdd.logger;
-import VentanasAdd.reproductor;
-import VentanasAdd.deslizador;
+
+import ventanasadd.Listeners;
+import canciones.ContenedorUsuarios;
+import canciones.Cancion;
+import canciones.ContenedorCanciones;
+import ventanasadd.CambiarFondo;
+import ventanasadd.CambioSegundoMinuto;
+import ventanasadd.Estilotabla;
+import ventanasadd.Loggers;
+import ventanasadd.Reproductor;
+import ventanasadd.Deslizador;
 
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -48,10 +49,10 @@ public class VentanaPrincipal extends JFrame {
 
 	private boolean activador = false;
 
-	public cambiarFondo cambiarfondo;
-	public deslizador deslizador;
-	public listeners listener;
-	public cambioSegundoMinuto cambiosecmin;
+	public CambiarFondo cambiarfondo;
+	public Deslizador deslizador;
+	public Listeners listener;
+	public CambioSegundoMinuto cambiosecmin;
 	
 	public int tiempo;
 
@@ -172,13 +173,13 @@ public class VentanaPrincipal extends JFrame {
 		setTitle("Ventana Principal");
 		setLocationRelativeTo(null);
 		colorFondo = this.getContentPane().getBackground();
-		cambiarfondo = new cambiarFondo();
+		cambiarfondo = new CambiarFondo();
 		
-		deslizador = new deslizador(this);
+		deslizador = new Deslizador(this);
 
-		listener = new listeners(this);
+		listener = new Listeners(this);
 		
-		cambiosecmin = new cambioSegundoMinuto();
+		cambiosecmin = new CambioSegundoMinuto();
 		
 		listener.PararCancionesAlCerrar();
 		
@@ -343,7 +344,7 @@ public class VentanaPrincipal extends JFrame {
 		tabla_canciones.setRowHeight(0, 60);
 
 		//componente para el estilo de la JTable
-		estilotabla estilo = new estilotabla();
+		Estilotabla estilo = new Estilotabla();
 
 		//Estilo del Jtable
 		tabla_canciones.setFont(new Font(tabla_canciones.getFont().getName(), tabla_canciones.getFont().getStyle(), 20));
@@ -427,7 +428,7 @@ public class VentanaPrincipal extends JFrame {
 
 		//activamos ya que pueda reproducir
 		File a = new File("src/Musica/duki.wav");
-		reproductor.reproduce(a);
+		Reproductor.reproduce(a);
 
 		//listeners de los botones
 		ActionListener pausar_activar_barra = new ActionListener() {
@@ -441,14 +442,14 @@ public class VentanaPrincipal extends JFrame {
 					b_pausar_can.setIcon(i_pausar);
 					deslizador.deslizador1(activador);
 					//que el reporductor se active
-					reproductor.play();
+					Reproductor.play();
 				}else {
 					activador = false;
 					//cambio de la imagen del boton
 					b_pausar_can.setIcon(i_play);
 					deslizador.deslizador1(activador);
 					//que el reproductor se pare
-					reproductor.pause();
+					Reproductor.pause();
 					
 				}
 			}
@@ -605,13 +606,13 @@ public class VentanaPrincipal extends JFrame {
 					ContenedorUsuarios.cargarUsuarios(fichero);
 				} catch (IOException e) {
 					JOptionPane.showMessageDialog(null, "Error al cargar los usuarios", "Usuarios Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
-					logger.logger.warning("Error al cargar los usuarios desde la base de datos");
+					Loggers.logger.warning("Error al cargar los usuarios desde la base de datos");
 				}
 				try {
 					ContenedorCanciones.cargarCanciones(fichero2);
 				} catch (IOException e) {
 					JOptionPane.showMessageDialog(null, "Error al cargar las canciones", "Canciones Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
-					logger.logger.warning("Error al cargar las canciones desde la base de datos");
+					Loggers.logger.warning("Error al cargar las canciones desde la base de datos");
 				}
 				new VentanaPrincipal();
 				ContenedorUsuarios.guardarUsuarios(fichero);

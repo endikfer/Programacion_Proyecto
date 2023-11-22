@@ -1,4 +1,4 @@
-package Canciones;
+package canciones;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import VentanasAdd.logger;
+import ventanasadd.Loggers;
 
 
 
@@ -46,7 +46,7 @@ public class ContenedorUsuarios {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            logger.logger.warning("Error al guardar los usuarios desde la base de datos");
+            Loggers.logger.warning("Error al guardar los usuarios desde la base de datos");
         } finally {
            try {
 	
@@ -54,7 +54,7 @@ public class ContenedorUsuarios {
 	              fw.close();
 	           } catch (Exception e2) {
 	              e2.printStackTrace();
-	              logger.logger.warning("Error al guardar los usuarios desde la base de datos");
+	              Loggers.logger.warning("Error al guardar los usuarios desde la base de datos");
 	           }
         }
 	}

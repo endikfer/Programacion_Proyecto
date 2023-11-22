@@ -1,4 +1,4 @@
-package Canciones;
+package canciones;
 
 public class Artista {
 	

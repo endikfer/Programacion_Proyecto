@@ -1,4 +1,4 @@
-package VentanasAdd;
+package ventanasadd;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 
-public class reproductor {
+public class Reproductor {
 
 	public static Clip clip;
 
@@ -30,7 +30,7 @@ public class reproductor {
 			clip.open(audioStream);
 		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
 			e.printStackTrace();
-			logger.logger.warning("Error al reproducir la cancion");
+			Loggers.logger.warning("Error al reproducir la cancion");
 		}
 	}
 

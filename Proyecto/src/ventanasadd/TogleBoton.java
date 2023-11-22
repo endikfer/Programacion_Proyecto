@@ -1,14 +1,14 @@
-package VentanasAdd;
+package ventanasadd;
 
 import java.awt.event.KeyEvent;
 
-import Ventanas.VentanaPrincipal;
+import ventanas.VentanaPrincipal;
 
-public class togleBoton {
+public class TogleBoton {
 
 	private VentanaPrincipal ventana;
 
-	public togleBoton(VentanaPrincipal ventana) {
+	public TogleBoton(VentanaPrincipal ventana) {
 		this.ventana = ventana;
 	}
 

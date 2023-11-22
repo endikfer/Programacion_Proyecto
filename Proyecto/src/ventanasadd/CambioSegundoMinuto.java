@@ -1,6 +1,6 @@
-package VentanasAdd;
+package ventanasadd;
 
-public class cambioSegundoMinuto {
+public class CambioSegundoMinuto {
 	public static int minutos = 0;
 	public static int secrestante = 0;
 

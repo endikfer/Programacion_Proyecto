@@ -1,10 +1,10 @@
-package VentanasAdd;
+package ventanasadd;
 
 import java.awt.Color;
 
-import Ventanas.VentanaPrincipal;
+import ventanas.VentanaPrincipal;
 
-public class cambiarFondo {
+public class CambiarFondo {
 	@SuppressWarnings("unused")
 	private VentanaPrincipal ventana;
 	public void cambiarFondonegro(VentanaPrincipal ventana) {

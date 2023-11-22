@@ -1,4 +1,4 @@
-package VentanasAdd;
+package ventanasadd;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -8,19 +8,19 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-import Ventanas.VentanaPrincipal;
+import ventanas.VentanaPrincipal;
 
-public class listeners {
+public class Listeners {
 	
 
 
 	private VentanaPrincipal ventana;
 	
-	private togleBoton togle;
+	private TogleBoton togle;
 	
-	private cambiarFondo cambiarfondo = new cambiarFondo();
+	private CambiarFondo cambiarfondo = new CambiarFondo();
 
-	public listeners(VentanaPrincipal ventana) {
+	public Listeners(VentanaPrincipal ventana) {
 		this.ventana = ventana;
 	}
 
@@ -119,7 +119,7 @@ public class listeners {
 	
 	//flecha izq
 	public ActionListener ToggleFlechaIzqListener() {
-		togle = new togleBoton(ventana);
+		togle = new TogleBoton(ventana);
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -130,7 +130,7 @@ public class listeners {
 	
 	//flecha dere
 	public ActionListener ToggleFlechaDereListener() {
-		togle = new togleBoton(ventana);
+		togle = new TogleBoton(ventana);
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -141,7 +141,7 @@ public class listeners {
 	
 	//barra espaciadora
 	public ActionListener ToggleBarraEspaciadoraListener() {
-		togle = new togleBoton(ventana);
+		togle = new TogleBoton(ventana);
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -151,7 +151,7 @@ public class listeners {
 	}
 	
 	public ActionListener BotonPausarFlechaIzqListener() {
-		togle = new togleBoton(ventana);
+		togle = new TogleBoton(ventana);
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -161,7 +161,7 @@ public class listeners {
 	}
 	
 	public ActionListener BotonPausarFlechaDereListener() {
-		togle = new togleBoton(ventana);
+		togle = new TogleBoton(ventana);
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -177,7 +177,7 @@ public class listeners {
 			public void windowClosed(WindowEvent e) {
 				super.windowClosing(e);
 				// Aquí detienes el reproductor
-				reproductor.pause();
+				Reproductor.pause();
 			}
 		});
 		return null;
