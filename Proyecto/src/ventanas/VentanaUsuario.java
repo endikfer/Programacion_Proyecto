@@ -3,13 +3,19 @@ package ventanas;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import canciones.Usuario;
 
 public class VentanaUsuario extends JFrame{
 	
@@ -23,6 +29,7 @@ public class VentanaUsuario extends JFrame{
 	private static JButton btnIs, btnR;
 	private static JTextField txtNomIs, txtNomR, txtMailR, txtNomRealR;
 	private static JPasswordField passConR, passConIs;
+	private static ArrayList<Usuario> usuarios;
 
 	public VentanaUsuario() throws HeadlessException {
 		super();
@@ -32,6 +39,9 @@ public class VentanaUsuario extends JFrame{
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		//Inicialización de los componentes
+		usuarios = new ArrayList<Usuario>();
+		usuarios.add(new Usuario("Lucas", "lu", "si"," noemail"));
+		
 		pCent = new JPanel();
 		pIs = new JPanel();
 		pR = new JPanel();
@@ -95,6 +105,33 @@ public class VentanaUsuario extends JFrame{
 		pR.add(pBtnR);
 		pCent.add(pR);
 		getContentPane().add(pCent,BorderLayout.CENTER);
+		
+		//Eventos
+		
+		btnIs.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				boolean finish = false;
+				String nombre = txtNomIs.getText();
+				String con = passConIs.getText();
+				
+				for(Usuario u : usuarios) {
+					if(u.getName_us().equals(nombre) && u.getPassword().equals(con)) {
+						VentanaPrincipal vp = new VentanaPrincipal();
+						dispose();
+						break;
+					}
+					finish = true;
+				}
+				if (finish == true) {
+					JOptionPane.showMessageDialog(pCent, "Este usuario NO EXISTE.");
+					
+					txtNomIs.setText("");
+					passConIs.setText("");
+				}
+			}
+		});
 		
 				
 		setVisible(true);
