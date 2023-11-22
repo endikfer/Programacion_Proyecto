@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import Ventanas.VentanaPrincipal;
 
@@ -166,6 +169,21 @@ public class listeners {
 			}
 		};
 	}
+	
+	public WindowListener PararCancionesAlCerrar() {
+	
+		ventana.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosed(WindowEvent e) {
+				super.windowClosing(e);
+				// Aquí detienes el reproductor
+				reproductor.pause();
+			}
+		});
+		return null;
+	}
+	
+
 	
 
 }

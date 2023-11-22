@@ -180,6 +180,8 @@ public class VentanaPrincipal extends JFrame {
 		
 		cambiosecmin = new cambioSegundoMinuto();
 		
+		listener.PararCancionesAlCerrar();
+		
 		
 		//Elementos creados
 		//Paneles principales
@@ -451,6 +453,14 @@ public class VentanaPrincipal extends JFrame {
 				}
 			}
 		};
+//		this.addWindowListener(new WindowAdapter() {
+//		    @Override
+//		    public void windowClosing(WindowEvent e) {
+//		        super.windowClosing(e);
+//		        // Aquí detienes el reproductor
+//		        reproductor.pause();
+//		    }
+//		});
 
 
 		//Añadir los escuchadores de los botones
@@ -586,7 +596,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		File fichero = new File("Usuario");
+		File fichero = new File("Usuarios");
 		File fichero2 = new File("Canciones");
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -604,7 +614,7 @@ public class VentanaPrincipal extends JFrame {
 					logger.logger.warning("Error al cargar las canciones desde la base de datos");
 				}
 				new VentanaPrincipal();
-				//ContenedorUsuarios.guardarUsuarios(fichero);
+				ContenedorUsuarios.guardarUsuarios(fichero);
 				ContenedorCanciones.guardarCanciones(fichero2);
 			}
 		});
