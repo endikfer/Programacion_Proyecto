@@ -586,7 +586,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		File fichero = new File("Usuarios");
+		File fichero = new File("Usuario");
 		File fichero2 = new File("Canciones");
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -604,7 +604,7 @@ public class VentanaPrincipal extends JFrame {
 					logger.logger.warning("Error al cargar las canciones desde la base de datos");
 				}
 				new VentanaPrincipal();
-				ContenedorUsuarios.guardarUsuarios(fichero);
+				//ContenedorUsuarios.guardarUsuarios(fichero);
 				ContenedorCanciones.guardarCanciones(fichero2);
 			}
 		});
