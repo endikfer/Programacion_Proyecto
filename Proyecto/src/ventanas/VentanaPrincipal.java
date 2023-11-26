@@ -1,6 +1,7 @@
 package ventanas;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -21,6 +22,7 @@ import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
@@ -120,6 +122,8 @@ public class VentanaPrincipal extends JFrame {
 	public DefaultTableModel modelo_tabla_canciones;
 
 	public JTable tabla_canciones;
+	
+	public JScrollPane Scroll_tabla;
 
 	public JLabel l_fondo;
 	public JLabel l_bucle;
@@ -353,6 +357,12 @@ public class VentanaPrincipal extends JFrame {
 		//No poder selecionar las columnas
 		tabla_canciones.setColumnSelectionAllowed(false);
 		tabla_canciones.setRowSelectionAllowed(false);
+		
+		//El scorll para la tabla
+		Scroll_tabla = new JScrollPane(tabla_canciones);
+		Scroll_tabla.setPreferredSize(new Dimension(1200, 500));
+		Scroll_tabla.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		Scroll_tabla.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 
 		//Ajustes
@@ -534,7 +544,7 @@ public class VentanaPrincipal extends JFrame {
 		boton_medio.add(b_cancion_nueva);
 		centro_arriba.add(busqueda);
 		centro_arriba.add(lupa);
-		centro_canciones.add(tabla_canciones);
+		centro_canciones.add(Scroll_tabla);
 		p_canciones.add(boton_medio, BorderLayout.SOUTH);
 		p_canciones.add(centro_arriba, BorderLayout.NORTH);
 		p_canciones.add(centro_canciones, BorderLayout.CENTER);
