@@ -17,6 +17,14 @@ public class Usuario {
 		this.gmail = gmail;
 		this.id = id;
 	}
+	
+	public Usuario(String name_real, String name_us, String password, String gmail) {
+		super();
+		this.name_real = name_real;
+		this.name_us = name_us;
+		this.password = password;
+		this.gmail = gmail;
+	}
 
 
 	//prueba
