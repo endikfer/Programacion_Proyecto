@@ -5,15 +5,17 @@ public class Usuario {
 	String name_us;
 	String password;
 	String gmail;
+	int id;
 	
 	
 	
-	public Usuario(String name_real, String name_us, String password, String gmail) {
+	public Usuario(String name_real, String name_us, String password, String gmail, int id) {
 		super();
 		this.name_real = name_real;
 		this.name_us = name_us;
 		this.password = password;
 		this.gmail = gmail;
+		this.id = id;
 	}
 
 
@@ -25,6 +27,16 @@ public class Usuario {
 	
 
 	public Usuario() {
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 
