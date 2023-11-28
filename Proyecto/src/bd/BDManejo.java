@@ -31,6 +31,7 @@ public class BDManejo {
 			throw new BDExcepcion("Error cerrando la conexión con la BD", e);
 		}
 	}
+	
 
 	public void guardar(Usuario user) throws BDExcepcion {
 		try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO user (name, surname, birthdate) VALUES (?, ?, ?)");
