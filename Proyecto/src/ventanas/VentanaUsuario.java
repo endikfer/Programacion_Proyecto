@@ -42,6 +42,7 @@ public class VentanaUsuario extends JFrame{
 		usuarios = new ArrayList<Usuario>();
 		usuarios.add(new Usuario("Lucas", "lu", "si"," noemail"));
 		
+		
 		pCent = new JPanel();
 		pIs = new JPanel();
 		pR = new JPanel();
