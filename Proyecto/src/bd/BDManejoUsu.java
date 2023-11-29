@@ -19,8 +19,7 @@ public class BDManejoUsu {
 	public void connect(String dbPath) throws BDExcepcion {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			conn = DriverManager.getConnection("jdbc:sqlite:src/bd/Usuario.db");
-//			conn = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
+			conn = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
 		} catch (ClassNotFoundException e) {
 			throw new BDExcepcion("Error cargando el driver de la BD", e);
 		} catch (SQLException e) {
@@ -101,7 +100,7 @@ public class BDManejoUsu {
 			stmt.setNString(3, user.getName_us());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
-			throw new BDExcepcion("No se pudo elimiar el usuario con id " + user.getId(), e);
+			throw new BDExcepcion("No se pudo elimiar el usuario con id " + user.getName_us(), e);
 		}
 	}
 
