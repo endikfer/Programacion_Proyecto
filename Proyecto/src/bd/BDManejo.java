@@ -6,6 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 import canciones.Usuario;
 
@@ -32,6 +36,27 @@ public class BDManejo {
 		}
 	}
 	
+	
+	public List<Usuario> getAllUsers() throws BDExcepcion {
+		List<Usuario> users = new ArrayList<Usuario>();
+		try (Statement stmt = conn.createStatement()) {
+			ResultSet rs = stmt.executeQuery("SELECT id, name, surname, birthdate FROM user");
+
+			while(rs.next()) {
+				Usuario user = new Usuario();
+				user.setId(rs.getInt("id"));
+				user.setName_real(rs.getString("Nombre"));
+				user.setGmail(rs.getString("Gmail"));
+				user.setName_us(rs.getString("Nombre de usuario"));
+				user.setPassword(rs.getString("Contraseña"));
+				users.add(user);
+			}
+			
+			return users;
+		} catch (SQLException | DateTimeParseException e) {
+			throw new BDExcepcion("Error obteniendo todos los usuarios'", e);
+		}
+	}
 
 
 	public void guardar(Usuario user) throws BDExcepcion {
