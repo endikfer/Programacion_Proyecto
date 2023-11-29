@@ -8,6 +8,7 @@ public class Cancion extends Artista{
 	protected String name_can;
 	protected Image foto;
 	protected String album;
+	int id;
 	
 	
 	public Cancion(String nombre_Ar, int duration, String name_can, Image foto, String album) {
@@ -18,7 +19,24 @@ public class Cancion extends Artista{
 		this.foto = foto;
 	}
 	
+	public Cancion(String nombre_Ar, int duration, String name_can, Image foto, String album, int id) {
+		super(nombre_Ar);
+		this.name_can = name_can;
+		this.duration = duration;
+		this.album = album;
+		this.foto = foto;
+		this.id = id;
+	}
 	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public Cancion(String nombre_Ar, String name_can, int duration, String album) {
 		super(nombre_Ar);
 		this.name_can = name_can;
@@ -32,6 +50,12 @@ public class Cancion extends Artista{
 		super(nombre_Ar);
 		this.name_can = name_can;
 	}
+	
+	public Cancion() {
+		super(nombre_Ar);
+	}
+
+
 
 
 	public int getDuration() {
