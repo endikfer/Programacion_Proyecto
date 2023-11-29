@@ -13,7 +13,7 @@ import java.util.List;
 
 import canciones.Usuario;
 
-public class BDManejo {
+public class BDManejoUsu {
 	private Connection conn = null; 
 
 
