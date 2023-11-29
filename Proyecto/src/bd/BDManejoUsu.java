@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +39,7 @@ public class BDManejoUsu {
 	public List<Usuario> getAllUsers() throws BDExcepcion {
 		List<Usuario> users = new ArrayList<Usuario>();
 		try (Statement stmt = conn.createStatement()) {
-			ResultSet rs = stmt.executeQuery("SELECT id, name, surname, birthdate FROM user");
+			ResultSet rs = stmt.executeQuery("SELECT id, nombre, gmail, nombre_usu, contraseña");
 
 			while(rs.next()) {
 				Usuario user = new Usuario();
@@ -60,7 +59,7 @@ public class BDManejoUsu {
 
 
 	public void guardar(Usuario user) throws BDExcepcion {
-		try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO user (name, surname, birthdate) VALUES (?, ?, ?)");
+		try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO usuario (nombre, gmail, nombre_usu, contraseña) VALUES (?, ?, ?, ?)");
 				Statement stmtForId = conn.createStatement()) {
 			stmt.setString(1, user.getName_real());
 			stmt.setString(2, user.getGmail());
@@ -70,7 +69,7 @@ public class BDManejoUsu {
 			stmt.executeUpdate();
 
 			//obtiene el id que se acaba de autogenerar
-			ResultSet rs = stmtForId.executeQuery("SELECT last_insert_rowid() AS id FROM user");
+			ResultSet rs = stmtForId.executeQuery("SELECT last_insert_rowid() AS id FROM usuario");
 			if (rs.next()) {
 				int newId = rs.getInt("id");
 				user.setId(newId);
@@ -83,7 +82,7 @@ public class BDManejoUsu {
 	}
 
 	public void eliminar(Usuario user) throws BDExcepcion {
-		try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM user WHERE id=?")) {
+		try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM usuario WHERE id=?")) {
 			stmt.setInt(1, user.getId());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
@@ -93,18 +92,18 @@ public class BDManejoUsu {
 
 	public void CrearTablaUsu() throws BDExcepcion {
 		try (Statement stmt = conn.createStatement()) {
-			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR, surname VARCHAR, birthdate VARCHAR)");
+			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS usuario (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre VARCHAR, gmail VARCHAR, nombre_usu VARCHAR, contraseña VARCHAR)");
 		} catch (SQLException e) {
-			throw new BDExcepcion("Error creando la tabla 'user' en la BD", e);
+			throw new BDExcepcion("Error creando la tabla 'usuario' en la BD", e);
 		}
 	}
 
 
 	public void EliminarTablaUsu() throws BDExcepcion {
 		try (Statement stmt = conn.createStatement()) {
-			stmt.executeUpdate("DROP TABLE IF EXISTS user");
+			stmt.executeUpdate("DROP TABLE IF EXISTS usuario");
 		} catch (SQLException e) {
-			throw new BDExcepcion("Error borrando la tabla 'user' en la BD", e);
+			throw new BDExcepcion("Error borrando la tabla 'usuario' en la BD", e);
 		}
 	}
 }
