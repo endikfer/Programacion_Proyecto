@@ -19,7 +19,8 @@ public class BDManejoUsu {
 	public void connect(String dbPath) throws BDExcepcion {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			conn = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
+			conn = DriverManager.getConnection("jdbc:sqlite:src/bd/Usuario.db");
+//			conn = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
 		} catch (ClassNotFoundException e) {
 			throw new BDExcepcion("Error cargando el driver de la BD", e);
 		} catch (SQLException e) {
@@ -36,14 +37,13 @@ public class BDManejoUsu {
 	}
 	
 	
-	public List<Usuario> getAllUsers() throws BDExcepcion {
+	public List<Usuario> getTodosUsu() throws BDExcepcion {
 		List<Usuario> users = new ArrayList<Usuario>();
 		try (Statement stmt = conn.createStatement()) {
-			ResultSet rs = stmt.executeQuery("SELECT id, nombre, gmail, nombre_usu, contraseña");
+			ResultSet rs = stmt.executeQuery("SELECT nombre, gmail, nombre_usu, contraseña");
 
 			while(rs.next()) {
 				Usuario user = new Usuario();
-				user.setId(rs.getInt("id"));
 				user.setName_real(rs.getString("Nombre"));
 				user.setGmail(rs.getString("Gmail"));
 				user.setName_us(rs.getString("Nombre de usuario"));
@@ -54,6 +54,28 @@ public class BDManejoUsu {
 			return users;
 		} catch (SQLException | DateTimeParseException e) {
 			throw new BDExcepcion("Error obteniendo todos los usuarios'", e);
+		}
+	}
+	
+	
+	public Usuario getUser(String nom) throws BDExcepcion {
+		try (PreparedStatement stmt = conn.prepareStatement("SELECT name, surname, birthdate FROM user WHERE id = ?")) {
+			stmt.setNString(3, nom);
+			
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				Usuario user = new Usuario();
+				user.setName_real(rs.getString("Nombre"));
+				user.setGmail(rs.getString("Gmail"));
+				user.setName_us(rs.getString("Nombre usuario"));
+				user.setPassword(rs.getString("Contraseña"));
+				return user;
+			} else {
+				return new Usuario();
+			}
+		} catch (SQLException | DateTimeParseException e) {
+			throw new BDExcepcion("Error obteniendo el usuario con nombre " + nom, e);
 		}
 	}
 
@@ -67,23 +89,16 @@ public class BDManejoUsu {
 			stmt.setString(4, user.getPassword());
 
 			stmt.executeUpdate();
-
-			//obtiene el id que se acaba de autogenerar
-			ResultSet rs = stmtForId.executeQuery("SELECT last_insert_rowid() AS id FROM usuario");
-			if (rs.next()) {
-				int newId = rs.getInt("id");
-				user.setId(newId);
-			} else {
-				throw new BDExcepcion("Error generando el id autoincremental");
-			}
 		} catch (SQLException e) {
 			throw new BDExcepcion("No se pudo guardar el usuario en la BD", e);
 		}
 	}
 
+	
+	//Incompleto
 	public void eliminar(Usuario user) throws BDExcepcion {
-		try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM usuario WHERE id=?")) {
-			stmt.setInt(1, user.getId());
+		try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM usuario WHERE nombre_usu=?")) {
+			stmt.setNString(3, user.getName_us());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new BDExcepcion("No se pudo elimiar el usuario con id " + user.getId(), e);
@@ -92,7 +107,7 @@ public class BDManejoUsu {
 
 	public void CrearTablaUsu() throws BDExcepcion {
 		try (Statement stmt = conn.createStatement()) {
-			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS usuario (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre VARCHAR, gmail VARCHAR, nombre_usu VARCHAR, contraseña VARCHAR)");
+			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS usuario (nombre_usu VARCHAR PRIMARY KEY, nombre VARCHAR, gmail VARCHAR, contraseña VARCHAR)");
 		} catch (SQLException e) {
 			throw new BDExcepcion("Error creando la tabla 'usuario' en la BD", e);
 		}
