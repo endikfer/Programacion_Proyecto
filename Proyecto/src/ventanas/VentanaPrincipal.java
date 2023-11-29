@@ -26,7 +26,9 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import ventanasadd.Listeners;
 import canciones.ContenedorUsuarios;
@@ -348,15 +350,22 @@ public class VentanaPrincipal extends JFrame {
 		tabla_canciones.setRowHeight(0, 60);
 
 		//componente para el estilo de la JTable
-		Estilotabla estilo = new Estilotabla();
+//		Estilotabla estilo = new Estilotabla();
 
 		//Estilo del Jtable
 		tabla_canciones.setFont(new Font(tabla_canciones.getFont().getName(), tabla_canciones.getFont().getStyle(), 20));
-		tabla_canciones.setDefaultRenderer(Object.class, estilo);
+//		tabla_canciones.setDefaultRenderer(Object.class, estilo);
 
 		//No poder selecionar las columnas
 		tabla_canciones.setColumnSelectionAllowed(false);
 		tabla_canciones.setRowSelectionAllowed(false);
+		
+		//No poder moever las colunas
+		tabla_canciones.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		
+		// Obtener el encabezado de la tabla
+        JTableHeader tableHeader = tabla_canciones.getTableHeader();
+        tableHeader.setFont(new Font("Arial", Font.ITALIC, 30));
 		
 		//El scorll para la tabla
 		Scroll_tabla = new JScrollPane(tabla_canciones);
@@ -599,7 +608,7 @@ public class VentanaPrincipal extends JFrame {
 		a.addColumn("Nomber");
 		a.addColumn("Autor");
 		a.addColumn("Álbum");
-		a.addRow(new Object[] {"Nombre", "Autor", "Album"});
+//		a.addRow(new Object[] {"Nombre", "Autor", "Album"});
 		for(Cancion c: ContenedorCanciones.canciones) {
 			a.addRow(new Object[] {c.getName_can(), c.getNombre_Ar(), c.getAlbum()});
 		}
