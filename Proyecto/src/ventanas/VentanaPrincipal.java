@@ -36,6 +36,7 @@ import canciones.Cancion;
 import canciones.ContenedorCanciones;
 import ventanasadd.CambiarFondo;
 import ventanasadd.CambioSegundoMinuto;
+import ventanasadd.CargarCanciones;
 import ventanasadd.Estilotabla;
 import ventanasadd.Loggers;
 import ventanasadd.Reproductor;
@@ -330,7 +331,7 @@ public class VentanaPrincipal extends JFrame {
 		//JTable
 		DefaultTableModel modelo_tabla_canciones = new DefaultTableModel();
 		modelo_tabla_canciones = new DefaultTableModel();
-		cargar_modelo_tabla_canciones(modelo_tabla_canciones);
+		CargarCanciones.cargar_modelo_tabla_canciones(modelo_tabla_canciones);
 		@SuppressWarnings("serial")
 		JTable tabla_canciones= new JTable(modelo_tabla_canciones) {
 			public boolean isCellEditable(int row, int column) {
@@ -601,19 +602,7 @@ public class VentanaPrincipal extends JFrame {
 
 		setVisible(true);
 	}
-
-	//metodo para lo por defecto de la tabla de cancioens
-	@SuppressWarnings("static-access")
-	public DefaultTableModel cargar_modelo_tabla_canciones(DefaultTableModel a){
-		a.addColumn("Nomber");
-		a.addColumn("Autor");
-		a.addColumn("Álbum");
-//		a.addRow(new Object[] {"Nombre", "Autor", "Album"});
-		for(Cancion c: ContenedorCanciones.canciones) {
-			a.addRow(new Object[] {c.getName_can(), c.getNombre_Ar(), c.getAlbum()});
-		}
-		return a;
-	}
+	
 
 	public static void main(String[] args) {
 		File fichero = new File("Usuarios");
