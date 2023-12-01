@@ -31,6 +31,7 @@ public class VentanaUsuario extends JFrame{
 	private static JPasswordField passConR, passConIs;
 	private static ArrayList<Usuario> usuarios;
 
+	
 	public VentanaUsuario() throws HeadlessException {
 		super();
 		
