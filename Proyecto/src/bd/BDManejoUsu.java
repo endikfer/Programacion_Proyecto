@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,28 +37,29 @@ public class BDManejoUsu {
 
 	public List<Usuario> getTodosUsu() throws BDExcepcion {
 		List<Usuario> users = new ArrayList<Usuario>();
+		
 		try (Statement stmt = conn.createStatement()) {
-			ResultSet rs = stmt.executeQuery("SELECT nombre, gmail, nombre_usu, contraseña");
+			ResultSet rs = stmt.executeQuery("SELECT nombre, gmail, nombre_usu, contraseña from usuario");
 
 			while(rs.next()) {
 				Usuario user = new Usuario();
 				user.setName_real(rs.getString("Nombre"));
 				user.setGmail(rs.getString("Gmail"));
-				user.setName_us(rs.getString("Nombre de usuario"));
+				user.setName_us(rs.getString("Nombre_usu"));
 				user.setPassword(rs.getString("Contraseña"));
 				users.add(user);
 			}
 
 			return users;
-		} catch (SQLException | DateTimeParseException e) {
+		} catch (SQLException e) {
 			throw new BDExcepcion("Error obteniendo todos los usuarios'", e);
 		}
 	}
 
 
 	public Usuario getUser(String nom) throws BDExcepcion {
-		try (PreparedStatement stmt = conn.prepareStatement("SELECT name, surname, birthdate FROM user WHERE id = ?")) {
-			stmt.setNString(3, nom);
+		try (PreparedStatement stmt = conn.prepareStatement("SELECT nombre, gmail, nombre_usu, contraseña FROM usuario WHERE nombre_usu = ?")) {
+			stmt.setString(1, nom);
 
 			ResultSet rs = stmt.executeQuery();
 
@@ -67,13 +67,13 @@ public class BDManejoUsu {
 				Usuario user = new Usuario();
 				user.setName_real(rs.getString("Nombre"));
 				user.setGmail(rs.getString("Gmail"));
-				user.setName_us(rs.getString("Nombre usuario"));
+				user.setName_us(rs.getString("Nombre_usu"));
 				user.setPassword(rs.getString("Contraseña"));
 				return user;
 			} else {
 				return new Usuario();
 			}
-		} catch (SQLException | DateTimeParseException e) {
+		} catch (SQLException e) {
 			throw new BDExcepcion("Error obteniendo el usuario con nombre " + nom, e);
 		}
 	}
@@ -87,8 +87,8 @@ public class BDManejoUsu {
 			stmt.setString(3, user.getName_us());
 			stmt.setString(4, user.getPassword()); 
 			
-			//Error en el executeupdate
 			stmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			throw new BDExcepcion("No se pudo guardar el usuario en la BD", e);
 		}
@@ -98,10 +98,10 @@ public class BDManejoUsu {
 	//Incompleto
 	public void eliminar(Usuario user) throws BDExcepcion {
 		try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM usuario WHERE nombre_usu=?")) {
-			stmt.setNString(3, user.getName_us());
+			stmt.setString(1, user.getName_us());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
-			throw new BDExcepcion("No se pudo elimiar el usuario con id " + user.getName_us(), e);
+			throw new BDExcepcion("No se pudo elimiar el usuario con nombre_usu " + user.getName_us(), e);
 		}
 	}
 
