@@ -34,8 +34,8 @@ public class BDManejoUsu {
 			throw new BDExcepcion("Error cerrando la conexión con la BD", e);
 		}
 	}
-	
-	
+
+
 	public List<Usuario> getTodosUsu() throws BDExcepcion {
 		List<Usuario> users = new ArrayList<Usuario>();
 		try (Statement stmt = conn.createStatement()) {
@@ -49,18 +49,18 @@ public class BDManejoUsu {
 				user.setPassword(rs.getString("Contraseña"));
 				users.add(user);
 			}
-			
+
 			return users;
 		} catch (SQLException | DateTimeParseException e) {
 			throw new BDExcepcion("Error obteniendo todos los usuarios'", e);
 		}
 	}
-	
-	
+
+
 	public Usuario getUser(String nom) throws BDExcepcion {
 		try (PreparedStatement stmt = conn.prepareStatement("SELECT name, surname, birthdate FROM user WHERE id = ?")) {
 			stmt.setNString(3, nom);
-			
+
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
@@ -85,15 +85,16 @@ public class BDManejoUsu {
 			stmt.setString(1, user.getName_real());
 			stmt.setString(2, user.getGmail());
 			stmt.setString(3, user.getName_us());
-			stmt.setString(4, user.getPassword());
-
+			stmt.setString(4, user.getPassword()); 
+			
+			//Error en el executeupdate
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new BDExcepcion("No se pudo guardar el usuario en la BD", e);
 		}
 	}
 
-	
+
 	//Incompleto
 	public void eliminar(Usuario user) throws BDExcepcion {
 		try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM usuario WHERE nombre_usu=?")) {

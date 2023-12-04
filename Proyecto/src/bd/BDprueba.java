@@ -23,10 +23,12 @@ public class BDprueba {
                 user.setGmail(i + "@gmail.com");
                 user.setName_us("Nombre_" + i);
                 user.setPassword("Contraseña" + i);
+                
 
                 // Se guarda el usuario en la base de datos y
                 // el id es generado automáticamente.
                 dbManager.guardar(user);
+
             }
 
             // Recuperamos un usuario de la base de datos.

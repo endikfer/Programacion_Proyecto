@@ -87,10 +87,10 @@ public class BDCanciones {
 
 	public void eliminar(Usuario user) throws BDExcepcion {
 		try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM user WHERE id=?")) {
-			stmt.setInt(1, user.getId());
+//			stmt.setInt(1, user.getId());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
-			throw new BDExcepcion("No se pudo elimiar el usuario con id " + user.getId(), e);
+//			throw new BDExcepcion("No se pudo elimiar el usuario con id " + user.getId(), e);
 		}
 	}
 
