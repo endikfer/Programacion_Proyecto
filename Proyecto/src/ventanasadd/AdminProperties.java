@@ -6,9 +6,8 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class AdminProperties {
-	 static Properties prop;
+	 static Properties prop = new Properties();
 	public static void lectura() {
-		prop = new Properties();
 		try (FileReader reader = new FileReader("prueba.properties")) {
 			prop.load(reader);
 			
@@ -24,7 +23,6 @@ public class AdminProperties {
 	}
 	
 	public static void escritura() {
-		prop = new Properties();
 		try (FileWriter writer = new FileWriter("nuevaprueba.properties")) {
 			prop.store(writer, "Este es el nuevo fichero de configuración");
 		}catch (IOException e) {
