@@ -94,8 +94,7 @@ public class BDManejoUsu {
 		}
 	}
 
-
-	//Incompleto
+	
 	public void eliminar(Usuario user) throws BDExcepcion {
 		try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM usuario WHERE nombre_usu=?")) {
 			stmt.setString(1, user.getName_us());
