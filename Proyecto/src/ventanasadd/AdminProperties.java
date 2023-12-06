@@ -8,7 +8,7 @@ import java.util.Properties;
 public class AdminProperties {
 	 static Properties prop = new Properties();
 	public static void lectura() {
-		try (FileReader reader = new FileReader("prueba.properties")) {
+		try (FileReader reader = new FileReader("properties")) {
 			prop.load(reader);
 			
 			System.out.format("dirImg: %s%n", prop.getProperty("dirImg"));
