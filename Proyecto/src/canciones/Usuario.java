@@ -6,31 +6,13 @@ public class Usuario {
 	String password;
 	String gmail;
 	
-	
-	
-	public Usuario(String name_real, String name_us, String password, String gmail, int id) {
-		super();
-		this.name_real = name_real;
-		this.name_us = name_us;
-		this.password = password;
-		this.gmail = gmail;
-	}
-	
 	public Usuario(String name_real, String name_us, String password, String gmail) {
 		super();
 		this.name_real = name_real;
 		this.name_us = name_us;
 		this.password = password;
 		this.gmail = gmail;
-	}
-
-
-	//prueba
-	public Usuario(String name_us, String password) {
-		this.name_us = name_us;
-		this.password = password;
-	}
-	
+	}	
 
 	public Usuario() {
 	}

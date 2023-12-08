@@ -26,18 +26,19 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import bd.BDExcepcion;
+import bd.BDManejoUsu;
 import ventanasadd.Listeners;
 import canciones.ContenedorUsuarios;
+import canciones.Usuario;
 import canciones.Cancion;
 import canciones.ContenedorCanciones;
 import ventanasadd.CambiarFondo;
 import ventanasadd.CambioSegundoMinuto;
 import ventanasadd.CargarCanciones;
-import ventanasadd.Estilotabla;
 import ventanasadd.Loggers;
 import ventanasadd.Reproductor;
 import ventanasadd.Deslizador;
@@ -58,6 +59,9 @@ public class VentanaPrincipal extends JFrame {
 	public Deslizador deslizador;
 	public Listeners listener;
 	public CambioSegundoMinuto cambiosecmin;
+	
+	public BDManejoUsu bdUsu;
+	public VentanaUsuario vusu;
 	
 	public int tiempo;
 
@@ -188,6 +192,9 @@ public class VentanaPrincipal extends JFrame {
 		
 		cambiosecmin = new CambioSegundoMinuto();
 		
+		bdUsu = new BDManejoUsu();
+		vusu = new VentanaUsuario();
+		
 		listener.PararCancionesAlCerrar();
 		
 		
@@ -303,7 +310,7 @@ public class VentanaPrincipal extends JFrame {
 
 		//RadioButton
 		b_contra = new JRadioButton();
-
+		
 		//TextField
 		t_nombre = new JTextField();
 		t_correo = new JTextField();
@@ -510,6 +517,22 @@ public class VentanaPrincipal extends JFrame {
 		//deslizador
 		duracion_can = new JSlider(0, tiempo, 0);
 
+		
+		
+		
+		
+		//conectando a la  base de datos
+		try {
+			bdUsu.connect("src/bd/Usuario.db");
+			Usuario user =  bdUsu.getUser(vusu.usuarioPrincipal);
+			t_nombre.setText(user.getName_real());
+			t_correo.setText(user.getGmail());
+			t_nom_usu.setText(user.getName_us());
+			p_contra_f.setText(user.getPassword());
+			
+		} catch (BDExcepcion e1) {
+			e1.printStackTrace();
+		}
 
 
 		//Anaydir elementos a los paneles

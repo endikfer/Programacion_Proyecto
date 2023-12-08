@@ -189,7 +189,7 @@ public class VentanaUsuario extends JFrame{
 				String mail = rs.getString("gamil");
 				String password = rs.getString("contraseña");
 				
-				Usuario us = new Usuario(nombre, nombreReal, password, mail, WIDTH);
+				Usuario us = new Usuario(nombre, nombreReal, password, mail);
 				usuarios.add(us);
 			}
 			
