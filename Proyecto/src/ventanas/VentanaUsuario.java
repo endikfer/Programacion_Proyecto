@@ -149,7 +149,7 @@ public class VentanaUsuario extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Usuario us = new Usuario(txtNomRealR.getText(), txtNomR.getText(), passConR.getText(), txtMailR.getText(), WIDTH);
+				Usuario us = new Usuario(txtNomRealR.getText(), txtNomR.getText(), passConR.getText(), txtMailR.getText());
 				
 				if(!usuarios.contains(us)) usuarios.add(us);
 				else JOptionPane.showMessageDialog(pCent, "ESTE USUARIO YA ESTÁ REGISTRADO");
