@@ -142,6 +142,16 @@ public class VentanaUsuario extends JFrame{
 			}
 		});
 		
+		btnR.addActionListener(new ActionListener() {
+			//TODO
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Usuario us = new Usuario(txtNomRealR.getText(), txtNomR.getText(), passConR.getText(), txtMailR.getText(), WIDTH);
+				if(!usuarios.contains(us)) usuarios.add(us);
+				else JOptionPane.showMessageDialog(pCent, "ESTE USUARIO YA ESTÁ REGISTRADO");
+			}
+		});
+		
 				
 		setVisible(true);
 	}
@@ -152,7 +162,11 @@ public class VentanaUsuario extends JFrame{
 	}
 	
 	private static void cargarUsuarios(ArrayList<Usuario> usuarios ,String str){
-		
+		//TODO
+		/**
+		 * Este método lee de una base de datos, y carga los usuarios almacenados en ella en
+		 * un arraylist que es con lo que trabaja luego la ventana.
+		 */
 		try {
 			Connection conn = DriverManager.getConnection(str);
 			Statement stm = conn.createStatement();
