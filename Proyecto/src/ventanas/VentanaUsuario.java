@@ -35,6 +35,7 @@ public class VentanaUsuario extends JFrame{
 	private static JTextField txtNomIs, txtNomR, txtMailR, txtNomRealR;
 	private static JPasswordField passConR, passConIs;
 	private static ArrayList<Usuario> usuarios;
+	public String usuarioPrincipal;
 
 	
 	public VentanaUsuario() throws HeadlessException {
@@ -114,9 +115,9 @@ public class VentanaUsuario extends JFrame{
 		
 		//Eventos
 		
-		btnIs.addActionListener(new ActionListener() {
+		btnIs.addActionListener(new ActionListener() {//TODO
 			/**
-			 * Este método comprueba que los datos del usuario estén guardados en una array,
+			 * Este botón comprueba que los datos del usuario estén guardados en una array,
 			 * si está, le permite acceder a la aplicación, y si no, le salta un error.
 			 */
 			@Override
@@ -124,6 +125,8 @@ public class VentanaUsuario extends JFrame{
 				boolean finish = false;
 				String nombre = txtNomIs.getText();
 				String con = passConIs.getText();
+				
+				usuarioPrincipal = txtNomIs.getText();
 				
 				for(Usuario u : usuarios) {
 					if(u.getName_us().equals(nombre) && u.getPassword().equals(con)) {
@@ -143,12 +146,20 @@ public class VentanaUsuario extends JFrame{
 		});
 		
 		btnR.addActionListener(new ActionListener() {
-			//TODO
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Usuario us = new Usuario(txtNomRealR.getText(), txtNomR.getText(), passConR.getText(), txtMailR.getText(), WIDTH);
+				
 				if(!usuarios.contains(us)) usuarios.add(us);
 				else JOptionPane.showMessageDialog(pCent, "ESTE USUARIO YA ESTÁ REGISTRADO");
+				
+				txtMailR.setText("");
+				txtNomR.setText("");
+				txtNomRealR.setText("");
+				passConR.setText("");
+				
+				actualizarDB("Usuarios.db");
 			}
 		});
 		
@@ -187,8 +198,15 @@ public class VentanaUsuario extends JFrame{
 			conn.close();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	private static void actualizarDB(String str) {
+		//TODO
+		/**
+		 * Este método cargará el arraylist de usuarios en la base de datos de usuarios
+		 * para mantenerla actualizada.
+		 */
 	}
 }
