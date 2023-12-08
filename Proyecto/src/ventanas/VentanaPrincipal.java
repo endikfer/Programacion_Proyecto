@@ -193,7 +193,6 @@ public class VentanaPrincipal extends JFrame {
 		cambiosecmin = new CambioSegundoMinuto();
 		
 		bdUsu = new BDManejoUsu();
-		vusu = new VentanaUsuario();
 		
 		listener.PararCancionesAlCerrar();
 		
@@ -523,7 +522,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		//conectando a la  base de datos
 		try {
-			bdUsu.connect("src/bd/Usuario.db");
+			bdUsu.connect("Usuario.db");
 			Usuario user =  bdUsu.getUser(vusu.usuarioPrincipal);
 			t_nombre.setText(user.getName_real());
 			t_correo.setText(user.getGmail());

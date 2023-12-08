@@ -179,7 +179,7 @@ public class VentanaUsuario extends JFrame{
 		 * un arraylist que es con lo que trabaja luego la ventana.
 		 */
 		try {
-			Connection conn = DriverManager.getConnection(str);
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:" + str);
 			Statement stm = conn.createStatement();
 			ResultSet rs = stm.executeQuery("SELECT (*) FROM usuarios");
 			
