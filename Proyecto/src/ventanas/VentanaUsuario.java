@@ -5,6 +5,11 @@ import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -41,8 +46,7 @@ public class VentanaUsuario extends JFrame{
 		
 		//Inicialización de los componentes
 		usuarios = new ArrayList<Usuario>();
-		usuarios.add(new Usuario("Lucas", "lu", "si"," noemail"));
-		
+		cargarUsuarios(usuarios, "Usuarios.db");
 		
 		pCent = new JPanel();
 		pIs = new JPanel();
@@ -111,7 +115,10 @@ public class VentanaUsuario extends JFrame{
 		//Eventos
 		
 		btnIs.addActionListener(new ActionListener() {
-			
+			/**
+			 * Este método comprueba que los datos del usuario estén guardados en una array,
+			 * si está, le permite acceder a la aplicación, y si no, le salta un error.
+			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				boolean finish = false;
@@ -142,5 +149,32 @@ public class VentanaUsuario extends JFrame{
 	
 	public static void main(String[] args) {
 		VentanaUsuario v = new VentanaUsuario();
+	}
+	
+	private static void cargarUsuarios(ArrayList<Usuario> usuarios ,String str){
+		
+		try {
+			Connection conn = DriverManager.getConnection(str);
+			Statement stm = conn.createStatement();
+			ResultSet rs = stm.executeQuery("SELECT (*) FROM usuarios");
+			
+			while(rs.next()) {
+				String nombre = rs.getString("nombre_usu");
+				String nombreReal = rs.getString("nombre");
+				String mail = rs.getString("gamil");
+				String password = rs.getString("contraseña");
+				
+				Usuario us = new Usuario(nombre, nombreReal, password, mail, WIDTH);
+				usuarios.add(us);
+			}
+			
+			rs.close();
+			stm.close();
+			conn.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
