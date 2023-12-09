@@ -39,14 +39,13 @@ public class BDCanciones {
 	
 	
 	@SuppressWarnings("static-access")
-	public List<Cancion> getAllUsers() throws BDExcepcion {
+	public List<Cancion> getAllCanciones() throws BDExcepcion {
 		List<Cancion> Canc = new ArrayList<Cancion>();
 		try (Statement stmt = conn.createStatement()) {
 			ResultSet rs = stmt.executeQuery("SELECT id, name, surname, birthdate FROM user");
 
 			while(rs.next()) {
 				Cancion can = new Cancion();
-				can.setId(rs.getInt("id"));
 				can.setNombre_Ar(rs.getString("Artista"));
 				can.setName_can(rs.getString("Cancion"));
 				can.setDuration(rs.getInt("Duracion"));
@@ -59,11 +58,33 @@ public class BDCanciones {
 			throw new BDExcepcion("Error obteniendo todos los usuarios'", e);
 		}
 	}
+	
+	@SuppressWarnings("static-access")
+	public Cancion getCancion(String nom) throws BDExcepcion {
+		try (PreparedStatement stmt = conn.prepareStatement("SELECT nombre, nombre_Ar, duration, album FROM usuario WHERE nombre_usu = ?")) {
+			stmt.setString(1, nom);
+
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				Cancion can = new Cancion();
+				can.setName_can(rs.getString("Nombre"));
+				can.setNombre_Ar(rs.getString("Nombre_Ar"));
+				can.setDuration(rs.getInt("Duracion"));
+				can.setAlbum(rs.getString("Album"));
+				return can;
+			} else {
+				return new Cancion();
+			}
+		} catch (SQLException e) {
+			throw new BDExcepcion("Error obteniendo el usuario con nombre " + nom, e);
+		}
+	}
 
 
 	@SuppressWarnings("static-access")
-	public void guardar(Cancion c) throws BDExcepcion {
-		try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO user (name, surname, birthdate) VALUES (?, ?, ?)");
+	public void guardarCan(Cancion c) throws BDExcepcion {
+		try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO Cancion (Nombre, Nombre_Ar, Duracion, Album) VALUES (?, ?, ?, ?)");
 				Statement stmtForId = conn.createStatement()) {
 			stmt.setString(1, c.getNombre_Ar());
 			stmt.setString(2, c.getName_can());
@@ -71,43 +92,34 @@ public class BDCanciones {
 			stmt.setString(4, c.getAlbum());
 
 			stmt.executeUpdate();
-
-			//obtiene el id que se acaba de autogenerar
-			ResultSet rs = stmtForId.executeQuery("SELECT last_insert_rowid() AS id FROM user");
-			if (rs.next()) {
-				int newId = rs.getInt("id");
-				c.setId(newId);
-			} else {
-				throw new BDExcepcion("Error generando el id autoincremental");
-			}
 		} catch (SQLException e) {
 			throw new BDExcepcion("No se pudo guardar el usuario en la BD", e);
 		}
 	}
 
-	public void eliminar(Usuario user) throws BDExcepcion {
+	public void eliminarCan(Cancion can) throws BDExcepcion {
 		try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM user WHERE id=?")) {
-//			stmt.setInt(1, user.getId());
+			stmt.setString(1, can.getName_can());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
-//			throw new BDExcepcion("No se pudo elimiar el usuario con id " + user.getId(), e);
+			throw new BDExcepcion("No se pudo elimiar el usuario con nombre_usu " + can.getName_can(), e);
 		}
 	}
 
-	public void CrearTablaUsu() throws BDExcepcion {
+	public void CrearTablaCanc() throws BDExcepcion {
 		try (Statement stmt = conn.createStatement()) {
-			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR, surname VARCHAR, birthdate VARCHAR)");
+			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Canc (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR, Name_Ar VARCHAR, Duration INT, Album VARCHAR)");
 		} catch (SQLException e) {
-			throw new BDExcepcion("Error creando la tabla 'user' en la BD", e);
+			throw new BDExcepcion("Error creando la tabla 'canc' en la BD", e);
 		}
 	}
 
 
-	public void EliminarTablaUsu() throws BDExcepcion {
+	public void EliminarTablaCanc() throws BDExcepcion {
 		try (Statement stmt = conn.createStatement()) {
-			stmt.executeUpdate("DROP TABLE IF EXISTS user");
+			stmt.executeUpdate("DROP TABLE IF EXISTS Canc");
 		} catch (SQLException e) {
-			throw new BDExcepcion("Error borrando la tabla 'user' en la BD", e);
+			throw new BDExcepcion("Error borrando la tabla 'canc' en la BD", e);
 		}
 	}
 }
