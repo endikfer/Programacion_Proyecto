@@ -42,36 +42,36 @@ public class BDCanciones {
 	public List<Cancion> getAllCanciones() throws BDExcepcion {
 		List<Cancion> Canc = new ArrayList<Cancion>();
 		try (Statement stmt = conn.createStatement()) {
-			ResultSet rs = stmt.executeQuery("SELECT id, name, surname, birthdate FROM user");
+			ResultSet rs = stmt.executeQuery("SELECT nombre, nombre_Ar, duracion, album FROM user");
 
 			while(rs.next()) {
 				Cancion can = new Cancion();
-				can.setNombre_Ar(rs.getString("Artista"));
-				can.setName_can(rs.getString("Cancion"));
-				can.setDuration(rs.getInt("Duracion"));
-				can.setAlbum(rs.getString("Album"));
+				can.setName_can(rs.getString("nombre"));
+				can.setNombre_Ar(rs.getString("Nombre_Ar"));
+				can.setDuration(rs.getInt("duracion"));
+				can.setAlbum(rs.getString("album"));
 				Canc.add(can);
 			}
 			
 			return Canc;
 		} catch (SQLException | DateTimeParseException e) {
-			throw new BDExcepcion("Error obteniendo todos los usuarios'", e);
+			throw new BDExcepcion("Error obteniendo todos las cancion'", e);
 		}
 	}
 	
 	@SuppressWarnings("static-access")
 	public Cancion getCancion(String nom) throws BDExcepcion {
-		try (PreparedStatement stmt = conn.prepareStatement("SELECT nombre, nombre_Ar, duration, album FROM usuario WHERE nombre_usu = ?")) {
+		try (PreparedStatement stmt = conn.prepareStatement("SELECT nombre, nombre_Ar, duration, album FROM cancion WHERE Name_can = ?")) {
 			stmt.setString(1, nom);
 
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
 				Cancion can = new Cancion();
-				can.setName_can(rs.getString("Nombre"));
-				can.setNombre_Ar(rs.getString("Nombre_Ar"));
-				can.setDuration(rs.getInt("Duracion"));
-				can.setAlbum(rs.getString("Album"));
+				can.setName_can(rs.getString("nombre"));
+				can.setNombre_Ar(rs.getString("nombre_Ar"));
+				can.setDuration(rs.getInt("duracion"));
+				can.setAlbum(rs.getString("album"));
 				return can;
 			} else {
 				return new Cancion();
@@ -84,42 +84,42 @@ public class BDCanciones {
 
 	@SuppressWarnings("static-access")
 	public void guardarCan(Cancion c) throws BDExcepcion {
-		try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO Cancion (Nombre, Nombre_Ar, Duracion, Album) VALUES (?, ?, ?, ?)");
+		try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO cancion (nombre, nombre_Ar, duracion, album) VALUES (?, ?, ?, ?)");
 				Statement stmtForId = conn.createStatement()) {
-			stmt.setString(1, c.getNombre_Ar());
-			stmt.setString(2, c.getName_can());
+			stmt.setString(1, c.getName_can());
+			stmt.setString(2, c.getNombre_Ar());
 			stmt.setInt(3, c.getDuration());
 			stmt.setString(4, c.getAlbum());
 
 			stmt.executeUpdate();
 		} catch (SQLException e) {
-			throw new BDExcepcion("No se pudo guardar el usuario en la BD", e);
+			throw new BDExcepcion("No se pudo guardar el cancion en la BD", e);
 		}
 	}
 
 	public void eliminarCan(Cancion can) throws BDExcepcion {
-		try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM user WHERE id=?")) {
+		try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM cancion WHERE id=?")) {
 			stmt.setString(1, can.getName_can());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
-			throw new BDExcepcion("No se pudo elimiar el usuario con nombre_usu " + can.getName_can(), e);
+			throw new BDExcepcion("No se pudo elimiar de la cancion con nombre " + can.getName_can(), e);
 		}
 	}
 
 	public void CrearTablaCanc() throws BDExcepcion {
 		try (Statement stmt = conn.createStatement()) {
-			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Canc (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR, Name_Ar VARCHAR, Duration INT, Album VARCHAR)");
+			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS cancion (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre VARCHAR, name_Ar VARCHAR, duration INT, album VARCHAR)");
 		} catch (SQLException e) {
-			throw new BDExcepcion("Error creando la tabla 'canc' en la BD", e);
+			throw new BDExcepcion("Error creando la tabla 'cancion' en la BD", e);
 		}
 	}
 
 
 	public void EliminarTablaCanc() throws BDExcepcion {
 		try (Statement stmt = conn.createStatement()) {
-			stmt.executeUpdate("DROP TABLE IF EXISTS Canc");
+			stmt.executeUpdate("DROP TABLE IF EXISTS cancion");
 		} catch (SQLException e) {
-			throw new BDExcepcion("Error borrando la tabla 'canc' en la BD", e);
+			throw new BDExcepcion("Error borrando la tabla 'cancion' en la BD", e);
 		}
 	}
 }

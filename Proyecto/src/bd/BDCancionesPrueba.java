@@ -22,10 +22,10 @@ public class BDCancionesPrueba {
             for (int i = 1; i <= 5; i++) {
             	Random random = new Random();
                 Cancion c = new Cancion();
-                c.setName_can("Nombre" + i);
-                c.setNombre_Ar("Artista" + i);
+                c.setName_can("nombre" + i);
+                c.setNombre_Ar("artista" + i);
                 c.setDuration(random.nextInt(500));
-                c.setAlbum("Album" + i);
+                c.setAlbum("album" + i);
                 
 
                 // Se guarda el Cancion en la base de datos y
