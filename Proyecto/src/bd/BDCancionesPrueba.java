@@ -13,7 +13,7 @@ public class BDCancionesPrueba {
 		BDCanciones dbManager = new BDCanciones();
         try {
             System.out.println("Conectando con la base de datos...");
-            dbManager.connect("src/bd/Usuario.db");
+            dbManager.connect("Usuario.db");
             // Creamos la tabla de Cancion al iniciar el programa.
             dbManager.CrearTablaCanc();
 
@@ -35,9 +35,9 @@ public class BDCancionesPrueba {
 
             // Recuperamos un Cancion de la base de datos.
             // se crea de cero al iniciar el programa
-            System.out.println("Recuperando usuario con id '2'");
-            Cancion can = dbManager.getCancion("Nombre2");
-            System.out.println("Usuario recuperado: " + can);
+            System.out.println("Recuperando cancion con nombre 'nombre2'");
+            Cancion can = dbManager.getCancion("nombre2");
+            System.out.println("Cancion recuperado: " + can);
 
             // Se borra el usuario recuperado.
             dbManager.eliminarCan(can);

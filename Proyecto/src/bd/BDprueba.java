@@ -10,10 +10,13 @@ public class BDprueba {
 		BDManejoUsu dbManager = new BDManejoUsu();
         try {
             System.out.println("Conectando con la base de datos...");
-            dbManager.connect("src/bd/Usuario.db");
+            dbManager.connect("Usuario.db");
 
+            dbManager.EliminarTablaUsu();
+            
             // Creamos la tabla de usuario al iniciar el programa.
             dbManager.CrearTablaUsu();
+            System.out.println("Hola");
 
             // Vamos a insertar 5 usuarios con nombres, apellidos y fechas.
             System.out.println("Introduciendo usuarios ...");
@@ -35,7 +38,7 @@ public class BDprueba {
             // En este ejemplo podemos adivinar el id porque la tabla
             // se crea de cero al iniciar el programa y los ids generados
             // son consecutivos.
-            System.out.println("Recuperando usuario con id '2'");
+            System.out.println("Recuperando usuario con 'nombre2'");
             Usuario user = dbManager.getUser("Nombre2");
             System.out.println("Usuario recuperado: " + user);
 

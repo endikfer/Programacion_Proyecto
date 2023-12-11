@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import canciones.Cancion;
-import canciones.Usuario;
 
 public class BDCanciones {
 	
@@ -23,9 +22,9 @@ public class BDCanciones {
 			Class.forName("org.sqlite.JDBC");
 			conn = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
 		} catch (ClassNotFoundException e) {
-			throw new BDExcepcion("Error cargando el driver de la BD de canciones", e);
+			throw new BDExcepcion("Error cargando el driver de la BD", e);
 		} catch (SQLException e) {
-			throw new BDExcepcion("Error conectando a la BD de canciones", e);
+			throw new BDExcepcion("Error conectando a la BD", e);
 		}
 	}
 
@@ -33,7 +32,7 @@ public class BDCanciones {
 		try {
 			conn.close();
 		} catch (SQLException e) {
-			throw new BDExcepcion("Error cerrando la conexión con la BD de canciones", e);
+			throw new BDExcepcion("Error cerrando la conexión con la BD", e);
 		}
 	}
 	
@@ -42,7 +41,7 @@ public class BDCanciones {
 	public List<Cancion> getAllCanciones() throws BDExcepcion {
 		List<Cancion> Canc = new ArrayList<Cancion>();
 		try (Statement stmt = conn.createStatement()) {
-			ResultSet rs = stmt.executeQuery("SELECT nombre, nombre_Ar, duracion, album FROM user");
+			ResultSet rs = stmt.executeQuery("SELECT nombre, nombre_Ar, duracion, album FROM cancion");
 
 			while(rs.next()) {
 				Cancion can = new Cancion();
@@ -61,7 +60,7 @@ public class BDCanciones {
 	
 	@SuppressWarnings("static-access")
 	public Cancion getCancion(String nom) throws BDExcepcion {
-		try (PreparedStatement stmt = conn.prepareStatement("SELECT nombre, nombre_Ar, duration, album FROM cancion WHERE Name_can = ?")) {
+		try (PreparedStatement stmt = conn.prepareStatement("SELECT nombre, nombre_Ar, duration, album FROM cancion WHERE nombre = ?")) {
 			stmt.setString(1, nom);
 
 			ResultSet rs = stmt.executeQuery();
@@ -98,7 +97,7 @@ public class BDCanciones {
 	}
 
 	public void eliminarCan(Cancion can) throws BDExcepcion {
-		try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM cancion WHERE id=?")) {
+		try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM cancion WHERE nombre=?")) {
 			stmt.setString(1, can.getName_can());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
@@ -108,7 +107,7 @@ public class BDCanciones {
 
 	public void CrearTablaCanc() throws BDExcepcion {
 		try (Statement stmt = conn.createStatement()) {
-			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS cancion (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre VARCHAR, name_Ar VARCHAR, duration INT, album VARCHAR)");
+			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS cancion (nombre VARCHAR PRIMARY KEY, name_Ar VARCHAR, duration INT, album VARCHAR)");
 		} catch (SQLException e) {
 			throw new BDExcepcion("Error creando la tabla 'cancion' en la BD", e);
 		}
