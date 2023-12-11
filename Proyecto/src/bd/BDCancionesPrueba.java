@@ -14,24 +14,29 @@ public class BDCancionesPrueba {
         try {
             System.out.println("Conectando con la base de datos...");
             dbManager.connect("Usuario.db");
+            dbManager.EliminarTablaCanc();
             // Creamos la tabla de Cancion al iniciar el programa.
             dbManager.CrearTablaCanc();
 
             // Vamos a insertar 5 Cancion .
             System.out.println("Introduciendo Cancniones ...");
-            for (int i = 1; i <= 5; i++) {
-            	Random random = new Random();
-                Cancion c = new Cancion();
-                c.setName_can("nombre" + i);
-                c.setNombre_Ar("artista" + i);
-                c.setDuration(random.nextInt(500));
-                c.setAlbum("album" + i);
+//            for (int i = 1; i <= 5; i++) {
+//            	Random random = new Random();
+//                Cancion c = new Cancion();
+//                c.setName_can("nombre" + i);
+//                c.setNombre_Ar("artista" + i);
+//                c.setDuration(random.nextInt(500));
+//                c.setAlbum("album" + i);
+            Cancion c = new Cancion();
+            c.setName_can("Paco");
+            c.setNombre_Ar("Roberto");
+            c.setDuration(150);
+            c.setAlbum("Repe");
                 
 
                 // Se guarda el Cancion en la base de datos y
                 dbManager.guardarCan(c);
 
-            }
 
             // Recuperamos un Cancion de la base de datos.
             // se crea de cero al iniciar el programa
@@ -46,15 +51,14 @@ public class BDCancionesPrueba {
             // en una lista. Comprobamos que se ha borrado el Cancion '2'
             // y que se ha modificado el Cancion '3'.
             List<Cancion> canc = dbManager.getAllCanciones();
-            for (Cancion c : canc) {
+            for (Cancion c1 : canc) {
                 System.out.println("Cancion en la base de datos");
-                System.out.println(c);
+                System.out.println(c1);
             }
 
             // Al terminar se borra la tabla de Cancion de la base de datos.
             // Esto no es lo normal ya que queremos que los datos se mantengan
             // entre ejecuciones del programa, pero sirve como ejemplo.
-            dbManager.EliminarTablaCanc();
 
 
             // Se cierra la conexión a la base de datos.

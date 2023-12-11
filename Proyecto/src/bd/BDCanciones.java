@@ -60,7 +60,7 @@ public class BDCanciones {
 	
 	@SuppressWarnings("static-access")
 	public Cancion getCancion(String nom) throws BDExcepcion {
-		try (PreparedStatement stmt = conn.prepareStatement("SELECT nombre, nombre_Ar, duration, album FROM cancion WHERE nombre = ?")) {
+		try (PreparedStatement stmt = conn.prepareStatement("SELECT nombre, nombre_Ar, duracion, album FROM cancion WHERE nombre = ?")) {
 			stmt.setString(1, nom);
 
 			ResultSet rs = stmt.executeQuery();
@@ -107,7 +107,7 @@ public class BDCanciones {
 
 	public void CrearTablaCanc() throws BDExcepcion {
 		try (Statement stmt = conn.createStatement()) {
-			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS cancion (nombre VARCHAR PRIMARY KEY, name_Ar VARCHAR, duration INT, album VARCHAR)");
+			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS cancion (nombre VARCHAR PRIMARY KEY, name_Ar VARCHAR, duracion INT, album VARCHAR)");
 		} catch (SQLException e) {
 			throw new BDExcepcion("Error creando la tabla 'cancion' en la BD", e);
 		}
