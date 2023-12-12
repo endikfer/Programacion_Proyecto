@@ -41,7 +41,7 @@ public class BDCanciones {
 	public List<Cancion> getAllCanciones() throws BDExcepcion {
 		List<Cancion> Canc = new ArrayList<Cancion>();
 		try (Statement stmt = conn.createStatement()) {
-			ResultSet rs = stmt.executeQuery("SELECT * FROM cancion");
+			ResultSet rs = stmt.executeQuery("SELECT nombre, nombre_Ar, duracion, album FROM cancion");
 
 			while(rs.next()) {
 				Cancion can = new Cancion();
@@ -59,7 +59,7 @@ public class BDCanciones {
 	}
 	
 	public Cancion getCancion(String nom) throws BDExcepcion {
-		try (PreparedStatement stmt = conn.prepareStatement("SELECT * FROM cancion WHERE nombre = ?")) {
+		try (PreparedStatement stmt = conn.prepareStatement("SELECT nombre, nombre_Ar, duracion, album FROM cancion WHERE nombre = ?")) {
 			stmt.setString(1, nom);
 
 			ResultSet rs = stmt.executeQuery();
