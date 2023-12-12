@@ -61,6 +61,7 @@ public class VentanaPrincipal extends JFrame {
 	public Deslizador deslizador;
 	public Listeners listener;
 	public CambioSegundoMinuto cambiosecmin;
+	public CargarCanciones cargacancion;
 
 	public BDManejoUsu bdUsu;
 	public VentanaUsuario vusu;
@@ -194,6 +195,8 @@ public class VentanaPrincipal extends JFrame {
 		listener = new Listeners(this);
 
 		cambiosecmin = new CambioSegundoMinuto();
+		
+		cargacancion = new CargarCanciones();
 
 		bdUsu = new BDManejoUsu();
 
@@ -343,7 +346,7 @@ public class VentanaPrincipal extends JFrame {
 			//JTable
 			DefaultTableModel modelo_tabla_canciones = new DefaultTableModel();
 			modelo_tabla_canciones = new DefaultTableModel();
-			CargarCanciones.cargar_modelo_tabla_canciones(modelo_tabla_canciones);
+			cargacancion.cargar_modelo_tabla_canciones(modelo_tabla_canciones);
 			@SuppressWarnings("serial")
 			JTable tabla_canciones= new JTable(modelo_tabla_canciones) {
 				public boolean isCellEditable(int row, int column) {
@@ -354,13 +357,13 @@ public class VentanaPrincipal extends JFrame {
 
 
 			//tamaños del JTable
-			tabla_canciones.getColumnModel().getColumn(0).setPreferredWidth(400);
-			tabla_canciones.getColumnModel().getColumn(1).setPreferredWidth(400);
-			tabla_canciones.getColumnModel().getColumn(2).setPreferredWidth(400);
+			tabla_canciones.getColumnModel().getColumn(0).setPreferredWidth(300);
+			tabla_canciones.getColumnModel().getColumn(1).setPreferredWidth(300);
+			tabla_canciones.getColumnModel().getColumn(2).setPreferredWidth(300);
+			tabla_canciones.getColumnModel().getColumn(3).setPreferredWidth(300);
 			tabla_canciones.getColumnModel().setColumnMargin(10);
 			tabla_canciones.setRowMargin(10);
 			tabla_canciones.setRowHeight(40);
-			tabla_canciones.setRowHeight(0, 60);
 
 			//componente para el estilo de la JTable
 			//		Estilotabla estilo = new Estilotabla();
@@ -383,7 +386,6 @@ public class VentanaPrincipal extends JFrame {
 			//El scorll para la tabla
 			Scroll_tabla = new JScrollPane(tabla_canciones);
 			Scroll_tabla.setPreferredSize(new Dimension(1200, 500));
-			Scroll_tabla.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 			Scroll_tabla.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 

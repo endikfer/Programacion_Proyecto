@@ -20,7 +20,7 @@ public class BDCancionesPrueba {
 
             // Vamos a insertar 5 Cancion .
             System.out.println("Introduciendo Cancniones ...");
-            for (int i = 1; i <= 5; i++) {
+            for (int i = 1; i <= 15; i++) {
             	Random random = new Random();
                 Cancion c = new Cancion();
                 c.setName_can("nombre" + i);
@@ -55,7 +55,7 @@ public class BDCancionesPrueba {
             // Al terminar se borra la tabla de Cancion de la base de datos.
             // Esto no es lo normal ya que queremos que los datos se mantengan
             // entre ejecuciones del programa, pero sirve como ejemplo.
-            dbManager.EliminarTablaCanc();
+//            dbManager.EliminarTablaCanc();
 
             // Se cierra la conexión a la base de datos.
             dbManager.disconnect();

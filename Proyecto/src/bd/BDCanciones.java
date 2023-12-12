@@ -37,16 +37,16 @@ public class BDCanciones {
 	}
 	
 	
-	@SuppressWarnings("static-access")
+
 	public List<Cancion> getAllCanciones() throws BDExcepcion {
 		List<Cancion> Canc = new ArrayList<Cancion>();
 		try (Statement stmt = conn.createStatement()) {
-			ResultSet rs = stmt.executeQuery("SELECT nombre, nombre_Ar, duracion, album FROM cancion");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM cancion");
 
 			while(rs.next()) {
 				Cancion can = new Cancion();
 				can.setName_can(rs.getString("nombre"));
-				can.setNombre_Ar(rs.getString("Nombre_Ar"));
+				can.setNombre_Ar(rs.getString("nombre_Ar"));
 				can.setDuration(rs.getInt("duracion"));
 				can.setAlbum(rs.getString("album"));
 				Canc.add(can);
@@ -58,9 +58,8 @@ public class BDCanciones {
 		}
 	}
 	
-	@SuppressWarnings("static-access")
 	public Cancion getCancion(String nom) throws BDExcepcion {
-		try (PreparedStatement stmt = conn.prepareStatement("SELECT nombre, nombre_Ar, duracion, album FROM cancion WHERE nombre = ?")) {
+		try (PreparedStatement stmt = conn.prepareStatement("SELECT * FROM cancion WHERE nombre = ?")) {
 			stmt.setString(1, nom);
 
 			ResultSet rs = stmt.executeQuery();
@@ -81,7 +80,6 @@ public class BDCanciones {
 	}
 
 
-	@SuppressWarnings("static-access")
 	public void guardarCan(Cancion c) throws BDExcepcion {
 		try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO cancion (nombre, nombre_Ar, duracion, album) VALUES (?, ?, ?, ?)");
 				Statement stmtForId = conn.createStatement()) {
