@@ -117,6 +117,7 @@ public class VentanaPrincipal extends JFrame {
 	public JLabel l_contra;
 	
 	
+	
 	public JLabel relleno1;
 	public JLabel relleno2;
 	public JLabel relleno3;
