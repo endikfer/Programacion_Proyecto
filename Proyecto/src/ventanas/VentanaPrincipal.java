@@ -117,7 +117,6 @@ public class VentanaPrincipal extends JFrame {
 	public JLabel l_contra;
 	
 	
-	
 	public JLabel relleno1;
 	public JLabel relleno2;
 	public JLabel relleno3;
@@ -350,6 +349,7 @@ public class VentanaPrincipal extends JFrame {
 			relleno2 = new JLabel();
 			relleno3 = new JLabel();
 			relleno4 = new JLabel();
+			
 			
 			//texto
 			busqueda = new JTextField(50);
