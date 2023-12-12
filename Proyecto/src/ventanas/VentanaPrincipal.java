@@ -37,6 +37,7 @@ import bd.BDExcepcion;
 import bd.BDManejoUsu;
 import ventanasadd.Listeners;
 import canciones.ContenedorUsuarios;
+import canciones.Usuario;
 import canciones.Cancion;
 import canciones.ContenedorCanciones;
 import ventanasadd.CambiarFondo;
@@ -555,11 +556,11 @@ public class VentanaPrincipal extends JFrame {
 			//conectando a la  base de datos
 			try {
 				bdUsu.connect("Usuario.db");
-				//			Usuario user =  bdUsu.getUser(vusu.usuarioPrincipal);
-				//			t_nombre.setText(user.getName_real());
-				//			t_correo.setText(user.getGmail());
-				//			t_nom_usu.setText(user.getName_us());
-				//			p_contra_f.setText(user.getPassword());
+//							Usuario user =  bdUsu.getUser(vusu.usuarioPrincipal);
+//							t_nombre.setText(user.getName_real());
+//							t_correo.setText(user.getGmail());
+//							t_nom_usu.setText(user.getName_us());
+//							p_contra_f.setText(user.getPassword());
 
 			} catch (BDExcepcion e1) {
 				e1.printStackTrace();
