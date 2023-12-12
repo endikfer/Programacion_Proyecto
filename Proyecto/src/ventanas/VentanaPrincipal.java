@@ -388,6 +388,7 @@ public class VentanaPrincipal extends JFrame {
 			tabla_canciones.getColumnModel().setColumnMargin(10);
 			tabla_canciones.setRowMargin(10);
 			tabla_canciones.setRowHeight(40);
+			
 
 			//componente para el estilo de la JTable
 			//		Estilotabla estilo = new Estilotabla();
@@ -400,12 +401,13 @@ public class VentanaPrincipal extends JFrame {
 			tabla_canciones.setColumnSelectionAllowed(false);
 			tabla_canciones.setRowSelectionAllowed(false);
 
-			//No poder moever las colunas
-			tabla_canciones.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
 			// Obtener el encabezado de la tabla
 			JTableHeader tableHeader = tabla_canciones.getTableHeader();
 			tableHeader.setFont(new Font("Arial", Font.ITALIC, 30));
+			
+			//No poder moever las colunas
+			tableHeader.setReorderingAllowed(false);
+			
 
 			//El scorll para la tabla
 			Scroll_tabla = new JScrollPane(tabla_canciones);
