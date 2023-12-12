@@ -15,6 +15,7 @@ import java.util.Properties;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -85,6 +86,7 @@ public class VentanaPrincipal extends JFrame {
 	public JPanel centro_arriba;
 	public JPanel boton_medio;
 	public JPanel centro_canciones;
+	public JPanel p_combo;
 
 	public JPanel p_cola;
 
@@ -113,6 +115,12 @@ public class VentanaPrincipal extends JFrame {
 	public JLabel l_correo;
 	public JLabel l_nom_usu;
 	public JLabel l_contra;
+	
+	
+	public JLabel relleno1;
+	public JLabel relleno2;
+	public JLabel relleno3;
+	public JLabel relleno4;
 
 	public JPasswordField p_contra_f;
 
@@ -174,6 +182,8 @@ public class VentanaPrincipal extends JFrame {
 	public JLabel t_duracion;
 	public JLabel foto_can;
 	public JLabel nom_can;
+	
+	public JComboBox<String> orden;
 
 	public JList<Cancion> listaCancionesCola;
 	public ArrayList<Cancion> canciones;
@@ -331,6 +341,15 @@ public class VentanaPrincipal extends JFrame {
 
 
 			//Canciones
+			//Panel
+			p_combo = new JPanel(new GridLayout(1,6));
+			
+			//Label
+			relleno1 = new JLabel();
+			relleno2 = new JLabel();
+			relleno3 = new JLabel();
+			relleno4 = new JLabel();
+			
 			//texto
 			busqueda = new JTextField(50);
 
@@ -341,6 +360,10 @@ public class VentanaPrincipal extends JFrame {
 			//Botones
 			b_cancion_nueva = new JButton("Añadir canción");
 			lupa = new JButton(i_lupa);
+			
+			//ComboBox
+			String [] ordenes = {"A --> Z", "Z --> A", "Menos duracion", "Mas duracion"}; 
+			orden = new JComboBox<>(ordenes);
 
 
 			//JTable
@@ -585,7 +608,13 @@ public class VentanaPrincipal extends JFrame {
 			centro_arriba.add(busqueda);
 			centro_arriba.add(lupa);
 			centro_canciones.add(Scroll_tabla);
-			p_canciones.add(boton_medio, BorderLayout.SOUTH);
+			p_combo.add(orden);
+			p_combo.add(relleno1);
+			p_combo.add(relleno2);
+			p_combo.add(relleno3);
+			p_combo.add(boton_medio);
+			p_combo.add(relleno4);
+			p_canciones.add(p_combo, BorderLayout.SOUTH);
 			p_canciones.add(centro_arriba, BorderLayout.NORTH);
 			p_canciones.add(centro_canciones, BorderLayout.CENTER);
 
