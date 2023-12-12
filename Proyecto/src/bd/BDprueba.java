@@ -16,7 +16,6 @@ public class BDprueba {
             
             // Creamos la tabla de usuario al iniciar el programa.
             dbManager.CrearTablaUsu();
-            System.out.println("Hola");
 
             // Vamos a insertar 5 usuarios con nombres, apellidos y fechas.
             System.out.println("Introduciendo usuarios ...");

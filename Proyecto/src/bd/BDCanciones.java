@@ -107,7 +107,7 @@ public class BDCanciones {
 
 	public void CrearTablaCanc() throws BDExcepcion {
 		try (Statement stmt = conn.createStatement()) {
-			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS cancion (nombre VARCHAR PRIMARY KEY, name_Ar VARCHAR, duracion INT, album VARCHAR)");
+			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS cancion (nombre VARCHAR PRIMARY KEY, nombre_Ar VARCHAR, duracion INT, album VARCHAR)");
 		} catch (SQLException e) {
 			throw new BDExcepcion("Error creando la tabla 'cancion' en la BD", e);
 		}

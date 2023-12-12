@@ -20,22 +20,18 @@ public class BDCancionesPrueba {
 
             // Vamos a insertar 5 Cancion .
             System.out.println("Introduciendo Cancniones ...");
-//            for (int i = 1; i <= 5; i++) {
-//            	Random random = new Random();
-//                Cancion c = new Cancion();
-//                c.setName_can("nombre" + i);
-//                c.setNombre_Ar("artista" + i);
-//                c.setDuration(random.nextInt(500));
-//                c.setAlbum("album" + i);
-            Cancion c = new Cancion();
-            c.setName_can("Paco");
-            c.setNombre_Ar("Roberto");
-            c.setDuration(150);
-            c.setAlbum("Repe");
+            for (int i = 1; i <= 5; i++) {
+            	Random random = new Random();
+                Cancion c = new Cancion();
+                c.setName_can("nombre" + i);
+                c.setNombre_Ar("artista" + i);
+                c.setDuration(random.nextInt(500));
+                c.setAlbum("album" + i);
                 
 
                 // Se guarda el Cancion en la base de datos y
                 dbManager.guardarCan(c);
+            }
 
 
             // Recuperamos un Cancion de la base de datos.
@@ -59,7 +55,7 @@ public class BDCancionesPrueba {
             // Al terminar se borra la tabla de Cancion de la base de datos.
             // Esto no es lo normal ya que queremos que los datos se mantengan
             // entre ejecuciones del programa, pero sirve como ejemplo.
-
+            dbManager.EliminarTablaCanc();
 
             // Se cierra la conexión a la base de datos.
             dbManager.disconnect();
