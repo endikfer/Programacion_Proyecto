@@ -552,7 +552,7 @@ public class VentanaPrincipal extends JFrame {
 
 
 
-
+º
 			//conectando a la  base de datos
 			try {
 				bdUsu.connect("Usuario.db");
