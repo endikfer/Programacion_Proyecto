@@ -75,10 +75,10 @@ public class ContenedorUsuarios {
 				}
 				int i = 4;
 				while (i < campos.length) {
-					Cancion c = new Cancion(campos[i], campos[i+1]);
-					if(!Usuarios.get(u).contains(c)) {
-						Usuarios.get(u).add(c);
-					}
+//					Cancion c = new Cancion(campos[i], campos[i+1]);
+//					if(!Usuarios.get(u).contains(c)) {
+//						Usuarios.get(u).add(c);
+//					}
 					i += 2;
 					}
 

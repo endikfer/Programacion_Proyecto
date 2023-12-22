@@ -26,16 +26,9 @@ public class Cancion extends Artista{
 		this.duration = duration;
 		this.album = album;
 	}
-
-
-	//Prueba luego se quita
-	public Cancion(String nombre_Ar, String name_can) {
-		super(nombre_Ar);
-		this.name_can = name_can;
-	}
 	
 	public Cancion() {
-		super(nombre_Ar);
+		super("");
 	}
 
 
@@ -82,6 +75,6 @@ public class Cancion extends Artista{
 	
 	@Override
 	public String toString() {
-		return name_can +", duracion: " + duration + ", album: " + album;
+		return "nombre: " + name_can + ", artista: " +  nombre_Ar + ", duracion: " + duration + ", album: " + album;
 	}
 }

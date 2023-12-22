@@ -10,6 +10,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import canciones.Artista;
 import canciones.Cancion;
 
 public class BDCanciones {
@@ -44,9 +45,10 @@ public class BDCanciones {
 			ResultSet rs = stmt.executeQuery("SELECT nombre, nombre_Ar, duracion, album FROM cancion");
 
 			while(rs.next()) {
+				Artista a = new Artista(rs.getString("nombre_Ar"));
 				Cancion can = new Cancion();
 				can.setName_can(rs.getString("nombre"));
-				can.setNombre_Ar(rs.getString("nombre_Ar"));
+				can.setNombre_Ar(a.getNombre_Ar());
 				can.setDuration(rs.getInt("duracion"));
 				can.setAlbum(rs.getString("album"));
 				Canc.add(can);

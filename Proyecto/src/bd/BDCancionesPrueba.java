@@ -1,8 +1,10 @@
 package bd;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import canciones.Artista;
 import canciones.Cancion;
 
 public class BDCancionesPrueba {
@@ -31,6 +33,7 @@ public class BDCancionesPrueba {
 
                 // Se guarda el Cancion en la base de datos y
                 dbManager.guardarCan(c);
+                System.out.println("Hola");
             }
 
 
@@ -41,7 +44,7 @@ public class BDCancionesPrueba {
             System.out.println("Cancion recuperado: " + can);
 
             // Se borra el usuario recuperado.
-            dbManager.eliminarCan(can);
+//            dbManager.eliminarCan(can);
 
             // Se recuperan todos los Cancion de la base de datos
             // en una lista. Comprobamos que se ha borrado el Cancion '2'
