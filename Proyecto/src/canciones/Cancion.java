@@ -2,7 +2,7 @@ package canciones;
 
 import java.awt.Image;
 
-public class Cancion extends Artista{
+public class Cancion extends Artista implements Comparable<Cancion>{
 	
 	protected int duration;
 	protected String name_can;
@@ -76,5 +76,10 @@ public class Cancion extends Artista{
 	@Override
 	public String toString() {
 		return "nombre: " + name_can + ", artista: " +  nombre_Ar + ", duracion: " + duration + ", album: " + album;
+	}
+	
+	@Override
+	public int compareTo(Cancion o) {
+		return this.name_can.compareTo(o.getName_can());
 	}
 }

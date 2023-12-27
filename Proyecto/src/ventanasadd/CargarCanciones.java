@@ -1,24 +1,22 @@
 package ventanasadd;
 
-import java.util.List;
+import java.util.Collections;
 
 import javax.swing.table.DefaultTableModel;
 
-import bd.BDCanciones;
-import bd.BDExcepcion;
 import canciones.Cancion;
 import canciones.ContenedorCanciones;
 
 public class CargarCanciones {
-	BDCanciones bdc;
 	CambioSegundoMinuto csm;
+	GestorCanciones gs;
 	
 	//metodo para lo por defecto de la tabla de canciones
 	
 	@SuppressWarnings("static-access")
 	public DefaultTableModel cargar_modelo_tabla_canciones(DefaultTableModel a){
-		bdc = new BDCanciones();
 		csm = new CambioSegundoMinuto();
+		gs = new GestorCanciones();
 		
 		a.addColumn("Nomber");
 		a.addColumn("Autor");
@@ -29,18 +27,10 @@ public class CargarCanciones {
 		}
 		
 		
-        try {
-			bdc.connect("Usuario.db");
-			List<Cancion> canciones = bdc.getAllCanciones();
-			for(Cancion c: canciones) {
-	        	a.addRow(new Object[] {c.getName_can(), c.getNombre_Ar(), c.getAlbum(), csm.cambioSec(c.getDuration())});
-	        }
-			bdc.disconnect();
-			
-		} catch (BDExcepcion e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Collections.sort(gs.obtenerCanciones());
+		for(Cancion c: gs.obtenerCanciones()) {
+        	a.addRow(new Object[] {c.getName_can(), c.getNombre_Ar(), c.getAlbum(), csm.cambioSec(c.getDuration())});
+        }
         
 		return a;
 	}

@@ -19,10 +19,17 @@ public class Listeners {
 	private TogleBoton togle;
 	
 	private CambiarFondo cambiarfondo = new CambiarFondo();
+	private OrdenarTabla OT;
 
 	public Listeners(VentanaPrincipal ventana) {
 		this.ventana = ventana;
+		inicializarOT();
 	}
+	
+	
+	private void inicializarOT() {
+        OT = new OrdenarTabla(ventana);
+    }
 
 	//listeners de los botones
 	//para el boton perfil
@@ -185,5 +192,17 @@ public class Listeners {
 	
 
 	
+	//Ordenar JComboBox
+		public ActionListener OrdenarCombo() {
+			return new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					int selectedOption =  ventana.orden.getSelectedIndex();
+	                // Aquí obtienes el criterio de orden seleccionado y actualizas la tabla
+	                OT.ordenarLista(selectedOption);
+				}
+			};
+		}
 
 }

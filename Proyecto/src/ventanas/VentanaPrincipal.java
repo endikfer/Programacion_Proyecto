@@ -19,7 +19,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JSlider;
@@ -42,7 +41,6 @@ import canciones.ContenedorCanciones;
 import ventanasadd.CambiarFondo;
 import ventanasadd.CambioSegundoMinuto;
 import ventanasadd.CargarCanciones;
-import ventanasadd.Loggers;
 import ventanasadd.Reproductor;
 import ventanasadd.Deslizador;
 
@@ -365,14 +363,20 @@ public class VentanaPrincipal extends JFrame {
 			//ComboBox
 			String [] ordenes = {"A --> Z", "Z --> A", "Menos duracion", "Mas duracion"}; 
 			orden = new JComboBox<>(ordenes);
+			
+			orden.addActionListener(listener.OrdenarCombo());
 
 
 			//JTable
 			DefaultTableModel modelo_tabla_canciones = new DefaultTableModel();
 			modelo_tabla_canciones = new DefaultTableModel();
 			cargacancion.cargar_modelo_tabla_canciones(modelo_tabla_canciones);
-			@SuppressWarnings("serial")
-			JTable tabla_canciones= new JTable(modelo_tabla_canciones) {
+			tabla_canciones= new JTable(modelo_tabla_canciones) {
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
 				public boolean isCellEditable(int row, int column) {
 					return false;
 				}
