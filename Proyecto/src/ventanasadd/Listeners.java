@@ -11,25 +11,29 @@ import java.awt.event.WindowListener;
 import ventanas.VentanaPrincipal;
 
 public class Listeners {
-	
-
 
 	private VentanaPrincipal ventana;
-	
+
 	private TogleBoton togle;
-	
+
 	private CambiarFondo cambiarfondo = new CambiarFondo();
 	private OrdenarTabla OT;
+	private BuscarEnTabla buscar;
 
 	public Listeners(VentanaPrincipal ventana) {
 		this.ventana = ventana;
 		inicializarOT();
+		inicializarBuscar();
+	}
+
+
+	private void inicializarOT() {
+		OT = new OrdenarTabla(ventana);
 	}
 	
-	
-	private void inicializarOT() {
-        OT = new OrdenarTabla(ventana);
-    }
+	private void inicializarBuscar() {
+		buscar = new BuscarEnTabla(ventana);
+	}
 
 	//listeners de los botones
 	//para el boton perfil
@@ -83,8 +87,8 @@ public class Listeners {
 			}
 		};
 	}
-	
-	
+
+
 
 
 	//Listener del radiobutton
@@ -109,8 +113,8 @@ public class Listeners {
 			}
 		};
 	}
-	
-	
+
+
 
 	//listener de los toglebotons
 	//fondo oscuro
@@ -122,8 +126,8 @@ public class Listeners {
 			}
 		};
 	}
-	
-	
+
+
 	//flecha izq
 	public ActionListener ToggleFlechaIzqListener() {
 		togle = new TogleBoton(ventana);
@@ -134,7 +138,7 @@ public class Listeners {
 			}
 		};
 	}
-	
+
 	//flecha dere
 	public ActionListener ToggleFlechaDereListener() {
 		togle = new TogleBoton(ventana);
@@ -145,7 +149,7 @@ public class Listeners {
 			}
 		};
 	}
-	
+
 	//barra espaciadora
 	public ActionListener ToggleBarraEspaciadoraListener() {
 		togle = new TogleBoton(ventana);
@@ -156,29 +160,29 @@ public class Listeners {
 			}
 		};
 	}
-	
+
 	public ActionListener BotonPausarFlechaIzqListener() {
 		togle = new TogleBoton(ventana);
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		};
 	}
-	
+
 	public ActionListener BotonPausarFlechaDereListener() {
 		togle = new TogleBoton(ventana);
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		};
 	}
-	
+
 	public WindowListener PararCancionesAlCerrar() {
-	
+
 		ventana.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosed(WindowEvent e) {
@@ -189,20 +193,30 @@ public class Listeners {
 		});
 		return null;
 	}
-	
 
-	
+
+
 	//Ordenar JComboBox
-		public ActionListener OrdenarCombo() {
-			return new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					
-					int selectedOption =  ventana.orden.getSelectedIndex();
-	                // Aquí obtienes el criterio de orden seleccionado y actualizas la tabla
-	                OT.ordenarLista(selectedOption);
-				}
-			};
-		}
+	public ActionListener OrdenarCombo() {
+		return new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				int selectedOption =  ventana.orden.getSelectedIndex();
+				// Aquí obtienes el criterio de orden seleccionado y actualizas la tabla
+				OT.ordenarLista(selectedOption);
+			}
+		};
+	}
+
+	//Funicionamiento Barra de Busqueda
+	public ActionListener BarraBusq() {
+		return new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				buscar.Buscar();
+			}
+		};
+	}
 
 }

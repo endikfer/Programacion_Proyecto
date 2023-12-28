@@ -35,6 +35,7 @@ import javax.swing.table.JTableHeader;
 import bd.BDExcepcion;
 import bd.BDManejoUsu;
 import ventanasadd.Listeners;
+import ventanasadd.Renderer;
 import canciones.ContenedorUsuarios;
 import canciones.Cancion;
 import canciones.ContenedorCanciones;
@@ -61,10 +62,11 @@ public class VentanaPrincipal extends JFrame {
 	public Listeners listener;
 	public CambioSegundoMinuto cambiosecmin;
 	public CargarCanciones cargacancion;
+	public Renderer renderer;
 
 	public BDManejoUsu bdUsu;
 	public VentanaUsuario vusu;
-	Properties properties;
+	public Properties properties;
 
 	public int tiempo;
 
@@ -211,6 +213,8 @@ public class VentanaPrincipal extends JFrame {
 		properties = new Properties();
 
 		listener.PararCancionesAlCerrar();
+		
+		renderer = new Renderer();
 
 
 		//Elementos creados
@@ -360,6 +364,8 @@ public class VentanaPrincipal extends JFrame {
 			b_cancion_nueva = new JButton("Añadir canción");
 			lupa = new JButton(i_lupa);
 			
+			lupa.addActionListener(listener.BarraBusq());
+			
 			//ComboBox
 			String [] ordenes = {"A --> Z", "Z --> A", "Menos duracion", "Mas duracion"}; 
 			orden = new JComboBox<>(ordenes);
@@ -382,6 +388,7 @@ public class VentanaPrincipal extends JFrame {
 				}
 			};
 
+			tabla_canciones.setDefaultRenderer(Object.class, renderer);
 
 
 			//tamaños del JTable
