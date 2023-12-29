@@ -18,7 +18,7 @@ public class Renderer extends DefaultTableCellRenderer{
         Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
         if (isSelected) {
-            c.setBackground(Color.RED); // Cambia el color de fondo de la fila seleccionada
+            c.setBackground(Color.RED);
         } else {
             c.setBackground(table.getBackground());
         }

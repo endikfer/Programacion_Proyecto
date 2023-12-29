@@ -17,7 +17,7 @@ public class BuscarEnTabla {
             for (int j = 0; j < ventana.tabla_canciones.getColumnCount(); j++) {
                 Object valorCelda = ventana.tabla_canciones.getValueAt(i, j);
                 if (valorCelda != null && valorCelda.toString().toLowerCase().equals(textoBuscado)) {
-                	ventana.tabla_canciones.setRowSelectionInterval(i, i);
+                	ventana.tabla_canciones.setRowSelectionInterval(i,i);
                     return;
                 }
             } 
