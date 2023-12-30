@@ -31,7 +31,6 @@ public class CambiarFondo {
 
 			ventana.t_final.setForeground(Color.WHITE);
 			ventana.t_duracion.setForeground(Color.WHITE);
-			ventana.foto_can.setForeground(Color.WHITE);
 			ventana.nom_can.setForeground(Color.WHITE);
 			ventana.l_fondo.setForeground(Color.WHITE);
 			ventana.l_bucle.setForeground(Color.WHITE);
@@ -66,7 +65,6 @@ public class CambiarFondo {
 
 			ventana.t_final.setForeground(Color.BLACK);
 			ventana.t_duracion.setForeground(Color.BLACK);
-			ventana.foto_can.setForeground(Color.BLACK);
 			ventana.nom_can.setForeground(Color.BLACK);
 			ventana.l_fondo.setForeground(Color.BLACK);
 			ventana.l_bucle.setForeground(Color.BLACK);

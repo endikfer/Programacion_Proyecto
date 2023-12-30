@@ -181,7 +181,6 @@ public class VentanaPrincipal extends JFrame {
 	public Color colorFondo;
 	public JLabel t_final;
 	public JLabel t_duracion;
-	public JLabel foto_can;
 	public JLabel nom_can;
 	
 	public JComboBox<String> orden;
@@ -485,7 +484,6 @@ public class VentanaPrincipal extends JFrame {
 			//Elementos del panel de abajo
 			//Label
 			nom_can = new JLabel();
-			foto_can = new JLabel("Foto canción");
 			t_duracion = new JLabel();
 			t_final = new JLabel();
 
@@ -551,7 +549,6 @@ public class VentanaPrincipal extends JFrame {
 			//Cola
 			canciones = new ArrayList<Cancion>();
 			canciones.add(new Cancion("Duki","Goteo" ,160 , "Todo"));
-			canciones.add(new Cancion("Duki","Givenchy" ,170 , "Temporada de Reggaetón 2"));
 			canciones.add(new Cancion("Duki","Givenchy" ,223 , "Temporada de Reggaetón 2"));
 			//		listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
 			//		p_cola.add(listaCancionesCola);
@@ -573,11 +570,11 @@ public class VentanaPrincipal extends JFrame {
 			//conectando a la  base de datos
 			try {
 				bdUsu.connect("Usuario.db");
-				Usuario user =  bdUsu.getUser(vusu.NomUsu);
-				t_nombre.setText(user.getName_real());
-				t_correo.setText(user.getGmail());
-				t_nom_usu.setText(user.getName_us());
-				p_contra_f.setText(user.getPassword());
+//				Usuario user =  bdUsu.getUser(vusu.NomUsu);
+//				t_nombre.setText(user.getName_real());
+//				t_correo.setText(user.getGmail());
+//				t_nom_usu.setText(user.getName_us());
+//				p_contra_f.setText(user.getPassword());
 
 			} catch (BDExcepcion e1) {
 				e1.printStackTrace();
@@ -593,7 +590,6 @@ public class VentanaPrincipal extends JFrame {
 
 			//Anaydir elementos al panel de abajo
 			abajo_arriba.add(nom_can);
-			abajo_abajo.add(foto_can);
 			abajo_abajo.add(t_duracion);
 			abajo_abajo.add(duracion_can);
 			abajo_abajo.add(t_final);
