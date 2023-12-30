@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -55,7 +53,7 @@ public class VentanaPrincipal extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private boolean activador = false;
+	public boolean activador = false;
 
 	public CambiarFondo cambiarfondo;
 	public Deslizador deslizador;
@@ -434,8 +432,8 @@ public class VentanaPrincipal extends JFrame {
 			l_atajos = new JLabel("Atajos de teclado");
 			l_barra = new JLabel("Uso del enter para pausar y reanudar la cancion");
 			l_flecha = new JLabel("Uso de las flechas adelante/atras para retroceder/avanzar una cancion");
-			l_exp1 = new JLabel("Al clickar el enter se activara la cancion si estaba parada, o al reves, si estaba activada se pausara.");
-			l_exp2 = new JLabel("Al clickar la flecha de la izquierda volvera a repetirse la cancion anterior, y al clickar la de la derecha avanzara una cancion.");
+			l_exp1 = new JLabel("Al clickar alt + enter se activara la cancion si estaba parada, o al reves, si estaba activada se pausara.");
+			l_exp2 = new JLabel("Al clickar alt + la flecha de la izquierda empezara de cero la cancion, y al clickar alt + la de la derecha avanzara una cancion.");
 			l_exp3 = new JLabel("Activando esta funcion cuando la lista de canciones se termine volvera a empezar desde el inicio.");
 
 			//aumento de tamaño y negrita del label de atajo de teclado
@@ -501,30 +499,6 @@ public class VentanaPrincipal extends JFrame {
 			File a = new File(properties.getProperty("dirCan") + "duki.wav");
 			Reproductor.reproduce(a);
 
-			//listeners de los botones
-			ActionListener pausar_activar_barra = new ActionListener() {
-
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					if (activador==false) {
-						activador = true;
-						//cambio de la imagen del boton
-						b_pausar_can.setIcon(i_pausar);
-						deslizador.deslizador1(activador);
-						//que el reporductor se active
-						Reproductor.play();
-					}else {
-						activador = false;
-						//cambio de la imagen del boton
-						b_pausar_can.setIcon(i_play);
-						deslizador.deslizador1(activador);
-						//que el reproductor se pare
-						Reproductor.pause();
-
-					}
-				}
-			};
 			//		this.addWindowListener(new WindowAdapter() {
 			//		    @Override
 			//		    public void windowClosing(WindowEvent e) {
@@ -536,7 +510,7 @@ public class VentanaPrincipal extends JFrame {
 
 
 			//Añadir los escuchadores de los botones
-			b_pausar_can.addActionListener(pausar_activar_barra);
+			b_pausar_can.addActionListener(listener.BotonPausarActivarBarra());
 
 			b_atras_can.addActionListener(listener.BotonPausarFlechaIzqListener());
 			b_adelantar_can.addActionListener(listener.BotonPausarFlechaDereListener());
@@ -547,7 +521,7 @@ public class VentanaPrincipal extends JFrame {
 			//Cola
 			canciones = new ArrayList<Cancion>();
 			canciones.add(new Cancion("Duki","Goteo" ,160 , "Todo"));
-			canciones.add(new Cancion("Duki","Givenchy" ,170 , "Temporada de Reggaetón 2"));
+			canciones.add(new Cancion("Duki","Givenchy" ,15 , "Temporada de Reggaetón 2"));
 			//		listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
 			//		p_cola.add(listaCancionesCola);
 

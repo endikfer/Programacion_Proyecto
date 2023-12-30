@@ -160,9 +160,33 @@ public class Listeners {
 			}
 		};
 	}
+	
+	
+	public ActionListener BotonPausarActivarBarra() {
+		return new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (ventana.activador==false) {
+					ventana.activador = true;
+					//cambio de la imagen del boton
+					ventana.b_pausar_can.setIcon(ventana.i_pausar);
+					ventana.deslizador.deslizador1(ventana.activador);
+					//que el reporductor se active
+					Reproductor.play();
+				}else {
+					ventana.activador = false;
+					//cambio de la imagen del boton
+					ventana.b_pausar_can.setIcon(ventana.i_play);
+					ventana.deslizador.deslizador1(ventana.activador);
+					//que el reproductor se pare
+					Reproductor.pause();
+
+				}
+			}
+		};
+	}
 
 	public ActionListener BotonPausarFlechaIzqListener() {
-		togle = new TogleBoton(ventana);
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -172,7 +196,6 @@ public class Listeners {
 	}
 
 	public ActionListener BotonPausarFlechaDereListener() {
-		togle = new TogleBoton(ventana);
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -181,6 +204,11 @@ public class Listeners {
 		};
 	}
 
+	
+	
+	
+	
+	
 	public WindowListener PararCancionesAlCerrar() {
 
 		ventana.addWindowListener(new WindowAdapter() {

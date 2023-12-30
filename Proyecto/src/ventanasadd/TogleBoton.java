@@ -23,18 +23,18 @@ public class TogleBoton {
 
 	public void ActivarFlechaDerecha() {
 		if (ventana.t_flecha.isSelected()) {
-			ventana.b_pausar_can.setMnemonic(KeyEvent.VK_RIGHT);
+			ventana.b_adelantar_can.setMnemonic(KeyEvent.VK_RIGHT);
 		}else {
-			ventana.b_pausar_can.setMnemonic(0);
+			ventana.b_adelantar_can.setMnemonic(0);
 		}
 	}
 
 
 	public void ActivarFlechaIzquierda() {
 		if (ventana.t_flecha.isSelected()) {
-			ventana.b_pausar_can.setMnemonic(KeyEvent.VK_LEFT);
+			ventana.b_atras_can.setMnemonic(KeyEvent.VK_LEFT);
 		}else {
-			ventana.b_pausar_can.setMnemonic(0);
+			ventana.b_atras_can.setMnemonic(0);
 		}
 	}
 

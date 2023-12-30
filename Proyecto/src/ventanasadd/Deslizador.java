@@ -26,10 +26,19 @@ public class Deslizador {
 			timer = new Timer(1000, new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					valorActual += incremento;
-					ventana.duracion_can.setValue(valorActual);
-//					ventana.t_duracion.setText(String.valueOf(valorActual));
-					ventana.t_duracion.setText(CambioSegundoMinuto.cambioSec(valorActual));
+					if (valorActual != ventana.tiempo) {
+						valorActual += incremento;
+						ventana.duracion_can.setValue(valorActual);
+						ventana.t_duracion.setText(CambioSegundoMinuto.cambioSec(valorActual));
+					}else {
+						ventana.activador = false;
+					}
+					if(valorActual >= ventana.tiempo) {
+						timer.stop();
+						Reproductor.pause();
+				        ventana.b_pausar_can.setIcon(ventana.i_play);
+				        ventana.activador = false;
+					}
 				}
 			});
 		}
