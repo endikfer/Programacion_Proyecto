@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -38,7 +37,8 @@ public class VentanaUsuario extends JFrame{
 	private static JTextField txtNomIs, txtNomR, txtMailR, txtNomRealR;
 	private static JPasswordField passConR, passConIs;
 	private static ArrayList<Usuario> usuarios;
-	public String usuarioPrincipal;
+	
+	
 
 	
 	public VentanaUsuario() throws HeadlessException {
@@ -51,6 +51,7 @@ public class VentanaUsuario extends JFrame{
 		//Inicialización de los componentes
 		usuarios = new ArrayList<Usuario>();
 		cargarUsuarios(usuarios, "Usuarios.db");
+		
 		
 		pCent = new JPanel();
 		pIs = new JPanel();
@@ -129,7 +130,6 @@ public class VentanaUsuario extends JFrame{
 				String nombre = txtNomIs.getText();
 				String con = passConIs.getText();
 				
-				usuarioPrincipal = txtNomIs.getText();
 				
 				for(Usuario u : usuarios) {
 					if(u.getName_us().equals(nombre) && u.getPassword().equals(con)) {
@@ -225,4 +225,8 @@ public class VentanaUsuario extends JFrame{
 		 */
 		
 	}
+	
+	public String getNomUsu() {
+        return txtNomIs.getText();
+    }
 }

@@ -12,7 +12,7 @@ import ventanas.VentanaPrincipal;
 
 public class Listeners {
 
-	private VentanaPrincipal ventana;
+	public VentanaPrincipal ventana;
 
 	private TogleBoton togle;
 

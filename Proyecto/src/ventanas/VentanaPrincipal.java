@@ -35,6 +35,7 @@ import bd.BDManejoUsu;
 import ventanasadd.Listeners;
 import ventanasadd.Renderer;
 import canciones.ContenedorUsuarios;
+import canciones.Usuario;
 import canciones.Cancion;
 import canciones.ContenedorCanciones;
 import ventanasadd.CambiarFondo;
@@ -63,7 +64,6 @@ public class VentanaPrincipal extends JFrame {
 	public Renderer renderer;
 
 	public BDManejoUsu bdUsu;
-	public VentanaUsuario vusu;
 	public Properties properties;
 
 	public int tiempo;
@@ -113,8 +113,8 @@ public class VentanaPrincipal extends JFrame {
 	public JLabel l_correo;
 	public JLabel l_nom_usu;
 	public JLabel l_contra;
-	
-	
+
+
 	public JLabel relleno1;
 	public JLabel relleno2;
 	public JLabel relleno3;
@@ -180,14 +180,22 @@ public class VentanaPrincipal extends JFrame {
 	public JLabel t_duracion;
 	public JLabel foto_can;
 	public JLabel nom_can;
-	
+
 	public JComboBox<String> orden;
 
 	public JList<Cancion> listaCancionesCola;
 	public ArrayList<Cancion> canciones;
 
 	public Cancion cancion;
+	
+	public static String usuarioActual;
 
+	
+	public static String obtenerUsuario() {
+        VentanaUsuario ventanaUsuario = new VentanaUsuario();
+        usuarioActual = ventanaUsuario.getNomUsu();
+        return usuarioActual;
+    }
 
 	@SuppressWarnings("static-access")
 	public VentanaPrincipal(){
@@ -203,7 +211,7 @@ public class VentanaPrincipal extends JFrame {
 		listener = new Listeners(this);
 
 		cambiosecmin = new CambioSegundoMinuto();
-		
+
 		cargacancion = new CargarCanciones();
 
 		bdUsu = new BDManejoUsu();
@@ -211,8 +219,10 @@ public class VentanaPrincipal extends JFrame {
 		properties = new Properties();
 
 		listener.PararCancionesAlCerrar();
-		
+
 		renderer = new Renderer();
+		
+		 
 
 
 		//Elementos creados
@@ -343,14 +353,14 @@ public class VentanaPrincipal extends JFrame {
 			//Canciones
 			//Panel
 			p_combo = new JPanel(new GridLayout(1,6));
-			
+
 			//Label
 			relleno1 = new JLabel();
 			relleno2 = new JLabel();
 			relleno3 = new JLabel();
 			relleno4 = new JLabel();
-			
-			
+
+
 			//texto
 			busqueda = new JTextField(50);
 
@@ -361,13 +371,13 @@ public class VentanaPrincipal extends JFrame {
 			//Botones
 			b_cancion_nueva = new JButton("Añadir canción");
 			lupa = new JButton(i_lupa);
-			
+
 			lupa.addActionListener(listener.BarraBusq());
-			
+
 			//ComboBox
 			String [] ordenes = {"A --> Z", "Z --> A", "Menos duracion", "Mas duracion"}; 
 			orden = new JComboBox<>(ordenes);
-			
+
 			orden.addActionListener(listener.OrdenarCombo());
 
 
@@ -397,7 +407,7 @@ public class VentanaPrincipal extends JFrame {
 			tabla_canciones.getColumnModel().setColumnMargin(10);
 			tabla_canciones.setRowMargin(10);
 			tabla_canciones.setRowHeight(40);
-			
+
 
 			//componente para el estilo de la JTable
 			//		Estilotabla estilo = new Estilotabla();
@@ -413,10 +423,10 @@ public class VentanaPrincipal extends JFrame {
 			// Obtener el encabezado de la tabla
 			JTableHeader tableHeader = tabla_canciones.getTableHeader();
 			tableHeader.setFont(new Font("Arial", Font.ITALIC, 30));
-			
+
 			//No poder moever las colunas
 			tableHeader.setReorderingAllowed(false);
-			
+
 
 			//El scorll para la tabla
 			Scroll_tabla = new JScrollPane(tabla_canciones);
@@ -542,11 +552,11 @@ public class VentanaPrincipal extends JFrame {
 			//conectando a la  base de datos
 			try {
 				bdUsu.connect("Usuario.db");
-				//			Usuario user =  bdUsu.getUser(vusu.usuarioPrincipal);
-				//			t_nombre.setText(user.getName_real());
-				//			t_correo.setText(user.getGmail());
-				//			t_nom_usu.setText(user.getName_us());
-				//			p_contra_f.setText(user.getPassword());
+				Usuario user =  bdUsu.getUser(obtenerUsuario());
+				t_nombre.setText(user.getName_real());
+				t_correo.setText(user.getGmail());
+				t_nom_usu.setText(user.getName_us());
+				p_contra_f.setText(user.getPassword());
 
 			} catch (BDExcepcion e1) {
 				e1.printStackTrace();
@@ -660,18 +670,18 @@ public class VentanaPrincipal extends JFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-//				try {
-//					ContenedorUsuarios.cargarUsuarios(fichero);
-//				} catch (IOException e) {
-//					JOptionPane.showMessageDialog(null, "Error al cargar los usuarios", "Usuarios Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
-//					Loggers.logger.warning("Error al cargar los usuarios desde la base de datos");
-//				}
-//				try {
-//					ContenedorCanciones.cargarCanciones(fichero2);
-//				} catch (IOException e) {
-//					JOptionPane.showMessageDialog(null, "Error al cargar las canciones", "Canciones Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
-//					Loggers.logger.warning("Error al cargar las canciones desde la base de datos");
-//				}
+				//				try {
+				//					ContenedorUsuarios.cargarUsuarios(fichero);
+				//				} catch (IOException e) {
+				//					JOptionPane.showMessageDialog(null, "Error al cargar los usuarios", "Usuarios Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
+				//					Loggers.logger.warning("Error al cargar los usuarios desde la base de datos");
+				//				}
+				//				try {
+				//					ContenedorCanciones.cargarCanciones(fichero2);
+				//				} catch (IOException e) {
+				//					JOptionPane.showMessageDialog(null, "Error al cargar las canciones", "Canciones Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
+				//					Loggers.logger.warning("Error al cargar las canciones desde la base de datos");
+				//				}
 				new VentanaPrincipal();
 				ContenedorUsuarios.guardarUsuarios(fichero);
 				ContenedorCanciones.guardarCanciones(fichero2);
