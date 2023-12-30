@@ -65,6 +65,7 @@ public class VentanaPrincipal extends JFrame {
 
 	public BDManejoUsu bdUsu;
 	public Properties properties;
+	public VentanaUsuario vusu;
 
 	public int tiempo;
 
@@ -188,14 +189,7 @@ public class VentanaPrincipal extends JFrame {
 
 	public Cancion cancion;
 	
-	public static String usuarioActual;
-
 	
-	public static String obtenerUsuario() {
-        VentanaUsuario ventanaUsuario = new VentanaUsuario();
-        usuarioActual = ventanaUsuario.getNomUsu();
-        return usuarioActual;
-    }
 
 	@SuppressWarnings("static-access")
 	public VentanaPrincipal(){
@@ -222,7 +216,6 @@ public class VentanaPrincipal extends JFrame {
 
 		renderer = new Renderer();
 		
-		 
 
 
 		//Elementos creados
@@ -418,7 +411,6 @@ public class VentanaPrincipal extends JFrame {
 
 			//No poder selecionar las columnas
 			tabla_canciones.setColumnSelectionAllowed(false);
-			tabla_canciones.setRowSelectionAllowed(false);
 
 			// Obtener el encabezado de la tabla
 			JTableHeader tableHeader = tabla_canciones.getTableHeader();
@@ -531,7 +523,7 @@ public class VentanaPrincipal extends JFrame {
 			//Cola
 			canciones = new ArrayList<Cancion>();
 			canciones.add(new Cancion("Duki","Goteo" ,160 , "Todo"));
-			canciones.add(new Cancion("Duki","Givenchy" ,15 , "Temporada de Reggaetón 2"));
+			canciones.add(new Cancion("Duki","Givenchy" ,223 , "Temporada de Reggaetón 2"));
 			//		listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
 			//		p_cola.add(listaCancionesCola);
 
@@ -552,7 +544,7 @@ public class VentanaPrincipal extends JFrame {
 			//conectando a la  base de datos
 			try {
 				bdUsu.connect("Usuario.db");
-				Usuario user =  bdUsu.getUser(obtenerUsuario());
+				Usuario user =  bdUsu.getUser(vusu.NomUsu);
 				t_nombre.setText(user.getName_real());
 				t_correo.setText(user.getGmail());
 				t_nom_usu.setText(user.getName_us());
