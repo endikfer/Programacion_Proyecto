@@ -22,6 +22,7 @@ public class Renderer extends DefaultTableCellRenderer{
             c.setForeground(new Color(255,255,0));
         } else {
             c.setBackground(table.getBackground());
+            c.setForeground(new Color(0,0,0));
         }
 
         return c;
