@@ -5,6 +5,9 @@ import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -163,6 +166,14 @@ public class VentanaUsuario extends JFrame{
 			}
 		});
 		
+		addWindowListener(new WindowAdapter() {
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+				actualizarDB("Usuarios.db");
+			}
+		});
+		
 				
 		setVisible(true);
 	}
@@ -172,16 +183,17 @@ public class VentanaUsuario extends JFrame{
 		VentanaUsuario v = new VentanaUsuario();
 	}
 	
-	private static void cargarUsuarios(ArrayList<Usuario> usuarios ,String str){
+	private static void cargarUsuarios(ArrayList<Usuario> usuarios, String dbPath){
 		//TODO
 		/**
 		 * Este método lee de una base de datos, y carga los usuarios almacenados en ella en
 		 * un arraylist que es con lo que trabaja luego la ventana.
 		 */
 		try {
-			Connection conn = DriverManager.getConnection("jdbc:sqlite:" + str);
+			Class.forName("org.sqlite.JDBC");
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:" +"lib/Usuarios.db");
 			Statement stm = conn.createStatement();
-			ResultSet rs = stm.executeQuery("SELECT (*) FROM usuarios");
+			ResultSet rs = stm.executeQuery("SELECT nombre, gmail, nombre_usu, contraseña FROM usuario WHERE nombre_usu = ?");
 			
 			while(rs.next()) {
 				String nombre = rs.getString("nombre_usu");
@@ -199,6 +211,9 @@ public class VentanaUsuario extends JFrame{
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
@@ -208,5 +223,6 @@ public class VentanaUsuario extends JFrame{
 		 * Este método cargará el arraylist de usuarios en la base de datos de usuarios
 		 * para mantenerla actualizada.
 		 */
+		
 	}
 }
