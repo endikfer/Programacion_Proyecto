@@ -19,6 +19,7 @@ public class Renderer extends DefaultTableCellRenderer{
 
         if (isSelected) {
             c.setBackground(Color.RED);
+            c.setForeground(new Color(255,255,0));
         } else {
             c.setBackground(table.getBackground());
         }
