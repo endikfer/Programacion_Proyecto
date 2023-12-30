@@ -32,6 +32,8 @@ public class BDCancionesPrueba {
             cancion1.setNombre_Ar("Duki");
             cancion1.setDuration(230);
             cancion1.setAlbum("Temporada de diablo II");
+            dbManager.guardarCan(cancion);
+            dbManager.guardarCan(cancion1);            
             for (int i = 1; i <= 15; i++) {
             	Random random = new Random();
                 Cancion c = new Cancion();
