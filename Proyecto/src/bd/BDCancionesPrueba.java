@@ -22,6 +22,18 @@ public class BDCancionesPrueba {
 
             // Vamos a insertar 5 Cancion .
             System.out.println("Introduciendo Cancniones ...");
+            Cancion cancion = new Cancion();
+            cancion.setName_can("She Don't give a Fo");
+            cancion.setNombre_Ar("Duki");
+            cancion.setDuration(230);
+            cancion.setAlbum("Temporada de diablo II");
+            Cancion cancion1 = new Cancion();
+            cancion1.setName_can("Givenchy");
+            cancion1.setNombre_Ar("Duki");
+            cancion1.setDuration(230);
+            cancion1.setAlbum("Temporada de diablo II");
+            dbManager.guardarCan(cancion);
+            dbManager.guardarCan(cancion1);            
             for (int i = 1; i <= 15; i++) {
             	Random random = new Random();
                 Cancion c = new Cancion();
