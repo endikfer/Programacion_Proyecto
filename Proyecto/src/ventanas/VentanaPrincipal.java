@@ -37,6 +37,7 @@ import bd.BDManejoUsu;
 import ventanasadd.Listeners;
 import ventanasadd.Renderer;
 import canciones.ContenedorUsuarios;
+import canciones.Usuario;
 import canciones.Cancion;
 import canciones.ContenedorCanciones;
 import ventanasadd.CambiarFondo;
@@ -65,8 +66,8 @@ public class VentanaPrincipal extends JFrame {
 	public Renderer renderer;
 
 	public BDManejoUsu bdUsu;
-	public VentanaUsuario vusu;
 	public Properties properties;
+	private VentanaUsuario vusu;
 
 	public int tiempo;
 
@@ -189,6 +190,10 @@ public class VentanaPrincipal extends JFrame {
 	public ArrayList<Cancion> canciones;
 
 	public Cancion cancion;
+	
+	public VentanaPrincipal(VentanaUsuario vusu) {
+		this.vusu = vusu;
+	}
 
 
 	@SuppressWarnings("static-access")
@@ -213,7 +218,7 @@ public class VentanaPrincipal extends JFrame {
 		properties = new Properties();
 
 		listener.PararCancionesAlCerrar();
-		
+
 		renderer = new Renderer();
 
 
@@ -410,7 +415,6 @@ public class VentanaPrincipal extends JFrame {
 
 			//No poder selecionar las columnas
 			tabla_canciones.setColumnSelectionAllowed(false);
-			tabla_canciones.setRowSelectionAllowed(false);
 
 			// Obtener el encabezado de la tabla
 			JTableHeader tableHeader = tabla_canciones.getTableHeader();
@@ -548,6 +552,7 @@ public class VentanaPrincipal extends JFrame {
 			canciones = new ArrayList<Cancion>();
 			canciones.add(new Cancion("Duki","Goteo" ,160 , "Todo"));
 			canciones.add(new Cancion("Duki","Givenchy" ,170 , "Temporada de Reggaetón 2"));
+			canciones.add(new Cancion("Duki","Givenchy" ,223 , "Temporada de Reggaetón 2"));
 			//		listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
 			//		p_cola.add(listaCancionesCola);
 
@@ -568,11 +573,11 @@ public class VentanaPrincipal extends JFrame {
 			//conectando a la  base de datos
 			try {
 				bdUsu.connect("Usuario.db");
-				//			Usuario user =  bdUsu.getUser(vusu.usuarioPrincipal);
-				//			t_nombre.setText(user.getName_real());
-				//			t_correo.setText(user.getGmail());
-				//			t_nom_usu.setText(user.getName_us());
-				//			p_contra_f.setText(user.getPassword());
+				Usuario user =  bdUsu.getUser(vusu.NomUsu);
+				t_nombre.setText(user.getName_real());
+				t_correo.setText(user.getGmail());
+				t_nom_usu.setText(user.getName_us());
+				p_contra_f.setText(user.getPassword());
 
 			} catch (BDExcepcion e1) {
 				e1.printStackTrace();

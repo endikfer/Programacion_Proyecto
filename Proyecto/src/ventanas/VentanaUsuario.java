@@ -37,6 +37,7 @@ public class VentanaUsuario extends JFrame{
 	private static JTextField txtNomIs, txtNomR, txtMailR, txtNomRealR;
 	private static JPasswordField passConR, passConIs;
 	private static ArrayList<Usuario> usuarios;
+	public String NomUsu;
 	
 	
 
@@ -129,6 +130,8 @@ public class VentanaUsuario extends JFrame{
 				boolean finish = false;
 				String nombre = txtNomIs.getText();
 				String con = passConIs.getText();
+				
+				NomUsu = txtNomIs.getText();
 				
 				
 				for(Usuario u : usuarios) {
@@ -225,8 +228,9 @@ public class VentanaUsuario extends JFrame{
 		 */
 		
 	}
-	
-	public String getNomUsu() {
-        return txtNomIs.getText();
-    }
+
+
+	public static String getNomUsu() {
+		return txtNomIs.getText();
+	}
 }
