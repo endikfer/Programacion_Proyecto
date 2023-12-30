@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -35,7 +37,6 @@ import bd.BDManejoUsu;
 import ventanasadd.Listeners;
 import ventanasadd.Renderer;
 import canciones.ContenedorUsuarios;
-import canciones.Usuario;
 import canciones.Cancion;
 import canciones.ContenedorCanciones;
 import ventanasadd.CambiarFondo;
@@ -54,7 +55,7 @@ public class VentanaPrincipal extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public boolean activador = false;
+	private boolean activador = false;
 
 	public CambiarFondo cambiarfondo;
 	public Deslizador deslizador;
@@ -64,6 +65,7 @@ public class VentanaPrincipal extends JFrame {
 	public Renderer renderer;
 
 	public BDManejoUsu bdUsu;
+	public VentanaUsuario vusu;
 	public Properties properties;
 
 	public int tiempo;
@@ -113,8 +115,8 @@ public class VentanaPrincipal extends JFrame {
 	public JLabel l_correo;
 	public JLabel l_nom_usu;
 	public JLabel l_contra;
-
-
+	
+	
 	public JLabel relleno1;
 	public JLabel relleno2;
 	public JLabel relleno3;
@@ -180,22 +182,14 @@ public class VentanaPrincipal extends JFrame {
 	public JLabel t_duracion;
 	public JLabel foto_can;
 	public JLabel nom_can;
-
+	
 	public JComboBox<String> orden;
 
 	public JList<Cancion> listaCancionesCola;
 	public ArrayList<Cancion> canciones;
 
 	public Cancion cancion;
-	
-	public static String usuarioActual;
 
-	
-	public static String obtenerUsuario() {
-        VentanaUsuario ventanaUsuario = new VentanaUsuario();
-        usuarioActual = ventanaUsuario.getNomUsu();
-        return usuarioActual;
-    }
 
 	@SuppressWarnings("static-access")
 	public VentanaPrincipal(){
@@ -211,7 +205,7 @@ public class VentanaPrincipal extends JFrame {
 		listener = new Listeners(this);
 
 		cambiosecmin = new CambioSegundoMinuto();
-
+		
 		cargacancion = new CargarCanciones();
 
 		bdUsu = new BDManejoUsu();
@@ -219,10 +213,8 @@ public class VentanaPrincipal extends JFrame {
 		properties = new Properties();
 
 		listener.PararCancionesAlCerrar();
-
-		renderer = new Renderer();
 		
-		 
+		renderer = new Renderer();
 
 
 		//Elementos creados
@@ -353,14 +345,14 @@ public class VentanaPrincipal extends JFrame {
 			//Canciones
 			//Panel
 			p_combo = new JPanel(new GridLayout(1,6));
-
+			
 			//Label
 			relleno1 = new JLabel();
 			relleno2 = new JLabel();
 			relleno3 = new JLabel();
 			relleno4 = new JLabel();
-
-
+			
+			
 			//texto
 			busqueda = new JTextField(50);
 
@@ -371,13 +363,13 @@ public class VentanaPrincipal extends JFrame {
 			//Botones
 			b_cancion_nueva = new JButton("Añadir canción");
 			lupa = new JButton(i_lupa);
-
+			
 			lupa.addActionListener(listener.BarraBusq());
-
+			
 			//ComboBox
 			String [] ordenes = {"A --> Z", "Z --> A", "Menos duracion", "Mas duracion"}; 
 			orden = new JComboBox<>(ordenes);
-
+			
 			orden.addActionListener(listener.OrdenarCombo());
 
 
@@ -407,7 +399,7 @@ public class VentanaPrincipal extends JFrame {
 			tabla_canciones.getColumnModel().setColumnMargin(10);
 			tabla_canciones.setRowMargin(10);
 			tabla_canciones.setRowHeight(40);
-
+			
 
 			//componente para el estilo de la JTable
 			//		Estilotabla estilo = new Estilotabla();
@@ -423,10 +415,10 @@ public class VentanaPrincipal extends JFrame {
 			// Obtener el encabezado de la tabla
 			JTableHeader tableHeader = tabla_canciones.getTableHeader();
 			tableHeader.setFont(new Font("Arial", Font.ITALIC, 30));
-
+			
 			//No poder moever las colunas
 			tableHeader.setReorderingAllowed(false);
-
+			
 
 			//El scorll para la tabla
 			Scroll_tabla = new JScrollPane(tabla_canciones);
@@ -442,8 +434,8 @@ public class VentanaPrincipal extends JFrame {
 			l_atajos = new JLabel("Atajos de teclado");
 			l_barra = new JLabel("Uso del enter para pausar y reanudar la cancion");
 			l_flecha = new JLabel("Uso de las flechas adelante/atras para retroceder/avanzar una cancion");
-			l_exp1 = new JLabel("Al clickar alt + enter se activara la cancion si estaba parada, o al reves, si estaba activada se pausara.");
-			l_exp2 = new JLabel("Al clickar alt + la flecha de la izquierda empezara de cero la cancion, y al clickar alt + la de la derecha avanzara una cancion.");
+			l_exp1 = new JLabel("Al clickar el enter se activara la cancion si estaba parada, o al reves, si estaba activada se pausara.");
+			l_exp2 = new JLabel("Al clickar la flecha de la izquierda volvera a repetirse la cancion anterior, y al clickar la de la derecha avanzara una cancion.");
 			l_exp3 = new JLabel("Activando esta funcion cuando la lista de canciones se termine volvera a empezar desde el inicio.");
 
 			//aumento de tamaño y negrita del label de atajo de teclado
@@ -509,6 +501,30 @@ public class VentanaPrincipal extends JFrame {
 			File a = new File(properties.getProperty("dirCan") + "duki.wav");
 			Reproductor.reproduce(a);
 
+			//listeners de los botones
+			ActionListener pausar_activar_barra = new ActionListener() {
+
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (activador==false) {
+						activador = true;
+						//cambio de la imagen del boton
+						b_pausar_can.setIcon(i_pausar);
+						deslizador.deslizador1(activador);
+						//que el reporductor se active
+						Reproductor.play();
+					}else {
+						activador = false;
+						//cambio de la imagen del boton
+						b_pausar_can.setIcon(i_play);
+						deslizador.deslizador1(activador);
+						//que el reproductor se pare
+						Reproductor.pause();
+
+					}
+				}
+			};
 			//		this.addWindowListener(new WindowAdapter() {
 			//		    @Override
 			//		    public void windowClosing(WindowEvent e) {
@@ -520,7 +536,7 @@ public class VentanaPrincipal extends JFrame {
 
 
 			//Añadir los escuchadores de los botones
-			b_pausar_can.addActionListener(listener.BotonPausarActivarBarra());
+			b_pausar_can.addActionListener(pausar_activar_barra);
 
 			b_atras_can.addActionListener(listener.BotonPausarFlechaIzqListener());
 			b_adelantar_can.addActionListener(listener.BotonPausarFlechaDereListener());
@@ -531,7 +547,7 @@ public class VentanaPrincipal extends JFrame {
 			//Cola
 			canciones = new ArrayList<Cancion>();
 			canciones.add(new Cancion("Duki","Goteo" ,160 , "Todo"));
-			canciones.add(new Cancion("Duki","Givenchy" ,15 , "Temporada de Reggaetón 2"));
+			canciones.add(new Cancion("Duki","Givenchy" ,170 , "Temporada de Reggaetón 2"));
 			//		listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
 			//		p_cola.add(listaCancionesCola);
 
@@ -552,11 +568,11 @@ public class VentanaPrincipal extends JFrame {
 			//conectando a la  base de datos
 			try {
 				bdUsu.connect("Usuario.db");
-				Usuario user =  bdUsu.getUser(obtenerUsuario());
-				t_nombre.setText(user.getName_real());
-				t_correo.setText(user.getGmail());
-				t_nom_usu.setText(user.getName_us());
-				p_contra_f.setText(user.getPassword());
+				//			Usuario user =  bdUsu.getUser(vusu.usuarioPrincipal);
+				//			t_nombre.setText(user.getName_real());
+				//			t_correo.setText(user.getGmail());
+				//			t_nom_usu.setText(user.getName_us());
+				//			p_contra_f.setText(user.getPassword());
 
 			} catch (BDExcepcion e1) {
 				e1.printStackTrace();
@@ -670,18 +686,18 @@ public class VentanaPrincipal extends JFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				//				try {
-				//					ContenedorUsuarios.cargarUsuarios(fichero);
-				//				} catch (IOException e) {
-				//					JOptionPane.showMessageDialog(null, "Error al cargar los usuarios", "Usuarios Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
-				//					Loggers.logger.warning("Error al cargar los usuarios desde la base de datos");
-				//				}
-				//				try {
-				//					ContenedorCanciones.cargarCanciones(fichero2);
-				//				} catch (IOException e) {
-				//					JOptionPane.showMessageDialog(null, "Error al cargar las canciones", "Canciones Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
-				//					Loggers.logger.warning("Error al cargar las canciones desde la base de datos");
-				//				}
+//				try {
+//					ContenedorUsuarios.cargarUsuarios(fichero);
+//				} catch (IOException e) {
+//					JOptionPane.showMessageDialog(null, "Error al cargar los usuarios", "Usuarios Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
+//					Loggers.logger.warning("Error al cargar los usuarios desde la base de datos");
+//				}
+//				try {
+//					ContenedorCanciones.cargarCanciones(fichero2);
+//				} catch (IOException e) {
+//					JOptionPane.showMessageDialog(null, "Error al cargar las canciones", "Canciones Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
+//					Loggers.logger.warning("Error al cargar las canciones desde la base de datos");
+//				}
 				new VentanaPrincipal();
 				ContenedorUsuarios.guardarUsuarios(fichero);
 				ContenedorCanciones.guardarCanciones(fichero2);
