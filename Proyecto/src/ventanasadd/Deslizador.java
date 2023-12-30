@@ -12,13 +12,13 @@ public class Deslizador {
 	private int incremento = 1;
 	private Timer timer;
 	public CambioSegundoMinuto cambiosecmin;
-	
+
 	private VentanaPrincipal ventana;
-	
+
 	public Deslizador(VentanaPrincipal ventana) {
 		this.ventana = ventana;
 	}
-	
+
 	public void deslizador1(boolean activador) {
 		cambiosecmin = new CambioSegundoMinuto();
 		// Si el temporizador no se ha creado previamente, crearlo
@@ -36,8 +36,8 @@ public class Deslizador {
 					if(valorActual >= ventana.tiempo) {
 						timer.stop();
 						Reproductor.pause();
-				        ventana.b_pausar_can.setIcon(ventana.i_play);
-				        ventana.activador = false;
+						ventana.b_pausar_can.setIcon(ventana.i_play);
+						ventana.activador = false;
 					}
 				}
 			});
