@@ -65,7 +65,7 @@ public class VentanaPrincipal extends JFrame {
 
 	public BDManejoUsu bdUsu;
 	public Properties properties;
-	public VentanaUsuario vusu;
+	private VentanaUsuario vusu;
 
 	public int tiempo;
 
@@ -188,6 +188,10 @@ public class VentanaPrincipal extends JFrame {
 	public ArrayList<Cancion> canciones;
 
 	public Cancion cancion;
+	
+	public VentanaPrincipal(VentanaUsuario vusu) {
+		this.vusu = vusu;
+	}
 	
 	
 
