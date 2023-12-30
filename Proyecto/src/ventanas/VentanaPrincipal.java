@@ -56,7 +56,7 @@ public class VentanaPrincipal extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private boolean activador = false;
+	public boolean activador = false;
 
 	public CambiarFondo cambiarfondo;
 	public Deslizador deslizador;
