@@ -244,8 +244,6 @@ public class VentanaUsuario extends JFrame{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
 
 
