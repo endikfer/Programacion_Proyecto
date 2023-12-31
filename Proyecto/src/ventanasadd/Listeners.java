@@ -208,6 +208,7 @@ public class Listeners {
 			public void actionPerformed(ActionEvent e) {
 				try (FileReader reader = new FileReader("configuracion.properties")) {
 					properties.load(reader);
+					ventana.deslizador.finalizarDeslizador();
 					Reproductor.close();
 					//hay que meter la lista de canciones para que coja la siguiente cancione
 					File a = new File(properties.getProperty("dirCan") + "She Don't give a for.wav");

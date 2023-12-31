@@ -56,7 +56,9 @@ public class Deslizador {
 	}
 	
 	public void finalizarDeslizador() {
-		
+		valorActual = ventana.tiempo;
+		ventana.duracion_can.setValue(valorActual);
+	    ventana.t_duracion.setText(CambioSegundoMinuto.cambioSec(valorActual));
 	}
 
 }
