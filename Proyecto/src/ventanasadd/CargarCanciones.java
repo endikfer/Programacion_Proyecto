@@ -5,7 +5,6 @@ import java.util.Collections;
 import javax.swing.table.DefaultTableModel;
 
 import canciones.Cancion;
-import canciones.ContenedorCanciones;
 
 public class CargarCanciones {
 	CambioSegundoMinuto csm;
