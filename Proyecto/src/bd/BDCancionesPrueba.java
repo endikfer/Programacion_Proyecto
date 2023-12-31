@@ -33,44 +33,8 @@ public class BDCancionesPrueba {
             cancion1.setDuration(230);
             cancion1.setAlbum("Temporada de diablo II");
             dbManager.guardarCan(cancion);
-            dbManager.guardarCan(cancion1);            
-            for (int i = 1; i <= 15; i++) {
-            	Random random = new Random();
-                Cancion c = new Cancion();
-                c.setName_can("nombre" + i);
-                c.setNombre_Ar("artista" + i);
-                c.setDuration(random.nextInt(500));
-                c.setAlbum("album" + i);
-                
-
-                // Se guarda el Cancion en la base de datos y
-                dbManager.guardarCan(c);
-                System.out.println("Hola");
-            }
-
-
-            // Recuperamos un Cancion de la base de datos.
-            // se crea de cero al iniciar el programa
-            System.out.println("Recuperando cancion con nombre 'nombre2'");
-            Cancion can = dbManager.getCancion("nombre2");
-            System.out.println("Cancion recuperado: " + can);
-
-            // Se borra el usuario recuperado.
-//            dbManager.eliminarCan(can);
-
-            // Se recuperan todos los Cancion de la base de datos
-            // en una lista. Comprobamos que se ha borrado el Cancion '2'
-            // y que se ha modificado el Cancion '3'.
-            List<Cancion> canc = dbManager.getAllCanciones();
-            for (Cancion c1 : canc) {
-                System.out.println("Cancion en la base de datos");
-                System.out.println(c1);
-            }
-
-            // Al terminar se borra la tabla de Cancion de la base de datos.
-            // Esto no es lo normal ya que queremos que los datos se mantengan
-            // entre ejecuciones del programa, pero sirve como ejemplo.
-//            dbManager.EliminarTablaCanc();
+            dbManager.guardarCan(cancion1); 
+            System.out.println("Cancniones añadidas");
 
             // Se cierra la conexión a la base de datos.
             dbManager.disconnect();
