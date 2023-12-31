@@ -21,7 +21,7 @@ public class Listeners {
 	private CambiarFondo cambiarfondo = new CambiarFondo();
 	private OrdenarTabla OT;
 	private BuscarEnTabla buscar;
-	Properties properties = new Properties();
+	Properties properties;
 
 	public Listeners(VentanaPrincipal ventana) {
 		this.ventana = ventana;
@@ -193,18 +193,20 @@ public class Listeners {
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				ventana.deslizador.reiniciarDeslizador();
 				Reproductor.restart();
 			}
 		};
 	}
 
 	public ActionListener BotonPausarFlechaDereListener() {
+		properties = new Properties();
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Reproductor.close();
 				//hay que meter la lista de canciones para que coja la siguiente cancione
-				File a = new File(properties.getProperty("dirCan") + "duki.wav");
+				File a = new File(properties.getProperty("dirCan") + "She Don't give a for.wav");
 				Reproductor.reproduce(a);
 			}
 		};

@@ -48,5 +48,11 @@ public class Deslizador {
 			timer.stop();
 		}
 	}
+	
+	public void reiniciarDeslizador() {
+	    valorActual = 0;
+	    ventana.duracion_can.setValue(valorActual);
+	    ventana.t_duracion.setText(CambioSegundoMinuto.cambioSec(valorActual));
+	}
 
 }

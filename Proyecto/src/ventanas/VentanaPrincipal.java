@@ -498,7 +498,7 @@ public class VentanaPrincipal extends JFrame {
 
 
 			//activamos ya que pueda reproducir
-			File a = new File(properties.getProperty("dirCan") + "duki.wav");
+			File a = new File(properties.getProperty("dirCan") + "Givenchy.wav");
 			Reproductor.reproduce(a);
 			//		this.addWindowListener(new WindowAdapter() {
 			//		    @Override
