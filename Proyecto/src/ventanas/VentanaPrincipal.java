@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Properties;
@@ -518,8 +520,31 @@ public class VentanaPrincipal extends JFrame {
 
 			b_atras_can.addActionListener(listener.BotonPausarFlechaIzqListener());
 			b_adelantar_can.addActionListener(listener.BotonPausarFlechaDereListener());
+			
+			//Plan B para el hilo
+			
+			// Crear una etiqueta para mostrar la hora actual en el encabezado
+	        JLabel etiquetaReloj = new JLabel();
+	        etiquetaReloj.setFont(new Font("Arial", Font.PLAIN, 24));
+	        etiquetaReloj.setHorizontalAlignment(SwingConstants.CENTER);
+	        add(etiquetaReloj, BorderLayout.NORTH); // Añadir la etiqueta al encabezado de la ventana
+			
+			
+			Thread hiloReloj = new Thread(() -> {
+	            while (true) {
+	                LocalDateTime ahora = LocalDateTime.now();
+	                DateTimeFormatter formateador = DateTimeFormatter.ofPattern("HH:mm:ss");
+	                String horaActual = ahora.format(formateador);
+	                setTitle("Ventana Principal - Hora: " + horaActual); // Asignar el título con la hora actual
 
-
+	                try {
+	                    Thread.sleep(1000); // Esperar 1 segundo
+	                } catch (InterruptedException e) {
+	                    e.printStackTrace();
+	                }
+	            }
+			});
+	        hiloReloj.start();
 
 
 			//Cola
