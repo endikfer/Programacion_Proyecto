@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
+import java.util.Properties;
 
 import ventanas.VentanaPrincipal;
 
@@ -19,6 +21,7 @@ public class Listeners {
 	private CambiarFondo cambiarfondo = new CambiarFondo();
 	private OrdenarTabla OT;
 	private BuscarEnTabla buscar;
+	Properties properties = new Properties();
 
 	public Listeners(VentanaPrincipal ventana) {
 		this.ventana = ventana;
@@ -190,7 +193,7 @@ public class Listeners {
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				Reproductor.restart();
 			}
 		};
 	}
@@ -199,7 +202,10 @@ public class Listeners {
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				Reproductor.close();
+				//hay que meter la lista de canciones para que coja la siguiente cancione
+				File a = new File(properties.getProperty("dirCan") + "duki.wav");
+				Reproductor.reproduce(a);
 			}
 		};
 	}

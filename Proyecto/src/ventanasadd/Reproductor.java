@@ -26,6 +26,10 @@ public class Reproductor {
 	public static void restart() {
 		clip.setFramePosition(0);
 	}
+	
+	public static void close() {
+		clip.close();
+	}
 
 	public static void reproduce(File file) {
 		try {
