@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Properties;
 
 import javax.swing.BorderFactory;
@@ -43,6 +44,7 @@ import ventanasadd.CambioSegundoMinuto;
 import ventanasadd.CargarCanciones;
 import ventanasadd.Reproductor;
 import ventanasadd.Deslizador;
+import ventanasadd.GestorCanciones;
 
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -187,6 +189,7 @@ public class VentanaPrincipal extends JFrame {
 	public ArrayList<Cancion> canciones;
 
 	public Cancion cancion;
+	GestorCanciones gs;
 	
 	public VentanaPrincipal(VentanaUsuario vusu) {
 		this.vusu = vusu;
@@ -258,6 +261,9 @@ public class VentanaPrincipal extends JFrame {
 		p_bucle = new JPanel(new BorderLayout());
 		p_barra = new JPanel(new BorderLayout());
 		p_flecha = new JPanel(new BorderLayout());
+		
+		
+		gs = new GestorCanciones();
 
 
 
@@ -521,8 +527,12 @@ public class VentanaPrincipal extends JFrame {
 
 			//Cola
 			canciones = new ArrayList<Cancion>();
-			canciones.add(new Cancion("Duki","Goteo" ,160 , "Todo"));
-			canciones.add(new Cancion("Duki","Givenchy" ,223 , "Temporada de Reggaetón 2"));
+			Collections.sort(gs.obtenerCanciones());
+			for(Cancion c: gs.obtenerCanciones()) {
+	        	canciones.add(c);
+	        }
+			System.out.println(canciones);
+	        
 			//		listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
 			//		p_cola.add(listaCancionesCola);
 

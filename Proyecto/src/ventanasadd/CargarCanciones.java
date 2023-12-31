@@ -22,10 +22,6 @@ public class CargarCanciones {
 		a.addColumn("Autor");
 		a.addColumn("Álbum");
 		a.addColumn("Duracion");
-		for(Cancion c: ContenedorCanciones.canciones) {
-			a.addRow(new Object[] {c.getName_can(), c.getNombre_Ar(), c.getAlbum(), csm.cambioSec(c.getDuration())});
-		}
-		
 		
 		Collections.sort(gs.obtenerCanciones());
 		for(Cancion c: gs.obtenerCanciones()) {
