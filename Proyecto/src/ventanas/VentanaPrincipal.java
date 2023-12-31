@@ -665,26 +665,10 @@ public class VentanaPrincipal extends JFrame {
 
 
 	public static void main(String[] args) {	
-		File fichero = new File("Usuarios");
-		File fichero2 = new File("Canciones");
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-//				try {
-//					ContenedorUsuarios.cargarUsuarios(fichero);
-//				} catch (IOException e) {
-//					JOptionPane.showMessageDialog(null, "Error al cargar los usuarios", "Usuarios Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
-//					Loggers.logger.warning("Error al cargar los usuarios desde la base de datos");
-//				}
-//				try {
-//					ContenedorCanciones.cargarCanciones(fichero2);
-//				} catch (IOException e) {
-//					JOptionPane.showMessageDialog(null, "Error al cargar las canciones", "Canciones Con Conflictos", JOptionPane.INFORMATION_MESSAGE);
-//					Loggers.logger.warning("Error al cargar las canciones desde la base de datos");
-//				}
 				new VentanaPrincipal();
-				ContenedorUsuarios.guardarUsuarios(fichero);
-				ContenedorCanciones.guardarCanciones(fichero2);
 			}
 		});
 	}

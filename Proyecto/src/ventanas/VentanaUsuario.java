@@ -129,6 +129,7 @@ public class VentanaUsuario extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				boolean finish = false;
 				String nombre = txtNomIs.getText();
+				@SuppressWarnings("deprecation")
 				String con = passConIs.getText();
 				
 				NomUsu = txtNomIs.getText();
@@ -136,6 +137,7 @@ public class VentanaUsuario extends JFrame{
 				
 				for(Usuario u : usuarios) {
 					if(u.getName_us().equals(nombre) && u.getPassword().equals(con)) {
+						@SuppressWarnings("unused")
 						VentanaPrincipal vp = new VentanaPrincipal();
 						dispose();
 						break;
@@ -155,6 +157,7 @@ public class VentanaUsuario extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				@SuppressWarnings("deprecation")
 				Usuario us = new Usuario(txtNomRealR.getText(), txtNomR.getText(), passConR.getText(), txtMailR.getText());
 				
 				if(!usuarios.contains(us)) usuarios.add(us);
@@ -183,6 +186,7 @@ public class VentanaUsuario extends JFrame{
 	
 	
 	public static void main(String[] args) {
+		@SuppressWarnings("unused")
 		VentanaUsuario v = new VentanaUsuario();
 	}
 	
@@ -226,6 +230,7 @@ public class VentanaUsuario extends JFrame{
 		 * Este método cargará el arraylist de usuarios en la base de datos de usuarios
 		 * para mantenerla actualizada.
 		 */
+		@SuppressWarnings("deprecation")
 		String sql = String.format("INSERT INTO usuarios VALUES ('%s', '%s', %s, '%s')", txtNomRealR.getText(), txtMailR.getText(), txtNomR.getText(), passConR.getText());
 		
 		try {
@@ -234,6 +239,7 @@ public class VentanaUsuario extends JFrame{
 			Connection conn = DriverManager.getConnection("jdbc:sqlite:" +"lib/Usuarios.db");
 			
 			Statement stm = conn.createStatement();
+			@SuppressWarnings("unused")
 			int rows = stm.executeUpdate(sql);
 			
 			stm.close();

@@ -8,6 +8,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Properties;
 
 import ventanas.VentanaPrincipal;
@@ -204,10 +206,16 @@ public class Listeners {
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Reproductor.close();
-				//hay que meter la lista de canciones para que coja la siguiente cancione
-				File a = new File(properties.getProperty("dirCan") + "She Don't give a for.wav");
-				Reproductor.reproduce(a);
+				try (FileReader reader = new FileReader("configuracion.properties")) {
+					properties.load(reader);
+					ventana.deslizador.finalizarDeslizador();
+					Reproductor.close();
+					//hay que meter la lista de canciones para que coja la siguiente cancione
+					File a = new File(properties.getProperty("dirCan") + "She Don't give a for.wav");
+					Reproductor.reproduce(a);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				} 
 			}
 		};
 	}
