@@ -226,7 +226,24 @@ public class VentanaUsuario extends JFrame{
 		 * Este método cargará el arraylist de usuarios en la base de datos de usuarios
 		 * para mantenerla actualizada.
 		 */
+		String sql = String.format("INSERT INTO usuarios VALUES ('%s', '%s', %s, '%s')", txtNomRealR.getText(), txtMailR.getText(), txtNomR.getText(), passConR.getText());
 		
+		try {
+			Class.forName("org.sqlite.JDBC");
+			
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:" +"lib/Usuarios.db");
+			
+			Statement stm = conn.createStatement();
+			int rows = stm.executeUpdate(sql);
+			
+			stm.close();
+			conn.close();
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 
