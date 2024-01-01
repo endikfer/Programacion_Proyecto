@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -20,6 +22,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JSlider;
@@ -369,6 +372,7 @@ public class VentanaPrincipal extends JFrame {
 
 			//Botones
 			b_cancion_nueva = new JButton("Añadir canción");
+			b_cancion_nueva.addActionListener(listener.Agregarcan());
 			lupa = new JButton(i_lupa);
 			
 			lupa.addActionListener(listener.BarraBusq());
@@ -535,7 +539,7 @@ public class VentanaPrincipal extends JFrame {
 	                LocalDateTime ahora = LocalDateTime.now();
 	                DateTimeFormatter formateador = DateTimeFormatter.ofPattern("HH:mm:ss");
 	                String horaActual = ahora.format(formateador);
-	                setTitle("Ventana Principal - Hora: " + horaActual); // Asignar el título con la hora actual
+	                setTitle("Ventana Principal - [Hora: " + horaActual + "]"); // Asignar el título con la hora actual
 
 	                try {
 	                    Thread.sleep(1000); // Esperar 1 segundo

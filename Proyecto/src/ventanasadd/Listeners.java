@@ -10,7 +10,10 @@ import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
+
+import javax.swing.JOptionPane;
 
 import ventanas.VentanaPrincipal;
 
@@ -262,5 +265,28 @@ public class Listeners {
 			}
 		};
 	}
+	
+
+	ArrayList<String> listaCanciones = new ArrayList<String>();
+	 public ActionListener Agregarcan() {
+	        return new ActionListener() {
+	            @Override
+	            public void actionPerformed(ActionEvent e) {
+	                int selectedRow = ventana.tabla_canciones.getSelectedRow();
+	                if (selectedRow == -1) {
+	                    JOptionPane.showMessageDialog(ventana, "No se ha seleccionado ninguna canción.", "Error", JOptionPane.ERROR_MESSAGE);
+	                } else {
+	                    String selectedSong = (String) ventana.tabla_canciones.getValueAt(selectedRow, 0);
+	                    if (listaCanciones.contains(selectedSong)) {
+	                        JOptionPane.showMessageDialog(ventana, "La canción ya está en la lista.", "Error", JOptionPane.ERROR_MESSAGE);
+	                    } else {
+	                        listaCanciones.add(selectedSong);
+	                        // Update the JList or perform any other necessary actions
+	                    }
+	                }
+	            }
+	        };
+	    }
+	
 
 }
