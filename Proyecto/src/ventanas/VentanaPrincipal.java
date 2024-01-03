@@ -559,13 +559,13 @@ public class VentanaPrincipal extends JFrame {
 			//Cola
 			canciones = new ArrayList<Cancion>();
 			Collections.sort(gs.obtenerCanciones());
-			/*for(Cancion c: gs.obtenerCanciones()) {
+			for(Cancion c: gs.obtenerCanciones()) {
 	        	canciones.add(c);
 	        }
 			System.out.println(canciones);
 	        
 			//		listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
-			//		p_cola.add(listaCancionesCola);*/
+			//		p_cola.add(listaCancionesCola);
 			
 			class ModeloLista implements ListModel<Cancion>{
 				ArrayList<Cancion> cola;
@@ -642,7 +642,8 @@ public class VentanaPrincipal extends JFrame {
 					// TODO Auto-generated method stub
 					
 					int indx = jListaCanciones.getSelectedIndex();
-					canciones.remove(indx);
+					if (indx != -1) canciones.remove(indx);
+					
 				}
 			});
 			
@@ -650,7 +651,7 @@ public class VentanaPrincipal extends JFrame {
 			
 			p_cola.add(pBotonesCola);
 
-			//tiempo = canciones.get(1).getDuration();
+			tiempo = canciones.get(1).getDuration();
 
 			nom_can.setText("Cancion: " + canciones.get(1).getName_can());
 			t_final.setText(cambiosecmin.cambioSec(tiempo));
