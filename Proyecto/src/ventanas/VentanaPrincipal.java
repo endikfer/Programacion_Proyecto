@@ -44,6 +44,7 @@ import javax.swing.table.JTableHeader;
 import bd.BDExcepcion;
 import bd.BDManejoUsu;
 import ventanasadd.Listeners;
+import ventanasadd.ModeloLista;
 import ventanasadd.Renderer;
 import canciones.Cancion;
 import ventanasadd.CambiarFondo;
@@ -192,6 +193,7 @@ public class VentanaPrincipal extends JFrame {
 	
 	public JComboBox<String> orden;
 
+	public static ModeloLista modeloLista;
 	public JList<Cancion> listaCancionesCola;
 	public ArrayList<Cancion> canciones;
 
@@ -567,37 +569,6 @@ public class VentanaPrincipal extends JFrame {
 			//		listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
 			//		p_cola.add(listaCancionesCola);
 			
-			class ModeloLista implements ListModel<Cancion>{
-				ArrayList<Cancion> cola;
-				
-				public ModeloLista(ArrayList<Cancion> canciones) {
-					this.cola = canciones;
-				}
-
-				@Override
-				public int getSize() {
-					return cola.size();
-				}
-
-				@Override
-				public Cancion getElementAt(int index) {
-					return cola.get(index);
-				}
-
-				@Override
-				public void addListDataListener(ListDataListener l) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void removeListDataListener(ListDataListener l) {
-					// TODO Auto-generated method stub
-					
-				}
-				
-			}
-			
 			class RenderLista implements ListCellRenderer<Cancion>{
 				JLabel lbl;
 				
@@ -617,7 +588,7 @@ public class VentanaPrincipal extends JFrame {
 			p_cola.setLayout(new GridLayout(1,2));
 			
 			JPanel pJlist = new JPanel();
-			ModeloLista modeloLista = new ModeloLista(canciones);
+			modeloLista = new ModeloLista(canciones);
 			JList<Cancion> jListaCanciones = new JList<>(modeloLista);
 			jListaCanciones.setCellRenderer(new RenderLista());
 			pJlist.add(jListaCanciones);
@@ -643,7 +614,7 @@ public class VentanaPrincipal extends JFrame {
 					
 					int indx = jListaCanciones.getSelectedIndex();
 					if (indx != -1) canciones.remove(indx);
-					
+					modeloLista = new ModeloLista(canciones);
 				}
 			});
 			
