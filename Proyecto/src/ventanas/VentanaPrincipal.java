@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -558,13 +559,13 @@ public class VentanaPrincipal extends JFrame {
 			//Cola
 			canciones = new ArrayList<Cancion>();
 			Collections.sort(gs.obtenerCanciones());
-			for(Cancion c: gs.obtenerCanciones()) {
+			/*for(Cancion c: gs.obtenerCanciones()) {
 	        	canciones.add(c);
 	        }
 			System.out.println(canciones);
 	        
 			//		listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
-			//		p_cola.add(listaCancionesCola);
+			//		p_cola.add(listaCancionesCola);*/
 			
 			class ModeloLista implements ListModel<Cancion>{
 				ArrayList<Cancion> cola;
@@ -620,13 +621,36 @@ public class VentanaPrincipal extends JFrame {
 			JList<Cancion> jListaCanciones = new JList<>(modeloLista);
 			jListaCanciones.setCellRenderer(new RenderLista());
 			pJlist.add(jListaCanciones);
-			p_cola.add(pJlist);
+			
+			ScrollPane scrollCola = new ScrollPane();
+			scrollCola.add(pJlist);
+			
+			p_cola.add(scrollCola);
+			
+			
+			JPanel pBotonesCola = new JPanel();
+			pBotonesCola.setLayout(new GridLayout(3,1));
+			
+			JButton btnQuitar = new JButton("QUITAR DE LA COLA");
+			JPanel pBtnQuitar = new JPanel();
+			pBtnQuitar.add(btnQuitar);
+			pBotonesCola.add(pBtnQuitar);
+			btnQuitar.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					
+					int indx = jListaCanciones.getSelectedIndex();
+					canciones.remove(indx);
+				}
+			});
 			
 			
 			
+			p_cola.add(pBotonesCola);
 
-
-			tiempo = canciones.get(1).getDuration();
+			//tiempo = canciones.get(1).getDuration();
 
 			nom_can.setText("Cancion: " + canciones.get(1).getName_can());
 			t_final.setText(cambiosecmin.cambioSec(tiempo));
