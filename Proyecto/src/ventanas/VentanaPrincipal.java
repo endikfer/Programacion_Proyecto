@@ -1,6 +1,7 @@
 package ventanas;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -29,10 +30,13 @@ import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
+import javax.swing.ListCellRenderer;
+import javax.swing.ListModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListDataListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
@@ -561,6 +565,65 @@ public class VentanaPrincipal extends JFrame {
 	        
 			//		listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
 			//		p_cola.add(listaCancionesCola);
+			
+			class ModeloLista implements ListModel<Cancion>{
+				ArrayList<Cancion> cola;
+				
+				public ModeloLista(ArrayList<Cancion> canciones) {
+					this.cola = canciones;
+				}
+
+				@Override
+				public int getSize() {
+					return cola.size();
+				}
+
+				@Override
+				public Cancion getElementAt(int index) {
+					return cola.get(index);
+				}
+
+				@Override
+				public void addListDataListener(ListDataListener l) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void removeListDataListener(ListDataListener l) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+			}
+			
+			class RenderLista implements ListCellRenderer<Cancion>{
+				JLabel lbl;
+				
+				@Override
+				public Component getListCellRendererComponent(JList<? extends Cancion> list, Cancion value, int index,
+						boolean isSelected, boolean cellHasFocus) {
+					
+					lbl = new JLabel();
+					lbl.setText("Nombre: " + value.getName_can() + " [Duración: " + value.getDuration() + "] Artista: " + value.getNombre_Ar() + ".");
+					lbl.setOpaque(true);
+					
+					return lbl;
+				}
+				
+			}
+			
+			p_cola.setLayout(new GridLayout(1,2));
+			
+			JPanel pJlist = new JPanel();
+			ModeloLista modeloLista = new ModeloLista(canciones);
+			JList<Cancion> jListaCanciones = new JList<>(modeloLista);
+			jListaCanciones.setCellRenderer(new RenderLista());
+			pJlist.add(jListaCanciones);
+			p_cola.add(pJlist);
+			
+			
+			
 
 
 			tiempo = canciones.get(1).getDuration();
