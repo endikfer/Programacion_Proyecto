@@ -44,7 +44,7 @@ import javax.swing.table.JTableHeader;
 import bd.BDExcepcion;
 import bd.BDManejoUsu;
 import ventanasadd.Listeners;
-import ventanasadd.ModeloLista;
+//import ventanasadd.ModeloLista;
 import ventanasadd.Renderer;
 import canciones.Cancion;
 import ventanasadd.CambiarFondo;
@@ -193,7 +193,7 @@ public class VentanaPrincipal extends JFrame {
 	
 	public JComboBox<String> orden;
 
-	public static ModeloLista modeloLista;
+//	public static ModeloLista modeloLista;
 	public JList<Cancion> listaCancionesCola;
 	public ArrayList<Cancion> canciones;
 
@@ -588,10 +588,10 @@ public class VentanaPrincipal extends JFrame {
 			p_cola.setLayout(new GridLayout(1,2));
 			
 			JPanel pJlist = new JPanel();
-			modeloLista = new ModeloLista(canciones);
-			JList<Cancion> jListaCanciones = new JList<>(modeloLista);
-			jListaCanciones.setCellRenderer(new RenderLista());
-			pJlist.add(jListaCanciones);
+//			modeloLista = new ModeloLista(canciones);
+//			JList<Cancion> jListaCanciones = new JList<>(modeloLista);
+//			jListaCanciones.setCellRenderer(new RenderLista());
+//			pJlist.add(jListaCanciones);
 			
 			ScrollPane scrollCola = new ScrollPane();
 			scrollCola.add(pJlist);
@@ -606,17 +606,17 @@ public class VentanaPrincipal extends JFrame {
 			JPanel pBtnQuitar = new JPanel();
 			pBtnQuitar.add(btnQuitar);
 			pBotonesCola.add(pBtnQuitar);
-			btnQuitar.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
-					
-					int indx = jListaCanciones.getSelectedIndex();
-					if (indx != -1) canciones.remove(indx);
-					modeloLista = new ModeloLista(canciones);
-				}
-			});
+//			btnQuitar.addActionListener(new ActionListener() {
+//				
+//				@Override
+//				public void actionPerformed(ActionEvent e) {
+//					// TODO Auto-generated method stub
+//					
+//					int indx = jListaCanciones.getSelectedIndex();
+//					if (indx != -1) canciones.remove(indx);
+//					modeloLista = new ModeloLista(canciones);
+//				}
+//			});
 			
 			
 			
