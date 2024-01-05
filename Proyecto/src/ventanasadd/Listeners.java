@@ -210,12 +210,18 @@ public class Listeners {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try (FileReader reader = new FileReader("configuracion.properties")) {
+					if(ventana.canciones.size() > 1) {
 					properties.load(reader);
-					ventana.deslizador.finalizarDeslizador();
 					Reproductor.close();
 					//hay que meter la lista de canciones para que coja la siguiente cancione
-					File a = new File(properties.getProperty("dirCan") + "She Don't give a for.wav");
+					File a = new File(properties.getProperty("dirCan") + "She Don't Give a Fo.wav");
+					ventana.deslizador.reiniciarDeslizador();
 					Reproductor.reproduce(a);
+					} else {
+						properties.load(reader);
+						ventana.deslizador.finalizarDeslizador();
+						Reproductor.close();
+					}
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				} 
