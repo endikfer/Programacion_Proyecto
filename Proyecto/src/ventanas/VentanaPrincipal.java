@@ -273,6 +273,7 @@ public class VentanaPrincipal extends JFrame {
 		p_barra = new JPanel(new BorderLayout());
 		p_flecha = new JPanel(new BorderLayout());
 		
+		ColaCancion = new ArrayList<>();
 		
 		gs = new GestorCanciones();
 
