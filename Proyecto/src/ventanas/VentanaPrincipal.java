@@ -196,6 +196,8 @@ public class VentanaPrincipal extends JFrame {
 //	public static ModeloLista modeloLista;
 	public JList<Cancion> listaCancionesCola;
 	public ArrayList<Cancion> canciones;
+	
+	public ArrayList<Cancion> ColaCancion;
 
 	public Cancion cancion;
 	GestorCanciones gs;

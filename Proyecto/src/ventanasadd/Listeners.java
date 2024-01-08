@@ -15,11 +15,16 @@ import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
+import bd.BDCanciones;
+import bd.BDExcepcion;
+import canciones.Cancion;
 import ventanas.VentanaPrincipal;
 
 public class Listeners {
 
 	public VentanaPrincipal ventana;
+	public GestorCanciones gestorCan;
+	BDCanciones bdc;
 
 	private TogleBoton togle;
 
@@ -273,26 +278,40 @@ public class Listeners {
 	}
 	
 
-	ArrayList<String> listaCanciones = new ArrayList<String>();
+	
 	 public ActionListener Agregarcan() {
 	        return new ActionListener() {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
+	            	bdc = new BDCanciones();
 	                int selectedRow = ventana.tabla_canciones.getSelectedRow();
 	                if (selectedRow == -1) {
-	                    JOptionPane.showMessageDialog(ventana, "No se ha seleccionado ninguna canción.", "Error", JOptionPane.ERROR_MESSAGE);
+	                	JOptionPane.showMessageDialog(ventana, "No se ha seleccionado ninguna canción.", "Error", JOptionPane.ERROR_MESSAGE);
 	                } else {
-	                    String selectedSong = (String) ventana.tabla_canciones.getValueAt(selectedRow, 0);
-	                    if (listaCanciones.contains(selectedSong)) {
-	                        JOptionPane.showMessageDialog(ventana, "La canción ya está en la lista.", "Error", JOptionPane.ERROR_MESSAGE);
-	                    } else {
-	                        listaCanciones.add(selectedSong);
-	                        // Update the JList or perform any other necessary actions
-	                    }
+	                	String nombreCan = (String) ventana.tabla_canciones.getValueAt(selectedRow, 0);
+	                	Cancion c = null;
+	                	try {
+	                		bdc.connect("Usuario.db");
+	                		c= bdc.getCancion(nombreCan);
+	                		bdc.disconnect();
+
+	                	} catch (BDExcepcion e1) {
+	                		// TODO Auto-generated catch block
+	                		e1.printStackTrace();
+	                	}
+	                	for (Cancion c1: ventana.canciones) {
+	                		if (c.getName_can().equals(c1.getName_can())) {
+	                			JOptionPane.showMessageDialog(ventana, "La canción ya está en la lista.", "Error", JOptionPane.ERROR_MESSAGE);
+	                		} else {
+	                			ventana.canciones.add(c);
+	                			System.out.println(ventana.ColaCancion);
+	                			// Update the JList or perform any other necessary actions
+	                		}
+	                	}
 	                }
 	            }
 	        };
-	    }
+	 }
 	
 
 }
