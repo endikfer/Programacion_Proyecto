@@ -289,22 +289,19 @@ public class Listeners {
 					JOptionPane.showMessageDialog(ventana, "No se ha seleccionado ninguna canción.", "Error", JOptionPane.ERROR_MESSAGE);
 				} else {
 					String nombreCan = (String) ventana.tabla_canciones.getValueAt(selectedRow, 0);
-					Cancion c = null;
 					try {
 						bdc.connect("Usuario.db");
-						c= bdc.getCancion(nombreCan);
+						Cancion c= bdc.getCancion(nombreCan);
 						if (!ventana.ColaCancion.isEmpty()) {
 							for (Cancion c1: ventana.ColaCancion) {
 								if (c.getName_can().equals(c1.getName_can())) {
 									JOptionPane.showMessageDialog(ventana, "La canción ya está en la lista.", "Error", JOptionPane.ERROR_MESSAGE);
-								} else {
-									ventana.canciones.add(c);
-									System.out.println(ventana.ColaCancion);
-									// Update the JList or perform any other necessary actions
 								}
 							}
+							ventana.ColaCancion.add(c);
+							System.out.println(ventana.ColaCancion);
 						}else { 
-							ventana.canciones.add(c);
+							ventana.ColaCancion.add(c);
 							System.out.println(ventana.ColaCancion);
 						}
 						bdc.disconnect();

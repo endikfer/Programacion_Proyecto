@@ -567,7 +567,6 @@ public class VentanaPrincipal extends JFrame {
 			for(Cancion c: gs.obtenerCanciones()) {
 	        	canciones.add(c);
 	        }
-			System.out.println(canciones);
 	        
 			//		listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
 			//		p_cola.add(listaCancionesCola);
