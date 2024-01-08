@@ -219,6 +219,7 @@ public class Listeners {
 						properties.load(reader);
 						Reproductor.close();
 						//hay que meter la lista de canciones para que coja la siguiente cancione
+//						if{ventana.ColaCancion.}
 						File a = new File(properties.getProperty("dirCan") + "She Don't Give a Fo.wav");
 						ventana.deslizador.reiniciarDeslizador();
 						Reproductor.reproduce(a);
