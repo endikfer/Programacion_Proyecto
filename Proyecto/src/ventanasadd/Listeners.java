@@ -217,7 +217,7 @@ public class Listeners {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try (FileReader reader = new FileReader("configuracion.properties")) {
-					if(ventana.ColaCancion.size() > 1) {
+					if(ventana.ColaCancion.size() > 0) {
 						properties.load(reader);
 						Reproductor.close();
 
@@ -313,10 +313,8 @@ public class Listeners {
 								}
 							}
 							ventana.ColaCancion.add(c);
-							System.out.println(ventana.ColaCancion);
 						}else { 
 							ventana.ColaCancion.add(c);
-							System.out.println(ventana.ColaCancion);
 						}
 						bdc.disconnect();
 
