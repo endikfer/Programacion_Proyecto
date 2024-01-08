@@ -37,7 +37,7 @@ public class BDManejoUsu {
 
 	public List<Usuario> getTodosUsu() throws BDExcepcion {
 		List<Usuario> users = new ArrayList<Usuario>();
-		
+
 		try (Statement stmt = conn.createStatement()) {
 			ResultSet rs = stmt.executeQuery("SELECT nombre, gmail, nombre_usu, contraseña from usuario");
 
@@ -86,15 +86,15 @@ public class BDManejoUsu {
 			stmt.setString(2, user.getGmail());
 			stmt.setString(3, user.getName_us());
 			stmt.setString(4, user.getPassword()); 
-			
+
 			stmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			throw new BDExcepcion("No se pudo guardar el usuario en la BD", e);
 		}
 	}
 
-	
+
 	public void eliminar(Usuario user) throws BDExcepcion {
 		try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM usuario WHERE nombre_usu=?")) {
 			stmt.setString(1, user.getName_us());
@@ -118,66 +118,6 @@ public class BDManejoUsu {
 			stmt.executeUpdate("DROP TABLE IF EXISTS usuario");
 		} catch (SQLException e) {
 			throw new BDExcepcion("Error borrando la tabla 'usuario' en la BD", e);
-		}
-	}
-	
-	private static void actualizarDB(String str) {
-		//TODO
-		/**
-		 * Este método cargará el arraylist de usuarios en la base de datos de usuarios
-		 * para mantenerla actualizada.
-		 */
-		String sql = String.format("INSERT INTO usuarios VALUES ('%s', '%s', %s, '%s')", "txtNomRealR.getText(), txtMailR.getText(), txtNomR.getText(), passConR.getText()");
-		
-		try {
-			Class.forName("org.sqlite.JDBC");
-			
-			Connection conn = DriverManager.getConnection("jdbc:sqlite:" +"lib/Usuarios.db");
-			
-			Statement stm = conn.createStatement();
-			int rows = stm.executeUpdate(sql);
-			
-			stm.close();
-			conn.close();
-			
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private static void cargarUsuarios(ArrayList<Usuario> usuarios, String dbPath){
-		//TODO
-		/**
-		 * Este método lee de una base de datos, y carga los usuarios almacenados en ella en
-		 * un arraylist que es con lo que trabaja luego la ventana.
-		 */
-		try {
-			Class.forName("org.sqlite.JDBC");
-			Connection conn = DriverManager.getConnection("jdbc:sqlite:" +"lib/Usuarios.db");
-			Statement stm = conn.createStatement();
-			ResultSet rs = stm.executeQuery("SELECT nombre, gmail, nombre_usu, contraseña FROM usuario WHERE nombre_usu = ?");
-			
-			while(rs.next()) {
-				String nombre = rs.getString("nombre_usu");
-				String nombreReal = rs.getString("nombre");
-				String mail = rs.getString("gamil");
-				String password = rs.getString("contraseña");
-				
-				Usuario us = new Usuario(nombre, nombreReal, password, mail);
-				usuarios.add(us);
-			}
-			
-			rs.close();
-			stm.close();
-			conn.close();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 }

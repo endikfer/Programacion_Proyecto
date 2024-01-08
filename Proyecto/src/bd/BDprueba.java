@@ -12,7 +12,6 @@ public class BDprueba {
             System.out.println("Conectando con la base de datos...");
             dbManager.connect("Usuario.db");
 
-            dbManager.EliminarTablaUsu();
             
             // Creamos la tabla de usuario al iniciar el programa.
             dbManager.CrearTablaUsu();
@@ -42,7 +41,7 @@ public class BDprueba {
             System.out.println("Usuario recuperado: " + user);
 
             // Se borra el usuario recuperado.
-            dbManager.eliminar(user);
+//            dbManager.eliminar(user);
 
             // Se recuperan todos los usuarios de la base de datos
             // en una lista. Comprobamos que se ha borrado el usuario '2'
@@ -56,7 +55,7 @@ public class BDprueba {
             // Al terminar se borra la tabla de usuarios de la base de datos.
             // Esto no es lo normal ya que queremos que los datos se mantengan
             // entre ejecuciones del programa, pero sirve como ejemplo.
-            dbManager.EliminarTablaUsu();
+//            dbManager.EliminarTablaUsu();
 
 
             // Se cierra la conexión a la base de datos.

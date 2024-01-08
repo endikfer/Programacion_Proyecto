@@ -49,8 +49,10 @@ public class Usuario {
 	public void setGmail(String gmail) {
 		this.gmail = gmail;
 	}
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Usuario [name_real=" + name_real + ", name_us=" + name_us + ", password=" + password + ", gmail="
+				+ gmail + "]";
+	}
 }

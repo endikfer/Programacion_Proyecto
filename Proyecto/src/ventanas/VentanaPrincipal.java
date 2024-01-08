@@ -44,6 +44,7 @@ import ventanasadd.Listeners;
 //import ventanasadd.ModeloLista;
 import ventanasadd.Renderer;
 import canciones.Cancion;
+import canciones.Usuario;
 import ventanasadd.CambiarFondo;
 import ventanasadd.CambioSegundoMinuto;
 import ventanasadd.CargarCanciones;
@@ -225,11 +226,10 @@ public class VentanaPrincipal extends JFrame {
 		bdUsu = new BDManejoUsu();
 
 		properties = new Properties();
-
+		
 		listener.PararCancionesAlCerrar();
-
+		
 		renderer = new Renderer();
-
 
 		//Elementos creados
 		//Paneles principales
@@ -632,11 +632,11 @@ public class VentanaPrincipal extends JFrame {
 			//conectando a la  base de datos
 			try {
 				bdUsu.connect("Usuario.db");
-//				Usuario user =  bdUsu.getUser(vusu.NomUsu);
-//				t_nombre.setText(user.getName_real());
-//				t_correo.setText(user.getGmail());
-//				t_nom_usu.setText(user.getName_us());
-//				p_contra_f.setText(user.getPassword());
+				Usuario user =  bdUsu.getUser(vusu.getNomUsu());
+				t_nombre.setText(user.getName_real());
+				t_correo.setText(user.getGmail());
+				t_nom_usu.setText(user.getName_us());
+				p_contra_f.setText(user.getPassword());
 
 			} catch (BDExcepcion e1) {
 				e1.printStackTrace();

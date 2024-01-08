@@ -5,13 +5,6 @@ import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -22,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import bd.BDExcepcion;
+import bd.BDManejoUsu;
 import canciones.Usuario;
 
 public class VentanaUsuario extends JFrame{
@@ -37,7 +32,8 @@ public class VentanaUsuario extends JFrame{
 	private static JTextField txtNomIs, txtNomR, txtMailR, txtNomRealR;
 	private static JPasswordField passConR, passConIs;
 	private static ArrayList<Usuario> usuarios;
-	public String NomUsu;
+	public String nomUsu;
+	public BDManejoUsu bd;
 	
 	
 
@@ -51,8 +47,15 @@ public class VentanaUsuario extends JFrame{
 		
 		//Inicialización de los componentes
 		usuarios = new ArrayList<Usuario>();
-		cargarUsuarios(usuarios, "Usuarios.db");
-		
+		bd = new BDManejoUsu();
+		try {
+			bd.connect("Usuario.db");
+			usuarios = (ArrayList<Usuario>) bd.getTodosUsu();
+			bd.disconnect();
+		} catch (BDExcepcion e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		pCent = new JPanel();
 		pIs = new JPanel();
@@ -120,7 +123,34 @@ public class VentanaUsuario extends JFrame{
 		
 		//Eventos
 		
-		btnIs.addActionListener(new ActionListener() {//TODO
+		btnR.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				@SuppressWarnings("deprecation")
+				Usuario us = new Usuario(txtNomRealR.getText(), txtNomR.getText(), passConR.getText(), txtMailR.getText());
+				
+				if(!usuarios.contains(us)) {
+					usuarios.add(us);
+					System.out.println("Registrado");
+				}else JOptionPane.showMessageDialog(pCent, "ESTE USUARIO YA ESTÁ REGISTRADO");
+				
+				txtMailR.setText("");
+				txtNomR.setText("");
+				txtNomRealR.setText("");
+				passConR.setText("");
+				
+				try {
+					bd.connect("Usuario.db");
+					bd.guardar(us);
+					bd.disconnect();
+				} catch (BDExcepcion e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		btnIs.addActionListener(new ActionListener() {
 			/**
 			 * Este botón comprueba que los datos del usuario estén guardados en una array,
 			 * si está, le permite acceder a la aplicación, y si no, le salta un error.
@@ -132,7 +162,15 @@ public class VentanaUsuario extends JFrame{
 				@SuppressWarnings("deprecation")
 				String con = passConIs.getText();
 				
-				NomUsu = txtNomIs.getText();
+				nomUsu = txtNomIs.getText();
+				
+				try {
+					bd.connect("Usuario.db");
+					usuarios = (ArrayList<Usuario>) bd.getTodosUsu();
+					bd.disconnect();
+				} catch (BDExcepcion e1) {
+					e1.printStackTrace();
+				}
 				
 				
 				for(Usuario u : usuarios) {
@@ -140,9 +178,11 @@ public class VentanaUsuario extends JFrame{
 						@SuppressWarnings("unused")
 						VentanaPrincipal vp = new VentanaPrincipal();
 						dispose();
+						finish = false;
 						break;
+					}else {
+						finish = true;
 					}
-					finish = true;
 				}
 				if (finish == true) {
 					JOptionPane.showMessageDialog(pCent, "Este usuario NO EXISTE.");
@@ -151,108 +191,15 @@ public class VentanaUsuario extends JFrame{
 					passConIs.setText("");
 				}
 			}
-		});
-		
-		btnR.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				@SuppressWarnings("deprecation")
-				Usuario us = new Usuario(txtNomRealR.getText(), txtNomR.getText(), passConR.getText(), txtMailR.getText());
-				
-				if(!usuarios.contains(us)) usuarios.add(us);
-				else JOptionPane.showMessageDialog(pCent, "ESTE USUARIO YA ESTÁ REGISTRADO");
-				
-				txtMailR.setText("");
-				txtNomR.setText("");
-				txtNomRealR.setText("");
-				passConR.setText("");
-				
-				actualizarDB("Usuarios.db");
-			}
-		});
-		
-		addWindowListener(new WindowAdapter() {
-			
-			@Override
-			public void windowClosing(WindowEvent e) {
-				actualizarDB("Usuarios.db");
-			}
-		});
-		
-				
+		});		
 		setVisible(true);
 	}
-	
 	
 	public static void main(String[] args) {
 		@SuppressWarnings("unused")
 		VentanaUsuario v = new VentanaUsuario();
 	}
 	
-	private static void cargarUsuarios(ArrayList<Usuario> usuarios, String dbPath){
-		//TODO
-		/**
-		 * Este método lee de una base de datos, y carga los usuarios almacenados en ella en
-		 * un arraylist que es con lo que trabaja luego la ventana.
-		 */
-		try {
-			Class.forName("org.sqlite.JDBC");
-			Connection conn = DriverManager.getConnection("jdbc:sqlite:" +"lib/Usuarios.db");
-			Statement stm = conn.createStatement();
-			ResultSet rs = stm.executeQuery("SELECT nombre, gmail, nombre_usu, contraseña FROM usuario WHERE nombre_usu = ?");
-			
-			while(rs.next()) {
-				String nombre = rs.getString("nombre_usu");
-				String nombreReal = rs.getString("nombre");
-				String mail = rs.getString("gamil");
-				String password = rs.getString("contraseña");
-				
-				Usuario us = new Usuario(nombre, nombreReal, password, mail);
-				usuarios.add(us);
-			}
-			
-			rs.close();
-			stm.close();
-			conn.close();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	private static void actualizarDB(String str) {
-		//TODO
-		/**
-		 * Este método cargará el arraylist de usuarios en la base de datos de usuarios
-		 * para mantenerla actualizada.
-		 */
-		@SuppressWarnings("deprecation")
-		String sql = String.format("INSERT INTO usuarios VALUES ('%s', '%s', %s, '%s')", txtNomRealR.getText(), txtMailR.getText(), txtNomR.getText(), passConR.getText());
-		
-		try {
-			Class.forName("org.sqlite.JDBC");
-			
-			Connection conn = DriverManager.getConnection("jdbc:sqlite:" +"lib/Usuarios.db");
-			
-			Statement stm = conn.createStatement();
-			@SuppressWarnings("unused")
-			int rows = stm.executeUpdate(sql);
-			
-			stm.close();
-			conn.close();
-			
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-
 	public static String getNomUsu() {
 		return txtNomIs.getText();
 	}
