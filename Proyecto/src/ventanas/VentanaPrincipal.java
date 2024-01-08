@@ -198,6 +198,7 @@ public class VentanaPrincipal extends JFrame {
 	public ArrayList<Cancion> canciones;
 	
 	public ArrayList<Cancion> ColaCancion;
+	public String CancionEjectuda;
 
 	public Cancion cancion;
 	GestorCanciones gs;
@@ -620,6 +621,8 @@ public class VentanaPrincipal extends JFrame {
 //				}
 //			});
 			
+			
+			CancionEjectuda = canciones.get(1).getName_can();
 			
 			
 			p_cola.add(pBotonesCola);

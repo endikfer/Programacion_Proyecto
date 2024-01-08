@@ -215,16 +215,20 @@ public class Listeners {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try (FileReader reader = new FileReader("configuracion.properties")) {
-					if(ventana.canciones.size() > 1) {
+					if(ventana.ColaCancion.size() > 1) {
 						properties.load(reader);
 						Reproductor.close();
-						//hay que meter la lista de canciones para que coja la siguiente cancione
-//						if{ventana.ColaCancion.}
-						File a = new File(properties.getProperty("dirCan") + "She Don't Give a Fo.wav");
+						
+						
+						for (Cancion c: ventana.ColaCancion) {
+							
+						}
+						String nombreCan = ventana.ColaCancion.get(0).getName_can();
+						File a = new File(properties.getProperty("dirCan") + nombreCan + ".wav");
 						ventana.deslizador.reiniciarDeslizador();
 						Reproductor.reproduce(a);
+						
 					} else {
-						properties.load(reader);
 						ventana.deslizador.finalizarDeslizador();
 						Reproductor.close();
 					}
@@ -311,7 +315,7 @@ public class Listeners {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					
+
 				}
 			}
 		};
