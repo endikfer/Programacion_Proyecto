@@ -182,14 +182,28 @@ public class Listeners {
 					ventana.b_pausar_can.setIcon(ventana.i_pausar);
 					ventana.deslizador.deslizador1(ventana.activador);
 					//que el reporductor se active
-					Reproductor.play();
+					try {
+						Reproductor.play();
+					}catch(Exception e1){
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(ventana, "No hay cancion seleccionada para reproducir.", "Error", JOptionPane.ERROR_MESSAGE);
+						
+					}
+					
 				}else {
 					ventana.activador = false;
 					//cambio de la imagen del boton
 					ventana.b_pausar_can.setIcon(ventana.i_play);
 					ventana.deslizador.deslizador1(ventana.activador);
 					//que el reproductor se pare
-					Reproductor.pause();
+					try {
+						Reproductor.pause();
+					}catch(Exception e1){
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(ventana, "No hay cancion seleccionada para reproducir.", "Error", JOptionPane.ERROR_MESSAGE);
+						
+					}
+					
 
 				}
 			}
@@ -240,7 +254,7 @@ public class Listeners {
 							e1.printStackTrace();
 						}
 
-						
+
 					} else {
 						ventana.deslizador.finalizarDeslizador();
 						Reproductor.close();
@@ -307,20 +321,25 @@ public class Listeners {
 					JOptionPane.showMessageDialog(ventana, "No se ha seleccionado ninguna canción.", "Error", JOptionPane.ERROR_MESSAGE);
 				} else {
 					String nombreCan = (String) ventana.tabla_canciones.getValueAt(selectedRow, 0);
+					Boolean b = false;
 					try {
 						bdc.connect("Usuario.db");
 						Cancion c= bdc.getCancion(nombreCan);
 						if (!ventana.ColaCancion.isEmpty()) {
 							for (Cancion c1: ventana.ColaCancion) {
 								if (c.getName_can().equals(c1.getName_can())) {
+									b = true;
 									JOptionPane.showMessageDialog(ventana, "La canción ya está en la lista.", "Error", JOptionPane.ERROR_MESSAGE);
 								}
 							}
+							if( b != true) {
 							ventana.ColaCancion.add(c);
+							}
 						}else { 
 							ventana.ColaCancion.add(c);
 						}
 						bdc.disconnect();
+						System.out.println(ventana.ColaCancion);
 
 					} catch (BDExcepcion e1) {
 						// TODO Auto-generated catch block
