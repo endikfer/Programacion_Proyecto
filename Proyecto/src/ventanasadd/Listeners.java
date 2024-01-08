@@ -15,6 +15,8 @@ import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
+import org.sqlite.JDBC;
+
 import bd.BDCanciones;
 import bd.BDExcepcion;
 import canciones.Cancion;
@@ -218,15 +220,22 @@ public class Listeners {
 					if(ventana.ColaCancion.size() > 1) {
 						properties.load(reader);
 						Reproductor.close();
-						
-						
-						for (Cancion c: ventana.ColaCancion) {
-							
+
+						try {
+							bdc.connect("Usuario.db");
+							String nombreCan = ventana.CancionEjectuda;
+							Cancion c = bdc.getCancion(nombreCan);
+							int posicion = ventana.ColaCancion.indexOf(c);
+							Cancion c1 = ventana.ColaCancion.get(posicion+1);
+							ventana.CancionEjectuda = c1.getName_can();
+							File a = new File(properties.getProperty("dirCan") + c1.getName_can() + ".wav");
+							ventana.deslizador.reiniciarDeslizador();
+							Reproductor.reproduce(a);
+						} catch (BDExcepcion e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
 						}
-						String nombreCan = ventana.ColaCancion.get(0).getName_can();
-						File a = new File(properties.getProperty("dirCan") + nombreCan + ".wav");
-						ventana.deslizador.reiniciarDeslizador();
-						Reproductor.reproduce(a);
+
 						
 					} else {
 						ventana.deslizador.finalizarDeslizador();
