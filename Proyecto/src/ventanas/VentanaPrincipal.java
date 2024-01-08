@@ -6,8 +6,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.ScrollPane;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -24,7 +22,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JSlider;
@@ -520,14 +517,6 @@ public class VentanaPrincipal extends JFrame {
 			//activamos ya que pueda reproducir
 			File a = new File(properties.getProperty("dirCan") + "Givenchy.wav");
 			Reproductor.reproduce(a);
-			//		this.addWindowListener(new WindowAdapter() {
-			//		    @Override
-			//		    public void windowClosing(WindowEvent e) {
-			//		        super.windowClosing(e);
-			//		        // Aquí detienes el reproductor
-			//		        reproductor.pause();
-			//		    }
-			//		});
 
 
 			//Añadir los escuchadores de los botones

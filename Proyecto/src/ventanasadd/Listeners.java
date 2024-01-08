@@ -10,13 +10,8 @@ import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Properties;
-
 import javax.swing.JOptionPane;
-
-import org.sqlite.JDBC;
-
 import bd.BDCanciones;
 import bd.BDExcepcion;
 import canciones.Cancion;
