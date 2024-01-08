@@ -122,8 +122,8 @@ public class VentanaPrincipal extends JFrame {
 	public JLabel l_correo;
 	public JLabel l_nom_usu;
 	public JLabel l_contra;
-	
-	
+
+
 	public JLabel relleno1;
 	public JLabel relleno2;
 	public JLabel relleno3;
@@ -188,19 +188,19 @@ public class VentanaPrincipal extends JFrame {
 	public JLabel t_final;
 	public JLabel t_duracion;
 	public JLabel nom_can;
-	
+
 	public JComboBox<String> orden;
 
-//	public static ModeloLista modeloLista;
+	//	public static ModeloLista modeloLista;
 	public JList<Cancion> listaCancionesCola;
 	public ArrayList<Cancion> canciones;
-	
+
 	public ArrayList<Cancion> ColaCancion;
 	public String CancionEjectuda;
 
 	public Cancion cancion;
 	GestorCanciones gs;
-	
+
 	public VentanaPrincipal(VentanaUsuario vusu) {
 		this.vusu = vusu;
 	}
@@ -220,15 +220,15 @@ public class VentanaPrincipal extends JFrame {
 		listener = new Listeners(this);
 
 		cambiosecmin = new CambioSegundoMinuto();
-		
+
 		cargacancion = new CargarCanciones();
 
 		bdUsu = new BDManejoUsu();
 
 		properties = new Properties();
-		
+
 		listener.PararCancionesAlCerrar();
-		
+
 		renderer = new Renderer();
 
 		//Elementos creados
@@ -270,9 +270,9 @@ public class VentanaPrincipal extends JFrame {
 		p_bucle = new JPanel(new BorderLayout());
 		p_barra = new JPanel(new BorderLayout());
 		p_flecha = new JPanel(new BorderLayout());
-		
+
 		ColaCancion = new ArrayList<>();
-		
+
 		gs = new GestorCanciones();
 
 
@@ -363,14 +363,14 @@ public class VentanaPrincipal extends JFrame {
 			//Canciones
 			//Panel
 			p_combo = new JPanel(new GridLayout(1,6));
-			
+
 			//Label
 			relleno1 = new JLabel();
 			relleno2 = new JLabel();
 			relleno3 = new JLabel();
 			relleno4 = new JLabel();
-			
-			
+
+
 			//texto
 			busqueda = new JTextField(50);
 
@@ -382,13 +382,13 @@ public class VentanaPrincipal extends JFrame {
 			b_cancion_nueva = new JButton("Añadir canción");
 			b_cancion_nueva.addActionListener(listener.Agregarcan());
 			lupa = new JButton(i_lupa);
-			
+
 			lupa.addActionListener(listener.BarraBusq());
-			
+
 			//ComboBox
 			String [] ordenes = {"A --> Z", "Z --> A", "Menos duracion", "Mas duracion"}; 
 			orden = new JComboBox<>(ordenes);
-			
+
 			orden.addActionListener(listener.OrdenarCombo());
 
 
@@ -418,7 +418,7 @@ public class VentanaPrincipal extends JFrame {
 			tabla_canciones.getColumnModel().setColumnMargin(10);
 			tabla_canciones.setRowMargin(10);
 			tabla_canciones.setRowHeight(40);
-			
+
 
 			//componente para el estilo de la JTable
 			//		Estilotabla estilo = new Estilotabla();
@@ -433,10 +433,10 @@ public class VentanaPrincipal extends JFrame {
 			// Obtener el encabezado de la tabla
 			JTableHeader tableHeader = tabla_canciones.getTableHeader();
 			tableHeader.setFont(new Font("Arial", Font.ITALIC, 30));
-			
+
 			//No poder moever las colunas
 			tableHeader.setReorderingAllowed(false);
-			
+
 
 			//El scorll para la tabla
 			Scroll_tabla = new JScrollPane(tabla_canciones);
@@ -524,96 +524,96 @@ public class VentanaPrincipal extends JFrame {
 
 			b_atras_can.addActionListener(listener.BotonPausarFlechaIzqListener());
 			b_adelantar_can.addActionListener(listener.BotonPausarFlechaDereListener());
-			
-			//Plan B para el hilo
-			
-			// Crear una etiqueta para mostrar la hora actual en el encabezado
-	        JLabel etiquetaReloj = new JLabel();
-	        etiquetaReloj.setFont(new Font("Arial", Font.PLAIN, 24));
-	        etiquetaReloj.setHorizontalAlignment(SwingConstants.CENTER);
-	        add(etiquetaReloj, BorderLayout.NORTH); // Añadir la etiqueta al encabezado de la ventana
-			
-			
-			Thread hiloReloj = new Thread(() -> {
-	            while (true) {
-	                LocalDateTime ahora = LocalDateTime.now();
-	                DateTimeFormatter formateador = DateTimeFormatter.ofPattern("HH:mm:ss");
-	                String horaActual = ahora.format(formateador);
-	                setTitle("Ventana Principal - [Hora: " + horaActual + "]"); // Asignar el título con la hora actual
 
-	                try {
-	                    Thread.sleep(1000); // Esperar 1 segundo
-	                } catch (InterruptedException e) {
-	                    e.printStackTrace();
-	                }
-	            }
+			//Plan B para el hilo
+
+			// Crear una etiqueta para mostrar la hora actual en el encabezado
+			JLabel etiquetaReloj = new JLabel();
+			etiquetaReloj.setFont(new Font("Arial", Font.PLAIN, 24));
+			etiquetaReloj.setHorizontalAlignment(SwingConstants.CENTER);
+			add(etiquetaReloj, BorderLayout.NORTH); // Añadir la etiqueta al encabezado de la ventana
+
+
+			Thread hiloReloj = new Thread(() -> {
+				while (true) {
+					LocalDateTime ahora = LocalDateTime.now();
+					DateTimeFormatter formateador = DateTimeFormatter.ofPattern("HH:mm:ss");
+					String horaActual = ahora.format(formateador);
+					setTitle("Ventana Principal - [Hora: " + horaActual + "]"); // Asignar el título con la hora actual
+
+					try {
+						Thread.sleep(1000); // Esperar 1 segundo
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
 			});
-	        hiloReloj.start();
+			hiloReloj.start();
 
 
 			//Cola
 			canciones = new ArrayList<Cancion>();
 			Collections.sort(gs.obtenerCanciones());
 			for(Cancion c: gs.obtenerCanciones()) {
-	        	canciones.add(c);
-	        }
-	        
+				canciones.add(c);
+			}
+
 			//		listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
 			//		p_cola.add(listaCancionesCola);
-			
+
 			class RenderLista implements ListCellRenderer<Cancion>{
 				JLabel lbl;
-				
+
 				@Override
 				public Component getListCellRendererComponent(JList<? extends Cancion> list, Cancion value, int index,
 						boolean isSelected, boolean cellHasFocus) {
-					
+
 					lbl = new JLabel();
 					lbl.setText("Nombre: " + value.getName_can() + " [Duración: " + value.getDuration() + "] Artista: " + value.getNombre_Ar() + ".");
 					lbl.setOpaque(true);
-					
+
 					return lbl;
 				}
-				
+
 			}
-			
+
 			p_cola.setLayout(new GridLayout(1,2));
-			
+
 			JPanel pJlist = new JPanel();
-//			modeloLista = new ModeloLista(canciones);
-//			JList<Cancion> jListaCanciones = new JList<>(modeloLista);
-//			jListaCanciones.setCellRenderer(new RenderLista());
-//			pJlist.add(jListaCanciones);
-			
+			//			modeloLista = new ModeloLista(canciones);
+			//			JList<Cancion> jListaCanciones = new JList<>(modeloLista);
+			//			jListaCanciones.setCellRenderer(new RenderLista());
+			//			pJlist.add(jListaCanciones);
+
 			ScrollPane scrollCola = new ScrollPane();
 			scrollCola.add(pJlist);
-			
+
 			p_cola.add(scrollCola);
-			
-			
+
+
 			JPanel pBotonesCola = new JPanel();
 			pBotonesCola.setLayout(new GridLayout(3,1));
-			
+
 			JButton btnQuitar = new JButton("QUITAR DE LA COLA");
 			JPanel pBtnQuitar = new JPanel();
 			pBtnQuitar.add(btnQuitar);
 			pBotonesCola.add(pBtnQuitar);
-//			btnQuitar.addActionListener(new ActionListener() {
-//				
-//				@Override
-//				public void actionPerformed(ActionEvent e) {
-//					// TODO Auto-generated method stub
-//					
-//					int indx = jListaCanciones.getSelectedIndex();
-//					if (indx != -1) canciones.remove(indx);
-//					modeloLista = new ModeloLista(canciones);
-//				}
-//			});
-			
-			
+			//			btnQuitar.addActionListener(new ActionListener() {
+			//				
+			//				@Override
+			//				public void actionPerformed(ActionEvent e) {
+			//					// TODO Auto-generated method stub
+			//					
+			//					int indx = jListaCanciones.getSelectedIndex();
+			//					if (indx != -1) canciones.remove(indx);
+			//					modeloLista = new ModeloLista(canciones);
+			//				}
+			//			});
+
+
 			CancionEjectuda = canciones.get(1).getName_can();
-			
-			
+
+
 			p_cola.add(pBotonesCola);
 
 			tiempo = canciones.get(1).getDuration();
@@ -740,15 +740,5 @@ public class VentanaPrincipal extends JFrame {
 		} catch (IOException e) {
 			System.out.println("Error abriendo el fichero de propiedades.");
 		}
-	}
-
-
-	public static void main(String[] args) {	
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				new VentanaPrincipal();
-			}
-		});
 	}
 }
