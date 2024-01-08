@@ -21,14 +21,14 @@ public class Listeners {
 
 	public VentanaPrincipal ventana;
 	public GestorCanciones gestorCan;
-	BDCanciones bdc;
+	public BDCanciones bdc;
 
 	private TogleBoton togle;
 
 	private CambiarFondo cambiarfondo = new CambiarFondo();
 	private OrdenarTabla OT;
 	private BuscarEnTabla buscar;
-	Properties properties;
+	public Properties properties;
 
 	public Listeners(VentanaPrincipal ventana) {
 		this.ventana = ventana;

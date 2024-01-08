@@ -38,6 +38,7 @@ import javax.swing.event.ListDataListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import bd.BDCanciones;
 import bd.BDExcepcion;
 import bd.BDManejoUsu;
 import ventanasadd.Listeners;
@@ -74,6 +75,8 @@ public class VentanaPrincipal extends JFrame {
 	public BDManejoUsu bdUsu;
 	public Properties properties;
 	private VentanaUsuario vusu;
+	
+	public BDCanciones bdc;
 
 	public int tiempo;
 
@@ -199,7 +202,7 @@ public class VentanaPrincipal extends JFrame {
 	public String CancionEjectuda;
 
 	public Cancion cancion;
-	GestorCanciones gs;
+	public GestorCanciones gs;
 
 	public VentanaPrincipal(VentanaUsuario vusu) {
 		this.vusu = vusu;
@@ -230,6 +233,10 @@ public class VentanaPrincipal extends JFrame {
 		listener.PararCancionesAlCerrar();
 
 		renderer = new Renderer();
+		
+		gs = new GestorCanciones();
+		
+		bdc = new BDCanciones();
 
 		//Elementos creados
 		//Paneles principales
@@ -272,9 +279,6 @@ public class VentanaPrincipal extends JFrame {
 		p_flecha = new JPanel(new BorderLayout());
 
 		ColaCancion = new ArrayList<>();
-
-		gs = new GestorCanciones();
-
 
 
 
@@ -610,15 +614,23 @@ public class VentanaPrincipal extends JFrame {
 			//				}
 			//			});
 
+			try {
+				bdc.connect("Usuario.db");
+				ColaCancion.add(bdc.getCancion("Givenchy"));
+				bdc.disconnect();
+				
+			} catch (BDExcepcion e) {
+				e.printStackTrace();
+			}
 
-			CancionEjectuda = canciones.get(1).getName_can();
+			CancionEjectuda = canciones.get(0).getName_can();
 
 
 			p_cola.add(pBotonesCola);
 
-			tiempo = canciones.get(1).getDuration();
+			tiempo = ColaCancion.get(0).getDuration();
 
-			nom_can.setText("Cancion: " + canciones.get(1).getName_can());
+			nom_can.setText("Cancion: " + ColaCancion.get(0).getName_can());
 			t_final.setText(cambiosecmin.cambioSec(tiempo));
 			t_duracion.setText(String.format("%02d:%02d", 0,0));
 

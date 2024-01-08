@@ -9,9 +9,9 @@ import canciones.Cancion;
 
 public class GestorCanciones {
 
-	BDCanciones bdc;
-
-
+	public BDCanciones bdc;
+	
+	
 	private List<Cancion> canciones;
 
 	public GestorCanciones() {
@@ -24,7 +24,6 @@ public class GestorCanciones {
 			bdc.disconnect();
 			
 		} catch (BDExcepcion e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
