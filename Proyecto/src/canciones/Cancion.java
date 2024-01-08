@@ -1,6 +1,7 @@
 package canciones;
 
 import java.awt.Image;
+import java.util.Objects;
 
 public class Cancion extends Artista implements Comparable<Cancion>{
 	
@@ -76,6 +77,23 @@ public class Cancion extends Artista implements Comparable<Cancion>{
 	@Override
 	public String toString() {
 		return "nombre: " + name_can + ", artista: " +  nombre_Ar + ", duracion: " + duration + ", album: " + album;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj) {
+	        return true;
+	    }
+	    if (obj == null || getClass() != obj.getClass()) {
+	        return false;
+	    }
+	    Cancion otraCancion = (Cancion) obj;
+	    return name_can.equals(otraCancion.name_can);
+	}
+
+	@Override
+	public int hashCode() {
+	    return Objects.hash(name_can);
 	}
 	
 	@Override
