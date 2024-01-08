@@ -21,14 +21,14 @@ public class Listeners {
 
 	public VentanaPrincipal ventana;
 	public GestorCanciones gestorCan;
-	public BDCanciones bdc;
+	BDCanciones bdc;
 
 	private TogleBoton togle;
 
 	private CambiarFondo cambiarfondo = new CambiarFondo();
 	private OrdenarTabla OT;
 	private BuscarEnTabla buscar;
-	public Properties properties;
+	Properties properties;
 
 	public Listeners(VentanaPrincipal ventana) {
 		this.ventana = ventana;
@@ -224,7 +224,6 @@ public class Listeners {
 							if (posicion+1 < ventana.ColaCancion.size()) {
 								Cancion c1 = ventana.ColaCancion.get(posicion+1);
 								ventana.CancionEjectuda = c1.getName_can();
-								System.out.println(c1.getName_can() +"  , " + posicion);
 								File a = new File(properties.getProperty("dirCan") + c1.getName_can() + ".wav");
 								ventana.deslizador.reiniciarDeslizador();
 								Reproductor.reproduce(a);
