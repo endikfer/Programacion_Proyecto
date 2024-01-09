@@ -623,7 +623,8 @@ public class VentanaPrincipal extends JFrame {
 				e.printStackTrace();
 			}
 
-			CancionEjectuda = canciones.get(0).getName_can();
+			CancionEjectuda = ColaCancion.get(0).getName_can();
+			System.out.println(ColaCancion.get(0).getName_can());
 
 
 			p_cola.add(pBotonesCola);

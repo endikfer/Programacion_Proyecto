@@ -38,12 +38,6 @@ public class Reproductor {
 			AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
 			clip = AudioSystem.getClip();
 			clip.open(audioStream);
-			clip.close();
-			try {
-				
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
 		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
 			e.printStackTrace();
 			Loggers.logger.warning("Error al reproducir la cancion");
