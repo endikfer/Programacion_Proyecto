@@ -29,6 +29,7 @@ public class Listeners {
 	private OrdenarTabla OT;
 	private BuscarEnTabla buscar;
 	Properties properties;
+	SiguienteCancion sigc;
 
 	public Listeners(VentanaPrincipal ventana) {
 		this.ventana = ventana;
@@ -225,43 +226,7 @@ public class Listeners {
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try (FileReader reader = new FileReader("configuracion.properties")) {
-					if(ventana.ColaCancion.size() > 0) {
-						properties.load(reader);
-						Reproductor.close();
-
-						try {
-							bdc.connect("Usuario.db");
-							String nombreCan = ventana.CancionEjectuda;
-							Cancion c = bdc.getCancion(nombreCan);
-							int posicion = ventana.ColaCancion.indexOf(c);
-							if (posicion+1 < ventana.ColaCancion.size()) {
-								Cancion c1 = ventana.ColaCancion.get(posicion+1);
-								ventana.CancionEjectuda = c1.getName_can();
-								File a = new File(properties.getProperty("dirCan") + c1.getName_can() + ".wav");
-								ventana.deslizador.reiniciarDeslizador();
-								Reproductor.reproduce(a);
-							} else if (ventana.t_bucle.isSelected()) {
-								posicion = 0;
-								Cancion c1 = ventana.ColaCancion.get(posicion);
-								ventana.CancionEjectuda = c1.getName_can();
-								File a = new File(properties.getProperty("dirCan") + c1.getName_can() + ".wav");
-								ventana.deslizador.reiniciarDeslizador();
-								Reproductor.reproduce(a);
-							}
-						} catch (BDExcepcion e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-
-
-					} else {
-						ventana.deslizador.finalizarDeslizador();
-						Reproductor.close();
-					}
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				} 
+				sigc.CancionSig();
 			}
 		};
 	}
