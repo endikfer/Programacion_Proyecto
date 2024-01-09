@@ -624,7 +624,6 @@ public class VentanaPrincipal extends JFrame {
 			}
 
 			CancionEjectuda = ColaCancion.get(0).getName_can();
-			System.out.println(ColaCancion.get(0).getName_can());
 
 
 			p_cola.add(pBotonesCola);
