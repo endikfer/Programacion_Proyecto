@@ -634,6 +634,8 @@ public class VentanaPrincipal extends JFrame {
 			t_final.setText(cambiosecmin.cambioSec(tiempo));
 			t_duracion.setText(String.format("%02d:%02d", 0,0));
 
+			
+			
 			//deslizador
 			duracion_can = new JSlider(0, tiempo, 0);
 

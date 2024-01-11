@@ -299,9 +299,11 @@ public class Listeners {
 							}
 							if( b != true) {
 							ventana.ColaCancion.add(c);
+							System.out.println(ventana.ColaCancion);
 							}
 						}else { 
 							ventana.ColaCancion.add(c);
+							System.out.println(ventana.ColaCancion);
 						}
 						bdc.disconnect();
 					} catch (BDExcepcion e1) {
