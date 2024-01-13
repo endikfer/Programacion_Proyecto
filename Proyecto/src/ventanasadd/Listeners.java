@@ -21,7 +21,7 @@ public class Listeners {
 
 	public VentanaPrincipal ventana;
 	public GestorCanciones gestorCan;
-	BDCanciones bdc;
+	BDCanciones bdc = new BDCanciones();
 
 	private TogleBoton togle;
 
@@ -201,7 +201,7 @@ public class Listeners {
 						Reproductor.pause();
 					}catch(Exception e1){
 						e1.printStackTrace();
-						JOptionPane.showMessageDialog(ventana, "No hay cancion seleccionada para reproducir.", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(ventana, "No se pudo pausar la cancion.", "Error", JOptionPane.ERROR_MESSAGE);
 						
 					}
 					
@@ -227,8 +227,13 @@ public class Listeners {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 //				sigc.CancionSig();
-				try (FileReader reader = new FileReader("configuracion.properties")) {
-					if(ventana.ColaCancion.size() > 0) {
+				ventana.activador = false;
+				ventana.b_pausar_can.setIcon(ventana.i_play);
+				if(ventana.ColaCancion.size() > 0) {
+					
+					try (FileReader reader = new FileReader("configuracion.properties")) {
+
+
 						properties.load(reader);
 						Reproductor.close();
 
@@ -237,14 +242,16 @@ public class Listeners {
 							String nombreCan = ventana.CancionEjectuda;
 							Cancion c = bdc.getCancion(nombreCan);
 							int posicion = ventana.ColaCancion.indexOf(c);
-							System.out.println(posicion);
+							//							System.out.println(posicion);
 							if (posicion+1 < ventana.ColaCancion.size()) {
+								System.out.println("Hola");
 								Cancion c1 = ventana.ColaCancion.get(posicion+1);
 								ventana.CancionEjectuda = c1.getName_can();
-								System.out.println(ventana.CancionEjectuda);
+								//								System.out.println(ventana.CancionEjectuda);
 								File a = new File(properties.getProperty("dirCan") + c1.getName_can() + ".wav");
 								ventana.deslizador.reiniciarDeslizador();
 								Reproductor.reproduce(a);
+								ventana.deslizador.deslizador1(ventana.activador);
 							} else if (ventana.t_bucle.isSelected()) {
 								posicion = 0;
 								Cancion c1 = ventana.ColaCancion.get(posicion);
@@ -252,19 +259,25 @@ public class Listeners {
 								File a = new File(properties.getProperty("dirCan") + c1.getName_can() + ".wav");
 								ventana.deslizador.reiniciarDeslizador();
 								Reproductor.reproduce(a);
+								ventana.deslizador.deslizador1(ventana.activador);
+							}else {
+								ventana.deslizador.finalizarDeslizador();
+								Reproductor.close();
 							}
+							
 						} catch (BDExcepcion e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 
 
-					} else {
-						ventana.deslizador.finalizarDeslizador();
-						Reproductor.close();
+
+					} catch (IOException e1) {
+						e1.printStackTrace();
 					}
-				} catch (IOException e1) {
-					e1.printStackTrace();
+				}else {
+					ventana.deslizador.finalizarDeslizador();
+					Reproductor.close();
 				}
 			}
 		};
