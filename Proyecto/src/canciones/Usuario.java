@@ -30,21 +30,17 @@ public class Usuario {
 		this.password = password;
 	}
 
-
 	public String getName_real() {
 		return name_real;
 	}
-
 
 	public void setName_real(String name_real) {
 		this.name_real = name_real;
 	}
 
-
 	public String getGmail() {
 		return gmail;
 	}
-
 
 	public void setGmail(String gmail) {
 		this.gmail = gmail;
