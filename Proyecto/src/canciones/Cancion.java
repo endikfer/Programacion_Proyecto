@@ -1,27 +1,15 @@
 package canciones;
 
-import java.awt.Image;
 import java.util.Objects;
 
 public class Cancion extends Artista implements Comparable<Cancion>{
 	
 	protected int duration;
 	protected String name_can;
-	protected Image foto;
 	protected String album;
 	
 	
-	public Cancion(String nombre_Ar, int duration, String name_can, Image foto, String album) {
-		super(nombre_Ar);
-		this.name_can = name_can;
-		this.duration = duration;
-		this.album = album;
-		this.foto = foto;
-	}
-	
-	
-
-	public Cancion(String nombre_Ar, String name_can, int duration, String album) {
+	public Cancion(String nombre_Ar, int duration, String name_can, String album) {
 		super(nombre_Ar);
 		this.name_can = name_can;
 		this.duration = duration;
@@ -31,10 +19,7 @@ public class Cancion extends Artista implements Comparable<Cancion>{
 	public Cancion() {
 		super("");
 	}
-
-
-
-
+	
 	public int getDuration() {
 		return duration;
 	}
@@ -52,16 +37,6 @@ public class Cancion extends Artista implements Comparable<Cancion>{
 
 	public void setName_can(String name_can) {
 		this.name_can = name_can;
-	}
-
-
-	public Image getFoto() {
-		return foto;
-	}
-
-
-	public void setFoto(Image foto) {
-		this.foto = foto;
 	}
 
 
