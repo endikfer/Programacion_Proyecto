@@ -19,6 +19,11 @@ public class Artista {
 	}
 
 	@Override
+	public String toString() {
+		return "Artista [nombre_Ar=" + nombre_Ar + "]";
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 	    if (this == obj) {
 	        return true;
@@ -27,6 +32,7 @@ public class Artista {
 	        return false;
 	    }
 	    Artista otroArtista = (Artista) obj;
+	    System.out.println(otroArtista);
 	    return nombre_Ar.equals(otroArtista.nombre_Ar);
 	}
 
