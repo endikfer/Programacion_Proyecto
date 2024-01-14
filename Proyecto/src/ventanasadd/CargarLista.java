@@ -20,7 +20,6 @@ public class CargarLista {
 	public DefaultListModel cargar_modelo_lista(DefaultListModel a){
 		csm = new CambioSegundoMinuto();
 
-
 		for(Cancion c: ventana.ColaCancion) {
 			// Verifica si la canción ya está en lista_canciones antes de agregarla
 	        if (!lista_canciones.contains(c.getName_can())) {

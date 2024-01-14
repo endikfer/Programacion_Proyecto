@@ -571,20 +571,20 @@ public class VentanaPrincipal extends JFrame {
 				canciones.add(c);
 			}
 
-			try {
-				bdc.connect("Usuario.db");
-				ColaCancion.add(bdc.getCancion("Givenchy"));
-				bdc.disconnect();
+			if (ColaCancion.isEmpty()) {
+				CancionEjectuda = "";
+			}else {
+				CancionEjectuda = ColaCancion.get(0).getName_can();
+			}
+			
 
-			} catch (BDExcepcion e) {
-				e.printStackTrace();
+
+			if (ColaCancion.isEmpty()) {
+				tiempo=0;
+			}else {
+				tiempo = ColaCancion.get(0).getDuration();
 			}
 
-			CancionEjectuda = ColaCancion.get(0).getName_can();
-
-
-
-			tiempo = ColaCancion.get(0).getDuration();
 
 			nom_can.setText("Cancion: " + CancionEjectuda);
 			t_final.setText(cambiosecmin.cambioSec(tiempo));
@@ -600,7 +600,6 @@ public class VentanaPrincipal extends JFrame {
 			p_lista = new JPanel();
 
 			modelo_lista = new DefaultListModel();    
-//			cl.cargar_modelo_lista(modelo_lista);
 
 			listaCan = new JList<>(modelo_lista);
 
@@ -622,6 +621,9 @@ public class VentanaPrincipal extends JFrame {
 			b_quitar_todo = new JButton("Quitar todas las cancion");
 			b_exportar = new JButton("Exportar cola");
 			b_importar = new JButton("Importar cola");
+			
+			b_quitar.addActionListener(listener.BotonEliminarCancion());
+			b_quitar_todo.addActionListener(listener.BotonEliminarTodas());
 
 			relleno5 = new JLabel();
 			relleno6 = new JLabel();

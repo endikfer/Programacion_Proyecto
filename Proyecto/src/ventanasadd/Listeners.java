@@ -29,7 +29,6 @@ public class Listeners {
 	private OrdenarTabla OT;
 	private BuscarEnTabla buscar;
 	Properties properties;
-	private SiguienteCancion sigc;
 	public CargarLista cl;
 
 	public Listeners(VentanaPrincipal ventana) {
@@ -194,9 +193,9 @@ public class Listeners {
 					}catch(Exception e1){
 						e1.printStackTrace();
 						JOptionPane.showMessageDialog(ventana, "No hay cancion seleccionada para reproducir.", "Error", JOptionPane.ERROR_MESSAGE);
-						
+
 					}
-					
+
 				}else {
 					ventana.activador = false;
 					//cambio de la imagen del boton
@@ -208,9 +207,9 @@ public class Listeners {
 					}catch(Exception e1){
 						e1.printStackTrace();
 						JOptionPane.showMessageDialog(ventana, "No se pudo pausar la cancion.", "Error", JOptionPane.ERROR_MESSAGE);
-						
+
 					}
-					
+
 
 				}
 			}
@@ -233,10 +232,10 @@ public class Listeners {
 					ventana.deslizador.deslizador1(ventana.activador);
 					File a = new File(properties.getProperty("dirCan") + ventana.CancionEjectuda + ".wav");
 					Reproductor.reproduce(a);
-					
+
 				}catch(Exception e1) {
-				e1.printStackTrace();
-			}
+					e1.printStackTrace();
+				}
 			}
 		};
 	}
@@ -246,11 +245,11 @@ public class Listeners {
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				sigc.CancionSig();
+				//				sigc.CancionSig();
 				ventana.activador = false;
 				ventana.b_pausar_can.setIcon(ventana.i_play);
 				if(ventana.ColaCancion.size() > 0) {
-					
+
 					try (FileReader reader = new FileReader("configuracion.properties")) {
 
 
@@ -284,7 +283,7 @@ public class Listeners {
 								ventana.deslizador.finalizarDeslizador();
 								Reproductor.close();
 							}
-							
+
 						} catch (BDExcepcion e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -370,12 +369,10 @@ public class Listeners {
 								}
 							}
 							if( b != true) {
-							ventana.ColaCancion.add(c);
-							System.out.println("Añadir "+ventana.ColaCancion);
+								ventana.ColaCancion.add(c);
 							}
 						}else { 
 							ventana.ColaCancion.add(c);
-							System.out.println(ventana.ColaCancion);
 						}
 						bdc.disconnect();
 					} catch (BDExcepcion e1) {
@@ -387,13 +384,45 @@ public class Listeners {
 			}
 		};
 	}
-	
-	//Funicionamiento Barra de Busqueda
+
+	//Funicionamiento Boton eliminar cancion
 	public ActionListener BotonEliminarCancion() {
 		return new ActionListener() {
+			@SuppressWarnings("unchecked")
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				buscar.Buscar();
+				int selectedRow = ventana.listaCan.getSelectedIndex();
+				System.out.println(selectedRow);
+				if (selectedRow == -1) {
+					JOptionPane.showMessageDialog(ventana, "No se ha seleccionado ninguna canción.", "Error", JOptionPane.ERROR_MESSAGE);
+				} else {
+					ventana.ColaCancion.remove(selectedRow);
+					cl.lista_canciones.remove(selectedRow);
+					ventana.modelo_lista.remove(selectedRow);
+					cl.cargar_modelo_lista(ventana.modelo_lista);
+					ventana.listaCan.setModel(ventana.modelo_lista);
+					ventana.revalidate();
+					ventana.repaint();
+				}
+			}
+		};
+	}
+
+	public ActionListener BotonEliminarTodas() {
+		return new ActionListener() {
+			@SuppressWarnings("unchecked")
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				ventana.ColaCancion.clear();
+
+	            cl.lista_canciones.clear();
+
+				ventana.modelo_lista.removeAllElements();
+				cl.cargar_modelo_lista(ventana.modelo_lista);
+				ventana.listaCan.setModel(ventana.modelo_lista);
+				ventana.revalidate();
+				ventana.repaint();
 			}
 		};
 	}
