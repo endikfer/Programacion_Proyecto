@@ -204,6 +204,8 @@ public class VentanaPrincipal extends JFrame {
 	public JComboBox<String> orden;
 
 	public JList<String> listaCan;
+	@SuppressWarnings("rawtypes")
+	public DefaultListModel modelo_lista;
 	public ArrayList<Cancion> canciones;
 
 	public ArrayList<Cancion> ColaCancion;
@@ -597,19 +599,19 @@ public class VentanaPrincipal extends JFrame {
 
 			p_lista = new JPanel();
 
-			DefaultListModel modelo_lista = new DefaultListModel();	
-			cl.cargar_modelo_lista(modelo_lista);
+			modelo_lista = new DefaultListModel();    
+//			cl.cargar_modelo_lista(modelo_lista);
+
 			listaCan = new JList<>(modelo_lista);
-			
+
 			listaCan.setCellRenderer(ml);
 
-			Scroll_lista = new JScrollPane();
-			Scroll_lista.add(listaCan);
+			Scroll_lista = new JScrollPane(listaCan);
 			Scroll_lista.setPreferredSize(new Dimension(1200, 750));
 			Scroll_lista.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-
 			p_lista.add(Scroll_lista);
+
 			p_cola.add(p_lista, BorderLayout.CENTER);
 
 

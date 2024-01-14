@@ -30,11 +30,13 @@ public class Listeners {
 	private BuscarEnTabla buscar;
 	Properties properties;
 	private SiguienteCancion sigc;
+	public CargarLista cl;
 
 	public Listeners(VentanaPrincipal ventana) {
 		this.ventana = ventana;
 		inicializarOT();
 		inicializarBuscar();
+		inicializarLista();
 	}
 
 
@@ -44,6 +46,9 @@ public class Listeners {
 
 	private void inicializarBuscar() {
 		buscar = new BuscarEnTabla(ventana);
+	}
+	private void inicializarLista() {
+		cl = new CargarLista(ventana);
 	}
 
 	//listeners de los botones
@@ -79,6 +84,7 @@ public class Listeners {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ventana.centro.removeAll();
+				cl.cargar_modelo_lista(ventana.modelo_lista);
 				ventana.centro.add(ventana.p_cola);
 				ventana.centro.revalidate();
 				ventana.centro.repaint();
@@ -365,7 +371,7 @@ public class Listeners {
 							}
 							if( b != true) {
 							ventana.ColaCancion.add(c);
-							System.out.println(ventana.ColaCancion);
+							System.out.println("Añadir "+ventana.ColaCancion);
 							}
 						}else { 
 							ventana.ColaCancion.add(c);
@@ -378,6 +384,16 @@ public class Listeners {
 					}
 
 				}
+			}
+		};
+	}
+	
+	//Funicionamiento Barra de Busqueda
+	public ActionListener BotonEliminarCancion() {
+		return new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				buscar.Buscar();
 			}
 		};
 	}
