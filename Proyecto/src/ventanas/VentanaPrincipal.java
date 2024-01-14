@@ -1,11 +1,10 @@
 package ventanas;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.ScrollPane;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,8 +13,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Properties;
-
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -28,31 +27,26 @@ import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
-import javax.swing.ListCellRenderer;
-import javax.swing.ListModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ListDataListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-
 import bd.BDCanciones;
 import bd.BDExcepcion;
 import bd.BDManejoUsu;
 import ventanasadd.Listeners;
-//import ventanasadd.ModeloLista;
+import ventanasadd.ModeloLista;
 import ventanasadd.Renderer;
 import canciones.Cancion;
 import canciones.Usuario;
 import ventanasadd.CambiarFondo;
 import ventanasadd.CambioSegundoMinuto;
 import ventanasadd.CargarCanciones;
+import ventanasadd.CargarLista;
 import ventanasadd.Reproductor;
 import ventanasadd.Deslizador;
 import ventanasadd.GestorCanciones;
-
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 
@@ -75,7 +69,7 @@ public class VentanaPrincipal extends JFrame {
 	public BDManejoUsu bdUsu;
 	public Properties properties;
 	private VentanaUsuario vusu;
-	
+
 	public BDCanciones bdc;
 
 	public int tiempo;
@@ -105,11 +99,18 @@ public class VentanaPrincipal extends JFrame {
 	public JPanel p_bucle;
 	public JPanel p_barra;
 	public JPanel p_flecha;
+	public JPanel p_lista;
+	public JPanel pBotonesCola;
+	public JPanel pBtnQuitar;
 
 	public JButton b_perfil;
 	public JButton b_canciones;
 	public JButton b_cola;
 	public JButton b_ajustes;
+	public JButton b_quitar;
+	public JButton b_quitar_todo;
+	public JButton b_importar;
+	public JButton b_exportar;
 
 	public ImageIcon i_cancion;
 	public ImageIcon i_ajuste;
@@ -132,6 +133,13 @@ public class VentanaPrincipal extends JFrame {
 	public JLabel relleno3;
 	public JLabel relleno4;
 
+	public JLabel relleno5;
+	public JLabel relleno6;
+	public JLabel relleno7;
+	public JLabel relleno8;
+	public JLabel relleno9;
+	public JLabel relleno10;
+
 	public JPasswordField p_contra_f;
 
 	public JRadioButton b_contra;
@@ -153,6 +161,7 @@ public class VentanaPrincipal extends JFrame {
 	public JTable tabla_canciones;
 
 	public JScrollPane Scroll_tabla;
+	public JScrollPane Scroll_lista;
 
 	public JLabel l_fondo;
 	public JLabel l_bucle;
@@ -194,8 +203,7 @@ public class VentanaPrincipal extends JFrame {
 
 	public JComboBox<String> orden;
 
-	//	public static ModeloLista modeloLista;
-	public JList<Cancion> listaCancionesCola;
+	public JList<String> listaCan;
 	public ArrayList<Cancion> canciones;
 
 	public ArrayList<Cancion> ColaCancion;
@@ -203,13 +211,15 @@ public class VentanaPrincipal extends JFrame {
 
 	public Cancion cancion;
 	public GestorCanciones gs;
+	public CargarLista cl;
+	public ModeloLista ml;
 
 	public VentanaPrincipal(VentanaUsuario vusu) {
 		this.vusu = vusu;
 	}
 
 
-	@SuppressWarnings("static-access")
+	@SuppressWarnings({ "static-access", "unchecked", "rawtypes" })
 	public VentanaPrincipal(){
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setExtendedState(this.MAXIMIZED_BOTH); //ventana maximizada
@@ -233,10 +243,14 @@ public class VentanaPrincipal extends JFrame {
 		listener.PararCancionesAlCerrar();
 
 		renderer = new Renderer();
-		
+
 		gs = new GestorCanciones();
-		
+
 		bdc = new BDCanciones();
+
+		cl = new CargarLista(this);
+		ml = new ModeloLista();
+
 
 		//Elementos creados
 		//Paneles principales
@@ -260,8 +274,7 @@ public class VentanaPrincipal extends JFrame {
 		centro_arriba = new JPanel();
 		boton_medio = new JPanel();
 		centro_canciones = new JPanel();
-		@SuppressWarnings("unused")
-		JScrollPane centro_canciones_scroll = new JScrollPane(centro_canciones);
+
 
 		p_canciones = new JPanel(new BorderLayout());
 		centro_arriba = new JPanel();
@@ -398,7 +411,6 @@ public class VentanaPrincipal extends JFrame {
 
 			//JTable
 			DefaultTableModel modelo_tabla_canciones = new DefaultTableModel();
-			modelo_tabla_canciones = new DefaultTableModel();
 			cargacancion.cargar_modelo_tabla_canciones(modelo_tabla_canciones);
 			tabla_canciones= new JTable(modelo_tabla_canciones) {
 				/**
@@ -423,13 +435,8 @@ public class VentanaPrincipal extends JFrame {
 			tabla_canciones.setRowMargin(10);
 			tabla_canciones.setRowHeight(40);
 
-
-			//componente para el estilo de la JTable
-			//		Estilotabla estilo = new Estilotabla();
-
 			//Estilo del Jtable
 			tabla_canciones.setFont(new Font(tabla_canciones.getFont().getName(), tabla_canciones.getFont().getStyle(), 20));
-			//		tabla_canciones.setDefaultRenderer(Object.class, estilo);
 
 			//No poder selecionar las columnas
 			tabla_canciones.setColumnSelectionAllowed(false);
@@ -562,63 +569,11 @@ public class VentanaPrincipal extends JFrame {
 				canciones.add(c);
 			}
 
-			//		listaCancionesCola = new JList<Cancion>(new ModeloListaCola(canciones));
-			//		p_cola.add(listaCancionesCola);
-
-			class RenderLista implements ListCellRenderer<Cancion>{
-				JLabel lbl;
-
-				@Override
-				public Component getListCellRendererComponent(JList<? extends Cancion> list, Cancion value, int index,
-						boolean isSelected, boolean cellHasFocus) {
-
-					lbl = new JLabel();
-					lbl.setText("Nombre: " + value.getName_can() + " [Duración: " + value.getDuration() + "] Artista: " + value.getNombre_Ar() + ".");
-					lbl.setOpaque(true);
-
-					return lbl;
-				}
-
-			}
-
-			p_cola.setLayout(new GridLayout(1,2));
-
-			JPanel pJlist = new JPanel();
-			//			modeloLista = new ModeloLista(canciones);
-			//			JList<Cancion> jListaCanciones = new JList<>(modeloLista);
-			//			jListaCanciones.setCellRenderer(new RenderLista());
-			//			pJlist.add(jListaCanciones);
-
-			ScrollPane scrollCola = new ScrollPane();
-			scrollCola.add(pJlist);
-
-			p_cola.add(scrollCola);
-
-
-			JPanel pBotonesCola = new JPanel();
-			pBotonesCola.setLayout(new GridLayout(3,1));
-
-			JButton btnQuitar = new JButton("QUITAR DE LA COLA");
-			JPanel pBtnQuitar = new JPanel();
-			pBtnQuitar.add(btnQuitar);
-			pBotonesCola.add(pBtnQuitar);
-			//			btnQuitar.addActionListener(new ActionListener() {
-			//				
-			//				@Override
-			//				public void actionPerformed(ActionEvent e) {
-			//					// TODO Auto-generated method stub
-			//					
-			//					int indx = jListaCanciones.getSelectedIndex();
-			//					if (indx != -1) canciones.remove(indx);
-			//					modeloLista = new ModeloLista(canciones);
-			//				}
-			//			});
-
 			try {
 				bdc.connect("Usuario.db");
 				ColaCancion.add(bdc.getCancion("Givenchy"));
 				bdc.disconnect();
-				
+
 			} catch (BDExcepcion e) {
 				e.printStackTrace();
 			}
@@ -626,7 +581,6 @@ public class VentanaPrincipal extends JFrame {
 			CancionEjectuda = ColaCancion.get(0).getName_can();
 
 
-			p_cola.add(pBotonesCola);
 
 			tiempo = ColaCancion.get(0).getDuration();
 
@@ -634,10 +588,62 @@ public class VentanaPrincipal extends JFrame {
 			t_final.setText(cambiosecmin.cambioSec(tiempo));
 			t_duracion.setText(String.format("%02d:%02d", 0,0));
 
-			
-			
+
+
 			//deslizador
 			duracion_can = new JSlider(0, tiempo, 0);
+
+			p_cola.setLayout(new BorderLayout());
+
+			p_lista = new JPanel();
+
+			DefaultListModel modelo_lista = new DefaultListModel();	
+			cl.cargar_modelo_lista(modelo_lista);
+			listaCan = new JList<>(modelo_lista);
+			
+			listaCan.setCellRenderer(ml);
+
+			Scroll_lista = new JScrollPane();
+			Scroll_lista.add(listaCan);
+			Scroll_lista.setPreferredSize(new Dimension(1200, 750));
+			Scroll_lista.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+
+			p_lista.add(Scroll_lista);
+			p_cola.add(p_lista, BorderLayout.CENTER);
+
+
+			pBotonesCola = new JPanel();
+			pBotonesCola.setLayout(new GridLayout(1,8));
+
+			b_quitar = new JButton("Quitar Cancion");
+			b_quitar_todo = new JButton("Quitar todas las cancion");
+			b_exportar = new JButton("Exportar cola");
+			b_importar = new JButton("Importar cola");
+
+			relleno5 = new JLabel();
+			relleno6 = new JLabel();
+			relleno7 = new JLabel();
+			relleno8 = new JLabel();
+			relleno9 = new JLabel();
+			relleno10 = new JLabel();
+
+			pBotonesCola.add(relleno5);
+			pBotonesCola.add(b_quitar);
+			pBotonesCola.add(relleno6);
+			pBotonesCola.add(b_quitar_todo);
+			pBotonesCola.add(relleno7);
+			pBotonesCola.add(relleno8);
+			pBotonesCola.add(b_exportar);
+			pBotonesCola.add(relleno9);
+			pBotonesCola.add(b_importar);
+			pBotonesCola.add(relleno10);
+
+
+			p_cola.add(pBotonesCola, BorderLayout.SOUTH);
+
+			p_lista.setBorder(BorderFactory.createEmptyBorder(50, 0, 5, 0));
+			pBotonesCola.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
 
 
 

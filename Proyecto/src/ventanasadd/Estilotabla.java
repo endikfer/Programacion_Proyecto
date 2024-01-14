@@ -8,13 +8,13 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 @SuppressWarnings("serial")
 public class Estilotabla extends DefaultTableCellRenderer {
-	    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-	        Component rendererComp = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-	        if (row == 0) {
-	            rendererComp.setFont(new Font("Serif", Font.BOLD, 30));
-	            
-	        }
-	        return rendererComp;
-	    }
+	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+		Component rendererComp = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+		if (row == 0) {
+			rendererComp.setFont(new Font("Serif", Font.BOLD, 30));
+
+		}
+		return rendererComp;
 	}
+}
 
