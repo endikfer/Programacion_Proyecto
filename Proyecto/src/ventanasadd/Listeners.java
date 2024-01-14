@@ -212,11 +212,25 @@ public class Listeners {
 	}
 
 	public ActionListener BotonPausarFlechaIzqListener() {
+		properties = new Properties();
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ventana.deslizador.reiniciarDeslizador();
-				Reproductor.restart();
+				try (FileReader reader = new FileReader("configuracion.properties")) {
+
+
+					properties.load(reader);
+					ventana.deslizador.reiniciarDeslizador();
+					Reproductor.close();
+					ventana.activador = false;
+					ventana.b_pausar_can.setIcon(ventana.i_play);
+					ventana.deslizador.deslizador1(ventana.activador);
+					File a = new File(properties.getProperty("dirCan") + ventana.CancionEjectuda + ".wav");
+					Reproductor.reproduce(a);
+					
+				}catch(Exception e1) {
+				e1.printStackTrace();
+			}
 			}
 		};
 	}
