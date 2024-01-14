@@ -253,7 +253,7 @@ public class Listeners {
 
 
 						properties.load(reader);
-						if(!ventana.ColaCancion.isEmpty()) {
+						if(ventana.ColaCancion.isEmpty()) {
 							Reproductor.close();
 						}
 
@@ -263,7 +263,9 @@ public class Listeners {
 							Cancion c = bdc.getCancion(nombreCan);
 							posicion = ventana.ColaCancion.indexOf(c);
 							if (posicion+1 <= ventana.ColaCancion.size()) {
+								System.out.println("1: "+posicion);
 								Cancion c1 = ventana.ColaCancion.get(posicion);
+								posicion++;
 								ventana.CancionEjectuda = c1.getName_can();
 								File a = new File(properties.getProperty("dirCan") + c1.getName_can() + ".wav");
 								ventana.deslizador.reiniciarDeslizador();
