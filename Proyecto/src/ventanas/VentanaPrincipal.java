@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -44,7 +43,6 @@ import ventanasadd.CambiarFondo;
 import ventanasadd.CambioSegundoMinuto;
 import ventanasadd.CargarCanciones;
 import ventanasadd.CargarLista;
-import ventanasadd.Reproductor;
 import ventanasadd.Deslizador;
 import ventanasadd.GestorCanciones;
 import javax.swing.JRadioButton;
@@ -527,16 +525,11 @@ public class VentanaPrincipal extends JFrame {
 			b_adelantar_can = new JButton(i_adelantar);
 
 
-			//activamos ya que pueda reproducir
-			File a = new File(properties.getProperty("dirCan") + "Givenchy.wav");
-			Reproductor.reproduce(a);
-
-
 			//Añadir los escuchadores de los botones
 			b_pausar_can.addActionListener(listener.BotonPausarActivarBarra());
 
 			b_atras_can.addActionListener(listener.BotonPausarFlechaIzqListener());
-			b_adelantar_can.addActionListener(listener.BotonPausarFlechaDereListener());
+			
 
 			//Plan B para el hilo
 
@@ -570,7 +563,7 @@ public class VentanaPrincipal extends JFrame {
 			for(Cancion c: gs.obtenerCanciones()) {
 				canciones.add(c);
 			}
-
+			
 			if (ColaCancion.isEmpty()) {
 				CancionEjectuda = "";
 			}else {
@@ -590,7 +583,7 @@ public class VentanaPrincipal extends JFrame {
 			t_final.setText(cambiosecmin.cambioSec(tiempo));
 			t_duracion.setText(String.format("%02d:%02d", 0,0));
 
-
+			b_adelantar_can.addActionListener(listener.BotonPausarFlechaDereListener());
 
 			//deslizador
 			duracion_can = new JSlider(0, tiempo, 0);

@@ -193,9 +193,7 @@ public class Listeners {
 					}catch(Exception e1){
 						e1.printStackTrace();
 						JOptionPane.showMessageDialog(ventana, "No hay cancion seleccionada para reproducir.", "Error", JOptionPane.ERROR_MESSAGE);
-
 					}
-
 				}else {
 					ventana.activador = false;
 					//cambio de la imagen del boton
@@ -248,25 +246,25 @@ public class Listeners {
 				//				sigc.CancionSig();
 				ventana.activador = false;
 				ventana.b_pausar_can.setIcon(ventana.i_play);
+				int posicion = 0;
 				if(ventana.ColaCancion.size() > 0) {
 
 					try (FileReader reader = new FileReader("configuracion.properties")) {
 
 
 						properties.load(reader);
-						Reproductor.close();
+						if(!ventana.ColaCancion.isEmpty()) {
+							Reproductor.close();
+						}
 
 						try {
 							bdc.connect("Usuario.db");
 							String nombreCan = ventana.CancionEjectuda;
 							Cancion c = bdc.getCancion(nombreCan);
-							int posicion = ventana.ColaCancion.indexOf(c);
-							//							System.out.println(posicion);
-							if (posicion+1 < ventana.ColaCancion.size()) {
-								System.out.println("Hola");
-								Cancion c1 = ventana.ColaCancion.get(posicion+1);
+							posicion = ventana.ColaCancion.indexOf(c);
+							if (posicion+1 <= ventana.ColaCancion.size()) {
+								Cancion c1 = ventana.ColaCancion.get(posicion);
 								ventana.CancionEjectuda = c1.getName_can();
-								//								System.out.println(ventana.CancionEjectuda);
 								File a = new File(properties.getProperty("dirCan") + c1.getName_can() + ".wav");
 								ventana.deslizador.reiniciarDeslizador();
 								Reproductor.reproduce(a);
@@ -370,9 +368,13 @@ public class Listeners {
 							}
 							if( b != true) {
 								ventana.ColaCancion.add(c);
+								ventana.CancionEjectuda = ventana.ColaCancion.get(0).getName_can();
+								ventana.tiempo = ventana.ColaCancion.get(0).getDuration();
 							}
 						}else { 
 							ventana.ColaCancion.add(c);
+							ventana.CancionEjectuda = ventana.ColaCancion.get(0).getName_can();
+							ventana.tiempo = ventana.ColaCancion.get(0).getDuration();
 						}
 						bdc.disconnect();
 					} catch (BDExcepcion e1) {
@@ -392,7 +394,6 @@ public class Listeners {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int selectedRow = ventana.listaCan.getSelectedIndex();
-				System.out.println(selectedRow);
 				if (selectedRow == -1) {
 					JOptionPane.showMessageDialog(ventana, "No se ha seleccionado ninguna canción.", "Error", JOptionPane.ERROR_MESSAGE);
 				} else {
