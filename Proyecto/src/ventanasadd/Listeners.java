@@ -282,8 +282,6 @@ public class Listeners {
 							}else {
 								ventana.deslizador.finalizarDeslizador();
 								Reproductor.close();
-								//								CambiarNombreLabel(posicion);
-								//								CambiarTiempoLabel(posicion);
 							}
 						} catch (BDExcepcion e1) {
 							// TODO Auto-generated catch block

@@ -27,6 +27,9 @@ public class CambiarFondo {
 			ventana.centro_canciones.setBackground(Color.BLACK);
 			ventana.p_cola.setBackground(Color.BLACK);
 			ventana.p_combo.setBackground(Color.BLACK);
+			ventana.p_cola.setBackground(Color.BLACK);
+			ventana.p_lista.setBackground(Color.BLACK);
+			ventana.pBotonesCola.setBackground(Color.BLACK);
 
 
 			ventana.t_final.setForeground(Color.WHITE);
@@ -62,6 +65,9 @@ public class CambiarFondo {
 			ventana.centro_canciones.setBackground(ventana.colorFondo);
 			ventana.p_cola.setBackground(ventana.colorFondo);
 			ventana.p_combo.setBackground(ventana.colorFondo);
+			ventana.p_cola.setBackground(ventana.colorFondo);
+			ventana.p_lista.setBackground(ventana.colorFondo);
+			ventana.pBotonesCola.setBackground(ventana.colorFondo);
 
 			ventana.t_final.setForeground(Color.BLACK);
 			ventana.t_duracion.setForeground(Color.BLACK);
