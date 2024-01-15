@@ -564,8 +564,8 @@ public class VentanaPrincipal extends JFrame {
 				canciones.add(c);
 			}
 
-			nom_can.setText("Cancion: " + CancionEjectuda);
-			t_final.setText(cambiosecmin.cambioSec(tiempo));
+			nom_can.setText("Cancion: ");
+			t_final.setText(cambiosecmin.cambioSec(0));
 			t_duracion.setText(String.format("%02d:%02d", 0,0));
 
 			b_adelantar_can.addActionListener(listener.BotonPausarFlechaDereListener());
