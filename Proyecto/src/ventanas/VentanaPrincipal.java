@@ -563,21 +563,6 @@ public class VentanaPrincipal extends JFrame {
 			for(Cancion c: gs.obtenerCanciones()) {
 				canciones.add(c);
 			}
-			
-			if (ColaCancion.isEmpty()) {
-				CancionEjectuda = "";
-			}else {
-				CancionEjectuda = ColaCancion.get(0).getName_can();
-			}
-			
-
-
-			if (ColaCancion.isEmpty()) {
-				tiempo=0;
-			}else {
-				tiempo = ColaCancion.get(0).getDuration();
-			}
-
 
 			nom_can.setText("Cancion: " + CancionEjectuda);
 			t_final.setText(cambiosecmin.cambioSec(tiempo));

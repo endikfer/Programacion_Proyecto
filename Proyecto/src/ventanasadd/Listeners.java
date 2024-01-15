@@ -24,12 +24,14 @@ public class Listeners {
 	BDCanciones bdc = new BDCanciones();
 
 	private TogleBoton togle;
+	public CambioSegundoMinuto csm = new CambioSegundoMinuto();
 
 	private CambiarFondo cambiarfondo = new CambiarFondo();
 	private OrdenarTabla OT;
 	private BuscarEnTabla buscar;
 	Properties properties;
 	public CargarLista cl;
+	public int posicion = 0;
 
 	public Listeners(VentanaPrincipal ventana) {
 		this.ventana = ventana;
@@ -246,30 +248,26 @@ public class Listeners {
 				//				sigc.CancionSig();
 				ventana.activador = false;
 				ventana.b_pausar_can.setIcon(ventana.i_play);
-				int posicion = 0;
 				if(ventana.ColaCancion.size() > 0) {
-
 					try (FileReader reader = new FileReader("configuracion.properties")) {
-
-
 						properties.load(reader);
 						if(ventana.ColaCancion.isEmpty()) {
 							Reproductor.close();
 						}
-
 						try {
 							bdc.connect("Usuario.db");
 							String nombreCan = ventana.CancionEjectuda;
 							Cancion c = bdc.getCancion(nombreCan);
 							posicion = ventana.ColaCancion.indexOf(c);
-							if (posicion+1 <= ventana.ColaCancion.size()) {
-								System.out.println("1: "+posicion);
-								Cancion c1 = ventana.ColaCancion.get(posicion);
+							if (posicion+1 < ventana.ColaCancion.size()) {
+								Cancion c1 = ventana.ColaCancion.get(posicion+1);
 								posicion++;
 								ventana.CancionEjectuda = c1.getName_can();
 								File a = new File(properties.getProperty("dirCan") + c1.getName_can() + ".wav");
 								ventana.deslizador.reiniciarDeslizador();
 								Reproductor.reproduce(a);
+								CambiarNombreLabel(posicion);
+								CambiarTiempoLabel(posicion);
 								ventana.deslizador.deslizador1(ventana.activador);
 							} else if (ventana.t_bucle.isSelected()) {
 								posicion = 0;
@@ -278,19 +276,19 @@ public class Listeners {
 								File a = new File(properties.getProperty("dirCan") + c1.getName_can() + ".wav");
 								ventana.deslizador.reiniciarDeslizador();
 								Reproductor.reproduce(a);
+								CambiarNombreLabel(posicion);
+								CambiarTiempoLabel(posicion);
 								ventana.deslizador.deslizador1(ventana.activador);
 							}else {
 								ventana.deslizador.finalizarDeslizador();
 								Reproductor.close();
+								//								CambiarNombreLabel(posicion);
+								//								CambiarTiempoLabel(posicion);
 							}
-
 						} catch (BDExcepcion e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-
-
-
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
@@ -301,11 +299,6 @@ public class Listeners {
 			}
 		};
 	}
-
-
-
-
-
 
 	public WindowListener PararCancionesAlCerrar() {
 
@@ -319,8 +312,6 @@ public class Listeners {
 		});
 		return null;
 	}
-
-
 
 	//Ordenar JComboBox
 	public ActionListener OrdenarCombo() {
@@ -370,13 +361,9 @@ public class Listeners {
 							}
 							if( b != true) {
 								ventana.ColaCancion.add(c);
-								ventana.CancionEjectuda = ventana.ColaCancion.get(0).getName_can();
-								ventana.tiempo = ventana.ColaCancion.get(0).getDuration();
 							}
 						}else { 
 							ventana.ColaCancion.add(c);
-							ventana.CancionEjectuda = ventana.ColaCancion.get(0).getName_can();
-							ventana.tiempo = ventana.ColaCancion.get(0).getDuration();
 						}
 						bdc.disconnect();
 					} catch (BDExcepcion e1) {
@@ -416,10 +403,10 @@ public class Listeners {
 			@SuppressWarnings("unchecked")
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				ventana.ColaCancion.clear();
 
-	            cl.lista_canciones.clear();
+				cl.lista_canciones.clear();
 
 				ventana.modelo_lista.removeAllElements();
 				cl.cargar_modelo_lista(ventana.modelo_lista);
@@ -430,5 +417,22 @@ public class Listeners {
 		};
 	}
 
+	public void CambiarNombreLabel(int nombre) {
+		if (ventana.ColaCancion.isEmpty()) {
+			ventana.CancionEjectuda = "";
+		}else {
+			ventana.CancionEjectuda = ventana.ColaCancion.get(nombre).getName_can();
+			ventana.nom_can.setText("Cancion: " + ventana.CancionEjectuda);
+		}
+	}
 
+	@SuppressWarnings("static-access")
+	public void CambiarTiempoLabel(int duracion) {
+		if (ventana.ColaCancion.isEmpty()) {
+			ventana.tiempo=0;
+		}else {
+			ventana.tiempo = ventana.ColaCancion.get(duracion).getDuration();
+			ventana.t_final.setText(csm.cambioSec(ventana.tiempo));
+		}
+	}
 }
