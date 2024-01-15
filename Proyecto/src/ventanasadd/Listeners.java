@@ -431,6 +431,7 @@ public class Listeners {
 		}else {
 			ventana.tiempo = ventana.ColaCancion.get(duracion).getDuration();
 			ventana.t_final.setText(csm.cambioSec(ventana.tiempo));
+			ventana.duracion_can.setMaximum(ventana.tiempo);;
 		}
 	}
 }
