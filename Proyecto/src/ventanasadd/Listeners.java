@@ -316,8 +316,9 @@ public class Listeners {
 			public void windowClosed(WindowEvent e) {
 				super.windowClosing(e);
 				// Aquí detienes el reproductor si es desigual a null
-				
-				Reproductor.close();
+				if(Reproductor.clip != null) {
+					Reproductor.close();
+				}
 			}
 		});
 		return null;
