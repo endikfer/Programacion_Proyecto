@@ -10,6 +10,7 @@ import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 import bd.BDCanciones;
@@ -384,13 +385,12 @@ public class Listeners {
 			public void actionPerformed(ActionEvent e) {
 				int selectedRow = ventana.listaCan.getSelectedIndex();
 				String cancion = ventana.listaCan.getSelectedValue();
-				System.out.println(cancion);
-				cancion.split("d");
-				System.out.println(cancion);
-				System.out.println(ventana.ColaCancion.contains(cancion));
+				String[] partesDivididas = cancion.split(",");
+				String primeraParte = partesDivididas[0];
+				System.out.println(ventana.ColaCancion.contains(primeraParte));
 				if (selectedRow == -1) {
 					JOptionPane.showMessageDialog(ventana, "No se ha seleccionado ninguna canción.", "Error", JOptionPane.ERROR_MESSAGE);
-				} else if(cancion.equals(ventana.ColaCancion.contains(cancion))) {
+				} else if(primeraParte.equals(ventana.CancionEjectuda)) {
 					JOptionPane.showMessageDialog(ventana, "La cancion que se quiere borra esta siendo esuchada ahora, por lo que no es posible borrarla.", "Error", JOptionPane.ERROR_MESSAGE);
 				}else {
 					ventana.ColaCancion.remove(selectedRow);
@@ -407,16 +407,36 @@ public class Listeners {
 
 	public ActionListener BotonEliminarTodas() {
 		return new ActionListener() {
+			ArrayList<Cancion> lista = new ArrayList<>();
 			@SuppressWarnings("unchecked")
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ventana.ColaCancion.clear();
-				cl.lista_canciones.clear();
-				ventana.modelo_lista.removeAllElements();
-				cl.cargar_modelo_lista(ventana.modelo_lista);
-				ventana.listaCan.setModel(ventana.modelo_lista);
-				ventana.revalidate();
-				ventana.repaint();
+				String cancion = ventana.CancionEjectuda;
+				if(cancion.equals(ventana.CancionEjectuda)) {
+					for (Cancion c : ventana.ColaCancion) {
+						lista.add(c);
+
+					}
+					ventana.modelo_lista.removeAllElements();
+					for (Cancion d : lista) {
+						if(!d.getName_can().equals(cancion)) {
+							ventana.ColaCancion.remove(d);
+							cl.lista_canciones.remove(cancion);
+						}
+					}
+					cl.cargar_modelo_lista(ventana.modelo_lista);
+					ventana.listaCan.setModel(ventana.modelo_lista);
+					ventana.revalidate();
+					ventana.repaint();
+				}else {
+					ventana.ColaCancion.clear();
+					cl.lista_canciones.clear();
+					ventana.modelo_lista.removeAllElements();
+					cl.cargar_modelo_lista(ventana.modelo_lista);
+					ventana.listaCan.setModel(ventana.modelo_lista);
+					ventana.revalidate();
+					ventana.repaint();
+				}
 			}
 		};
 	}
