@@ -189,7 +189,6 @@ public class Listeners {
 
 	public ActionListener BotonPausarActivarBarra() {
 		return new ActionListener() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (ventana.activador==false) {
@@ -295,7 +294,6 @@ public class Listeners {
 								Reproductor.close();
 							}
 						} catch (BDExcepcion e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					} catch (IOException e1) {
@@ -378,7 +376,6 @@ public class Listeners {
 						}
 						bdc.disconnect();
 					} catch (BDExcepcion e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 
