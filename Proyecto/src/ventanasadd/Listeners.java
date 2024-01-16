@@ -19,19 +19,18 @@ import canciones.Cancion;
 import ventanas.VentanaPrincipal;
 
 public class Listeners {
-
 	public VentanaPrincipal ventana;
 	public GestorCanciones gestorCan;
-	BDCanciones bdc = new BDCanciones();
+	public BDCanciones bdc = new BDCanciones();
 
-	private TogleBoton togle;
+	public TogleBoton togle;
 	public CambioSegundoMinuto csm = new CambioSegundoMinuto();
-	private Reproductor Reproductor;
+	public Reproductor Reproductor;
 
-	private CambiarFondo cambiarfondo = new CambiarFondo();
-	private OrdenarTabla OT;
-	private BuscarEnTabla buscar;
-	Properties properties;
+	public CambiarFondo cambiarfondo = new CambiarFondo();
+	public OrdenarTabla OT;
+	public BuscarEnTabla buscar;
+	public Properties properties;
 	public CargarLista cl;
 	public int posicion = 0;
 
@@ -42,7 +41,6 @@ public class Listeners {
 		inicializarLista();
 		inizializarReproductor();
 	}
-
 
 	private void inicializarOT() {
 		OT = new OrdenarTabla(ventana);
@@ -113,9 +111,6 @@ public class Listeners {
 		};
 	}
 
-
-
-
 	//Listener del radiobutton
 	public ActionListener BotonVisuContraListener() {
 		return new ActionListener() {
@@ -132,13 +127,11 @@ public class Listeners {
 					ventana.p_contra.remove(ventana.t_contra);
 					ventana.p_contra.add(ventana.p_contra_f, BorderLayout.CENTER);
 				}
-
 				ventana.p_contra.revalidate();
 				ventana.p_contra.repaint();
 			}
 		};
 	}
-
 
 
 	//listener de los toglebotons
@@ -151,7 +144,6 @@ public class Listeners {
 			}
 		};
 	}
-
 
 	//flecha izq
 	public ActionListener ToggleFlechaIzqListener() {
@@ -186,7 +178,6 @@ public class Listeners {
 		};
 	}
 
-
 	public ActionListener BotonPausarActivarBarra() {
 		return new ActionListener() {
 			@Override
@@ -214,10 +205,7 @@ public class Listeners {
 					}catch(Exception e1){
 						e1.printStackTrace();
 						JOptionPane.showMessageDialog(ventana, "No se pudo pausar la cancion.", "Error", JOptionPane.ERROR_MESSAGE);
-
 					}
-
-
 				}
 			}
 		};
@@ -229,8 +217,6 @@ public class Listeners {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try (FileReader reader = new FileReader("configuracion.properties")) {
-
-
 					properties.load(reader);
 					ventana.deslizador.reiniciarDeslizador();
 					Reproductor.close();
@@ -239,7 +225,6 @@ public class Listeners {
 					ventana.deslizador.deslizador1(ventana.activador);
 					File a = new File(properties.getProperty("dirCan") + ventana.CancionEjectuda + ".wav");
 					Reproductor.reproduce(a);
-
 				}catch(Exception e1) {
 					e1.printStackTrace();
 				}
@@ -308,7 +293,6 @@ public class Listeners {
 	}
 
 	public WindowListener PararCancionesAlCerrar() {
-
 		ventana.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosed(WindowEvent e) {
@@ -327,7 +311,6 @@ public class Listeners {
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
 				int selectedOption =  ventana.orden.getSelectedIndex();
 				// Aquí obtienes el criterio de orden seleccionado y actualizas la tabla
 				OT.ordenarLista(selectedOption);
@@ -344,8 +327,6 @@ public class Listeners {
 			}
 		};
 	}
-
-
 
 	public ActionListener Agregarcan() {
 		return new ActionListener() {
@@ -378,7 +359,6 @@ public class Listeners {
 					} catch (BDExcepcion e1) {
 						e1.printStackTrace();
 					}
-
 				}
 			}
 		};
@@ -407,7 +387,6 @@ public class Listeners {
 					System.out.println(cl.lista_canciones);
 					System.out.println(ventana.modelo_lista);
 					ventana.ColaCancion.remove(selectedRow);
-
 					cl.lista_canciones.remove(selectedRow);
 					ventana.modelo_lista.remove(selectedRow);
 					cl.cargar_modelo_lista(ventana.modelo_lista);
@@ -429,7 +408,6 @@ public class Listeners {
 				if(cancion == null || cancion.equals(ventana.CancionEjectuda)) {
 					for (Cancion c : ventana.ColaCancion) {
 						lista.add(c);
-
 					}
 					ventana.modelo_lista.removeAllElements();
 					for (Cancion d : lista) {

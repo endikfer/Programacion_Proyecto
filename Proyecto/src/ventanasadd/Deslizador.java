@@ -11,7 +11,6 @@ public class Deslizador {
 	private Timer timer;
 	public CambioSegundoMinuto cambiosecmin;
 	private Reproductor Reproductor;
-
 	private VentanaPrincipal ventana;
 
 	public Deslizador(VentanaPrincipal ventana) {
@@ -29,7 +28,6 @@ public class Deslizador {
 						valorActual += incremento;
 						ventana.duracion_can.setValue(valorActual);
 						ventana.t_duracion.setText(CambioSegundoMinuto.cambioSec(valorActual));
-
 					}else {
 						ventana.activador = false;
 					}
@@ -60,5 +58,4 @@ public class Deslizador {
 		ventana.duracion_can.setValue(valorActual);
 	    ventana.t_duracion.setText(CambioSegundoMinuto.cambioSec(valorActual));
 	}
-
 }
