@@ -573,6 +573,9 @@ public class VentanaPrincipal extends JFrame {
 			//deslizador
 			duracion_can = new JSlider(0, tiempo, 0);
 
+			
+			//Panel cola
+			//Jlist
 			p_cola.setLayout(new BorderLayout());
 
 			p_lista = new JPanel();
@@ -592,6 +595,7 @@ public class VentanaPrincipal extends JFrame {
 			p_cola.add(p_lista, BorderLayout.CENTER);
 
 
+			//Botones panel cola
 			pBotonesCola = new JPanel();
 			pBotonesCola.setLayout(new GridLayout(1,8));
 

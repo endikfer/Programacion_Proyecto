@@ -377,13 +377,20 @@ public class Listeners {
 	//Funicionamiento Boton eliminar cancion
 	public ActionListener BotonEliminarCancion() {
 		return new ActionListener() {
-			@SuppressWarnings("unchecked")
+			@SuppressWarnings({ "unchecked", "unlikely-arg-type" })
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int selectedRow = ventana.listaCan.getSelectedIndex();
+				String cancion = ventana.listaCan.getSelectedValue();
+				System.out.println(cancion);
+				cancion.split("d");
+				System.out.println(cancion);
+				System.out.println(ventana.ColaCancion.contains(cancion));
 				if (selectedRow == -1) {
 					JOptionPane.showMessageDialog(ventana, "No se ha seleccionado ninguna canción.", "Error", JOptionPane.ERROR_MESSAGE);
-				} else {
+				} else if(cancion.equals(ventana.ColaCancion.contains(cancion))) {
+					JOptionPane.showMessageDialog(ventana, "La cancion que se quiere borra esta siendo esuchada ahora, por lo que no es posible borrarla.", "Error", JOptionPane.ERROR_MESSAGE);
+				}else {
 					ventana.ColaCancion.remove(selectedRow);
 					cl.lista_canciones.remove(selectedRow);
 					ventana.modelo_lista.remove(selectedRow);
@@ -401,11 +408,8 @@ public class Listeners {
 			@SuppressWarnings("unchecked")
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
 				ventana.ColaCancion.clear();
-
 				cl.lista_canciones.clear();
-
 				ventana.modelo_lista.removeAllElements();
 				cl.cargar_modelo_lista(ventana.modelo_lista);
 				ventana.listaCan.setModel(ventana.modelo_lista);

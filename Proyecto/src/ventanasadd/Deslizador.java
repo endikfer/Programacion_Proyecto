@@ -26,9 +26,7 @@ public class Deslizador {
 				public void actionPerformed(ActionEvent e) {
 					if (valorActual != ventana.tiempo) {
 						valorActual += incremento;
-						System.out.println("actual: "+valorActual);
 						ventana.duracion_can.setValue(valorActual);
-						System.out.println("visual "+ventana.duracion_can.getValue());
 						ventana.t_duracion.setText(CambioSegundoMinuto.cambioSec(valorActual));
 
 					}else {
