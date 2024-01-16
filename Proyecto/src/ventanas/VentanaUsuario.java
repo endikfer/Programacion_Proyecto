@@ -221,7 +221,6 @@ public class VentanaUsuario extends JFrame{
 							JOptionPane.showMessageDialog(pCent, "Registro exitoso");
 						} catch (BDExcepcion e1) {
 							JOptionPane.showMessageDialog(pCent, "Error al guardar en la base de datos: " + e1.getMessage());
-							e1.printStackTrace();
 						}
 					} else {
 						JOptionPane.showMessageDialog(pCent, "ESTE USUARIO YA ESTÁ REGISTRADO");
@@ -256,7 +255,7 @@ public class VentanaUsuario extends JFrame{
 					usuarios = (ArrayList<Usuario>) bd.getTodosUsu();
 					bd.disconnect();
 				} catch (BDExcepcion e1) {
-					e1.printStackTrace();
+					Loggers.logger.warning("Error al conectar con la BD");
 				}
 				for(Usuario u : usuarios) {
 					if(u.getName_us().equals(nombre) && u.getPassword().equals(con)) {
