@@ -63,7 +63,6 @@ public class Cancion extends Artista implements Comparable<Cancion>{
 	        return false;
 	    }
 	    Cancion otraCancion = (Cancion) obj;
-//	    return name_can.equals(otraCancion.name_can);
 	    return Objects.equals(name_can, otraCancion.name_can);
 	}
 

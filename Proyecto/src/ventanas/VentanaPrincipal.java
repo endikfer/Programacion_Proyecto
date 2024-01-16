@@ -78,20 +78,15 @@ public class VentanaPrincipal extends JFrame {
 	public JPanel abajo;
 	public JPanel abajo_arriba;
 	public JPanel abajo_abajo;
-
 	public JPanel centro;
-
 	public JPanel p_perfil;
 	public JPanel p_contra;
-
 	public JPanel p_canciones;
 	public JPanel centro_arriba;
 	public JPanel boton_medio;
 	public JPanel centro_canciones;
 	public JPanel p_combo;
-
 	public JPanel p_cola;
-
 	public JPanel p_ajustes;
 	public JPanel p_fondo;
 	public JPanel p_bucle;
@@ -100,7 +95,6 @@ public class VentanaPrincipal extends JFrame {
 	public JPanel p_lista;
 	public JPanel pBotonesCola;
 	public JPanel pBtnQuitar;
-
 	public JButton b_perfil;
 	public JButton b_canciones;
 	public JButton b_cola;
@@ -109,58 +103,42 @@ public class VentanaPrincipal extends JFrame {
 	public JButton b_quitar_todo;
 	public JButton b_importar;
 	public JButton b_exportar;
-
 	public ImageIcon i_cancion;
 	public ImageIcon i_ajuste;
 	public ImageIcon i_perfil;
 	public ImageIcon i_cola;
-
 	public JLabel l_perfil;
 	public JLabel l_ajuste;
 	public JLabel l_cancion;
 	public JLabel l_cola;
-
 	public JLabel l_nombre;
 	public JLabel l_correo;
 	public JLabel l_nom_usu;
 	public JLabel l_contra;
-
-
 	public JLabel relleno1;
 	public JLabel relleno2;
 	public JLabel relleno3;
 	public JLabel relleno4;
-
 	public JLabel relleno5;
 	public JLabel relleno6;
 	public JLabel relleno7;
 	public JLabel relleno8;
 	public JLabel relleno9;
 	public JLabel relleno10;
-
 	public JPasswordField p_contra_f;
-
 	public JRadioButton b_contra;
-
 	public JTextField t_nombre;
 	public JTextField t_correo;
 	public JTextField t_nom_usu;
 	public JTextField t_contra;
-
 	public JTextField busqueda;
-
 	public ImageIcon i_lupa;
-
 	public JButton b_cancion_nueva;
 	public JButton lupa;
-
 	public DefaultTableModel modelo_tabla_canciones;
-
 	public JTable tabla_canciones;
-
 	public JScrollPane Scroll_tabla;
 	public JScrollPane Scroll_lista;
-
 	public JLabel l_fondo;
 	public JLabel l_bucle;
 	public JLabel l_atajos;
@@ -169,7 +147,6 @@ public class VentanaPrincipal extends JFrame {
 	public JLabel l_exp1;
 	public JLabel l_exp2;
 	public JLabel l_exp3;
-
 	public Font font;
 	public Font font1;
 	public Font font2;
@@ -178,37 +155,29 @@ public class VentanaPrincipal extends JFrame {
 	public Font font5;
 	public Font font6;
 	public Font font7;
-
 	public JToggleButton t_bucle;
 	public JToggleButton t_barra;
 	public JToggleButton t_flecha;
-
 	public ImageIcon i_atrasar;
 	public ImageIcon i_pausar;
 	public ImageIcon i_adelantar;
 	public ImageIcon i_play;
-
 	public JButton b_atras_can;
 	public JButton b_pausar_can;
 	public JButton b_adelantar_can;
-
 	public JSlider duracion_can;
 	public JToggleButton t_fondo;
 	public Color colorFondo;
 	public JLabel t_final;
 	public JLabel t_duracion;
 	public JLabel nom_can;
-
 	public JComboBox<String> orden;
-
 	public JList<String> listaCan;
 	@SuppressWarnings("rawtypes")
 	public DefaultListModel modelo_lista;
 	public ArrayList<Cancion> canciones;
-
 	public ArrayList<Cancion> ColaCancion;
 	public String CancionEjectuda;
-
 	public Cancion cancion;
 	public GestorCanciones gs;
 	public CargarLista cl;
@@ -217,37 +186,25 @@ public class VentanaPrincipal extends JFrame {
 	public VentanaPrincipal(VentanaUsuario vusu) {
 		this.vusu = vusu;
 	}
-
-
+	
 	@SuppressWarnings({ "static-access", "unchecked", "rawtypes" })
 	public VentanaPrincipal(){
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setExtendedState(this.MAXIMIZED_BOTH); //ventana maximizada
-		setTitle("Ventana Principal");
+		setTitle("YOUPLAY");
 		setLocationRelativeTo(null);
 		colorFondo = this.getContentPane().getBackground();
 		cambiarfondo = new CambiarFondo();
-
 		deslizador = new Deslizador(this);
-
 		listener = new Listeners(this);
-
 		cambiosecmin = new CambioSegundoMinuto();
-
 		cargacancion = new CargarCanciones();
-
 		bdUsu = new BDManejoUsu();
-
 		properties = new Properties();
-
 		listener.PararCancionesAlCerrar();
-
 		renderer = new Renderer();
-
 		gs = new GestorCanciones();
-
 		bdc = new BDCanciones();
-
 		cl = new CargarLista(this);
 		ml = new ModeloLista();
 
@@ -258,8 +215,6 @@ public class VentanaPrincipal extends JFrame {
 		abajo = new JPanel(new GridLayout(2, 1));
 		abajo_arriba = new JPanel();
 		abajo_abajo = new JPanel();
-
-
 
 
 		//paneles centro
@@ -274,7 +229,6 @@ public class VentanaPrincipal extends JFrame {
 		centro_arriba = new JPanel();
 		boton_medio = new JPanel();
 		centro_canciones = new JPanel();
-
 
 		p_canciones = new JPanel(new BorderLayout());
 		centro_arriba = new JPanel();
@@ -292,8 +246,6 @@ public class VentanaPrincipal extends JFrame {
 		p_flecha = new JPanel(new BorderLayout());
 
 		ColaCancion = new ArrayList<>();
-
-
 
 		try (FileReader reader = new FileReader("configuracion.properties")) {
 			properties.load(reader);
@@ -348,9 +300,6 @@ public class VentanaPrincipal extends JFrame {
 			b_ajustes.addActionListener(listener.BotonAjustesListener());
 
 
-
-
-
 			//Elementos del panel del centro
 			//Perfil
 			p_perfil.setBorder(new EmptyBorder(0, 20, 20, 20));
@@ -364,7 +313,6 @@ public class VentanaPrincipal extends JFrame {
 			p_contra_f = new JPasswordField();
 			p_contra_f.setEditable(false);
 			p_contra_f.setBackground(Color.WHITE);
-			
 
 			//RadioButton
 			b_contra = new JRadioButton();
@@ -386,8 +334,6 @@ public class VentanaPrincipal extends JFrame {
 			//Añadir el escuchador al radio buton		
 			b_contra.addActionListener(listener.BotonVisuContraListener());
 
-
-
 			//Canciones
 			//Panel
 			p_combo = new JPanel(new GridLayout(1,6));
@@ -398,13 +344,11 @@ public class VentanaPrincipal extends JFrame {
 			relleno3 = new JLabel();
 			relleno4 = new JLabel();
 
-
 			//texto
 			busqueda = new JTextField(50);
 
 			//imagenes de los botones
 			i_lupa = new ImageIcon(properties.getProperty("dirImg") + "lupa.jpg");
-
 
 			//Botones
 			b_cancion_nueva = new JButton("Añadir canción");
@@ -418,7 +362,6 @@ public class VentanaPrincipal extends JFrame {
 			orden = new JComboBox<>(ordenes);
 
 			orden.addActionListener(listener.OrdenarCombo());
-
 
 			//JTable
 			DefaultTableModel modelo_tabla_canciones = new DefaultTableModel();
@@ -435,7 +378,6 @@ public class VentanaPrincipal extends JFrame {
 			};
 
 			tabla_canciones.setDefaultRenderer(Object.class, renderer);
-
 
 			//tamaños del JTable
 			tabla_canciones.getColumnModel().getColumn(0).setPreferredWidth(300);
@@ -459,12 +401,10 @@ public class VentanaPrincipal extends JFrame {
 			//No poder moever las colunas
 			tableHeader.setReorderingAllowed(false);
 
-
 			//El scorll para la tabla
 			Scroll_tabla = new JScrollPane(tabla_canciones);
 			Scroll_tabla.setPreferredSize(new Dimension(1200, 500));
 			Scroll_tabla.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
 
 			//Ajustes
 			p_ajustes.setBorder(new EmptyBorder(0, 20, 20, 20));
@@ -481,25 +421,18 @@ public class VentanaPrincipal extends JFrame {
 			//aumento de tamaño y negrita del label de atajo de teclado
 			font = new Font("Arial", Font.BOLD, 25);
 			l_atajos.setFont(font);
-
 			font1 = new Font("Arial", Font.PLAIN, 12);
 			l_exp1.setFont(font1);
-
 			font2 = new Font("Arial", Font.PLAIN, 12);
 			l_exp2.setFont(font2);
-
 			font3 = new Font("Arial", Font.PLAIN, 12);
 			l_exp3.setFont(font3);
-
 			font4 = new Font("Arial", Font.PLAIN, 20);
 			l_fondo.setFont(font4);
-
 			font5 = new Font("Arial", Font.PLAIN, 20);
 			l_bucle.setFont(font5);
-
 			font6 = new Font("Arial", Font.PLAIN, 20);
 			l_barra.setFont(font6);
-
 			font7 = new Font("Arial", Font.PLAIN, 20);
 			l_flecha.setFont(font7);
 
@@ -514,8 +447,6 @@ public class VentanaPrincipal extends JFrame {
 			t_barra.addActionListener(listener.ToggleBarraEspaciadoraListener());
 			t_flecha.addActionListener(listener.ToggleFlechaIzqListener());
 			t_flecha.addActionListener(listener.ToggleFlechaDereListener());
-
-
 
 
 			//Elementos del panel de abajo
@@ -535,14 +466,9 @@ public class VentanaPrincipal extends JFrame {
 			b_pausar_can = new JButton(i_play);
 			b_adelantar_can = new JButton(i_adelantar);
 
-
 			//Añadir los escuchadores de los botones
 			b_pausar_can.addActionListener(listener.BotonPausarActivarBarra());
-
 			b_atras_can.addActionListener(listener.BotonPausarFlechaIzqListener());
-			
-
-			//Plan B para el hilo
 
 			// Crear una etiqueta para mostrar la hora actual en el encabezado
 			JLabel etiquetaReloj = new JLabel();
@@ -550,14 +476,12 @@ public class VentanaPrincipal extends JFrame {
 			etiquetaReloj.setHorizontalAlignment(SwingConstants.CENTER);
 			add(etiquetaReloj, BorderLayout.NORTH); // Añadir la etiqueta al encabezado de la ventana
 
-
 			Thread hiloReloj = new Thread(() -> {
 				while (true) {
 					LocalDateTime ahora = LocalDateTime.now();
 					DateTimeFormatter formateador = DateTimeFormatter.ofPattern("HH:mm:ss");
 					String horaActual = ahora.format(formateador);
-					setTitle("Ventana Principal - [Hora: " + horaActual + "]"); // Asignar el título con la hora actual
-
+					setTitle("YOUPLAY - [Hora: " + horaActual + "]"); // Asignar el título con la hora actual
 					try {
 						Thread.sleep(1000); // Esperar 1 segundo
 					} catch (InterruptedException e) {
@@ -578,53 +502,40 @@ public class VentanaPrincipal extends JFrame {
 			nom_can.setText("Cancion: ");
 			t_final.setText(cambiosecmin.cambioSec(0));
 			t_duracion.setText(String.format("%02d:%02d", 0,0));
-
 			b_adelantar_can.addActionListener(listener.BotonPausarFlechaDereListener());
 
 			//deslizador
 			duracion_can = new JSlider(0, tiempo, 0);
-
 			
 			//Panel cola
 			//Jlist
 			p_cola.setLayout(new BorderLayout());
-
 			p_lista = new JPanel();
-
 			modelo_lista = new DefaultListModel();    
-
 			listaCan = new JList<>(modelo_lista);
-
 			listaCan.setCellRenderer(ml);
-
 			Scroll_lista = new JScrollPane(listaCan);
 			Scroll_lista.setPreferredSize(new Dimension(1200, 750));
 			Scroll_lista.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
 			p_lista.add(Scroll_lista);
-
 			p_cola.add(p_lista, BorderLayout.CENTER);
 
 
 			//Botones panel cola
 			pBotonesCola = new JPanel();
 			pBotonesCola.setLayout(new GridLayout(1,8));
-
 			b_quitar = new JButton("Quitar Cancion");
 			b_quitar_todo = new JButton("Quitar todas las cancion");
 			b_exportar = new JButton("Exportar cola");
 			b_importar = new JButton("Importar cola");
-			
 			b_quitar.addActionListener(listener.BotonEliminarCancion());
 			b_quitar_todo.addActionListener(listener.BotonEliminarTodas());
-
 			relleno5 = new JLabel();
 			relleno6 = new JLabel();
 			relleno7 = new JLabel();
 			relleno8 = new JLabel();
 			relleno9 = new JLabel();
 			relleno10 = new JLabel();
-
 			pBotonesCola.add(relleno5);
 			pBotonesCola.add(b_quitar);
 			pBotonesCola.add(relleno6);
@@ -635,15 +546,9 @@ public class VentanaPrincipal extends JFrame {
 			pBotonesCola.add(relleno9);
 			pBotonesCola.add(b_importar);
 			pBotonesCola.add(relleno10);
-
-
 			p_cola.add(pBotonesCola, BorderLayout.SOUTH);
-
 			p_lista.setBorder(BorderFactory.createEmptyBorder(50, 0, 5, 0));
 			pBotonesCola.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
-
-
-
 
 
 			//conectando a la  base de datos
@@ -675,8 +580,6 @@ public class VentanaPrincipal extends JFrame {
 			abajo_abajo.add(b_atras_can);
 			abajo_abajo.add(b_pausar_can);
 			abajo_abajo.add(b_adelantar_can);
-
-
 			abajo.add(abajo_arriba);
 			abajo.add(abajo_abajo);
 
@@ -684,7 +587,6 @@ public class VentanaPrincipal extends JFrame {
 			//Añadir elementos al panel de contra
 			p_contra.add(p_contra_f, BorderLayout.CENTER);
 			p_contra.add(b_contra, BorderLayout.EAST);
-
 
 			//Añadir elementos al panel de perfil
 			p_perfil.add(l_nombre);
@@ -695,7 +597,6 @@ public class VentanaPrincipal extends JFrame {
 			p_perfil.add(t_nom_usu);
 			p_perfil.add(l_contra);
 			p_perfil.add(p_contra);
-
 
 			//Anaydir elementos al panel de canciones
 			boton_medio.add(b_cancion_nueva);
@@ -717,12 +618,10 @@ public class VentanaPrincipal extends JFrame {
 			p_bucle.add(l_bucle, BorderLayout.CENTER);
 			p_barra.add(l_barra, BorderLayout.CENTER);
 			p_flecha.add(l_flecha, BorderLayout.CENTER);
-
 			p_fondo.add(t_fondo, BorderLayout.EAST);
 			p_bucle.add(t_bucle, BorderLayout.EAST);
 			p_barra.add(t_barra, BorderLayout.EAST);
 			p_flecha.add(t_flecha, BorderLayout.EAST);
-
 			p_barra.add(l_exp1, BorderLayout.SOUTH);
 			p_flecha.add(l_exp2, BorderLayout.SOUTH);
 			p_bucle.add(l_exp3, BorderLayout.SOUTH);
@@ -738,20 +637,13 @@ public class VentanaPrincipal extends JFrame {
 			p_ajustes.add(p_barra);
 			p_ajustes.add(p_flecha);
 
-
-
-
 			//añadir el panel a centro
 			centro.add(p_canciones);
-
 
 			//Anaydir elementos al panel principal
 			getContentPane().add(izquierda, BorderLayout.WEST);
 			getContentPane().add(centro, BorderLayout.CENTER);
 			getContentPane().add(abajo, BorderLayout.SOUTH);
-
-
-
 
 			setVisible(true);
 		} catch (IOException e) {

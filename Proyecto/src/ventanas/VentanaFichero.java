@@ -23,7 +23,7 @@ public class VentanaFichero extends JFrame{
 	
 	public VentanaFichero() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setTitle("Ventana Fichero");
+		setTitle("YOUPLAY");
 		setSize(500, 300);
 		setLocationRelativeTo(null);
 		
@@ -51,9 +51,4 @@ public class VentanaFichero extends JFrame{
 		setVisible(true);
 		
 	}
-	
-	public static void main(String[] args) {
-		new VentanaFichero();
-	}
-
 }
