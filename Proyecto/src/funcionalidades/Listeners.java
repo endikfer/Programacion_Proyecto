@@ -400,7 +400,7 @@ public class Listeners {
 	public ActionListener BotonEliminarTodas() {
 		return new ActionListener() {
 			ArrayList<Cancion> lista = new ArrayList<>();
-			@SuppressWarnings("unchecked")
+			@SuppressWarnings({ "unchecked", "static-access" })
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String cancion = ventana.CancionEjectuda;
@@ -413,6 +413,8 @@ public class Listeners {
 						if(!d.getName_can().equals(cancion)) {
 							ventana.ColaCancion.remove(d);
 							cl.lista_canciones.remove(d.getName_can());
+						}else {
+							ventana.modelo_lista.addElement((d.getName_can() + ", " + d.getNombre_Ar() + ", " + d.getAlbum() + ", " + csm.cambioSec(d.getDuration())));
 						}
 					}
 					cl.cargar_modelo_lista(ventana.modelo_lista);
