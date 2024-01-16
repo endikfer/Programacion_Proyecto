@@ -413,7 +413,7 @@ public class Listeners {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String cancion = ventana.CancionEjectuda;
-				if(cancion.equals(ventana.CancionEjectuda)) {
+				if(cancion == null || cancion.equals(ventana.CancionEjectuda)) {
 					for (Cancion c : ventana.ColaCancion) {
 						lista.add(c);
 
