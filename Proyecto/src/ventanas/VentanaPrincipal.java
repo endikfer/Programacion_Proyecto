@@ -532,6 +532,8 @@ public class VentanaPrincipal extends JFrame {
 			b_importar = new JButton("Importar cola");
 			b_quitar.addActionListener(listener.BotonEliminarCancion());
 			b_quitar_todo.addActionListener(listener.BotonEliminarTodas());
+			b_exportar.addActionListener(listener.BotonExportar());
+			b_importar.addActionListener(listener.BotonImportar());
 			relleno5 = new JLabel();
 			relleno6 = new JLabel();
 			relleno7 = new JLabel();
