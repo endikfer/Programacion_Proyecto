@@ -191,7 +191,6 @@ public class Listeners {
 					try {
 						Reproductor.play();
 					}catch(Exception e1){
-						e1.printStackTrace();
 						JOptionPane.showMessageDialog(ventana, "No hay cancion seleccionada para reproducir.", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}else {
@@ -203,7 +202,6 @@ public class Listeners {
 					try {
 						Reproductor.pause();
 					}catch(Exception e1){
-						e1.printStackTrace();
 						JOptionPane.showMessageDialog(ventana, "No se pudo pausar la cancion.", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
@@ -226,7 +224,7 @@ public class Listeners {
 					File a = new File(properties.getProperty("dirCan") + ventana.CancionEjectuda + ".wav");
 					Reproductor.reproduce(a);
 				}catch(Exception e1) {
-					e1.printStackTrace();
+					Loggers.logger.warning("Error al encontrar la ruta del archivo");
 				}
 			}
 		};
@@ -279,10 +277,10 @@ public class Listeners {
 								Reproductor.close();
 							}
 						} catch (BDExcepcion e1) {
-							e1.printStackTrace();
+							Loggers.logger.warning("Error al conectar con la BD");
 						}
 					} catch (IOException e1) {
-						e1.printStackTrace();
+						Loggers.logger.warning("Error al encontrar la ruta del archivo");
 					}
 				}else {
 					ventana.deslizador.finalizarDeslizador();
@@ -357,7 +355,7 @@ public class Listeners {
 						}
 						bdc.disconnect();
 					} catch (BDExcepcion e1) {
-						e1.printStackTrace();
+						Loggers.logger.warning("Error al conectar con la BD");
 					}
 				}
 			}
