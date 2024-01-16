@@ -20,7 +20,7 @@ public class Reproductor {
 		this.ventana = ventana;
 	}
 
-	public static Clip clip;
+	public Clip clip;
 
 	public void play() {
 		if(clip==null) {
