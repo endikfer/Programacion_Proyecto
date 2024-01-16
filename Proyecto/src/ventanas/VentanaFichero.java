@@ -2,6 +2,8 @@ package ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -36,6 +38,12 @@ public class VentanaFichero extends JFrame{
 		relleno2 = new JLabel();
 		relleno3 = new JLabel();
 		
+		boton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                valorTexto = texto.getText();
+                dispose();
+            }
+        });
 		panel_sec.add(relleno1);
 		panel_sec.add(label);
 		panel_sec.add(relleno2);

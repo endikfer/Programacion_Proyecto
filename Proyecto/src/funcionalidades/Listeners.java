@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import bd.BDCanciones;
 import bd.BDExcepcion;
 import modelos.Cancion;
+import ventanas.VentanaFichero;
 import ventanas.VentanaPrincipal;
 
 public class Listeners {
@@ -454,6 +455,7 @@ public class Listeners {
 	public ActionListener BotonImportar() {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ventanafich = new VentanaFichero();
 			}
 		};
 	}
@@ -461,6 +463,7 @@ public class Listeners {
 	public ActionListener BotonExportar() {
 		return new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ventanafich = new VentanaFichero();
 			}
 		};
 	}
