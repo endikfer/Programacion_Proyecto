@@ -18,8 +18,6 @@ public class ModeloLista extends DefaultListCellRenderer {
 		
 		c.setFont(new Font("Serif", Font.BOLD, 30));
 		c.setForeground(Color.BLUE);
-		
 		return c;
 	}
 }
-
