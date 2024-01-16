@@ -265,6 +265,7 @@ public class Listeners {
 								ventana.CancionEjectuda = c1.getName_can();
 								File a = new File(properties.getProperty("dirCan") + c1.getName_can() + ".wav");
 								ventana.deslizador.reiniciarDeslizador();
+								Reproductor.close();
 								Reproductor.reproduce(a);
 								CambiarNombreLabel(posicion);
 								CambiarTiempoLabel(posicion);
@@ -275,6 +276,7 @@ public class Listeners {
 								ventana.CancionEjectuda = c1.getName_can();
 								File a = new File(properties.getProperty("dirCan") + c1.getName_can() + ".wav");
 								ventana.deslizador.reiniciarDeslizador();
+								Reproductor.close();
 								Reproductor.reproduce(a);
 								CambiarNombreLabel(posicion);
 								CambiarTiempoLabel(posicion);
