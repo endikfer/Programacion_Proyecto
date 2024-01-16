@@ -54,7 +54,7 @@ public class Listeners {
 	private void inicializarLista() {
 		cl = new CargarLista(ventana);
 	}
-	
+
 	private void inizializarReproductor() {
 		Reproductor = new Reproductor(ventana);
 	}
@@ -438,7 +438,7 @@ public class Listeners {
 					for (Cancion d : lista) {
 						if(!d.getName_can().equals(cancion)) {
 							ventana.ColaCancion.remove(d);
-							cl.lista_canciones.remove(cancion);
+							cl.lista_canciones.remove(d.getName_can());
 						}
 					}
 					cl.cargar_modelo_lista(ventana.modelo_lista);
