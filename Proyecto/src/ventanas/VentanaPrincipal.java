@@ -361,7 +361,10 @@ public class VentanaPrincipal extends JFrame {
 			l_contra = new JLabel("Contraseña");
 
 			//PasswordField
-			p_contra_f = new JPasswordField("Hola"); //hola es un ejemplo para mirar si funciona
+			p_contra_f = new JPasswordField();
+			p_contra_f.setEditable(false);
+			p_contra_f.setBackground(Color.WHITE);
+			
 
 			//RadioButton
 			b_contra = new JRadioButton();
@@ -371,6 +374,14 @@ public class VentanaPrincipal extends JFrame {
 			t_correo = new JTextField();
 			t_nom_usu = new JTextField();
 			t_contra = new JTextField();
+			t_nombre.setEditable(false);
+			t_correo.setEditable(false);
+			t_nom_usu.setEditable(false);
+			t_contra.setEditable(false);
+			t_nombre.setBackground(Color.WHITE);
+			t_correo.setBackground(Color.WHITE);
+			t_nom_usu.setBackground(Color.WHITE);
+			t_contra.setBackground(Color.WHITE);
 
 			//Añadir el escuchador al radio buton		
 			b_contra.addActionListener(listener.BotonVisuContraListener());
