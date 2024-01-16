@@ -309,8 +309,10 @@ public class Listeners {
 			@Override
 			public void windowClosed(WindowEvent e) {
 				super.windowClosing(e);
-				// Aquí detienes el reproductor
-				Reproductor.pause();
+				// Aquí detienes el reproductor si es desigual a null
+				if(Reproductor != null) {
+					Reproductor.close();;
+				}
 			}
 		});
 		return null;
@@ -398,8 +400,11 @@ public class Listeners {
 					System.out.println("Hola2");
 					JOptionPane.showMessageDialog(ventana, "La cancion que se quiere borra esta siendo esuchada ahora, por lo que no es posible borrarla.", "Error", JOptionPane.ERROR_MESSAGE);
 				}else {
-					System.out.println("Hola3");
+					System.out.println(ventana.ColaCancion);
+					System.out.println(cl.lista_canciones);
+					System.out.println(ventana.modelo_lista);
 					ventana.ColaCancion.remove(selectedRow);
+
 					cl.lista_canciones.remove(selectedRow);
 					ventana.modelo_lista.remove(selectedRow);
 					cl.cargar_modelo_lista(ventana.modelo_lista);
