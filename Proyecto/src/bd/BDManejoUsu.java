@@ -90,7 +90,7 @@ public class BDManejoUsu {
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new BDExcepcion("No se pudo guardar el usuario en la BD", e);
+			throw new BDExcepcion("Usuario ya existente.", e);
 		}
 	}
 

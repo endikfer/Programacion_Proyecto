@@ -32,7 +32,6 @@ public class Artista {
 	        return false;
 	    }
 	    Artista otroArtista = (Artista) obj;
-	    System.out.println(otroArtista);
 	    return nombre_Ar.equals(otroArtista.nombre_Ar);
 	}
 

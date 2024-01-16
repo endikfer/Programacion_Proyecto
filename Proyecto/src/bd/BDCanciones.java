@@ -9,15 +9,12 @@ import java.sql.Statement;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
-
 import canciones.Artista;
 import canciones.Cancion;
-import ventanasadd.Loggers;
 
 public class BDCanciones {
 	
 	private Connection conn = null; 
-
 
 	public void connect(String dbPath) throws BDExcepcion {
 		try {
