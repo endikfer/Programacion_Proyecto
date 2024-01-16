@@ -22,7 +22,7 @@ public class Reproductor {
 
 	public static Clip clip;
 
-	public static void play() {
+	public void play() {
 		if(clip==null) {
 			JOptionPane.showMessageDialog(ventana, "No hay cancion seleccionada para reproducir.", "Error", JOptionPane.ERROR_MESSAGE);
 		}else {
@@ -31,13 +31,13 @@ public class Reproductor {
 	}
 
 
-	public static void pause() {
+	public void pause() {
 		if(clip!=null) {
 			clip.stop();
 		}
 	}
 
-	public static void restart() {
+	public void restart() {
 		if(clip==null) {
 			JOptionPane.showMessageDialog(ventana, "No hay cancion seleccionada para reproducir.", "Error", JOptionPane.ERROR_MESSAGE);
 		}else {
@@ -45,7 +45,7 @@ public class Reproductor {
 		}
 	}
 
-	public static void close() {
+	public void close() {
 		if(clip==null) {
 			JOptionPane.showMessageDialog(ventana, "No hay cancion seleccionada para reproducir.", "Error", JOptionPane.ERROR_MESSAGE);
 		}else {
@@ -53,7 +53,7 @@ public class Reproductor {
 		}
 	}
 
-	public static void reproduce(File file) {
+	public void reproduce(File file) {
 		try {
 			if(file==null) {
 				JOptionPane.showMessageDialog(ventana, "No hay cancion seleccionada para reproducir.", "Error", JOptionPane.ERROR_MESSAGE);

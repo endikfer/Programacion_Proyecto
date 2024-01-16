@@ -26,6 +26,7 @@ public class Listeners {
 
 	private TogleBoton togle;
 	public CambioSegundoMinuto csm = new CambioSegundoMinuto();
+	private Reproductor Reproductor;
 
 	private CambiarFondo cambiarfondo = new CambiarFondo();
 	private OrdenarTabla OT;
@@ -389,11 +390,15 @@ public class Listeners {
 				String[] partesDivididas = cancion.split(",");
 				String primeraParte = partesDivididas[0];
 				System.out.println(ventana.ColaCancion.contains(primeraParte));
+				System.out.println("Hola");
 				if (selectedRow == -1) {
+					System.out.println("Hola1");
 					JOptionPane.showMessageDialog(ventana, "No se ha seleccionado ninguna canción.", "Error", JOptionPane.ERROR_MESSAGE);
 				} else if(primeraParte.equals(ventana.CancionEjectuda)) {
+					System.out.println("Hola2");
 					JOptionPane.showMessageDialog(ventana, "La cancion que se quiere borra esta siendo esuchada ahora, por lo que no es posible borrarla.", "Error", JOptionPane.ERROR_MESSAGE);
 				}else {
+					System.out.println("Hola3");
 					ventana.ColaCancion.remove(selectedRow);
 					cl.lista_canciones.remove(selectedRow);
 					ventana.modelo_lista.remove(selectedRow);

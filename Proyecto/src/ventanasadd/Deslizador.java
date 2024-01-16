@@ -10,6 +10,7 @@ public class Deslizador {
 	private int incremento = 1;
 	private Timer timer;
 	public CambioSegundoMinuto cambiosecmin;
+	private Reproductor Reproductor;
 
 	private VentanaPrincipal ventana;
 
