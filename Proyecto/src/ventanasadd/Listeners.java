@@ -189,7 +189,6 @@ public class Listeners {
 
 	public ActionListener BotonPausarActivarBarra() {
 		return new ActionListener() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (ventana.activador==false) {
@@ -295,7 +294,6 @@ public class Listeners {
 								Reproductor.close();
 							}
 						} catch (BDExcepcion e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					} catch (IOException e1) {
@@ -316,7 +314,6 @@ public class Listeners {
 			public void windowClosed(WindowEvent e) {
 				super.windowClosing(e);
 				// Aquí detienes el reproductor si es desigual a null
-				
 				Reproductor.close();
 			}
 		});
@@ -377,7 +374,6 @@ public class Listeners {
 						}
 						bdc.disconnect();
 					} catch (BDExcepcion e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 
@@ -431,7 +427,6 @@ public class Listeners {
 				if(cancion == null || cancion.equals(ventana.CancionEjectuda)) {
 					for (Cancion c : ventana.ColaCancion) {
 						lista.add(c);
-
 					}
 					ventana.modelo_lista.removeAllElements();
 					for (Cancion d : lista) {
