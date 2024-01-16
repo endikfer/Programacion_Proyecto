@@ -388,27 +388,19 @@ public class Listeners {
 	//Funicionamiento Boton eliminar cancion
 	public ActionListener BotonEliminarCancion() {
 		return new ActionListener() {
-			@SuppressWarnings({ "unchecked", "unlikely-arg-type" })
+			@SuppressWarnings({ "unchecked"})
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int selectedRow = ventana.listaCan.getSelectedIndex();
 				String cancion = ventana.listaCan.getSelectedValue();
 				String[] partesDivididas = cancion.split(",");
 				String primeraParte = partesDivididas[0];
-				System.out.println(ventana.ColaCancion.contains(primeraParte));
-				System.out.println("Hola");
 				if (selectedRow == -1) {
-					System.out.println("Hola1");
 					JOptionPane.showMessageDialog(ventana, "No se ha seleccionado ninguna canción.", "Error", JOptionPane.ERROR_MESSAGE);
 				} else if(primeraParte.equals(ventana.CancionEjectuda)) {
-					System.out.println("Hola2");
 					JOptionPane.showMessageDialog(ventana, "La cancion que se quiere borra esta siendo esuchada ahora, por lo que no es posible borrarla.", "Error", JOptionPane.ERROR_MESSAGE);
 				}else {
-					System.out.println(ventana.ColaCancion);
-					System.out.println(cl.lista_canciones);
-					System.out.println(ventana.modelo_lista);
 					ventana.ColaCancion.remove(selectedRow);
-
 					cl.lista_canciones.remove(selectedRow);
 					ventana.modelo_lista.remove(selectedRow);
 					cl.cargar_modelo_lista(ventana.modelo_lista);
