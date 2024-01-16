@@ -1,16 +1,14 @@
 package ventanasadd;
 
 import java.util.Collections;
-
 import javax.swing.table.DefaultTableModel;
-
 import canciones.Cancion;
 import ventanas.VentanaPrincipal;
 
 public class OrdenarTabla {
-	private GestorCanciones gs;
-	private VentanaPrincipal ventana;
-	private CambioSegundoMinuto csm;
+	public GestorCanciones gs;
+	public VentanaPrincipal ventana;
+	public CambioSegundoMinuto csm;
 	
 	public OrdenarTabla(VentanaPrincipal ventana) {
 		this.ventana = ventana;
@@ -22,7 +20,6 @@ public class OrdenarTabla {
 		csm = new CambioSegundoMinuto();
 		
 		DefaultTableModel a = (DefaultTableModel) ventana.tabla_canciones.getModel();
-
 
 		switch (opcionSeleccionada) {
 		case 0: // A a la Z

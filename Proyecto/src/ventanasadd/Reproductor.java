@@ -10,17 +10,13 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
 import ventanas.VentanaPrincipal;
 
-
 public class Reproductor {
-	public static VentanaPrincipal ventana;
+	public VentanaPrincipal ventana;
+	public Clip clip;
 
-
-	@SuppressWarnings("static-access")
 	public Reproductor(VentanaPrincipal ventana) {
 		this.ventana = ventana;
 	}
-
-	public Clip clip;
 
 	public void play() {
 		if(clip==null) {
@@ -29,7 +25,6 @@ public class Reproductor {
 			clip.start();
 		}
 	}
-
 
 	public void pause() {
 		if(clip!=null) {
@@ -66,5 +61,4 @@ public class Reproductor {
 			Loggers.logger.warning("Error al reproducir la cancion");
 		}
 	}
-
 }

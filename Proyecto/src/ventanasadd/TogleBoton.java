@@ -1,12 +1,10 @@
 package ventanasadd;
 
 import java.awt.event.KeyEvent;
-
 import ventanas.VentanaPrincipal;
 
 public class TogleBoton {
-
-	private VentanaPrincipal ventana;
+	public VentanaPrincipal ventana;
 
 	public TogleBoton(VentanaPrincipal ventana) {
 		this.ventana = ventana;
@@ -20,7 +18,6 @@ public class TogleBoton {
 		}
 	}
 
-
 	public void ActivarFlechaDerecha() {
 		if (ventana.t_flecha.isSelected()) {
 			ventana.b_adelantar_can.setMnemonic(KeyEvent.VK_RIGHT);
@@ -29,7 +26,6 @@ public class TogleBoton {
 		}
 	}
 
-
 	public void ActivarFlechaIzquierda() {
 		if (ventana.t_flecha.isSelected()) {
 			ventana.b_atras_can.setMnemonic(KeyEvent.VK_LEFT);
@@ -37,5 +33,4 @@ public class TogleBoton {
 			ventana.b_atras_can.setMnemonic(0);
 		}
 	}
-
 }
