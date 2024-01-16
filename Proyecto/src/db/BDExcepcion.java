@@ -1,4 +1,4 @@
-package bd;
+package db;
 
 public class BDExcepcion extends Exception{
 	/**

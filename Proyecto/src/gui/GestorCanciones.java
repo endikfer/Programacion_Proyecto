@@ -1,10 +1,11 @@
-package funcionalidades;
+package gui;
 
 import java.util.ArrayList;
 import java.util.List;
-import bd.BDCanciones;
-import bd.BDExcepcion;
-import modelos.Cancion;
+
+import db.BDCanciones;
+import db.BDExcepcion;
+import domain.Cancion;
 
 public class GestorCanciones {
 	public BDCanciones bdc;

@@ -1,4 +1,4 @@
-package funcionalidades;
+package gui;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,7 +8,6 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
-import ventanas.VentanaPrincipal;
 
 public class Reproductor {
 	public VentanaPrincipal ventana;

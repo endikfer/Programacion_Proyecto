@@ -1,7 +1,6 @@
-package funcionalidades;
+package gui;
 
 import java.awt.Color;
-import ventanas.VentanaPrincipal;
 
 public class CambiarFondo {
 	@SuppressWarnings("unused")

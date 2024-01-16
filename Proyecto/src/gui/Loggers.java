@@ -1,4 +1,4 @@
-package funcionalidades;
+package gui;
 
 import java.util.logging.Logger;
 

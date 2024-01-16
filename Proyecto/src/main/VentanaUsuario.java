@@ -1,4 +1,4 @@
-package ventanas;
+package main;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -17,10 +17,12 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import bd.BDExcepcion;
-import bd.BDManejoUsu;
-import funcionalidades.Loggers;
-import modelos.Usuario;
+
+import db.BDExcepcion;
+import db.BDManejoUsu;
+import domain.Usuario;
+import gui.Loggers;
+import gui.VentanaPrincipal;
 import net.miginfocom.swing.MigLayout;
 
 import java.awt.Color;

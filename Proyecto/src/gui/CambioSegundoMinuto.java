@@ -1,4 +1,4 @@
-package funcionalidades;
+package gui;
 
 public class CambioSegundoMinuto {
 	public static int minutos = 0;

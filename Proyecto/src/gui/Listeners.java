@@ -1,4 +1,4 @@
-package funcionalidades;
+package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -13,11 +13,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
 import javax.swing.JOptionPane;
-import bd.BDCanciones;
-import bd.BDExcepcion;
-import modelos.Cancion;
-//import ventanas.VentanaFichero;
-import ventanas.VentanaPrincipal;
+
+import db.BDCanciones;
+import db.BDExcepcion;
+import domain.Cancion;
 
 public class Listeners {
 	public VentanaPrincipal ventana;

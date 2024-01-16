@@ -1,9 +1,9 @@
-package funcionalidades;
+package gui;
 
 import java.util.Collections;
 import javax.swing.table.DefaultTableModel;
 
-import modelos.Cancion;
+import domain.Cancion;
 
 public class CargarCanciones {
 	CambioSegundoMinuto csm;

@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import domain.Artista;
+
 public class ArtistaTest {
 
 	private Artista art1;

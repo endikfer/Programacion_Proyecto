@@ -1,7 +1,6 @@
-package funcionalidades;
+package gui;
 
 import javax.swing.JOptionPane;
-import ventanas.VentanaPrincipal;
 
 public class BuscarEnTabla {
 	private VentanaPrincipal ventana;

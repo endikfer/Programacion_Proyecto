@@ -1,10 +1,9 @@
-package funcionalidades;
+package gui;
 
 import java.util.Collections;
 import javax.swing.table.DefaultTableModel;
 
-import modelos.Cancion;
-import ventanas.VentanaPrincipal;
+import domain.Cancion;
 
 public class OrdenarTabla {
 	public GestorCanciones gs;

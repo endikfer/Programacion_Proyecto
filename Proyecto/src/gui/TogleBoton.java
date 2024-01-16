@@ -1,7 +1,6 @@
-package funcionalidades;
+package gui;
 
 import java.awt.event.KeyEvent;
-import ventanas.VentanaPrincipal;
 
 public class TogleBoton {
 	public VentanaPrincipal ventana;

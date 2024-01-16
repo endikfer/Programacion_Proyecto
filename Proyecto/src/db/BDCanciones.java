@@ -1,4 +1,4 @@
-package bd;
+package db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,8 +10,8 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import modelos.Artista;
-import modelos.Cancion;
+import domain.Artista;
+import domain.Cancion;
 
 public class BDCanciones {
 	

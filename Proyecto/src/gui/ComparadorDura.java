@@ -1,8 +1,8 @@
-package funcionalidades;
+package gui;
 
 import java.util.Comparator;
 
-import modelos.Cancion;
+import domain.Cancion;
 
 public class ComparadorDura implements Comparator<Cancion> {
     @Override

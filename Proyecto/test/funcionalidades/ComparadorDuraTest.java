@@ -3,7 +3,9 @@ package funcionalidades;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-import modelos.Cancion;
+
+import domain.Cancion;
+import gui.ComparadorDura;
 
 public class ComparadorDuraTest {
 	

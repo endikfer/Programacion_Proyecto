@@ -1,10 +1,9 @@
-package funcionalidades;
+package gui;
 
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
-import modelos.Cancion;
-import ventanas.VentanaPrincipal;
+import domain.Cancion;
 
 public class CargarLista {
 	public CambioSegundoMinuto csm;

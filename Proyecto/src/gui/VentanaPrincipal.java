@@ -1,4 +1,4 @@
-package ventanas;
+package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -31,21 +31,13 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import bd.BDCanciones;
-import bd.BDExcepcion;
-import bd.BDManejoUsu;
-import funcionalidades.CambiarFondo;
-import funcionalidades.CambioSegundoMinuto;
-import funcionalidades.CargarCanciones;
-import funcionalidades.CargarLista;
-import funcionalidades.Deslizador;
-import funcionalidades.GestorCanciones;
-import funcionalidades.Listeners;
-import funcionalidades.Loggers;
-import funcionalidades.ModeloLista;
-import funcionalidades.Renderer;
-import modelos.Cancion;
-import modelos.Usuario;
+
+import db.BDCanciones;
+import db.BDExcepcion;
+import db.BDManejoUsu;
+import domain.Cancion;
+import domain.Usuario;
+import main.VentanaUsuario;
 
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;

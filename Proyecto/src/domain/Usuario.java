@@ -1,4 +1,4 @@
-package modelos;
+package domain;
 
 public class Usuario {
 	String name_real;
