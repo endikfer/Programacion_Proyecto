@@ -463,8 +463,8 @@ public class VentanaPrincipal extends JFrame {
 			l_atajos = new JLabel("Atajos de teclado");
 			l_barra = new JLabel("Uso del enter para pausar y reanudar la cancion");
 			l_flecha = new JLabel("Uso de las flechas adelante/atras para retroceder/avanzar una cancion");
-			l_exp1 = new JLabel("Al clickar el enter se activara la cancion si estaba parada, o al reves, si estaba activada se pausara.");
-			l_exp2 = new JLabel("Al clickar la flecha de la izquierda volvera a repetirse la cancion anterior, y al clickar la de la derecha avanzara una cancion.");
+			l_exp1 = new JLabel("Al hacer alt + enter se activara la cancion si estaba parada, o al reves, si estaba activada se pausara.");
+			l_exp2 = new JLabel("Al hacer alt + flecha de la izquierda se reinicia la cancion, y al hacer alt + flecha de la derecha avanza a la siguiente cancion.");
 			l_exp3 = new JLabel("Activando esta funcion cuando la lista de canciones se termine volvera a empezar desde el inicio.");
 
 			//aumento de tamaño y negrita del label de atajo de teclado
