@@ -22,7 +22,6 @@ public class BuscarEnTabla {
                 }
             } 
         }
-        // Si no se encuentra el texto, se podría mostrar un mensaje o realizar otra acción
         JOptionPane.showMessageDialog(ventana, "Texto no encontrado en la tabla", "Búsqueda", JOptionPane.INFORMATION_MESSAGE);
 	}
 }

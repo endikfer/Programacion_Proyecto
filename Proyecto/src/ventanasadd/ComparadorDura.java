@@ -1,7 +1,6 @@
 package ventanasadd;
 
 import java.util.Comparator;
-
 import canciones.Cancion;
 
 public class ComparadorDura implements Comparator<Cancion> {

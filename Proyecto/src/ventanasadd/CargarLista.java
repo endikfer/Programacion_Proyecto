@@ -1,13 +1,11 @@
 package ventanasadd;
 
 import java.util.ArrayList;
-
 import javax.swing.DefaultListModel;
 import canciones.Cancion;
 import ventanas.VentanaPrincipal;
 
 public class CargarLista {
-
 	public CambioSegundoMinuto csm;
 	public VentanaPrincipal ventana;
 
@@ -29,5 +27,4 @@ public class CargarLista {
 		}
 		return a;
 	}
-
 }

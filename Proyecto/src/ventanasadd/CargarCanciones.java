@@ -1,9 +1,7 @@
 package ventanasadd;
 
 import java.util.Collections;
-
 import javax.swing.table.DefaultTableModel;
-
 import canciones.Cancion;
 
 public class CargarCanciones {
@@ -11,7 +9,6 @@ public class CargarCanciones {
 	GestorCanciones gs;
 	
 	//metodo para lo por defecto de la tabla de canciones
-	
 	@SuppressWarnings("static-access")
 	public DefaultTableModel cargar_modelo_tabla_canciones(DefaultTableModel a){
 		csm = new CambioSegundoMinuto();
@@ -29,5 +26,4 @@ public class CargarCanciones {
         
 		return a;
 	}
-
 }

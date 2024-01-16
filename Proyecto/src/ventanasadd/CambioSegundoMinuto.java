@@ -4,7 +4,6 @@ public class CambioSegundoMinuto {
 	public static int minutos = 0;
 	public static int secrestante = 0;
 
-
 	public static String cambioSec(int sec) {
 		minutos = sec / 60;
 		secrestante = sec % 60;

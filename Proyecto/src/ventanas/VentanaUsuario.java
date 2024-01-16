@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,22 +17,18 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
 import bd.BDExcepcion;
 import bd.BDManejoUsu;
 import canciones.Usuario;
 import net.miginfocom.swing.MigLayout;
 import ventanasadd.Loggers;
-
 import java.awt.Color;
 import java.awt.Font;
 
 public class VentanaUsuario extends JFrame{
 
 	private static final long serialVersionUID = 1L;
-
 	protected static final int MIN_LONGITUD_CONTRASENA = 8;
-
 	private static JPanel pCent, pIs, pR, pNomIs, pConIs, pNomR, pConR, pMailR, pBtnIs, pBtnR, pNomRealR, pMensaje;
 	private static JLabel lblIs, lblR, lblNomIs, lblConIs, lblNomR, lblConR, lblMailR, lblNomRealR, lError;
 	private static JButton btnIs, btnR;
@@ -45,7 +40,6 @@ public class VentanaUsuario extends JFrame{
 
 	public VentanaUsuario() throws HeadlessException {
 		super();
-
 		setTitle("YOUPLAY");
 		setBounds(200,200,800,400);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -89,7 +83,6 @@ public class VentanaUsuario extends JFrame{
 		lError = new JLabel();
 		lError.setForeground(Color.RED);
 		lError.setVerticalAlignment(JLabel.TOP); // Alinea el texto en la parte superior del JLabel
-
 
 		// Botones
 		btnIs = new JButton("INICIAR SESIÓN");
@@ -265,7 +258,6 @@ public class VentanaUsuario extends JFrame{
 				} catch (BDExcepcion e1) {
 					e1.printStackTrace();
 				}
-
 				for(Usuario u : usuarios) {
 					if(u.getName_us().equals(nombre) && u.getPassword().equals(con)) {
 						@SuppressWarnings("unused")

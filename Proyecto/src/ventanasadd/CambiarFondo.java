@@ -1,7 +1,6 @@
 package ventanasadd;
 
 import java.awt.Color;
-
 import ventanas.VentanaPrincipal;
 
 public class CambiarFondo {
@@ -30,8 +29,7 @@ public class CambiarFondo {
 			ventana.p_cola.setBackground(Color.BLACK);
 			ventana.p_lista.setBackground(Color.BLACK);
 			ventana.pBotonesCola.setBackground(Color.BLACK);
-
-
+			
 			ventana.t_final.setForeground(Color.WHITE);
 			ventana.t_duracion.setForeground(Color.WHITE);
 			ventana.nom_can.setForeground(Color.WHITE);
@@ -43,7 +41,6 @@ public class CambiarFondo {
 			ventana.l_exp1.setForeground(Color.WHITE);
 			ventana.l_exp2.setForeground(Color.WHITE);
 			ventana.l_exp3.setForeground(Color.WHITE);
-
 			ventana.l_nombre.setForeground(Color.WHITE);
 			ventana.l_correo.setForeground(Color.WHITE);
 			ventana.l_nom_usu.setForeground(Color.WHITE);
@@ -80,7 +77,6 @@ public class CambiarFondo {
 			ventana.l_exp1.setForeground(Color.BLACK);
 			ventana.l_exp2.setForeground(Color.BLACK);
 			ventana.l_exp3.setForeground(Color.BLACK);
-
 			ventana.l_nombre.setForeground(Color.BLACK);
 			ventana.l_correo.setForeground(Color.BLACK);
 			ventana.l_nom_usu.setForeground(Color.BLACK);
