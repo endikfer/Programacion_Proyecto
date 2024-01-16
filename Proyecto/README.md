@@ -72,3 +72,12 @@ La interfaz se presenta en una pestaña dividida en dos secciones. La parte perm
 
 - **Botón Adelantar:** Avanza a la próxima canción si es posible; de lo contrario, finaliza la canción actual.
 
+#### Funcionalidades de los botones panel izquierdo
+
+- **Botón Perfil:** Muestra los datos del usuario logeado.
+
+- **Botón Canciones:** Muestra la tabla con todas las canciones posibles para escuchar
+
+- **Botón Cola:** Muestra una lista con las canciones que estan en cola, en caso de haberlas.
+
+- **Botón Ajustes:** Muestra los ajustes del proyecto que hemos establecido (Modo oscuro, Autoplay y Atajos de teclado)
