@@ -1,4 +1,4 @@
-package ventanasadd;
+package funcionalidades;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,7 +1,8 @@
-package ventanasadd;
+package funcionalidades;
 
 import java.util.Comparator;
-import canciones.Cancion;
+
+import modelos.Cancion;
 
 public class ComparadorDura implements Comparator<Cancion> {
     @Override

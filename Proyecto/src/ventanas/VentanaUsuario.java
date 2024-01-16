@@ -19,9 +19,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import bd.BDExcepcion;
 import bd.BDManejoUsu;
-import canciones.Usuario;
+import funcionalidades.Loggers;
+import modelos.Usuario;
 import net.miginfocom.swing.MigLayout;
-import ventanasadd.Loggers;
+
 import java.awt.Color;
 import java.awt.Font;
 

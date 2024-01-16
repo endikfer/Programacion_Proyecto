@@ -1,8 +1,9 @@
-package ventanasadd;
+package funcionalidades;
 
 import java.util.Collections;
 import javax.swing.table.DefaultTableModel;
-import canciones.Cancion;
+
+import modelos.Cancion;
 
 public class CargarCanciones {
 	CambioSegundoMinuto csm;

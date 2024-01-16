@@ -1,4 +1,4 @@
-package ventanasadd;
+package funcionalidades;
 
 import java.awt.event.KeyEvent;
 import ventanas.VentanaPrincipal;

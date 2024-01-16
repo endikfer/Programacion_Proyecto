@@ -1,4 +1,4 @@
-package ventanasadd;
+package funcionalidades;
 
 import javax.swing.JOptionPane;
 import ventanas.VentanaPrincipal;

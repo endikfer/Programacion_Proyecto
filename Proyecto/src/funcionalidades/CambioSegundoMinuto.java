@@ -1,4 +1,4 @@
-package ventanasadd;
+package funcionalidades;
 
 public class CambioSegundoMinuto {
 	public static int minutos = 0;

@@ -1,9 +1,11 @@
-package canciones;
+package modelos;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import modelos.Artista;
 
 public class ArtistaTest {
 

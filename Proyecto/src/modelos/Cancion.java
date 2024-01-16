@@ -1,4 +1,4 @@
-package canciones;
+package modelos;
 
 import java.util.Objects;
 

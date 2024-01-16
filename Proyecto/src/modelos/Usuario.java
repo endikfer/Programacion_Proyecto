@@ -1,4 +1,4 @@
-package canciones;
+package modelos;
 
 public class Usuario {
 	String name_real;

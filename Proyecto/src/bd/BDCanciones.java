@@ -9,8 +9,9 @@ import java.sql.Statement;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
-import canciones.Artista;
-import canciones.Cancion;
+
+import modelos.Artista;
+import modelos.Cancion;
 
 public class BDCanciones {
 	

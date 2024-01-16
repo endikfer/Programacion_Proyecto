@@ -1,8 +1,9 @@
-package ventanasadd;
+package funcionalidades;
 
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import canciones.Cancion;
+
+import modelos.Cancion;
 import ventanas.VentanaPrincipal;
 
 public class CargarLista {

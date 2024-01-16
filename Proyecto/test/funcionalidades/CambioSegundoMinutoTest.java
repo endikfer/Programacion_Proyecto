@@ -1,8 +1,10 @@
-package ventanasadd;
+package funcionalidades;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import funcionalidades.CambioSegundoMinuto;
 
 public class CambioSegundoMinutoTest {
 

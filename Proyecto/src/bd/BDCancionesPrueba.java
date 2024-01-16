@@ -1,6 +1,6 @@
 package bd;
 
-import canciones.Cancion;
+import modelos.Cancion;
 
 public class BDCancionesPrueba {
 	

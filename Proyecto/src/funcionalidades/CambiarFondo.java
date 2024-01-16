@@ -1,4 +1,4 @@
-package ventanasadd;
+package funcionalidades;
 
 import java.awt.Color;
 import ventanas.VentanaPrincipal;

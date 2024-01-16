@@ -1,10 +1,10 @@
-package ventanasadd;
+package funcionalidades;
 
 import java.util.ArrayList;
 import java.util.List;
 import bd.BDCanciones;
 import bd.BDExcepcion;
-import canciones.Cancion;
+import modelos.Cancion;
 
 public class GestorCanciones {
 	public BDCanciones bdc;

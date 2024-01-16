@@ -1,4 +1,4 @@
-package ventanasadd;
+package funcionalidades;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -15,7 +15,7 @@ import java.util.Properties;
 import javax.swing.JOptionPane;
 import bd.BDCanciones;
 import bd.BDExcepcion;
-import canciones.Cancion;
+import modelos.Cancion;
 import ventanas.VentanaPrincipal;
 
 public class Listeners {
