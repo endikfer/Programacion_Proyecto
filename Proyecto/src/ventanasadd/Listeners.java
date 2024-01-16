@@ -246,7 +246,6 @@ public class Listeners {
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//				sigc.CancionSig();
 				ventana.activador = false;
 				ventana.b_pausar_can.setIcon(ventana.i_play);
 				if(ventana.ColaCancion.size() > 0) {
@@ -263,10 +262,12 @@ public class Listeners {
 							if (posicion+1 < ventana.ColaCancion.size()) {
 								Cancion c1 = ventana.ColaCancion.get(posicion+1);
 								posicion++;
-								ventana.CancionEjectuda = c1.getName_can();
 								File a = new File(properties.getProperty("dirCan") + c1.getName_can() + ".wav");
-								ventana.deslizador.reiniciarDeslizador();
-								Reproductor.close();
+								if(ventana.CancionEjectuda!=null) {
+									ventana.deslizador.reiniciarDeslizador();
+									Reproductor.close();
+								}
+								ventana.CancionEjectuda = c1.getName_can();
 								Reproductor.reproduce(a);
 								CambiarNombreLabel(posicion);
 								CambiarTiempoLabel(posicion);

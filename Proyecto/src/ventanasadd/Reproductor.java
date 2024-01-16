@@ -12,8 +12,6 @@ import ventanas.VentanaPrincipal;
 
 
 public class Reproductor {
-
-	SiguienteCancion sigc;
 	public static VentanaPrincipal ventana;
 
 
