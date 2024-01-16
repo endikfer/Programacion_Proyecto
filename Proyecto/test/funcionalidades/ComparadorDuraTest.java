@@ -1,11 +1,8 @@
 package funcionalidades;
 
 import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
-
-import funcionalidades.ComparadorDura;
 import modelos.Cancion;
 
 public class ComparadorDuraTest {
