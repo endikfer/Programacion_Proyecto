@@ -13,7 +13,6 @@ Este proyecto es un reproductor de música.
 - **test:** Archivos en los que se verifican todos los modelos y varias funcionalidades.
 
 - **recursos**
-  - **ficheros:** Carpeta donde se guardan ficheros .txt que se vayan a importar o exportar.
   - **imagenes:** Carpeta que contiene todas las imágenes utilizadas en el proyecto.
   - **musica:** Carpeta que contiene todas las canciones posibles para escuchar.
 

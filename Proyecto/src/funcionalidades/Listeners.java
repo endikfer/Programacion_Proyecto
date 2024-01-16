@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 import bd.BDCanciones;
 import bd.BDExcepcion;
 import modelos.Cancion;
-import ventanas.VentanaFichero;
+//import ventanas.VentanaFichero;
 import ventanas.VentanaPrincipal;
 
 public class Listeners {
@@ -451,21 +451,4 @@ public class Listeners {
 			ventana.duracion_can.setMaximum(ventana.tiempo);;
 		}
 	}
-	
-	public ActionListener BotonImportar() {
-		return new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ventanafich = new VentanaFichero();
-			}
-		};
-	}
-	
-	public ActionListener BotonExportar() {
-		return new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ventanafich = new VentanaFichero();
-			}
-		};
-	}
-	
 }

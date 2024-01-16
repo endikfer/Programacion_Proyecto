@@ -40,7 +40,6 @@ public class VentanaFichero extends JFrame{
 		
 		boton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                valorTexto = texto.getText();
                 dispose();
             }
         });
@@ -57,6 +56,5 @@ public class VentanaFichero extends JFrame{
 		getContentPane().add(panel_prin, BorderLayout.CENTER);
 		
 		setVisible(true);
-		
 	}
 }
