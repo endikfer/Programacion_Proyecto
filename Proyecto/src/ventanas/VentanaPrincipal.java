@@ -35,6 +35,7 @@ import bd.BDCanciones;
 import bd.BDExcepcion;
 import bd.BDManejoUsu;
 import ventanasadd.Listeners;
+import ventanasadd.Loggers;
 import ventanasadd.ModeloLista;
 import ventanasadd.Renderer;
 import canciones.Cancion;
@@ -485,7 +486,7 @@ public class VentanaPrincipal extends JFrame {
 					try {
 						Thread.sleep(1000); // Esperar 1 segundo
 					} catch (InterruptedException e) {
-						e.printStackTrace();
+						Loggers.logger.warning("Error al esperar 1 segundo para modificar la hora");
 					}
 				}
 			});
@@ -561,7 +562,7 @@ public class VentanaPrincipal extends JFrame {
 				p_contra_f.setText(user.getPassword());
 
 			} catch (BDExcepcion e1) {
-				e1.printStackTrace();
+				Loggers.logger.warning("Error al conectar con la BD");
 			}
 
 
@@ -647,7 +648,7 @@ public class VentanaPrincipal extends JFrame {
 
 			setVisible(true);
 		} catch (IOException e) {
-			System.out.println("Error abriendo el fichero de propiedades.");
+			Loggers.logger.warning("Error al encontrar la ruta del archivo");
 		}
 	}
 }
