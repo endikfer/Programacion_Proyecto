@@ -51,7 +51,7 @@ public class VentanaUsuario extends JFrame{
 		usuarios = new ArrayList<Usuario>();
 		bd = new BDManejoUsu();
 		try {
-			bd.connect("Usuario.db");
+			bd.connect("resources/db/Usuario.db");
 			usuarios = (ArrayList<Usuario>) bd.getTodosUsu();
 			bd.disconnect();
 		} catch (BDExcepcion e) {
@@ -218,7 +218,7 @@ public class VentanaUsuario extends JFrame{
 
 						// Guardar en la base de datos
 						try {
-							bd.connect("Usuario.db");
+							bd.connect("resources/db/Usuario.db");
 							bd.guardar(us);
 							bd.disconnect();
 							JOptionPane.showMessageDialog(pCent, "Registro exitoso");
@@ -254,7 +254,7 @@ public class VentanaUsuario extends JFrame{
 				nomUsu = txtNomIs.getText();
 
 				try {
-					bd.connect("Usuario.db");
+					bd.connect("resources/db/Usuario.db");
 					usuarios = (ArrayList<Usuario>) bd.getTodosUsu();
 					bd.disconnect();
 				} catch (BDExcepcion e1) {

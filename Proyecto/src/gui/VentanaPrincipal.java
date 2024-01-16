@@ -241,7 +241,7 @@ public class VentanaPrincipal extends JFrame {
 
 		ColaCancion = new ArrayList<>();
 
-		try (FileReader reader = new FileReader("configuracion.properties")) {
+		try (FileReader reader = new FileReader("conf/configuracion.properties")) {
 			properties.load(reader);
 
 			//Elementos del panel de la izquierda
@@ -547,7 +547,7 @@ public class VentanaPrincipal extends JFrame {
 
 			//conectando a la  base de datos
 			try {
-				bdUsu.connect("Usuario.db");
+				bdUsu.connect("resources/db/Usuario.db");
 				Usuario user =  bdUsu.getUser(vusu.getNomUsu());
 				t_nombre.setText(user.getName_real());
 				t_correo.setText(user.getGmail());

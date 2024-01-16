@@ -214,7 +214,7 @@ public class Listeners {
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try (FileReader reader = new FileReader("configuracion.properties")) {
+				try (FileReader reader = new FileReader("conf/configuracion.properties")) {
 					properties.load(reader);
 					ventana.deslizador.reiniciarDeslizador();
 					Reproductor.close();
@@ -238,13 +238,13 @@ public class Listeners {
 				ventana.activador = false;
 				ventana.b_pausar_can.setIcon(ventana.i_play);
 				if(ventana.ColaCancion.size() > 0) {
-					try (FileReader reader = new FileReader("configuracion.properties")) {
+					try (FileReader reader = new FileReader("conf/configuracion.properties")) {
 						properties.load(reader);
 						if(ventana.ColaCancion.isEmpty()) {
 							Reproductor.close();
 						}
 						try {
-							bdc.connect("Usuario.db");
+							bdc.connect("resources/db/Usuario.db");
 							String nombreCan = ventana.CancionEjectuda;
 							Cancion c = bdc.getCancion(nombreCan);
 							posicion = ventana.ColaCancion.indexOf(c);
@@ -338,7 +338,7 @@ public class Listeners {
 					String nombreCan = (String) ventana.tabla_canciones.getValueAt(selectedRow, 0);
 					Boolean b = false;
 					try {
-						bdc.connect("Usuario.db");
+						bdc.connect("resources/db/Usuario.db");
 						Cancion c= bdc.getCancion(nombreCan);
 						if (!ventana.ColaCancion.isEmpty()) {
 							for (Cancion c1: ventana.ColaCancion) {

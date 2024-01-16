@@ -16,7 +16,7 @@ public class GestorCanciones {
 		canciones = new ArrayList<>();
 
 		try {
-			bdc.connect("Usuario.db");
+			bdc.connect("resources/db/Usuario.db");
 			canciones = bdc.getAllCanciones();
 			bdc.disconnect();
 		} catch (BDExcepcion e) {
