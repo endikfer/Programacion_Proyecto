@@ -24,7 +24,7 @@ public class GestorCanciones {
 			bdc.disconnect();
 			
 		} catch (BDExcepcion e) {
-			e.printStackTrace();
+			Loggers.logger.warning("Error al conectar con la BD");
 		}
 	}
 

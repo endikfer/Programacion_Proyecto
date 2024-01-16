@@ -23,6 +23,8 @@ import bd.BDExcepcion;
 import bd.BDManejoUsu;
 import canciones.Usuario;
 import net.miginfocom.swing.MigLayout;
+import ventanasadd.Loggers;
+
 import java.awt.Color;
 import java.awt.Font;
 
@@ -56,7 +58,7 @@ public class VentanaUsuario extends JFrame{
 			usuarios = (ArrayList<Usuario>) bd.getTodosUsu();
 			bd.disconnect();
 		} catch (BDExcepcion e) {
-			e.printStackTrace();
+			Loggers.logger.warning("Error al conectar con la BD");
 		}
 
 		// Paneles

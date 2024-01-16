@@ -12,6 +12,7 @@ import java.util.List;
 
 import canciones.Artista;
 import canciones.Cancion;
+import ventanasadd.Loggers;
 
 public class BDCanciones {
 	

@@ -63,7 +63,6 @@ public class Reproductor {
 				clip.open(audioStream);
 			}
 		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-			e.printStackTrace();
 			Loggers.logger.warning("Error al reproducir la cancion");
 		}
 	}
