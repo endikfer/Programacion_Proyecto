@@ -450,4 +450,19 @@ public class Listeners {
 			ventana.duracion_can.setMaximum(ventana.tiempo);;
 		}
 	}
+	
+	public ActionListener BotonImportar() {
+		return new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		};
+	}
+	
+	public ActionListener BotonExportar() {
+		return new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		};
+	}
+	
 }
