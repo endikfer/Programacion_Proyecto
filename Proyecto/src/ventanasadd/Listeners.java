@@ -40,6 +40,7 @@ public class Listeners {
 		inicializarOT();
 		inicializarBuscar();
 		inicializarLista();
+		inizializarReproductor();
 	}
 
 
@@ -52,6 +53,10 @@ public class Listeners {
 	}
 	private void inicializarLista() {
 		cl = new CargarLista(ventana);
+	}
+	
+	private void inizializarReproductor() {
+		Reproductor = new Reproductor(ventana);
 	}
 
 	//listeners de los botones
@@ -184,6 +189,7 @@ public class Listeners {
 
 	public ActionListener BotonPausarActivarBarra() {
 		return new ActionListener() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (ventana.activador==false) {
@@ -310,9 +316,8 @@ public class Listeners {
 			public void windowClosed(WindowEvent e) {
 				super.windowClosing(e);
 				// Aquí detienes el reproductor si es desigual a null
-				if(Reproductor != null) {
-					Reproductor.close();;
-				}
+				
+				Reproductor.close();
 			}
 		});
 		return null;
